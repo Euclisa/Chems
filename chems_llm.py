@@ -6,7 +6,7 @@ import json
 
 
 class ChemsLLM:
-    def __init__(self, chems_fn, data_dir, api_key=None):
+    def __init__(self, data_dir, api_key=None):
         if api_key is None:
             api_key = os.getenv("OPENROUTER_API_KEY")
 
@@ -18,9 +18,10 @@ class ChemsLLM:
         
         self.print_lock = threading.Lock()
 
-        self.chems_fn = chems_fn
-
         self.gpt_oss = "openai/gpt-oss-120b"
+        self.qwen = "qwen/qwen3-235b-a22b-thinking-2507"
+        self.grok = "x-ai/grok-3-mini"
+        self.gemeni = "google/gemini-2.5-flash-lite"
 
         self.data_dir = data_dir
         if not os.path.exists(self.data_dir):
@@ -29,6 +30,7 @@ class ChemsLLM:
         self.raw_reactions_fn = os.path.join(self.data_dir, "raw_reactions.jsonl")
         self.raw_reactions_verdict_fn = os.path.join(self.data_dir, "raw_reactions_verdict.jsonl")
         self.raw_reactions_staged_fn = os.path.join(self.data_dir, "raw_reactions_staged.jsonl")
+        self.chems_fn = os.path.join(self.data_dir, "chems.jsonl")
 
 
 
@@ -80,7 +82,7 @@ class ChemsLLM:
             "If no such substance exists or no documented reactions are available, return 'None'."
 
             instruct_revalidate = \
-            "Please, review the provided reactions. Identify any erroneous reactions and correct them where possible. Return revised initial reactions list that comply with the initial requirements."
+            "Please, review the provided reactions. Identify any erroneous reactions and correct them where possible. Return revised reactions list that comply with the initial requirements."
 
             instruct_validate = \
             "You will be given a list of unbalanced chemical reaction schemes. " \
@@ -94,10 +96,16 @@ class ChemsLLM:
                 {"role": "user", "content": instruct}
             ]
 
-            response = self.__fetch_llm_answer(messages, self.gpt_oss)
-            reactions = self.__get_reactions_from_response(response)
-            if not reactions:
-                self.log(f"Rejected '{chem_name}'")
+            models_to_try = [self.gpt_oss, self.grok]
+            
+            for curr_model in models_to_try:
+                model = curr_model
+                response = self.__fetch_llm_answer(messages, model)
+                reactions = self.__get_reactions_from_response(response)
+                if reactions:
+                    break
+            else:
+                self.log(f"Failed to fetch reactions for '{chem_name}'")
                 return None
             
             #self.log(f"Got {len(reactions)} initial reactions for {chem_name}")
@@ -107,13 +115,13 @@ class ChemsLLM:
             messages.append({"role": "assistant", "content": response})
             messages.append({"role": "user", "content": instruct_revalidate})
 
-            response = self.__fetch_llm_answer(messages, self.gpt_oss)
+            response = self.__fetch_llm_answer(messages, model)
             reactions_revalid = self.__get_reactions_from_response(response)
             if not reactions_revalid:
                 self.log(f"Failed to fetch revalidated reactions for '{chem_name}'. Assuming all are valid...")
                 reactions_revalid = reactions
             
-            self.log(f"Got {len(reactions)} reactions for {chem_name}")
+            self.log(f"Got {len(reactions)} reactions for {chem_name} with '{model}'; CTT: {self.completion_tokens_total}")
         
         except Exception as e:
             self.log(f"Exception in '__fetch_raw_reactions': {e}")
@@ -169,24 +177,37 @@ class ChemsLLM:
                 {"role": "user", "content": f"{instruct_validate}\n{reactions_str}"}
             ]
 
+            models_to_try = [self.gpt_oss, self.grok]
+            model_i = 0
+
             valid_i = 0
             mistakes_cnt = 0
             valid_ratio = [0.0 for i in range(len(reactions))]
             while valid_i < valid_cnt:
-                response = self.__fetch_llm_answer(messages, self.gpt_oss)
+                response = self.__fetch_llm_answer(messages, models_to_try[model_i])
                 verdicts = self.__get_verdicts_bool_from_response(response)
                 if len(verdicts) != len(reactions):
                     self.log(f"Mistake: {len(verdicts)} != {len(reactions)}: '{response}'")
                     mistakes_cnt += 1
-                    if mistakes_cnt > 2:
-                        return None
+                    if mistakes_cnt > 1:
+                        # switch to fallback if main model refuses or fails to validate
+                        model_i += 1
+                        if model_i == len(models_to_try):
+                            self.log(f"Failed to validate:\n{reactions_str}")
+                            return None
+                        # 2 more validation tries for fallback model
+                        valid_cnt += 2
+                        self.log(f"Falling to {models_to_try[model_i]} on try {valid_i}")
                     continue
                 
                 for i, verd in enumerate(verdicts):
-                    valid_ratio[i] += float(verd)/valid_cnt
+                    valid_ratio[i] += float(verd)
                 
                 valid_i += 1
-            
+
+            for i, ratio in enumerate(valid_ratio):
+                valid_ratio[i] /= valid_cnt
+
             valid_reacts_cnt = 0
             verdict_reactions = []
             for i, react in enumerate(reactions):
@@ -196,7 +217,7 @@ class ChemsLLM:
                 if react['valid']:
                     valid_reacts_cnt += 1
             
-            self.log(f"{valid_reacts_cnt}/{len(reactions)} are valid. CTT: {self.completion_tokens_total}")
+            self.log(f"{valid_reacts_cnt}/{len(reactions)} are valid ('{models_to_try[model_i]}'); CTT: {self.completion_tokens_total}")
             
             return verdict_reactions
         
@@ -234,90 +255,6 @@ class ChemsLLM:
                 for react in res:
                     f_out.write(json.dumps(react) + '\n')
                 f_out.flush()
-    
-
-    def __fix_broken_raw_reactions(self, reactions_broken):
-        try:
-            instruct = \
-            "You will be given a list of unbalanced chemical reaction schemes. " \
-            "For each scheme, if the reaction can be corrected by replacing the products with valid chemical substances, " \
-            "output the corrected unbalanced scheme using chemical names, not formulas. " \
-            "Use '->' and '+' markup symbols. " \
-            "If the reaction is not possible with the given reagents, output only 'Invalid'. " \
-            "Write each result on a new line, matching the order of the input reactions. Do not include any explanations or extra text."
-
-            reactions_str = '\n'.join([f"{i+1}. {react}" for i, react in enumerate(reactions_broken)])
-
-            messages = [
-                {"role": "system", "content": ""},
-                {"role": "user", "content": f"{instruct}\n{reactions_str}"}
-            ]
-            for attempt_i in range(2):
-                response = self.__fetch_llm_answer(messages, self.gpt_oss)
-                response = response.strip('\n').split('\n')
-                if len(response) == len(reactions_broken):
-                    break
-            else:
-                self.log(f"Failed to fetch fix")
-                return None
-            
-            reactions_fixed = []
-
-            for i, line in enumerate(response):
-                if 'invalid' in line.lower():
-                    continue
-
-                reactions_fixed.append({'cid': None, 'reaction': line})
-
-            print(f"Fixed {len(reactions_fixed)}/{len(reactions_broken)} reactions. CTT: {self.completion_tokens_total}")
-            
-            return reactions_fixed
-
-
-        except Exception as e:
-            self.log(f"Exception in '__fix_broken_raw_reactions': {e}")
-            return None
-
-
-    def fix_broken_raw_reactions(self, max_workers=1):
-        with open(self.raw_reactions_verdict_fn) as f:
-            entries = [json.loads(x) for x in f.read().strip().split('\n')]
-        
-        processed = self.__get_processed_entries(self.raw_reactions_staged_fn, 'reaction')
-
-        reactions_broken = []
-
-        with open(self.raw_reactions_staged_fn, 'a') as f_out:
-            for entry in entries:
-                reaction = entry['reaction']
-                valid = entry['valid']
-                cid = entry['cid']
-
-                if reaction in processed:
-                    continue
-
-                if not valid:
-                    reactions_broken.append(reaction)
-                else:
-                    f_out.write(json.dumps({'cid': cid, 'reaction': reaction}) + '\n')
-        
-        with ThreadPoolExecutor(max_workers=max_workers) as executor, open(self.raw_reactions_staged_fn, 'a') as f_out:
-            futures = []
-            i = 0
-            while i < len(reactions_broken):
-                futures.append(executor.submit(self.__fix_broken_raw_reactions, reactions_broken[i:i+10]))
-                i += 10
-            
-            for future in as_completed(futures):
-                res = future.result()
-                if res is None:
-                    continue
-                for react in res:
-                    f_out.write(json.dumps(react) + '\n')
-                    f_out.flush()
-
-            
-            
 
 
     def deduplicate_raw_reactions(self):
@@ -325,16 +262,19 @@ class ChemsLLM:
             entries = [json.loads(x) for x in f.read().strip().split('\n')]
         
         raw_reacts = dict()
+        models = dict()
         for entry in entries:
             cid = entry['cid']
             reactions = entry['reactions']
+            model = entry['model']
             if cid not in raw_reacts:
                 raw_reacts[cid] = []
             raw_reacts[cid] += reactions
+            models[cid] = model
         
         with open(self.raw_reactions_fn, 'w') as f:
             for cid in raw_reacts:
-                entry = {'cid': cid, 'reactions': raw_reacts[cid]}
+                entry = {'cid': cid, 'reactions': raw_reacts[cid], 'model': models[cid]}
                 f.write(json.dumps(entry) + '\n')
     
 
@@ -353,10 +293,10 @@ class ChemsLLM:
 
 
 if __name__ == "__main__":
-    chemsllm = ChemsLLM("chems.jsonl", "data/")
-    #chemsllm.get_raw_reactions("raw_reactions.jsonl", max_workers=20)
+    chemsllm = ChemsLLM("data/")
+    #chemsllm.get_raw_reactions(max_workers=20)
     #chemsllm.process_raw_reactions('raw_reactions.jsonl')
-    #chemsllm.deduplicate_raw_reactions('raw_reactions.jsonl')
-    chemsllm.validate_raw_reactions(max_workers=10)
+    #chemsllm.deduplicate_raw_reactions()
+    chemsllm.validate_raw_reactions(max_workers=20)
     #chemsllm.fix_broken_raw_reactions(max_workers=1)
     
