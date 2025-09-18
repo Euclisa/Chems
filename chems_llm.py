@@ -5,6 +5,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import re
 import pubchempy as pcp
+import shutil
+from chempy import balance_stoichiometry
 
 
 class ChemsLLM:
@@ -33,6 +35,7 @@ class ChemsLLM:
         self.raw_reactions_verdict_fn = os.path.join(self.data_dir, "raw_reactions_verdict.jsonl")
         self.raw_reactions_staged_fn = os.path.join(self.data_dir, "raw_reactions_staged.jsonl")
         self.reactions_parsed_fn = os.path.join(self.data_dir, "reactions_parsed.jsonl")
+        self.reactions_parsed_balanced_fn = os.path.join(self.data_dir, "reactions_parsed_balanced.jsonl")
         self.unmapped_names_fn = os.path.join(self.data_dir, "unmapped_names.txt")
         self.unmapped_names_blacklisted_fn = os.path.join(self.data_dir, "unmapped_names_blacklisted.txt")
         self.chems_fn = os.path.join(self.data_dir, "chems.jsonl")
@@ -44,7 +47,10 @@ class ChemsLLM:
             print(message)
     
     def __fetch_llm_answer(self, messages, model):
-        completion = self.client.chat.completions.create(model=model, messages=messages)
+        completion = self.client.chat.completions.create(
+            model=model,
+            messages=messages
+            )
 
         with self.tokens_total_lock:
             self.input_tokens_total += completion.usage.prompt_tokens
@@ -126,13 +132,13 @@ class ChemsLLM:
                 self.log(f"Failed to fetch revalidated reactions for '{chem_name}'. Assuming all are valid...")
                 reactions_revalid = reactions
             
-            self.log(f"Got {len(reactions)} reactions for {chem_name} with '{model}'; CTT: {self.completion_tokens_total}")
+            self.log(f"Got {len(reactions_revalid)} reactions for {chem_name} with '{model}'; CTT: {self.completion_tokens_total}")
         
         except Exception as e:
             self.log(f"Exception in '__fetch_raw_reactions': {e}")
             return None
         
-        return {'cid': chem['cid'], 'reactions': reactions}
+        return {'cid': chem['cid'], 'reactions': reactions_revalid}
 
 
 
@@ -217,6 +223,7 @@ class ChemsLLM:
             verdict_reactions = []
             for i, react in enumerate(reactions):
                 react['valid'] = valid_ratio[i] > 0.5
+                react['confidence'] = valid_ratio[i]
                 verdict_reactions.append(react)
 
                 if react['valid']:
@@ -250,7 +257,7 @@ class ChemsLLM:
             futures = []
             i = 0
             while i < len(reactions):
-                futures.append(executor.submit(self.__validate_raw_reactions, reactions[i:i+10], 5))
+                futures.append(executor.submit(self.__validate_raw_reactions, reactions[i:i+10], 7))
                 i += 10
             
             for future in as_completed(futures):
@@ -275,7 +282,7 @@ class ChemsLLM:
         return non_ascii
     
 
-    def __chem_name_to_ascii(self, chem_name):
+    def __chem_name_to_ascii(self, chem_name_raw):
         unicode_map = {
             '‑': '-',
             'α': 'alpha',
@@ -283,7 +290,7 @@ class ChemsLLM:
             '–': '-'
         }
         chem_name_ascii = ""
-        for char in chem_name:
+        for char in chem_name_raw:
             if not char.isascii():
                 if char in unicode_map:
                     char = unicode_map[char]
@@ -292,20 +299,34 @@ class ChemsLLM:
             chem_name_ascii += char
         
         return chem_name_ascii
+    
 
-    def __normalize_chem_name(self, chem_name):
-        chem_name = chem_name.lower()
-        chem_name = self.__chem_name_to_ascii(chem_name)
-        chem_name = chem_name.replace('vapor', '')
-        chem_name = chem_name.replace('dust', '')
-        chem_name = chem_name.replace('elemental', '')
-        chem_name = chem_name.replace('metal', '')
-        chem_name = chem_name.replace('aqueus', '')
+    def __clean_chem_name(self, chem_name_raw, is_clean=False):
+        chem_name = self.__chem_name_to_ascii(chem_name_raw)
         chem_name = chem_name.strip()
-        chem_name = chem_name.strip('`\'".,;:')
-        chem_name = re.sub(r'\s+', ' ', chem_name.lower())
-        chem_name = re.sub(r' \([^\d]+\)$', '', chem_name)
-        chem_name = re.sub(r'^\d+ ', '', chem_name)
+        chem_name = re.sub(r'\s+', ' ', chem_name)
+
+        if not is_clean:
+            chem_name = chem_name.strip('`\'".,;:')
+            chem_name = re.sub(r'^\d+ ', '', chem_name)
+
+        return chem_name
+
+
+    def __normalize_chem_name(self, chem_name_raw, is_clean=False):
+        chem_name = self.__clean_chem_name(chem_name_raw, is_clean=is_clean)
+        chem_name = chem_name.lower()
+        chem_name = chem_name.strip()
+        
+        if not is_clean:
+            chem_name = re.sub(r' \([^\d]+\)$', '', chem_name)
+            chem_name = chem_name.replace('vapor', '')
+            chem_name = chem_name.replace('dust', '')
+            chem_name = chem_name.replace('elemental', '')
+            chem_name = chem_name.replace('metal', '')
+            chem_name = chem_name.replace('aqueus', '')
+
+        chem_name = re.sub(r'\s+', '', chem_name)
 
         return chem_name
     
@@ -316,10 +337,10 @@ class ChemsLLM:
             for line in f:
                 entry = json.loads(line)
                 cid = entry['cid']
-                name_cid_map[self.__normalize_chem_name(entry['cmpdname'])] = cid
+                name_cid_map[self.__normalize_chem_name(entry['cmpdname'], is_clean=True)] = cid
                 synonyms = list(filter(lambda x: not re.search(r'\d{3,}', x), entry['cmpdsynonym']))
                 for syn in synonyms:
-                    name_cid_map[self.__normalize_chem_name(syn)] = cid
+                    name_cid_map[self.__normalize_chem_name(syn, is_clean=True)] = cid
         
         return name_cid_map
     
@@ -335,22 +356,39 @@ class ChemsLLM:
         unmapped_names = set()
 
         reagents_clean = []
+        reagents_cids = set()
         for chem_name in reagents.split('+'):
             norm_name = self.__normalize_chem_name(chem_name)
+            clean_name = self.__clean_chem_name(chem_name)
             cid = name_cid_map.get(norm_name)
             if cid is None:
                 parse_success = False
                 unmapped_names.add(norm_name)
-            reagents_clean.append({'name': norm_name, 'cid': cid})
+
+            if cid not in reagents_cids or cid is None:
+                reagents_clean.append({'norm_name': norm_name, 'original_name': clean_name, 'cid': cid})
+                reagents_cids.add(cid)
+        
+        reagents_clean = list({d["cid"]: d for d in reagents_clean}.values())
         
         products_clean = []
+        products_cids = set()
         for chem_name in products.split('+'):
             norm_name = self.__normalize_chem_name(chem_name)
+            clean_name = self.__clean_chem_name(chem_name)
             cid = name_cid_map.get(norm_name)
             if cid is None:
                 parse_success = False
                 unmapped_names.add(norm_name)
-            products_clean.append({'name': norm_name, 'cid': cid})
+    
+            if cid not in products_cids or cid is None:
+                products_clean.append({'norm_name': norm_name, 'original_name': clean_name, 'cid': cid})
+                products_cids.add(cid)
+        
+        products_clean = list({d["cid"]: d for d in products_clean}.values())
+
+        if products_cids & reagents_cids:
+            parse_success = False
 
 
         return parse_success, {'reagents': reagents_clean, 'products': products_clean}, unmapped_names
@@ -363,6 +401,7 @@ class ChemsLLM:
         unmapped_names = set()
 
         parsed = []
+        processed_reactions_ids = set()
         with open(self.raw_reactions_verdict_fn) as f:
             for line in f:
                 entry = json.loads(line)
@@ -375,8 +414,16 @@ class ChemsLLM:
                     continue
                 parse_success, parsed_reaction, unmapped_names_curr = parse_res
                 unmapped_names.update(unmapped_names_curr)
-                if parse_success:
-                    parsed.append(parsed_reaction)
+                if not parse_success:
+                    continue
+                
+                reagents_cids = tuple(sorted([x['cid'] for x in parsed_reaction['reagents']]))
+                products_cids = tuple(sorted([x['cid'] for x in parsed_reaction['products']]))
+                reaction_id = (reagents_cids, products_cids)
+                if reaction_id in processed_reactions_ids:
+                    continue
+                processed_reactions_ids.add(reaction_id)
+                parsed.append(parsed_reaction)
         
         with open(self.reactions_parsed_fn, 'w') as f:
             for react in parsed:
@@ -422,6 +469,12 @@ class ChemsLLM:
                     'complexity': chem.complexity
                 }
                 if chem:
+                    # Workaround to prevent fetching gibberish
+                    all_names = chem.synonyms + [chem.iupac_name]
+                    all_names = [self.__normalize_chem_name(x,is_clean=True) for x in all_names]
+                    if any(x in blacklist for x in all_names):
+                        continue
+
                     f_out.write(json.dumps(chem_pc_data) + '\n')
                     f_out.flush()
                     self.log(f"Fetched '{chem_pc_data['cmpdname']}' for unmapped name '{chem_name}'")
@@ -464,6 +517,8 @@ class ChemsLLM:
     
 
     def organize_chems_file(self):
+        shutil.copy(self.chems_fn, f"{self.chems_fn}.backup")
+
         with open(self.chems_fn) as f:
             chems = [json.loads(x) for x in f.read().strip().split('\n')]
         
@@ -492,6 +547,57 @@ class ChemsLLM:
         with open(self.chems_fn, 'w') as f:
             for chem in unique_chems:
                 f.write(json.dumps(chem) + '\n')
+    
+
+    def balance_parsed_reactions(self):
+        cid_to_mf = dict()
+        with open(self.chems_fn) as f:
+            for line in f:
+                chem = json.loads(line)
+                cid_to_mf[chem['cid']] = chem['mf']
+            
+        with open(self.reactions_parsed_fn) as f:
+            reactions = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        processed_reactions = []
+        balanced_cnt = 0
+        for react in reactions:
+            reagents = [cid_to_mf[x['cid']] for x in react['reagents']]
+            products = [cid_to_mf[x['cid']] for x in react['products']]
+    
+            try:
+                reagents_coeffs, products_coeffs = balance_stoichiometry(reagents, products, underdetermined=False)
+            except:
+                react['balanced'] = False
+                processed_reactions.append(react)
+                continue
+
+            all_coeffs = list(reagents_coeffs.values()) + list(products_coeffs.values())
+            all_coeffs = [int(x) for x in all_coeffs]
+            max_coeff = max(all_coeffs)
+            if max_coeff > 15:
+                react['balanced'] = False
+                processed_reactions.append(react)
+
+            for chem in react['reagents']:
+                mf = cid_to_mf[chem['cid']]
+                chem['coeff'] = int(reagents_coeffs[mf])
+            
+            for chem in react['products']:
+                mf = cid_to_mf[chem['cid']]
+                chem['coeff'] = int(products_coeffs[mf])
+            
+            react['balanced'] = True
+            processed_reactions.append(react)
+            balanced_cnt += 1
+        
+        self.log(f"Balanced {balanced_cnt} out of {len(reactions)}")
+        
+        with open(self.reactions_parsed_balanced_fn, 'w') as f:
+            for react in processed_reactions:
+                f.write(json.dumps(react) + '\n')
+
+
 
 
 
@@ -503,7 +609,8 @@ if __name__ == "__main__":
     #chemsllm.validate_raw_reactions(max_workers=20)
     #chemsllm.fix_broken_raw_reactions(max_workers=1)
     #print(chemsllm.find_all_unicode_chars_in_raw_reactions())
-    chemsllm.map_raw_reactions_chems_to_cids()
+    #chemsllm.map_raw_reactions_chems_to_cids()
     #chemsllm.fetch_unmapped_names_from_pubchem()
     #chemsllm.organize_chems_file()
+    chemsllm.balance_parsed_reactions()
     
