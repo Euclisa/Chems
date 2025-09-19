@@ -1,0 +1,1054 @@
+{"cid": 5003444, "name": "sodium cyanoborohydride", "count": 46}
+{"cid": 14487, "name": "diisobutylaluminium hydride", "count": 39}
+{"cid": 159832, "name": "oxidane", "count": 34}
+{"cid": 117063819, "name": "Jones reagent", "count": 32}
+{"cid": 159087, "name": "Dess-Martin periodinane", "count": 31}
+{"cid": 34772, "name": "heat", "count": 25}
+{"cid": 2723650, "name": "Cobalt(II) nitrate", "count": 21}
+{"cid": 11979704, "name": "palladium(0) tetrakis(triphenylphosphine)", "count": 17}
+{"cid": 70119, "name": "4-bromobenzyl alcohol", "count": 16}
+{"cid": 73555538, "name": "erbium hydroxide", "count": 14}
+{"cid": 82889, "name": "Terbium(III) hydroxide", "count": 13}
+{"cid": 22326455, "name": "bromine water", "count": 13}
+{"cid": 8419, "name": "Veratraldehyde", "count": 12}
+{"cid": 5146, "name": "2-Hydroxybenzyl alcohol", "count": 12}
+{"cid": 11472, "name": "pyridine-4-methanol", "count": 12}
+{"cid": 89806, "name": "Sodium bis(2-methoxyethoxy)aluminum hydride", "count": 12}
+{"cid": 6996, "name": "2-chlorobenzaldehyde", "count": 11}
+{"cid": 7284, "name": "2-methylbutanal", "count": 11}
+{"cid": 95447, "name": "1,2-diphenylethane-1,2-diol", "count": 11}
+{"cid": 12296, "name": "4-methyl-1-pentanol", "count": 10}
+{"cid": 45051916, "name": "sodium tert-butoxide", "count": 10}
+{"cid": 62348, "name": "4-hydroxy-3-methoxybenzyl alcohol", "count": 10}
+{"cid": 7118, "name": "3,4-dimethoxybenzyl alcohol", "count": 10}
+{"cid": 3083647, "name": "cadmium oxalate", "count": 10}
+{"cid": 12417, "name": "2,2-dimethylpropanal", "count": 9}
+{"cid": 74505, "name": "methyltriphenylphosphonium bromide", "count": 9}
+{"cid": 6941, "name": "2-iodobenzoic acid", "count": 9}
+{"cid": 516935, "name": "silver cyanate", "count": 9}
+{"cid": 91563, "name": "2-methoxyacetaldehyde", "count": 9}
+{"cid": 10371, "name": "pyridine-3-carboxaldehyde", "count": 8}
+{"cid": 6735, "name": "1H-Indan-1-one", "count": 8}
+{"cid": 5284485, "name": "Benzenediazonium tetrafluoroborate", "count": 8}
+{"cid": 7479, "name": "4-(dimethylamino)benzaldehyde", "count": 8}
+{"cid": 11943, "name": "4-methoxybiphenyl", "count": 8}
+{"cid": 5884, "name": "NADPH", "count": 8}
+{"cid": 6374, "name": "Iodoform", "count": 7}
+{"cid": 23675242, "name": "sodium phosphinate", "count": 7}
+{"cid": 123505, "name": "pentane-2,3-diol", "count": 7}
+{"cid": 15817734, "name": "Oxaziridine", "count": 7}
+{"cid": 74880, "name": "Thorium oxalate", "count": 7}
+{"cid": 86593196, "name": "sodium methyl sulfide", "count": 7}
+{"cid": 5885, "name": "NADP", "count": 7}
+{"cid": 3084101, "name": "copper chromite", "count": 7}
+{"cid": 137166, "name": "4-(dimethylamino)benzyl alcohol", "count": 7}
+{"cid": 10390, "name": "Diphenylacetylene", "count": 6}
+{"cid": 57376990, "name": "yttrium(III) acetate hydrate", "count": 6}
+{"cid": 80271, "name": "tri-o-tolylphosphine", "count": 6}
+{"cid": 201262, "name": "4-methoxyphenylboronic acid", "count": 6}
+{"cid": 121488052, "name": "ytterbium(III) sulfate", "count": 6}
+{"cid": 10953450, "name": "2-(furan-2-yl)acetaldehyde", "count": 6}
+{"cid": 10197859, "name": "2-Hydroxybenzyl acetate", "count": 6}
+{"cid": 71310252, "name": "thulium(III) oxalate", "count": 6}
+{"cid": 642110, "name": "2-(Furan-2-yl)ethanol", "count": 6}
+{"cid": 101667988, "name": "diethylzinc", "count": 6}
+{"cid": 7364, "name": "2-Formylthiophene", "count": 6}
+{"cid": 11505, "name": "4-methylbenzyl alcohol", "count": 6}
+{"cid": 7449, "name": "3-Nitrobenzaldehyde", "count": 6}
+{"cid": 185682, "name": "2-aminofuran", "count": 6}
+{"cid": 6364547, "name": "tert-Butylamine borane", "count": 6}
+{"cid": 7726, "name": "4-Chlorobenzaldehyde", "count": 6}
+{"cid": 114538, "name": "1-(2-methoxyphenyl)ethanol", "count": 6}
+{"cid": 75645, "name": "Cyclobutylamine", "count": 6}
+{"cid": 12233, "name": "3,3-dimethylbutanol", "count": 6}
+{"cid": 12272, "name": "3-iodophenol", "count": 6}
+{"cid": 12286, "name": "3-bromopyridine", "count": 6}
+{"cid": 10256, "name": "Indole-3-carboxaldehyde", "count": 5}
+{"cid": 26660, "name": "N-(1-phenylpropan-2-yl)acetamide", "count": 5}
+{"cid": 66, "name": "2,5-dichlorophenol", "count": 5}
+{"cid": 23373974, "name": "1,2-Oxaphosphetane", "count": 5}
+{"cid": 12757149, "name": "nitroso acetate", "count": 5}
+{"cid": 321710, "name": "oxindole", "count": 5}
+{"cid": 75974, "name": "2-(Furan-2-yl)acetic acid", "count": 5}
+{"cid": 123114, "name": "cyclopropanecarbaldehyde", "count": 5}
+{"cid": 203055, "name": "sodium tetrathionate", "count": 5}
+{"cid": 20861, "name": "4-ethylbenzaldehyde", "count": 5}
+{"cid": 90477010, "name": "Aqua regia", "count": 5}
+{"cid": 5460602, "name": "disulfur", "count": 5}
+{"cid": 70353, "name": "N-(cyclohexylideneamino)aniline", "count": 5}
+{"cid": 7121, "name": "Veratric acid", "count": 5}
+{"cid": 11815905, "name": "1-Acetylpiperidin-2-one", "count": 5}
+{"cid": 562145, "name": "3-Phenylbutan-2-ol", "count": 5}
+{"cid": 11419, "name": "2-Methylcyclohexanone", "count": 5}
+{"cid": 81129, "name": "2-bromo benzaldehyde", "count": 5}
+{"cid": 11513, "name": "heptan-4-ol", "count": 5}
+{"cid": 7802, "name": "3-Heptanone", "count": 5}
+{"cid": 12092, "name": "4-(dimethylamino)benzoic acid", "count": 5}
+{"cid": 6043, "name": "3H-1,3-benzoxazol-2-one", "count": 5}
+{"cid": 16211889, "name": "dysprosium(III) nitrate", "count": 5}
+{"cid": 9965611, "name": "Titanium(IV) acetate", "count": 4}
+{"cid": 16449, "name": "3-Bromobiphenyl", "count": 4}
+{"cid": 643139, "name": "(E)-hex-3-enal", "count": 4}
+{"cid": 6393953, "name": "samarium(II) chloride", "count": 4}
+{"cid": 73830, "name": "1-Methylcyclopentan-1-ol", "count": 4}
+{"cid": 110702, "name": "2,2-dimethyl-1,3-dioxolane-4-carbaldehyde", "count": 4}
+{"cid": 21923956, "name": "Vinylborane", "count": 4}
+{"cid": 10883201, "name": "Bis(pyridine)iodonium tetrafluoroborate", "count": 4}
+{"cid": 14505, "name": "1-(furan-2-yl)ethanone", "count": 4}
+{"cid": 137428, "name": "4-methylphenylacetone", "count": 4}
+{"cid": 61726, "name": "Potassium dithionite", "count": 4}
+{"cid": 69980, "name": "2,5-Furandicarboxaldehyde", "count": 4}
+{"cid": 10058088, "name": "bis(trimethylsilyl) peroxide", "count": 4}
+{"cid": 151929, "name": "nitrosyl tetrafluoroborate", "count": 4}
+{"cid": 12665, "name": "2-Piperidone", "count": 4}
+{"cid": 385, "name": "Heptanedioic acid", "count": 4}
+{"cid": 119219, "name": "3,4-Dihydroxyphenylacetaldehyde", "count": 4}
+{"cid": 76335, "name": "3,3-Dimethylbutanal", "count": 4}
+{"cid": 14906, "name": "2-chlorostyrene", "count": 4}
+{"cid": 610886, "name": "2-phenyl-1-benzothiophene", "count": 4}
+{"cid": 6433417, "name": "Tiglic alcohol", "count": 4}
+{"cid": 70324, "name": "4-tert-Butylbenzaldehyde", "count": 4}
+{"cid": 10953, "name": "delta-Valerolactone", "count": 4}
+{"cid": 23689980, "name": "Sodium formaldehyde sulfoxylate", "count": 4}
+{"cid": 68410, "name": "2-methylpropane-1,2-diol", "count": 4}
+{"cid": 74567, "name": "N-cyclohexylaniline", "count": 4}
+{"cid": 7046, "name": "1,2,3,4-Tetrahydroisoquinoline", "count": 4}
+{"cid": 7103, "name": "4-hydroxybiphenyl", "count": 4}
+{"cid": 20331551, "name": "Oxirane-2-sulfonic acid", "count": 4}
+{"cid": 13439, "name": "2-phenyl-1,3-benzothiazole", "count": 4}
+{"cid": 7414, "name": "thiobenzoic acid", "count": 4}
+{"cid": 75004, "name": "1-Azido-4-methoxybenzene", "count": 4}
+{"cid": 95497, "name": "1,2-cyclopentanediol", "count": 4}
+{"cid": 11573, "name": "3-methylcyclohexene", "count": 4}
+{"cid": 7491, "name": "4-nitro-N,N-dimethylaniline", "count": 4}
+{"cid": 19835, "name": "Nonane-1,9-diol", "count": 4}
+{"cid": 71073, "name": "1,2-Benzisoxazole", "count": 4}
+{"cid": 6327813, "name": "Tributyltin hydroxide", "count": 4}
+{"cid": 69144, "name": "2-methyl-1-phenylpropan-1-one", "count": 4}
+{"cid": 136737, "name": "2-bromoethynylbenzene", "count": 4}
+{"cid": 12443168, "name": "1,2,3-Oxadiazol-5(2H)-one", "count": 4}
+{"cid": 167482, "name": "cadmium tellurate", "count": 4}
+{"cid": 3657, "name": "N-Hydroxyurea", "count": 4}
+{"cid": 351840, "name": "4-bromo-2-aminophenol", "count": 4}
+{"cid": 14665382, "name": "Dimethoxyphosphoryl acetate", "count": 4}
+{"cid": 5324470, "name": "Syn-benzaldehyde oxime", "count": 4}
+{"cid": 14057, "name": "3,3-dimethylbutanoic acid", "count": 4}
+{"cid": 69420, "name": "1,8-Octanediol", "count": 4}
+{"cid": 8013, "name": "1,3-propanedithiol", "count": 4}
+{"cid": 79699, "name": "4-Chlorophenylacetone", "count": 4}
+{"cid": 6328152, "name": "bismuth oxychloride", "count": 4}
+{"cid": 69467, "name": "2-(hydroxymethyl)thiophene", "count": 4}
+{"cid": 75644, "name": "Cyclopropylmethanol", "count": 4}
+{"cid": 9920394, "name": "Oxolan-3-yl acetate", "count": 4}
+{"cid": 137207, "name": "cyclooctyne", "count": 4}
+{"cid": 6365241, "name": "bismuth oxyfluoride", "count": 3}
+{"cid": 16441, "name": "Perillaldehyde", "count": 3}
+{"cid": 5371961, "name": "(NE)-N-[(4-methoxyphenyl)methylidene]hydroxylamine", "count": 3}
+{"cid": 44587066, "name": "4-bromobenzyl benzoate (benzoylation)", "count": 3}
+{"cid": 16452, "name": "2-bromo-1-phenylpropan-1-one", "count": 3}
+{"cid": 70580296, "name": "zinc catecholate", "count": 3}
+{"cid": 10315, "name": "1-phenylbutan-1-one", "count": 3}
+{"cid": 12381, "name": "heptane-1,7-diol", "count": 3}
+{"cid": 10342, "name": "2-Methyl-1,3-dioxolane", "count": 3}
+{"cid": 10345, "name": "Bicyclo(2.2.1)heptan-2-one", "count": 3}
+{"cid": 14491, "name": "1,6-hexanedithiol", "count": 3}
+{"cid": 94367, "name": "2-azido-1,3-dimethylbenzene", "count": 3}
+{"cid": 2214, "name": "Acetovanillone", "count": 3}
+{"cid": 24754, "name": "Phenol-formaldehyde resin", "count": 3}
+{"cid": 51381, "name": "2-ethoxybenzyl alcohol", "count": 3}
+{"cid": 9793743, "name": "Aluminum monoacetate", "count": 3}
+{"cid": 168009944, "name": "hafnium nitride", "count": 3}
+{"cid": 5359853, "name": "nickel(II) acetylacetonate", "count": 3}
+{"cid": 67847, "name": "2-chloro-6-fluorobenzaldehyde", "count": 3}
+{"cid": 24846, "name": "Hydroxylamine sulfate", "count": 3}
+{"cid": 12566, "name": "1-methyl-4-phenylbenzene", "count": 3}
+{"cid": 180504, "name": "ceric ammonium nitrate (aqueous)", "count": 3}
+{"cid": 2724126, "name": "TEMPO", "count": 3}
+{"cid": 54606122, "name": "Thorium acetate", "count": 3}
+{"cid": 244030, "name": "2-phenyl-4,5-dihydro-1,3-oxazole", "count": 3}
+{"cid": 1132863, "name": "2-(Furan-2-yl)ethan-1-amine", "count": 3}
+{"cid": 139602, "name": "hexasulfur", "count": 3}
+{"cid": 6549, "name": "Linalool", "count": 3}
+{"cid": 168383, "name": "terbium(III) acetate", "count": 3}
+{"cid": 199116, "name": "1-(4-methylphenyl)propan-2-amine", "count": 3}
+{"cid": 8655, "name": "4-Hydroxy-3,5-dimethoxybenzaldehyde", "count": 3}
+{"cid": 12784, "name": "1,2,3,4,5-pentamethylbenzene", "count": 3}
+{"cid": 76280, "name": "2-(4-methylphenyl)acetonitrile", "count": 3}
+{"cid": 31230, "name": "4-Aminoacetanilide", "count": 3}
+{"cid": 68120, "name": "2,2'-Bithiophene", "count": 3}
+{"cid": 6724, "name": "Acenaphthylene quinone", "count": 3}
+{"cid": 250464, "name": "1-phenylbut-3-en-2-ol", "count": 3}
+{"cid": 11715172, "name": "2-(pyridin-2-yl)acetaldehyde", "count": 3}
+{"cid": 139894, "name": "Thorium trichloride", "count": 3}
+{"cid": 76406, "name": "3-acetamidopropanoic acid", "count": 3}
+{"cid": 10870, "name": "2-methyl-1-phenylpropane", "count": 3}
+{"cid": 6861468, "name": "(NE)-N-[(2-methoxyphenyl)methylidene]hydroxylamine", "count": 3}
+{"cid": 131873465, "name": "Calcium selenate", "count": 3}
+{"cid": 91886286, "name": "Ytterbium(III) nitrate hydrate", "count": 3}
+{"cid": 13006, "name": "1,2-Cyclohexanedione", "count": 3}
+{"cid": 10981, "name": "beryllium acetate", "count": 3}
+{"cid": 39655, "name": "4-methyl-1,3-dithiolane", "count": 3}
+{"cid": 643820, "name": "cis-3,7-dimethyl-2,6-octadien-1-ol", "count": 3}
+{"cid": 6908, "name": "Hexamethylbenzene", "count": 3}
+{"cid": 800, "name": "Indole-3-acetaldehyde", "count": 3}
+{"cid": 62258, "name": "Cathinone", "count": 3}
+{"cid": 14977853, "name": "3-phenylindolizine", "count": 3}
+{"cid": 6977, "name": "1-nitro-2,5-dichlorobenzene", "count": 3}
+{"cid": 10197832, "name": "Basic aluminum acetate", "count": 3}
+{"cid": 2724705, "name": "Levoglucosan", "count": 3}
+{"cid": 76689, "name": "4-phenylbenzaldehyde", "count": 3}
+{"cid": 5462977, "name": "Diethyl azodicarboxylate", "count": 3}
+{"cid": 12497863, "name": "3-bromobutan-2-ol", "count": 3}
+{"cid": 7113, "name": "4-phenylacetophenone", "count": 3}
+{"cid": 7114, "name": "4-nitrobiphenyl", "count": 3}
+{"cid": 7119, "name": "2-Methoxynaphthalene", "count": 3}
+{"cid": 543698, "name": "cyclooctane-1,2-dione", "count": 3}
+{"cid": 17378, "name": "1,1,3-Trichloropropene", "count": 3}
+{"cid": 57375716, "name": "1,3-dimethylimidazolium nitrate", "count": 3}
+{"cid": 9215, "name": "Acridine", "count": 3}
+{"cid": 27653, "name": "zinc dilactate", "count": 3}
+{"cid": 142407, "name": "Methanethial, S-oxide", "count": 3}
+{"cid": 89164, "name": "3-bromofuran", "count": 3}
+{"cid": 7255, "name": "3-chloro-4-methylaniline", "count": 3}
+{"cid": 7262, "name": "2,5-dichloroaniline", "count": 3}
+{"cid": 35960, "name": "4-vinylsyringol", "count": 3}
+{"cid": 95362, "name": "2-methylbutane-2,3-diol", "count": 3}
+{"cid": 136335, "name": "1,2-Dithiane", "count": 3}
+{"cid": 7366, "name": "tert-Butylbenzene", "count": 3}
+{"cid": 7403, "name": "4-tert-Butylbenzoic acid", "count": 3}
+{"cid": 136447, "name": "sulfur dicyanide", "count": 3}
+{"cid": 66850, "name": "4-Nitrobenzenediazonium chloride", "count": 3}
+{"cid": 11171124, "name": "Ethyl 6-oxohexanoate", "count": 3}
+{"cid": 7480, "name": "1-ethyl-4-nitrobenzene", "count": 3}
+{"cid": 9603, "name": "4-fluorotoluene", "count": 3}
+{"cid": 7558, "name": "Propylhexedrine", "count": 3}
+{"cid": 15761, "name": "2-Phenylpropanenitrile", "count": 3}
+{"cid": 23236009, "name": "Seleninyl fluoride", "count": 3}
+{"cid": 222661, "name": "2-methylheptan-1-ol", "count": 3}
+{"cid": 161019343, "name": "1-phenyl-2,3-dihydro-1H-indene", "count": 3}
+{"cid": 97744, "name": "3-Phenylbutan-2-one", "count": 3}
+{"cid": 1491, "name": "2,4-dihydroxybenzoic acid", "count": 3}
+{"cid": 589280, "name": "2-phenyl-1,3-oxazole", "count": 3}
+{"cid": 5283344, "name": "4-hydroxy-2-nonenal", "count": 3}
+{"cid": 99867, "name": "1,1-diphenylpropan-2-ol", "count": 3}
+{"cid": 13854, "name": "1H-Pyrrole-2-carbaldehyde", "count": 3}
+{"cid": 79400, "name": "2-(thiophen-2-yl)ethanol", "count": 3}
+{"cid": 11857, "name": "diethyl 2-methylpropanedioate", "count": 3}
+{"cid": 2733710, "name": "tantalum(V) ethoxide", "count": 3}
+{"cid": 9871, "name": "1,1,1-trifluoroacetone", "count": 3}
+{"cid": 159387, "name": "vanadium carbide", "count": 3}
+{"cid": 6008486, "name": "sodium acetylacetonate hydrate", "count": 3}
+{"cid": 11138729, "name": "phenylzinc bromide", "count": 3}
+{"cid": 7846, "name": "1-Butyne", "count": 3}
+{"cid": 11952, "name": "2-amino-1-phenylethanone", "count": 3}
+{"cid": 521914, "name": "2,2-dimethyl-1,3-dithiane", "count": 3}
+{"cid": 159432, "name": "tantalum carbide", "count": 3}
+{"cid": 5853, "name": "Trichlorfon", "count": 3}
+{"cid": 22276, "name": "Phenpromethamine", "count": 3}
+{"cid": 77595, "name": "4-tert-butylbromobenzene", "count": 3}
+{"cid": 5918, "name": "3,4-diaminopyridine", "count": 3}
+{"cid": 137013, "name": "2-bromoselenophene", "count": 3}
+{"cid": 44144454, "name": "Silver arsenite", "count": 3}
+{"cid": 5324611, "name": "benzaldehyde oxime", "count": 3}
+{"cid": 77698, "name": "2-Methoxyacetophenone", "count": 3}
+{"cid": 87949, "name": "Lawesson's reagent", "count": 3}
+{"cid": 12192, "name": "Ethyl diazoacetate", "count": 3}
+{"cid": 67498, "name": "2,1-Benzisoxazole", "count": 3}
+{"cid": 61400, "name": "3,4-Dimethoxystyrene", "count": 3}
+{"cid": 1, "name": "Acetylcarnitine", "count": 2}
+{"cid": 5271565, "name": "Dimethyl maleate", "count": 2}
+{"cid": 65564, "name": "Trifluoroacetaldehyde", "count": 2}
+{"cid": 10297, "name": "Norephedrine", "count": 2}
+{"cid": 10301, "name": "1,4-Benzodioxan", "count": 2}
+{"cid": 12474431, "name": "3-(phenoxymethyl)pyridine", "count": 2}
+{"cid": 5222466, "name": "thulium(III) acetate", "count": 2}
+{"cid": 10989639, "name": "Chloro-N,N,N',N'-tetramethylformamidinium Hexafluorophosphate", "count": 2}
+{"cid": 101201984, "name": "1,2-Dilithiobenzene", "count": 2}
+{"cid": 101, "name": "3-Hydroxybenzaldehyde", "count": 2}
+{"cid": 8294, "name": "Linalyl Acetate", "count": 2}
+{"cid": 10341, "name": "2(5H)-Furanone", "count": 2}
+{"cid": 8298, "name": "3,3,5-Trimethylcyclohexanol", "count": 2}
+{"cid": 6991982, "name": "1-Propanaminium, 3-carboxy-N,N,N-trimethyl-2-oxo-, inner salt", "count": 2}
+{"cid": 6336625, "name": "Lead phosphite", "count": 2}
+{"cid": 67701, "name": "beta-Guanidinopropionic acid", "count": 2}
+{"cid": 14475, "name": "2-methylheptanoic acid", "count": 2}
+{"cid": 73874, "name": "3,4-Methylenedioxyphenethylamine", "count": 2}
+{"cid": 114839, "name": "3-Deoxyglucosone", "count": 2}
+{"cid": 55255192, "name": "2-(4-ethylphenyl)-1,3-dioxolane", "count": 2}
+{"cid": 600215, "name": "N-Acetyl-1,2,3,4-tetrahydroisoquinoline", "count": 2}
+{"cid": 10403, "name": "Cyclooctanone", "count": 2}
+{"cid": 8373, "name": "2-methylbenzoic acid", "count": 2}
+{"cid": 139445, "name": "2-(3,5-dimethoxyphenyl)acetonitrile", "count": 2}
+{"cid": 98487, "name": "3-methoxybenzamide", "count": 2}
+{"cid": 8400, "name": "benzoin", "count": 2}
+{"cid": 121051, "name": "N-[2-(4-Hydroxyphenyl)ethyl]acetamide", "count": 2}
+{"cid": 2734320, "name": "4-tert-butylphenylboronic acid", "count": 2}
+{"cid": 108794, "name": "2-Iodoxybenzoic acid", "count": 2}
+{"cid": 9793790, "name": "(Dimethylaminomethylene)dimethylammonium chloride", "count": 2}
+{"cid": 8461, "name": "2,4-dinitrotoluene", "count": 2}
+{"cid": 80145, "name": "3,3-Dimethoxyprop-1-ene", "count": 2}
+{"cid": 10975514, "name": "2-[acetyl(methyl)amino]acetic acid", "count": 2}
+{"cid": 11041050, "name": "adamantane-1-carbaldehyde", "count": 2}
+{"cid": 288, "name": "Carnitine", "count": 2}
+{"cid": 4382, "name": "N-Methyl dopamine", "count": 2}
+{"cid": 23673143, "name": "Sodium resorcinolate", "count": 2}
+{"cid": 2734394, "name": "4-Thiouracil", "count": 2}
+{"cid": 74049, "name": "N-methyl-4-piperidone", "count": 2}
+{"cid": 11073903, "name": "3-(4-methoxyphenyl)furan", "count": 2}
+{"cid": 100733, "name": "3,4-dihydroxybenzyl alcohol", "count": 2}
+{"cid": 4192641, "name": "potassium borohydride", "count": 2}
+{"cid": 67985, "name": "1,3-difluoro-2-propanol", "count": 2}
+{"cid": 3080614, "name": "N-Oxalylglycine", "count": 2}
+{"cid": 90540, "name": "D-Iditol", "count": 2}
+{"cid": 68023, "name": "4-fluorobenzaldehyde", "count": 2}
+{"cid": 168385, "name": "Erbium(III) acetate", "count": 2}
+{"cid": 8651, "name": "benzil", "count": 2}
+{"cid": 520653, "name": "Benzaldehyde O-methyl oxime", "count": 2}
+{"cid": 6445537, "name": "4-oxo-2-(E)-nonenal", "count": 2}
+{"cid": 4581, "name": "4-(2-Amino-1-hydroxyethyl)phenol", "count": 2}
+{"cid": 66024, "name": "N-isopropylbenzylamine", "count": 2}
+{"cid": 86739432, "name": "potassium cyanamide", "count": 2}
+{"cid": 2537, "name": "Camphor", "count": 2}
+{"cid": 85737968, "name": "scandium(III) hydroxide", "count": 2}
+{"cid": 11833842, "name": "samarium(II) bromide", "count": 2}
+{"cid": 10742, "name": "4-Hydroxy-3,5-dimethoxybenzoic acid", "count": 2}
+{"cid": 18940, "name": "4-ethylstyrene", "count": 2}
+{"cid": 31231, "name": "1-(4-methoxyphenyl)propan-2-one", "count": 2}
+{"cid": 86536, "name": "N,N-dimethyl-1-phenylethanamine", "count": 2}
+{"cid": 31245, "name": "2-Methylpentaldehyde", "count": 2}
+{"cid": 31252, "name": "2,5-dimethylpyrazine", "count": 2}
+{"cid": 123414, "name": "Diphenylphosphoryl azide", "count": 2}
+{"cid": 10776, "name": "N-Methyl-3,4-Methylenedioxyphenethylamine", "count": 2}
+{"cid": 74267, "name": "1,2-bis(diphenylphosphino)ethane", "count": 2}
+{"cid": 541, "name": "4-nitrobenzaldehyde", "count": 2}
+{"cid": 10788, "name": "Dazomet", "count": 2}
+{"cid": 66088, "name": "2-methoxy-1,3-dimethylbenzene", "count": 2}
+{"cid": 68157, "name": "Oxazoline", "count": 2}
+{"cid": 10819, "name": "Perillyl Alcohol", "count": 2}
+{"cid": 422478, "name": "Isoindoline", "count": 2}
+{"cid": 66130, "name": "2-ethyl-1H-imidazole", "count": 2}
+{"cid": 21076, "name": "5-Hydroxy-2(5H)-furanone", "count": 2}
+{"cid": 103012, "name": "Chromium(III) 2-ethylhexanoate", "count": 2}
+{"cid": 8815, "name": "Estragole", "count": 2}
+{"cid": 139106940, "name": "Amine", "count": 2}
+{"cid": 137857, "name": "2-(3,5-dimethoxyphenyl)ethylamine", "count": 2}
+{"cid": 10896, "name": "N-Methyl-2-heptanamine", "count": 2}
+{"cid": 4807, "name": "Phthalaldehyde", "count": 2}
+{"cid": 166603, "name": "uranium monocarbide", "count": 2}
+{"cid": 1549025, "name": "cis-3,7-dimethyl-2,6-octadien-1-yl acetate", "count": 2}
+{"cid": 13028, "name": "1-phenyl-2-propen-1-one", "count": 2}
+{"cid": 15076, "name": "heptadecan-1-ol", "count": 2}
+{"cid": 107257, "name": "p-Bromomethamphetamine", "count": 2}
+{"cid": 7019274, "name": "4-Hydroxyphenylacetone", "count": 2}
+{"cid": 10953488, "name": "2-Cyclohexylacetonitrile", "count": 2}
+{"cid": 23673628, "name": "rubidium acetate", "count": 2}
+{"cid": 10285870, "name": "3-(4-methoxyphenyl)phenol", "count": 2}
+{"cid": 18373421, "name": "1,2-benzoxazol-5-amine", "count": 2}
+{"cid": 176960, "name": "2-(2-hydroxyethoxy)acetaldehyde", "count": 2}
+{"cid": 637760, "name": "1,3-Diphenyl-2-propen-1-one", "count": 2}
+{"cid": 3316562, "name": "1,2-Bis(dichlorophosphino)benzene", "count": 2}
+{"cid": 7000, "name": "2-anisidine", "count": 2}
+{"cid": 11789154, "name": "norbornene oxide", "count": 2}
+{"cid": 205668, "name": "4-Bromoamphetamine", "count": 2}
+{"cid": 7020, "name": "Xanthone", "count": 2}
+{"cid": 439183, "name": "3-Phosphoglyceric Acid", "count": 2}
+{"cid": 439184, "name": "D-ribulose-5-phosphate", "count": 2}
+{"cid": 7061, "name": "N,N-diethylaniline", "count": 2}
+{"cid": 5364631, "name": "(Z)-non-3-en-1-ol", "count": 2}
+{"cid": 7107, "name": "Xanthene", "count": 2}
+{"cid": 7112, "name": "4,4-Dihydroxybiphenyl", "count": 2}
+{"cid": 983, "name": "Triphosphoric acid", "count": 2}
+{"cid": 7127, "name": "Methyleugenol", "count": 2}
+{"cid": 537574, "name": "Ethyl 3-acetoxybutanoate", "count": 2}
+{"cid": 578536, "name": "Thiobenzophenone", "count": 2}
+{"cid": 23537, "name": "N-(3-chloro-4-methylphenyl)acetamide", "count": 2}
+{"cid": 263158, "name": "2-(furan-2-yl)-1,3-dioxolane", "count": 2}
+{"cid": 9208, "name": "Cinnoline", "count": 2}
+{"cid": 201734, "name": "2-Hydroxymethylpyrazine", "count": 2}
+{"cid": 15764487, "name": "Phenylborinic acid", "count": 2}
+{"cid": 5128, "name": "1-iodo-2-methylbenzene", "count": 2}
+{"cid": 11074572, "name": "silver acetylacetonate", "count": 2}
+{"cid": 11062302, "name": "Borane-tetrahydrofuran", "count": 2}
+{"cid": 78879, "name": "3-Methyl-3-butenyl acetate", "count": 2}
+{"cid": 9263, "name": "1,2,4,5-tetrazine", "count": 2}
+{"cid": 228397, "name": "1,3-difluoroacetone", "count": 2}
+{"cid": 142385, "name": "5-nitro-1,2-benzoxazole", "count": 2}
+{"cid": 3127, "name": "p-Chloroamphetamine", "count": 2}
+{"cid": 13395, "name": "2-Pyridinealdoxime", "count": 2}
+{"cid": 5354580, "name": "1-(2-Methoxyphenyl)-2-nitropropene", "count": 2}
+{"cid": 2724957, "name": "Pyrrole-2,5-dicarbaldehyde", "count": 2}
+{"cid": 699486, "name": "Levoglucosenone", "count": 2}
+{"cid": 7261, "name": "2,4-diaminotoluene", "count": 2}
+{"cid": 7269, "name": "1,2,4,5-tetramethylbenzene", "count": 2}
+{"cid": 103544, "name": "Propylamphetamine", "count": 2}
+{"cid": 25747, "name": "thietane 1-oxide", "count": 2}
+{"cid": 11414, "name": "1,2-dibromobenzene", "count": 2}
+{"cid": 15512, "name": "3-Cyclohexenylmethanol", "count": 2}
+{"cid": 79014, "name": "(R)-glyceraldehyde", "count": 2}
+{"cid": 160964, "name": "Stannous hydroxide", "count": 2}
+{"cid": 7368, "name": "Trifluoromethylbenzene", "count": 2}
+{"cid": 34005, "name": "Thiophen-2-ylmethanamine", "count": 2}
+{"cid": 27866, "name": "Rose oxide", "count": 2}
+{"cid": 591073, "name": "4-Formylphenylboronic acid", "count": 2}
+{"cid": 79081, "name": "3-methylpiperidine", "count": 2}
+{"cid": 161006, "name": "Mercury(I) fluoride", "count": 2}
+{"cid": 4340980, "name": "Ethyl 4-(acetyloxy)butanoate", "count": 2}
+{"cid": 3032310, "name": "2-Indolinethione", "count": 2}
+{"cid": 7420, "name": "3-Hydroxybenzoic acid", "count": 2}
+{"cid": 13568, "name": "3-Hexyne", "count": 2}
+{"cid": 7424, "name": "3,5-Dihydroxybenzoic acid", "count": 2}
+{"cid": 11522, "name": "1-bromo-4-iodobenzene", "count": 2}
+{"cid": 5080336, "name": "Titanium methoxide", "count": 2}
+{"cid": 107801, "name": "3-Hydroxybutanoic acid-3-hydroxypentanoic acid(1:1)", "count": 2}
+{"cid": 1318, "name": "1,10-Phenanthroline", "count": 2}
+{"cid": 10855723, "name": "Nonanedial", "count": 2}
+{"cid": 11566, "name": "3-methylcyclohexanol", "count": 2}
+{"cid": 7472, "name": "4-amino-N,N-dimethylaniline", "count": 2}
+{"cid": 7508, "name": "3-Cyclohexene-1-carboxaldehyde", "count": 2}
+{"cid": 13663, "name": "1-Acetyl naphthalene", "count": 2}
+{"cid": 68973, "name": "Methylphosphine", "count": 2}
+{"cid": 9589, "name": "1-(pyridin-3-yl)ethanone", "count": 2}
+{"cid": 566657, "name": "1,2-Cyclopentanedione", "count": 2}
+{"cid": 150913, "name": "copper(II) cyanide", "count": 2}
+{"cid": 1201546, "name": "rhodanine", "count": 2}
+{"cid": 5281167, "name": "(Z)-3-hexenol", "count": 2}
+{"cid": 5541, "name": "glycerol triacetate", "count": 2}
+{"cid": 249266, "name": "1-chloro-2-phenylbenzene", "count": 2}
+{"cid": 12721600, "name": "2-bromo-1-phenylpropan-1-ol", "count": 2}
+{"cid": 26082, "name": "1-(2-chlorophenyl)ethanol", "count": 2}
+{"cid": 129652199, "name": "Copper(II) iminodiacetate", "count": 2}
+{"cid": 3517936, "name": "2-phenyl-1-benzofuran", "count": 2}
+{"cid": 36336, "name": "15-Crown-5", "count": 2}
+{"cid": 118259, "name": "3,5-dimethylpiperidine", "count": 2}
+{"cid": 103920, "name": "N-tert-butylcyclohexanamine", "count": 2}
+{"cid": 122356, "name": "N-acetylputrescine", "count": 2}
+{"cid": 10964472, "name": "2-azidopyridine", "count": 2}
+{"cid": 69156, "name": "1-ethyl-2-nitrobenzene", "count": 2}
+{"cid": 7735, "name": "1,4-cyclohexanedimethanol", "count": 2}
+{"cid": 159295, "name": "hexamminecobalt(III) chloride", "count": 2}
+{"cid": 138823, "name": "cyclopropylacetylene", "count": 2}
+{"cid": 22108, "name": "2,5-dichloro-4-nitrophenol", "count": 2}
+{"cid": 556685, "name": "cyclohex-3-en-1-ol", "count": 2}
+{"cid": 4148881, "name": "Lithium borohydride", "count": 2}
+{"cid": 22172, "name": "1-methoxypropan-2-one", "count": 2}
+{"cid": 5811, "name": "3,5-dichlorobenzoic acid", "count": 2}
+{"cid": 25022141, "name": "samarium(III) bromide", "count": 2}
+{"cid": 612040, "name": "2-bromo-1,3-benzothiazole", "count": 2}
+{"cid": 24274, "name": "1-nitroso-2,3-dihydroindole", "count": 2}
+{"cid": 90472147, "name": "europium oxalate", "count": 2}
+{"cid": 18141, "name": "magnesium carbide", "count": 2}
+{"cid": 265949, "name": "6-Acetamido-2-azaniumylhexanoate", "count": 2}
+{"cid": 9982, "name": "N-ethyl-1-phenylpropan-2-amine", "count": 2}
+{"cid": 18189, "name": "4-Acetamidobutyric acid", "count": 2}
+{"cid": 65295, "name": "N,N-dimethyl-2-phenylpropan-1-amine", "count": 2}
+{"cid": 7952, "name": "1,3,5-Trimethyl-1,3,5-triazacyclohexane", "count": 2}
+{"cid": 7953, "name": "2,4,6-Trimethylpyridine", "count": 2}
+{"cid": 14106, "name": "1,4-Cyclohexanedicarboxylic acid", "count": 2}
+{"cid": 13803306, "name": "4-Methylmethamphetamine", "count": 2}
+{"cid": 167747, "name": "lutetium(III) acetate", "count": 2}
+{"cid": 10909515, "name": "2-(Furan-2-yl)acetonitrile", "count": 2}
+{"cid": 24410, "name": "vanadium(V) oxychloride", "count": 2}
+{"cid": 5988, "name": "Sucrose", "count": 2}
+{"cid": 6365035, "name": "dimethylacetoxysilane", "count": 2}
+{"cid": 10109, "name": "Bis(2-chloroethyl) sulfone", "count": 2}
+{"cid": 54531963, "name": "2-ethyl-3-nitropyridine", "count": 2}
+{"cid": 12173, "name": "Terephthalaldehyde", "count": 2}
+{"cid": 16300, "name": "Diethyl heptanedioate", "count": 2}
+{"cid": 12222, "name": "Propynal", "count": 2}
+{"cid": 18369, "name": "Methyl phenyl sulfone", "count": 2}
+{"cid": 2005, "name": "6-Acetamidohexanoic acid", "count": 2}
+{"cid": 2015, "name": "Acridone", "count": 2}
+{"cid": 94178, "name": "1,2-Diphenylethanol", "count": 2}
+{"cid": 69602, "name": "N-[2-(1H-Imidazol-4-yl)ethyl]acetamide", "count": 2}
+{"cid": 92143, "name": "4-Hydroxyphenylglycine", "count": 2}
+{"cid": 8175, "name": "Decanal", "count": 2}
+{"cid": 20467, "name": "5-amino-1H-tetrazole", "count": 2}
+{"cid": 6367227, "name": "sodium stannite", "count": 2}
+{"cid": 3084290, "name": "sodium N,N-dimethylglycinate", "count": 1}
+{"cid": 8200, "name": "Tetraethylene glycol", "count": 1}
+{"cid": 92174, "name": "3,3-Dimethyl-1,2-epoxybutane", "count": 1}
+{"cid": 520209, "name": "Cyclohexylmethanethiol", "count": 1}
+{"cid": 317456, "name": "2,3-dibromo-2-butenoic acid", "count": 1}
+{"cid": 28697, "name": "1,2,3-trichloro-4-nitrobenzene", "count": 1}
+{"cid": 90139, "name": "zirconium(IV) n-propoxide", "count": 1}
+{"cid": 108573, "name": "Ethanolammonium acetate", "count": 1}
+{"cid": 65566, "name": "Ethyl sarin", "count": 1}
+{"cid": 141343, "name": "3-(morpholin-4-yl)phenol", "count": 1}
+{"cid": 2734110, "name": "3-Methylphenylacetone", "count": 1}
+{"cid": 667681, "name": "2-(3-Nitrophenyl)benzothiazole", "count": 1}
+{"cid": 6336546, "name": "calcium ferrite", "count": 1}
+{"cid": 6049834, "name": "crotonic anhydride", "count": 1}
+{"cid": 75819, "name": "1,3-divinyl-1,1,3,3-tetramethyldisiloxane", "count": 1}
+{"cid": 21866547, "name": "diisopropylethylammonium acetate", "count": 1}
+{"cid": 92214, "name": "1-Methyl-1,2,3,4-tetrahydroisoquinoline", "count": 1}
+{"cid": 11137079, "name": "methoxyborane", "count": 1}
+{"cid": 11636795, "name": "Pyrazolo[1,5-a]pyrimidine", "count": 1}
+{"cid": 69698, "name": "N-Methyl-2-pyridone-5-carboxamide", "count": 1}
+{"cid": 36937, "name": "6,7-Dihydroxy-1,2,3,4-tetrahydroisoquinoline", "count": 1}
+{"cid": 4173, "name": "Metronidazole", "count": 1}
+{"cid": 2130, "name": "1-aminoadamantane", "count": 1}
+{"cid": 26708, "name": "ammonium ferrocyanide", "count": 1}
+{"cid": 41045, "name": "2-methylheptanenitrile", "count": 1}
+{"cid": 18522, "name": "Dihydro-2-methyl-3(2H)-furanone", "count": 1}
+{"cid": 229468, "name": "2,2,2-trichloroacetophenone", "count": 1}
+{"cid": 10334, "name": "3,4-dimercaptotoluene", "count": 1}
+{"cid": 11481183, "name": "3,5-dichloro-4-nitrophenol", "count": 1}
+{"cid": 17750123, "name": "Argpyrimidine", "count": 1}
+{"cid": 32886, "name": "4-Chloro-1,2-dimethylbenzene", "count": 1}
+{"cid": 12404, "name": "1-Eicosanol", "count": 1}
+{"cid": 159864, "name": "N-acetyltaurine", "count": 1}
+{"cid": 58488949, "name": "2-amino-6-methylheptanenitrile", "count": 1}
+{"cid": 11083898, "name": "3-Cyclopentylpropanal", "count": 1}
+{"cid": 442495, "name": "pulegone", "count": 1}
+{"cid": 6271, "name": "4-Hydroxypropiophenone", "count": 1}
+{"cid": 19898504, "name": "1,3,5-Trichlorocyclohexane", "count": 1}
+{"cid": 10377, "name": "Olivetol", "count": 1}
+{"cid": 641162, "name": "1-Chloroazulene", "count": 1}
+{"cid": 139405, "name": "cyclopentadienone", "count": 1}
+{"cid": 16526, "name": "2-Aminothiazoline-4-carboxylic acid", "count": 1}
+{"cid": 15251598, "name": "Ammonium tetrathiomolybdate", "count": 1}
+{"cid": 14484, "name": "N-(2-sulfanylethyl)acetamide", "count": 1}
+{"cid": 10394, "name": "3-(4-Hydroxyphenyl)propionic acid", "count": 1}
+{"cid": 77988, "name": "2,2,2-trichloroethylamine", "count": 1}
+{"cid": 8357, "name": "3,4,5-Trimethoxybenzoic acid", "count": 1}
+{"cid": 11970729, "name": "N-Methyl-2-(1H-pyrrol-2-yl)ethan-1-amine", "count": 1}
+{"cid": 151725, "name": "3,4-Dihydroxyphenylglycolaldehyde", "count": 1}
+{"cid": 8367, "name": "alpha-ethyltryptamine", "count": 1}
+{"cid": 123056, "name": "2-fluorostyrene", "count": 1}
+{"cid": 14511, "name": "3-methylcyclohex-2-en-1-one", "count": 1}
+{"cid": 8371, "name": "2,3,5,6-Tetrachlorobenzoquinone", "count": 1}
+{"cid": 22016178, "name": "iododifluorochloromethane", "count": 1}
+{"cid": 23697586, "name": "Potassium gallate", "count": 1}
+{"cid": 11483316, "name": "2,2-diiodopropane", "count": 1}
+{"cid": 65724, "name": "verbenone", "count": 1}
+{"cid": 190, "name": "adenine", "count": 1}
+{"cid": 12479, "name": "1,2-Diacetoxybenzene", "count": 1}
+{"cid": 30914, "name": "2-Acetylpyrazine", "count": 1}
+{"cid": 10436, "name": "Orcinol", "count": 1}
+{"cid": 21483726, "name": "2,5-dichlorophenyl chloroformate", "count": 1}
+{"cid": 5460177, "name": "D-erythrulose", "count": 1}
+{"cid": 6350, "name": "Formaldehyde oxime", "count": 1}
+{"cid": 522448, "name": "2,3-dimethyl-1,2-epoxybutane", "count": 1}
+{"cid": 14547, "name": "2,2'-dipyridylamine", "count": 1}
+{"cid": 606422, "name": "5-acetyl-2,2'-bithiophene", "count": 1}
+{"cid": 3789018, "name": "4-Bromo-isobutylbenzene", "count": 1}
+{"cid": 12507, "name": "4-Methoxystyrene", "count": 1}
+{"cid": 121052, "name": "2-biphenylcarboxaldehyde", "count": 1}
+{"cid": 16607, "name": "Octylbenzene", "count": 1}
+{"cid": 524513, "name": "N-Acetyl-2-methylindole", "count": 1}
+{"cid": 8420, "name": "2-Naphthylsulfonic acid", "count": 1}
+{"cid": 10467, "name": "Eicosanoic acid", "count": 1}
+{"cid": 588007, "name": "N-Fluorobenzenesulfonimide", "count": 1}
+{"cid": 98536, "name": "Diethylene glycol phthalate", "count": 1}
+{"cid": 594156, "name": "3-acetyl-1-methylindole", "count": 1}
+{"cid": 129814765, "name": "diethylzirconocene", "count": 1}
+{"cid": 100597, "name": "N-Acetylmescaline", "count": 1}
+{"cid": 114934, "name": "chlorine nitrate", "count": 1}
+{"cid": 16630, "name": "aminorex", "count": 1}
+{"cid": 137464, "name": "phenylethynyltrimethylsilane", "count": 1}
+{"cid": 329983, "name": "menthofuran", "count": 1}
+{"cid": 596227, "name": "N-phenyl oxalamide", "count": 1}
+{"cid": 600328, "name": "5-bromo-2-furaldehyde", "count": 1}
+{"cid": 10307849, "name": "cyclopropylacetaldehyde", "count": 1}
+{"cid": 82187, "name": "2-bromo-4-aminotoluene", "count": 1}
+{"cid": 2775308, "name": "3-phenyl-2-methylthiophene", "count": 1}
+{"cid": 24847, "name": "2-Propyl-1-heptanol", "count": 1}
+{"cid": 520466, "name": "2,5-dichlorophenyl acetate", "count": 1}
+{"cid": 8467, "name": "Ethylvanillin", "count": 1}
+{"cid": 123156, "name": "4-Methylhexan-2-ol", "count": 1}
+{"cid": 69907, "name": "1,1-diphenylpropan-2-one", "count": 1}
+{"cid": 12904726, "name": "4-Amino-2-methylpyrimidine-5-carbaldehyde", "count": 1}
+{"cid": 12573, "name": "phenyl phosphorus dichloride", "count": 1}
+{"cid": 602397, "name": "2,4,6-Trimethyl-3-nitrophenol", "count": 1}
+{"cid": 348462, "name": "Methyl 3-oxo-3-phenylpropanoate", "count": 1}
+{"cid": 2734393, "name": "4-vinylphenylboronic acid", "count": 1}
+{"cid": 10560, "name": "2-Mercaptobutane", "count": 1}
+{"cid": 19013961, "name": "Ethyl 4-hydroxy-3-methylpentanoate", "count": 1}
+{"cid": 69963, "name": "hex-5-en-1-ol", "count": 1}
+{"cid": 16717, "name": "3-Aminobiphenyl", "count": 1}
+{"cid": 29012, "name": "4-iodobenzyl alcohol", "count": 1}
+{"cid": 11694431, "name": "Cobaltic nitrate", "count": 1}
+{"cid": 84322, "name": "Tris(pentane-2,4-dionato-O,O')titanium", "count": 1}
+{"cid": 12283, "name": "6-Methyl-2,4(1H,3H)-pyrimidinedione", "count": 1}
+{"cid": 6503, "name": "tris(hydroxymethyl)aminomethane", "count": 1}
+{"cid": 280945, "name": "2,5-Dibromo-1,4-benzenediol", "count": 1}
+{"cid": 20851, "name": "tri-n-octylphosphine", "count": 1}
+{"cid": 12660, "name": "N-nitrosoguanidine", "count": 1}
+{"cid": 10614, "name": "triphenylmethane", "count": 1}
+{"cid": 57160067, "name": "2-Ethoxy-2-phenoxyethanol", "count": 1}
+{"cid": 10992002, "name": "n-Butyl dithiocarbamate", "count": 1}
+{"cid": 3000713, "name": "N,N'-diacetylthiourea", "count": 1}
+{"cid": 102793, "name": "trans-2-Phenylcyclohexanol", "count": 1}
+{"cid": 70026, "name": "Pentafluorophenyl sulfonyl chloride", "count": 1}
+{"cid": 3037582, "name": "Hexaric acid", "count": 1}
+{"cid": 12690, "name": "Cacodyl cyanide", "count": 1}
+{"cid": 12695, "name": "hexafluoroacetone", "count": 1}
+{"cid": 4510, "name": "nitroglycerin", "count": 1}
+{"cid": 87706019, "name": "L-lysine carbamate (carboxylation)", "count": 1}
+{"cid": 2468, "name": "1-Butylbiguanide", "count": 1}
+{"cid": 13437354, "name": "2-(1H-pyrrol-3-yl)ethan-1-amine", "count": 1}
+{"cid": 135492011, "name": "cyclohexane-1,2-dione oxime", "count": 1}
+{"cid": 13437360, "name": "2-(1H-pyrrol-2-yl)ethan-1-amine", "count": 1}
+{"cid": 102832, "name": "1,2-Dimethylcyclopropane", "count": 1}
+{"cid": 68021, "name": "1-(bromomethyl)-4-fluorobenzene", "count": 1}
+{"cid": 14205366, "name": "manganese(II) arsenate", "count": 1}
+{"cid": 5460407, "name": "L-threonic acid", "count": 1}
+{"cid": 68030, "name": "1,1,1,3,3-Pentafluoropropane", "count": 1}
+{"cid": 537025, "name": "cyclopropylacetone", "count": 1}
+{"cid": 123334, "name": "hypofluorous acid", "count": 1}
+{"cid": 10695, "name": "1,2,3,5-Tetramethylbenzene", "count": 1}
+{"cid": 8652, "name": "4-methylbenzophenone", "count": 1}
+{"cid": 12163534, "name": "tri-n-octylphosphine selenide", "count": 1}
+{"cid": 74195, "name": "4,4'-di-tert-butylbiphenyl", "count": 1}
+{"cid": 470, "name": "2,4-diaminobutyric acid", "count": 1}
+{"cid": 29145, "name": "L-Cysteine, methyl ester", "count": 1}
+{"cid": 16865, "name": "4-Acetoxybenzoic acid", "count": 1}
+{"cid": 10724, "name": "1-tetralone", "count": 1}
+{"cid": 440810, "name": "N-Methyl-4-pyridone-5-carboxamide", "count": 1}
+{"cid": 2734571, "name": "scandium(III) triflate", "count": 1}
+{"cid": 10740, "name": "1,1-diphenylethylene", "count": 1}
+{"cid": 15579637, "name": "Isoamyl tosylate", "count": 1}
+{"cid": 76279, "name": "3-Methylphenylacetonitrile", "count": 1}
+{"cid": 66048, "name": "1-methyl-4-piperidinol", "count": 1}
+{"cid": 80385, "name": "N,N-dimethylacetohydrazide", "count": 1}
+{"cid": 129798666, "name": "niobium(V) acetate", "count": 1}
+{"cid": 2769420, "name": "5-phenyl-2-furaldehyde", "count": 1}
+{"cid": 2777617, "name": "2-(4-(trifluoromethyl)phenyl)-2-propanol", "count": 1}
+{"cid": 78354, "name": "N-Ethyl-2-hydroxybenzamide", "count": 1}
+{"cid": 18963, "name": "2,5-dimethyl-4-nitroaniline", "count": 1}
+{"cid": 440850, "name": "N-acetyl-4-aminobutanal", "count": 1}
+{"cid": 291352, "name": "4-(dimethylamino)-2-nitrobenzaldehyde", "count": 1}
+{"cid": 197147, "name": "Tetraphosphoric acid", "count": 1}
+{"cid": 600604, "name": "4-(trifluoromethyl)anisole", "count": 1}
+{"cid": 545313, "name": "di-tert-butylzinc", "count": 1}
+{"cid": 2757153, "name": "1-(2-Bromophenyl)piperazine", "count": 1}
+{"cid": 21903907, "name": "2-Amino-2-methylpropanal", "count": 1}
+{"cid": 25126, "name": "2-bromo-N-phenylbenzamide", "count": 1}
+{"cid": 131738151, "name": "ferrocenium hexafluoroantimonate", "count": 1}
+{"cid": 9577004, "name": "Acrolein oxime", "count": 1}
+{"cid": 66093, "name": "1-Phenyl-1-pentanone", "count": 1}
+{"cid": 449068, "name": "vanadium(III) hydroxide", "count": 1}
+{"cid": 123445, "name": "1-Aminoindan", "count": 1}
+{"cid": 101157429, "name": "Methyl L-arabinofuranoside", "count": 1}
+{"cid": 2753079, "name": "methyl 5-methyl-1H-pyrazole-3-carboxylate", "count": 1}
+{"cid": 568, "name": "dibenzofuran", "count": 1}
+{"cid": 129761849, "name": "sodium 3,5-dimethylpyrazolate", "count": 1}
+{"cid": 12855, "name": "2-Phenylbenzimidazole", "count": 1}
+{"cid": 68156, "name": "2-Imidazoline", "count": 1}
+{"cid": 76349, "name": "1,5-Diazabicyclo[4.3.0]non-5-ene", "count": 1}
+{"cid": 449085, "name": "Ethyl methylphosphonate", "count": 1}
+{"cid": 70209, "name": "2-Methyl-3-octanone", "count": 1}
+{"cid": 11051588, "name": "lithium dimethylcuprate", "count": 1}
+{"cid": 1393220, "name": "2-(4-methoxyphenyl)benzaldehyde", "count": 1}
+{"cid": 78407, "name": "3,4-Methylenedioxyphenylacetone", "count": 1}
+{"cid": 4688, "name": "Pargyline", "count": 1}
+{"cid": 522834, "name": "2-Acetyl-1-pyrroline", "count": 1}
+{"cid": 84564, "name": "Bis(trimethylsilyl)acetylene", "count": 1}
+{"cid": 8795, "name": "Aminoethylpiperazine", "count": 1}
+{"cid": 66141, "name": "N-acetyl-L-proline", "count": 1}
+{"cid": 68191, "name": "Neophyl chloride", "count": 1}
+{"cid": 520806, "name": "2-methyl-1,2-epoxypentane", "count": 1}
+{"cid": 31347, "name": "sulfolane", "count": 1}
+{"cid": 15641206, "name": "1-tert-Butylazulene", "count": 1}
+{"cid": 31352, "name": "Dipentaerythritol", "count": 1}
+{"cid": 12444286, "name": "Thiepine", "count": 1}
+{"cid": 8833, "name": "Rhodinol acetate", "count": 1}
+{"cid": 10881, "name": "Tropone", "count": 1}
+{"cid": 68226, "name": "9,10-Dibromoanthracene", "count": 1}
+{"cid": 70278, "name": "3-Ethylcatechol", "count": 1}
+{"cid": 18973321, "name": "3,4-Dimethoxybenzyl methanesulfonate", "count": 1}
+{"cid": 129712780, "name": "N-acetylnicotine", "count": 1}
+{"cid": 68241, "name": "2,6-dimethyl-1,4-benzoquinone", "count": 1}
+{"cid": 6857362, "name": "L-fuculose", "count": 1}
+{"cid": 4757, "name": "Phenazine", "count": 1}
+{"cid": 22114966, "name": "1,3,4-oxathiazol-2-one", "count": 1}
+{"cid": 17048, "name": "1,2-epoxy-7,8-epoxyoctane", "count": 1}
+{"cid": 64153, "name": "1-acetamidoadamantane", "count": 1}
+{"cid": 25242, "name": "nitrogen difluoride", "count": 1}
+{"cid": 675, "name": "5,6-Dimethylbenzimidazole", "count": 1}
+{"cid": 4771, "name": "Phentermine", "count": 1}
+{"cid": 15013, "name": "2-(dimethylamino)ethyl acetate", "count": 1}
+{"cid": 68262, "name": "2,6-Dimethoxy-1,4-benzoquinone", "count": 1}
+{"cid": 68266, "name": "2-Tetralone", "count": 1}
+{"cid": 21062325, "name": "sodium O-ethyl methylphosphonate", "count": 1}
+{"cid": 66231, "name": "Rhenium(VI) fluoride", "count": 1}
+{"cid": 189112, "name": "1,2,3,4-Tetrahydroisoquinoline-1-carboxylic acid", "count": 1}
+{"cid": 17090, "name": "Citronellene", "count": 1}
+{"cid": 15741634, "name": "N-Methyl-3-pentanamine", "count": 1}
+{"cid": 10949, "name": "Acetoguanamine", "count": 1}
+{"cid": 2758, "name": "1,8-Cineole", "count": 1}
+{"cid": 6931143, "name": "P-Hydroxynorephedrine", "count": 1}
+{"cid": 13101769, "name": "3-iodophenyl acetate", "count": 1}
+{"cid": 441034, "name": "D-Idose", "count": 1}
+{"cid": 498379, "name": "1,2-Bis(diphenylphosphino)benzene", "count": 1}
+{"cid": 6861, "name": "1-Naphthylacetamide", "count": 1}
+{"cid": 549585, "name": "3-Methyl-3-butenyl bromide", "count": 1}
+{"cid": 6858, "name": "3,4,5-Trimethoxybenzaldehyde", "count": 1}
+{"cid": 90839, "name": "(2-Methoxyphenyl)(phenyl)methanol", "count": 1}
+{"cid": 727, "name": "Hexachlorocyclohexane", "count": 1}
+{"cid": 68316, "name": "Perillene", "count": 1}
+{"cid": 92893, "name": "L-Histidine methyl ester", "count": 1}
+{"cid": 25311, "name": "Tridecanal", "count": 1}
+{"cid": 13023, "name": "1-methyl-2,3-dihydro-1H-indene", "count": 1}
+{"cid": 137951, "name": "Tetrahydroselenophene", "count": 1}
+{"cid": 6861540, "name": "2-chlorobenzaldoxime", "count": 1}
+{"cid": 6893, "name": "2,3-Dimethylaniline", "count": 1}
+{"cid": 24572, "name": "Lead arsenate", "count": 1}
+{"cid": 107249, "name": "4-Nitro-sec-butylbenzene", "count": 1}
+{"cid": 13041, "name": "Pentafluorophenol", "count": 1}
+{"cid": 226037, "name": "4-Bromoazobenzene", "count": 1}
+{"cid": 148216, "name": "Bromooxirane", "count": 1}
+{"cid": 11000, "name": "cyclohepta-1,3,5-triene", "count": 1}
+{"cid": 6905, "name": "hexabromobenzene", "count": 1}
+{"cid": 16788223, "name": "indoline-1-sulfonyl chloride", "count": 1}
+{"cid": 777, "name": "4-Amino-2-methyl-5-pyrimidinemethanol", "count": 1}
+{"cid": 9853707, "name": "Hafnium(IV) trifluoromethanesulfonate", "count": 1}
+{"cid": 5280535, "name": "p-Coumaryl alcohol", "count": 1}
+{"cid": 11768603, "name": "cis-1,2-cycloheptanediol", "count": 1}
+{"cid": 135973, "name": "Bicyclo[1.1.0]butane", "count": 1}
+{"cid": 221995, "name": "N-(2-Phenylethyl)butanamide", "count": 1}
+{"cid": 9005, "name": "Trimethyl orthoformate", "count": 1}
+{"cid": 23673647, "name": "Sodium dimethylarsenate", "count": 1}
+{"cid": 4915, "name": "N-methylhydrazine", "count": 1}
+{"cid": 21300022, "name": "Methylphosphonium iodide", "count": 1}
+{"cid": 5280567, "name": "7-Hydroxy-4-methylcoumarin", "count": 1}
+{"cid": 68412, "name": "dihydroxymalonic acid", "count": 1}
+{"cid": 19082048, "name": "2-chloropyridazine", "count": 1}
+{"cid": 74561, "name": "5-Aminopyrazole", "count": 1}
+{"cid": 551747, "name": "2-Methylamino-1-phenylbutane", "count": 1}
+{"cid": 138060, "name": "2,2-Dimethyl-1-phenylpropan-1-ol", "count": 1}
+{"cid": 70477, "name": "3-mercapto-propionitrile", "count": 1}
+{"cid": 2901, "name": "Cycloleucine", "count": 1}
+{"cid": 138078, "name": "4-(4-Nitrophenyl)phenol", "count": 1}
+{"cid": 82783, "name": "manganese arsenide", "count": 1}
+{"cid": 53431140, "name": "ethyl cyclobutanecarboximidate", "count": 1}
+{"cid": 37734, "name": "1-phenylbut-3-en-2-one", "count": 1}
+{"cid": 152427, "name": "4-(2-(Dimethylamino)ethyl)-1,2-benzenediol", "count": 1}
+{"cid": 13097838, "name": "N-Ethoxycarbonylisoindoline", "count": 1}
+{"cid": 621429, "name": "N,N-diethyl-4-iodoaniline", "count": 1}
+{"cid": 312183, "name": "4-boronobenzoic acid", "count": 1}
+{"cid": 68476, "name": "4-Aminoquinoline", "count": 1}
+{"cid": 101248, "name": "5-Acetylaminotetrazole", "count": 1}
+{"cid": 7041, "name": "2,6-Dimethoxyphenol", "count": 1}
+{"cid": 5876610, "name": "3-Heptanone oxime", "count": 1}
+{"cid": 11138, "name": "benzene-1,3,5-tricarboxylic acid", "count": 1}
+{"cid": 68483, "name": "N-Acetyl-N-phenylglycine", "count": 1}
+{"cid": 7042, "name": "benzene-1,2-dicarbonitrile", "count": 1}
+{"cid": 10953608, "name": "trans-2-Azidocyclohexanol", "count": 1}
+{"cid": 2777993, "name": "N-Methyl-L-Leucine", "count": 1}
+{"cid": 6335370, "name": "Diethoxysilane", "count": 1}
+{"cid": 9101, "name": "bicyclo[2.1.0]pentane", "count": 1}
+{"cid": 68493, "name": "3-methyl-1-phenylbutan-1-one", "count": 1}
+{"cid": 35728, "name": "2-Propylheptanoic acid", "count": 1}
+{"cid": 913, "name": "2-(Methylamino)-1-phenylethanol", "count": 1}
+{"cid": 70547, "name": "N-acetyltryptamine", "count": 1}
+{"cid": 7055, "name": "2-Methylnaphthalene", "count": 1}
+{"cid": 7058, "name": "2-Naphthalenethiol", "count": 1}
+{"cid": 68504, "name": "4-bromo-1,2-dimethylbenzene", "count": 1}
+{"cid": 12305305, "name": "Cyamelide", "count": 1}
+{"cid": 439195, "name": "L-Arabinose", "count": 1}
+{"cid": 13622170, "name": "2-Nitro-3-chlorophenol", "count": 1}
+{"cid": 13265823, "name": "o-Quinone methide", "count": 1}
+{"cid": 18422690, "name": "2-(1H-imidazol-2-yl)acetaldehyde", "count": 1}
+{"cid": 7076, "name": "1,3-diphenylbenzene", "count": 1}
+{"cid": 13223, "name": "bicyclo[2.2.1]hept-5-ene-2,3-dicarboxylic anhydride", "count": 1}
+{"cid": 71334834, "name": "ethyl 2,3-diphenylcycloprop-1-ene-1-carboxylate", "count": 1}
+{"cid": 13216694, "name": "2-methyl-2-(4-methylphenyl)propan-1-ol", "count": 1}
+{"cid": 164792, "name": "europium(III) acetate", "count": 1}
+{"cid": 21432, "name": "3-Methyl-3-octanol", "count": 1}
+{"cid": 519099, "name": "Iron tetracarbonyl dihydride", "count": 1}
+{"cid": 74688, "name": "5-hydroxyindoleacetaldehyde", "count": 1}
+{"cid": 15295, "name": "phenylphosphonic acid", "count": 1}
+{"cid": 7332808, "name": "o-Nitrobenzaldoxime", "count": 1}
+{"cid": 7111, "name": "Benzidine", "count": 1}
+{"cid": 14201804, "name": "bicyclo[6.1.0]non-4-yne", "count": 1}
+{"cid": 11729867, "name": "Ammonium hexachlorosmate(IV)", "count": 1}
+{"cid": 13266, "name": "phenethylbiguanide", "count": 1}
+{"cid": 12540882, "name": "tantalum(V) isopropoxide", "count": 1}
+{"cid": 7123, "name": "2-Naphthoic acid", "count": 1}
+{"cid": 439255, "name": "L-arabinitol", "count": 1}
+{"cid": 84953, "name": "1-iodo-2,2-dimethylpropane", "count": 1}
+{"cid": 29656, "name": "2,3-dimethylbutan-1-ol", "count": 1}
+{"cid": 11275229, "name": "3-Hydroxybenzaldehyde dimethyl acetal", "count": 1}
+{"cid": 123870, "name": "4-iodoamphetamine", "count": 1}
+{"cid": 736234, "name": "methyl (2S)-2-amino-3-phenylpropanoate", "count": 1}
+{"cid": 11258863, "name": "Imine", "count": 1}
+{"cid": 11037680, "name": "samarium(III) acetylacetonate", "count": 1}
+{"cid": 2737137, "name": "Diphenyliodonium trifluoromethanesulfonate", "count": 1}
+{"cid": 224243, "name": "1-Methylcyclohexene oxide", "count": 1}
+{"cid": 9561079, "name": "Pinacolone oxime", "count": 1}
+{"cid": 4187130, "name": "2-(2-Bromophenyl)benzothiazole", "count": 1}
+{"cid": 21501, "name": "5-Nitro-1H-indazole", "count": 1}
+{"cid": 66560, "name": "naphthalenesulfonyl chloride", "count": 1}
+{"cid": 11265, "name": "2-Methyl-3-pentanone", "count": 1}
+{"cid": 3071, "name": "3,3'-Diindolylmethane", "count": 1}
+{"cid": 7170, "name": "Ethyl 3-oxo-3-phenylpropanoate", "count": 1}
+{"cid": 121858, "name": "Hydroxymetronidazole", "count": 1}
+{"cid": 3080, "name": "Dimercaprol", "count": 1}
+{"cid": 10959889, "name": "Platinum(0)-1,3-divinyl-1,1,3,3-tetramethyldisiloxane", "count": 1}
+{"cid": 1043, "name": "Pteridine", "count": 1}
+{"cid": 17429, "name": "Piperidine-1-carboxaldehyde", "count": 1}
+{"cid": 637977, "name": "cyclopentene oxide", "count": 1}
+{"cid": 1052, "name": "Pyridoxamine", "count": 1}
+{"cid": 10888221, "name": "tert-Butylmagnesium bromide", "count": 1}
+{"cid": 93214, "name": "4-Isobutylacetophenone", "count": 1}
+{"cid": 9251, "name": "Thietane", "count": 1}
+{"cid": 13347, "name": "S-Methylisothiourea hemisulfate", "count": 1}
+{"cid": 136237, "name": "4-(trifluoroacetyl)toluene", "count": 1}
+{"cid": 24884269, "name": "Tris(2,4-pentanedionato)cobalt(III)", "count": 1}
+{"cid": 102601784, "name": "Terbium oxalate", "count": 1}
+{"cid": 818233, "name": "3-Methyl-4-nitropyridine", "count": 1}
+{"cid": 439357, "name": "Alpha-D-galactopyranose", "count": 1}
+{"cid": 640065, "name": "5-bromo-2,2'-bithiophene", "count": 1}
+{"cid": 320578, "name": "N-(2-chlorobenzylidene)aniline", "count": 1}
+{"cid": 2724933, "name": "selectfluor", "count": 1}
+{"cid": 13702217, "name": "1-phenylhexyl acetate", "count": 1}
+{"cid": 13394, "name": "3-cyanophenol", "count": 1}
+{"cid": 13398, "name": "3,3,5-Trimethylcyclohexanone", "count": 1}
+{"cid": 7258, "name": "3,4-Dichlorophenol", "count": 1}
+{"cid": 115806, "name": "3-Methylamphetamine", "count": 1}
+{"cid": 7263, "name": "4-Chloro-1,2-phenylenediamine", "count": 1}
+{"cid": 558181, "name": "Dipropan-2-yl hydrogen phosphite", "count": 1}
+{"cid": 5059686, "name": "diaziridine", "count": 1}
+{"cid": 13032554, "name": "2-Benzyl-2-methyl-1,3-dithiane", "count": 1}
+{"cid": 81004, "name": "Cyclohex-4-ene-1,2-dicarboxylic anhydride", "count": 1}
+{"cid": 2794612, "name": "1-Cyclohexyl-2-phenylethanone", "count": 1}
+{"cid": 21624, "name": "2-Propylbenzimidazole", "count": 1}
+{"cid": 136319, "name": "Chroman", "count": 1}
+{"cid": 12489866, "name": "Cyclopentylacetaldehyde", "count": 1}
+{"cid": 251020, "name": "4-ethynylanisole", "count": 1}
+{"cid": 78988, "name": "cyclohexyl fluoride", "count": 1}
+{"cid": 6327445, "name": "catecholborane", "count": 1}
+{"cid": 31894, "name": "2,4,6-Trichlorophenyl acetate", "count": 1}
+{"cid": 57007257, "name": "Methyl 3-hydroxy-2-oxobutanoate", "count": 1}
+{"cid": 102601889, "name": "Holmium oxalate", "count": 1}
+{"cid": 20509858, "name": "2-(4-ethylphenyl)-1,3-dithiane", "count": 1}
+{"cid": 12287137, "name": "1,2,3,5-tetramethyl-4-nitrobenzene", "count": 1}
+{"cid": 76965, "name": "2-bromobenzyl bromide", "count": 1}
+{"cid": 85746856, "name": "5-Nitroindolizine", "count": 1}
+{"cid": 7347, "name": "Tetramethylthiuram monosulfide", "count": 1}
+{"cid": 72884, "name": "N,N'-Diacetylhydrazine", "count": 1}
+{"cid": 79031, "name": "3,3,5-Trimethylcyclohexene", "count": 1}
+{"cid": 23736, "name": "Dimethylsulfoniopropionate", "count": 1}
+{"cid": 136384, "name": "hexabromoethane", "count": 1}
+{"cid": 17604, "name": "2-(2-chlorobenzylidene)malononitrile", "count": 1}
+{"cid": 7365, "name": "Phenylarsonic acid", "count": 1}
+{"cid": 445639, "name": "oleic acid", "count": 1}
+{"cid": 57375942, "name": "praseodymium tribromide", "count": 1}
+{"cid": 138440, "name": "cyclopropylacetic acid", "count": 1}
+{"cid": 23682258, "name": "potassium 4-methylphenyltrifluoroborate", "count": 1}
+{"cid": 2755795, "name": "3-Methoxy-4-nitroaniline", "count": 1}
+{"cid": 7378, "name": "5-tert-Butyl-1,3-dimethylbenzene", "count": 1}
+{"cid": 34007, "name": "vanadyl sulfate", "count": 1}
+{"cid": 129633497, "name": "Nickel phosphite", "count": 1}
+{"cid": 529629, "name": "2-ethyl-4-methyl-1,3-dithiolane", "count": 1}
+{"cid": 10898654, "name": "3-azidopropanal", "count": 1}
+{"cid": 15586, "name": "1,1-dichloro-1-fluoroethane", "count": 1}
+{"cid": 7394, "name": "1-Chloro-4-(trifluoromethyl)benzene", "count": 1}
+{"cid": 11494, "name": "3-Methoxyacetanilide", "count": 1}
+{"cid": 316652, "name": "Triethylene glycol ditosylate", "count": 1}
+{"cid": 2737389, "name": "1-(2-phenylphenyl)piperazine", "count": 1}
+{"cid": 7418, "name": "3-methylbenzoic acid", "count": 1}
+{"cid": 77059, "name": "Allylcyclopentane", "count": 1}
+{"cid": 6327560, "name": "Dimethoxysilane", "count": 1}
+{"cid": 11300104, "name": "ethyl 2,2-diphenylcyclopropane-1-carboxylate", "count": 1}
+{"cid": 3337, "name": "Fenfluramine", "count": 1}
+{"cid": 15624, "name": "2-allyl phenol", "count": 1}
+{"cid": 11536, "name": "1-chloroprop-1-ene", "count": 1}
+{"cid": 15920410, "name": "5-methyl-1H-pyrazole-3-carboxamide", "count": 1}
+{"cid": 68607260, "name": "2-Bromo-3,5-dimethylaniline", "count": 1}
+{"cid": 546078, "name": "cyclobutanone oxime", "count": 1}
+{"cid": 24192289, "name": "potassium diethyl malonate", "count": 1}
+{"cid": 70952, "name": "2-methyl-1-benzothiophene", "count": 1}
+{"cid": 6432046, "name": "cobalt oxide", "count": 1}
+{"cid": 5426, "name": "thalidomide", "count": 1}
+{"cid": 439616, "name": "(S)-mandelic acid", "count": 1}
+{"cid": 134465, "name": "2-Deoxy-D-sorbitol", "count": 1}
+{"cid": 64832, "name": "Bourgeonal", "count": 1}
+{"cid": 13636, "name": "2,3,5,6-Tetrachlorophenol", "count": 1}
+{"cid": 7499, "name": "4-Vinylcyclohexene", "count": 1}
+{"cid": 439630, "name": "D-Mannuronic acid", "count": 1}
+{"cid": 140642, "name": "1-methylcyclobutanol", "count": 1}
+{"cid": 12275045, "name": "Ethyl 3-methylpyrazole-1-carboxylate", "count": 1}
+{"cid": 564582, "name": "N-(2-Methoxybenzylidene)aniline", "count": 1}
+{"cid": 574826, "name": "dimethyl 2-allylmalonate", "count": 1}
+{"cid": 68980, "name": "1,1-diiodoethane", "count": 1}
+{"cid": 7546, "name": "3-(phenylamino)phenol", "count": 1}
+{"cid": 12000634, "name": "Ethyl 2-nitro-3-phenylacrylate", "count": 1}
+{"cid": 75136, "name": "Oxazolidine-2,5-dione", "count": 1}
+{"cid": 66948, "name": "Protoanemonin", "count": 1}
+{"cid": 71777665, "name": "silver fluoroacetate", "count": 1}
+{"cid": 69007, "name": "Pentaerythritol tetraacetate", "count": 1}
+{"cid": 181649, "name": "1-hydroxy-7-azabenzotriazole", "count": 1}
+{"cid": 15760, "name": "5-Methyltryptamine", "count": 1}
+{"cid": 5324181, "name": "2,3-epoxyheptane", "count": 1}
+{"cid": 4218271, "name": "4-Fluoro-N-(2-hydroxyethyl)benzamide", "count": 1}
+{"cid": 136611, "name": "1-Methylazulene", "count": 1}
+{"cid": 53470630, "name": "Trimethylammonium acetate", "count": 1}
+{"cid": 161543590, "name": "manganese monosilicide", "count": 1}
+{"cid": 3496, "name": "Glyphosate", "count": 1}
+{"cid": 71077, "name": "D-Serine", "count": 1}
+{"cid": 165292, "name": "Pyridinium acetate", "count": 1}
+{"cid": 10442150, "name": "4-Hydroxy-2-nonenoic acid", "count": 1}
+{"cid": 134833584, "name": "3-(4-methoxyphenyl)-2,5-dimethylthiophene", "count": 1}
+{"cid": 3516, "name": "Guaifenesin", "count": 1}
+{"cid": 21867965, "name": "N-Acetyl methacrylamide", "count": 1}
+{"cid": 15807, "name": "2-Ethylbenzimidazole", "count": 1}
+{"cid": 54375874, "name": "Ethyl bicyclo[2.2.1]hept-2-ene-2-carboxylate", "count": 1}
+{"cid": 73166, "name": "2-Methyl-3-formylindole", "count": 1}
+{"cid": 1493, "name": "2,4-Dinitrophenol", "count": 1}
+{"cid": 5447130, "name": "Nitrofuran", "count": 1}
+{"cid": 11744, "name": "2,2,2-tribromoethyl acetate", "count": 1}
+{"cid": 2733548, "name": "bis(pinacolato)diboron", "count": 1}
+{"cid": 14525936, "name": "Sodium pimelate", "count": 1}
+{"cid": 5324279, "name": "acetaldoxime", "count": 1}
+{"cid": 122361341, "name": "N-acetylglutathione", "count": 1}
+{"cid": 656894, "name": "isopropyl", "count": 1}
+{"cid": 19969, "name": "1,3-Cycloheptadiene", "count": 1}
+{"cid": 5283335, "name": "trans-2-Nonenal", "count": 1}
+{"cid": 95752, "name": "2-(4-chlorophenyl)benzothiazole", "count": 1}
+{"cid": 95762, "name": "2-(2-Nitrophenyl)benzothiazole", "count": 1}
+{"cid": 95763, "name": "2-(2-Chlorophenyl)benzothiazole", "count": 1}
+{"cid": 101105177, "name": "4-(trifluoromethyl)phenyllithium", "count": 1}
+{"cid": 3610, "name": "4-Hexylresorcinol", "count": 1}
+{"cid": 13851, "name": "2-Bromothiophene", "count": 1}
+{"cid": 640541, "name": "2,7-Dihydrothiepine", "count": 1}
+{"cid": 13853, "name": "1,2-Epoxy-pentane", "count": 1}
+{"cid": 15897, "name": "Norfenfluramine", "count": 1}
+{"cid": 15903, "name": "1,2,5,6-diepoxyhexane", "count": 1}
+{"cid": 3032611, "name": "Cupric Glycinate", "count": 1}
+{"cid": 5207587, "name": "Diisopropylzinc", "count": 1}
+{"cid": 65065, "name": "N-acetylaspartic acid", "count": 1}
+{"cid": 5463599, "name": "trans-cyclooctene", "count": 1}
+{"cid": 108081, "name": "N-Nitrosomethylamine", "count": 1}
+{"cid": 3637, "name": "Hydralazine", "count": 1}
+{"cid": 11114043, "name": "Cerium(IV) methanesulfonate", "count": 1}
+{"cid": 57617987, "name": "3-(4-vinylphenyl)pyridine", "count": 1}
+{"cid": 15978056, "name": "hydrogen hexacyanoferrate(II)", "count": 1}
+{"cid": 140873, "name": "2-Chloro-1-methoxy-4-methylbenzene", "count": 1}
+{"cid": 345674, "name": "2-(2-Fluorophenyl)benzothiazole", "count": 1}
+{"cid": 18921035, "name": "3-bromoheptan-4-ol", "count": 1}
+{"cid": 7756, "name": "4-Methyl-2-pentanone oxime", "count": 1}
+{"cid": 10012249, "name": "3-Bromo-2-pentanone", "count": 1}
+{"cid": 3677, "name": "Mephentermine", "count": 1}
+{"cid": 67170, "name": "Acetamidine monohydrochloride", "count": 1}
+{"cid": 552549, "name": "trifluoromethyltrimethylsilane", "count": 1}
+{"cid": 1639, "name": "Amitrole", "count": 1}
+{"cid": 10290800, "name": "calcium metaborate", "count": 1}
+{"cid": 151152, "name": "D-Threonic acid", "count": 1}
+{"cid": 292469, "name": "Methanesulfonyl acetate", "count": 1}
+{"cid": 519799, "name": "N-ethyl-N-propylpropan-1-amine", "count": 1}
+{"cid": 11480698, "name": "2-(4-chlorophenoxy)acetaldehyde", "count": 1}
+{"cid": 3839612, "name": "methyl 2,3-dihydro-1H-indene-1-carboxylate", "count": 1}
+{"cid": 81531, "name": "Diisopropylethylamine", "count": 1}
+{"cid": 102017, "name": "Tetraethylammonium acetate", "count": 1}
+{"cid": 6065802, "name": "2-Pentanone oxime", "count": 1}
+{"cid": 69260, "name": "methyl m-nitrobenzoate", "count": 1}
+{"cid": 3614351, "name": "Imidazole N-Oxide", "count": 1}
+{"cid": 83604, "name": "niobium oxyfluoride", "count": 1}
+{"cid": 7833, "name": "4-Vinylcyclohexene dioxide", "count": 1}
+{"cid": 7836, "name": "Glycidyl acrylate", "count": 1}
+{"cid": 542372, "name": "3-methoxyhexane", "count": 1}
+{"cid": 542381, "name": "2,2-Dimethoxyethanol", "count": 1}
+{"cid": 140975, "name": "selenophene-2-carboxylic acid", "count": 1}
+{"cid": 257716, "name": "4-(bromomethyl)biphenyl", "count": 1}
+{"cid": 237240, "name": "N-(3-chloro-4-methylphenyl)formamide", "count": 1}
+{"cid": 15492795, "name": "ferrocenium tetrafluoroborate", "count": 1}
+{"cid": 102602429, "name": "Ammonium difluorophosphate", "count": 1}
+{"cid": 11966141, "name": "2-methylbutyryl-CoA", "count": 1}
+{"cid": 427712, "name": "1,3,5-Triaminocyclohexane", "count": 1}
+{"cid": 6602431, "name": "D-xylonic acid", "count": 1}
+{"cid": 14046915, "name": "1-Phenylcyclohex-3-en-1-ol", "count": 1}
+{"cid": 19349188, "name": "2,3-dimethylhexanal", "count": 1}
+{"cid": 138950, "name": "1,4-Cycloheptadiene", "count": 1}
+{"cid": 247496, "name": "N-Methylisoindoline", "count": 1}
+{"cid": 102092, "name": "Bis(cyclopentadienyl)zirconium dichloride", "count": 1}
+{"cid": 9935, "name": "2-fluorobenzoic acid", "count": 1}
+{"cid": 136911, "name": "phenylsuccinic anhydride", "count": 1}
+{"cid": 11985, "name": "2-Hydroxy benzimidazole", "count": 1}
+{"cid": 143061, "name": "1,3,5-triaza-7-phosphaadamantane", "count": 1}
+{"cid": 7896, "name": "1,3-Butanediol", "count": 1}
+{"cid": 9948, "name": "2-phenylacetophenone", "count": 1}
+{"cid": 528094, "name": "tert-Butyldimethylsilyl acetate", "count": 1}
+{"cid": 102110, "name": "trioxorhenium", "count": 1}
+{"cid": 22253, "name": "L-threo-2-Pentulose", "count": 1}
+{"cid": 85397242, "name": "Cyclopentadienylindium(I)", "count": 1}
+{"cid": 67324, "name": "N,N-Diacetyl-p-phenylenediamine", "count": 1}
+{"cid": 15619841, "name": "N-(2-hydroxy-1-phenylethyl)acetamide", "count": 1}
+{"cid": 61194, "name": "Methylphosphonous dichloride", "count": 1}
+{"cid": 59864844, "name": "3,4-Dimethyl-oxazole", "count": 1}
+{"cid": 11151117, "name": "platinum(II) acetate", "count": 1}
+{"cid": 12046, "name": "2-Methylpentanedioic acid", "count": 1}
+{"cid": 167693, "name": "trimethylsilyldiazomethane", "count": 1}
+{"cid": 3032849, "name": "L-Hydroxylysine", "count": 1}
+{"cid": 61200, "name": "2-Hydroxy-4-methylbenzaldehyde", "count": 1}
+{"cid": 54488851, "name": "3-bromo-2-methylhexane", "count": 1}
+{"cid": 156591895, "name": "sodium pyrosulfate", "count": 1}
+{"cid": 458519, "name": "N-ethylcathinone", "count": 1}
+{"cid": 15908632, "name": "Acetone peroxide", "count": 1}
+{"cid": 77594, "name": "p-tert-Butylchlorobenzene", "count": 1}
+{"cid": 3866, "name": "2-Phenylglycine", "count": 1}
+{"cid": 5917, "name": "Pentylenetetrazole", "count": 1}
+{"cid": 149280, "name": "bis(triethylphosphine)gold(I) chloride", "count": 1}
+{"cid": 14109, "name": "n-Hexylbenzene", "count": 1}
+{"cid": 69411, "name": "Diethylene glycol diacetate", "count": 1}
+{"cid": 7976, "name": "2-Methylpyrazine", "count": 1}
+{"cid": 12074, "name": "2-chloro-4-nitrophenol", "count": 1}
+{"cid": 75563, "name": "3-Acetoxyacetophenone", "count": 1}
+{"cid": 1837, "name": "N,N-Dimethyl-5-Methyltryptamine", "count": 1}
+{"cid": 7978, "name": "2-aminopyrimidine", "count": 1}
+{"cid": 5939, "name": "biguanide", "count": 1}
+{"cid": 22329, "name": "2-Methyl-1,3-dithiane", "count": 1}
+{"cid": 200510, "name": "3-phenoxy-pyridine", "count": 1}
+{"cid": 61249, "name": "2-Hydroxypropyl acrylate", "count": 1}
+{"cid": 167746, "name": "dysprosium acetate", "count": 1}
+{"cid": 18949956, "name": "Nitrosocyanamide", "count": 1}
+{"cid": 12097, "name": "5-methylfurfural", "count": 1}
+{"cid": 526152, "name": "Methyl 5-acetoxyhexanoate", "count": 1}
+{"cid": 154824519, "name": "Cobalt, bis((2,3-butanedione di(oximato-kappaN))(1-))chloro(pyridine)-, (OC-6-42)-", "count": 1}
+{"cid": 81744, "name": "2,6-diformyl-4-methylphenol", "count": 1}
+{"cid": 522077, "name": "Pentadecyl acetate", "count": 1}
+{"cid": 247646, "name": "1,2-Dithiane 1,1-dioxide", "count": 1}
+{"cid": 11378525, "name": "3-Pyridylmagnesium chloride", "count": 1}
+{"cid": 75619, "name": "N-acetylhistidine", "count": 1}
+{"cid": 34677, "name": "2-Aminotetralin", "count": 1}
+{"cid": 151414, "name": "O,O-Dimethyl S-ethyl phosphorothioate", "count": 1}
+{"cid": 6365049, "name": "n-butylsilane", "count": 1}
+{"cid": 577403, "name": "N-methyl-1-phenylethylamine", "count": 1}
+{"cid": 5324668, "name": "2-chloro-6-fluorocinnamic acid", "count": 1}
+{"cid": 12163, "name": "4-chlorobenzonitrile", "count": 1}
+{"cid": 16263, "name": "4-bromostyrene", "count": 1}
+{"cid": 415627, "name": "4-(1-Propen-1-yl)phenol", "count": 1}
+{"cid": 159630, "name": "D-Glucosone", "count": 1}
+{"cid": 470929, "name": "2-Acetylpyrazine oxime", "count": 1}
+{"cid": 30617, "name": "N-(Thiophen-2-ylmethyl)acetamide", "count": 1}
+{"cid": 139165, "name": "1-Phenylcyclopentan-1-ol", "count": 1}
+{"cid": 165363614, "name": "Sodium uranyl carbonate", "count": 1}
+{"cid": 23689123, "name": "Potassium chlorotrioxochromate", "count": 1}
+{"cid": 14372772, "name": "1-Bromo-2-methylcyclopropane", "count": 1}
+{"cid": 12198, "name": "Propylene glycol diacetate", "count": 1}
+{"cid": 13780905, "name": "3-Ethyl-4-nitrophenol", "count": 1}
+{"cid": 12066737, "name": "Diethyl hydrazinedicarboxylate", "count": 1}
+{"cid": 8115, "name": "bis(2-chloroethyl) ether", "count": 1}
+{"cid": 53438389, "name": "n-Butylammonium acetate", "count": 1}
+{"cid": 10909621, "name": "N-Methyl-2,3-dimethylaniline", "count": 1}
+{"cid": 79799, "name": "4-methylphenylboronic acid", "count": 1}
+{"cid": 67512, "name": "Cycloheptene oxide", "count": 1}
+{"cid": 638908, "name": "5,5'-dibromo-2,2'-bithiophene", "count": 1}
+{"cid": 159678, "name": "Zirconyl chloride octahydrate", "count": 1}
+{"cid": 77758, "name": "Ethyl N-(ethoxycarbonylamino)carbamate", "count": 1}
+{"cid": 92098, "name": "2-phenyl-3-butyn-2-ol", "count": 1}
+{"cid": 12229, "name": "Hydrazinecarboxaldehyde", "count": 1}
+{"cid": 14286, "name": "2-acetylpyridine", "count": 1}
+{"cid": 86278103, "name": "4-methyl-5-nitroimidazole", "count": 1}
+{"cid": 296920, "name": "2-Methylbicyclo(2.2.1)heptan-2-ol", "count": 1}
+{"cid": 12568537, "name": "3-Pentyl tosylate", "count": 1}
+{"cid": 34777, "name": "Isophthalaldehyde", "count": 1}
+{"cid": 73690, "name": "p-Methoxyethylbenzene", "count": 1}
+{"cid": 11579358, "name": "2-phenylselenophene", "count": 1}
+{"cid": 559073, "name": "2-methyl-1,2-epoxyheptane", "count": 1}
+{"cid": 428002, "name": "1,2,4-Dithiazolidine-3,5-dione", "count": 1}
+{"cid": 12263, "name": "N-acetylacetamide", "count": 1}
+{"cid": 28660, "name": "Carbonocyanidic acid, methyl ester", "count": 1}
+{"cid": 634876, "name": "BINAP", "count": 1}
+{"cid": 11423741, "name": "Cyclohexane-1,3,5-tricarbonitrile", "count": 1}
