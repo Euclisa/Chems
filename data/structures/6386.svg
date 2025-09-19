@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<svg version='1.1' baseProfile='full'
+              xmlns='http://www.w3.org/2000/svg'
+                      xmlns:rdkit='http://www.rdkit.org/xml'
+                      xmlns:xlink='http://www.w3.org/1999/xlink'
+                  xml:space='preserve'
+width='300px' height='300px' viewBox='0 0 300 300'>
+<!-- END OF HEADER -->
+<rect style='opacity:1.0;fill:#FFFFFF;stroke:none' width='300.0' height='300.0' x='0.0' y='0.0'> </rect>
+<path class='bond-0 atom-0 atom-1' d='M 25.3,229.2 L 150.0,157.2' style='fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' />
+<path class='bond-1 atom-1 atom-2' d='M 150.0,157.2 L 274.7,85.2' style='fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' />
+<path class='bond-2 atom-1 atom-3' d='M 150.0,157.2 L 222.0,281.9' style='fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' />
+<path class='bond-3 atom-1 atom-4' d='M 150.0,157.2 L 119.6,104.6' style='fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' />
+<path class='bond-3 atom-1 atom-4' d='M 119.6,104.6 L 89.3,52.0' style='fill:none;fill-rule:evenodd;stroke:#FF0000;stroke-width:2.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' />
+<path class='atom-4' d='M 37.0 18.5
+L 40.9 18.5
+L 40.9 30.5
+L 55.4 30.5
+L 55.4 18.5
+L 59.2 18.5
+L 59.2 46.8
+L 55.4 46.8
+L 55.4 33.7
+L 40.9 33.7
+L 40.9 46.8
+L 37.0 46.8
+L 37.0 18.5
+' fill='#FF0000'/>
+<path class='atom-4' d='M 65.0 32.5
+Q 65.0 25.7, 68.4 21.9
+Q 71.7 18.1, 78.0 18.1
+Q 84.3 18.1, 87.6 21.9
+Q 91.0 25.7, 91.0 32.5
+Q 91.0 39.4, 87.6 43.3
+Q 84.2 47.2, 78.0 47.2
+Q 71.8 47.2, 68.4 43.3
+Q 65.0 39.5, 65.0 32.5
+M 78.0 44.0
+Q 82.3 44.0, 84.6 41.1
+Q 87.0 38.2, 87.0 32.5
+Q 87.0 27.0, 84.6 24.2
+Q 82.3 21.3, 78.0 21.3
+Q 73.7 21.3, 71.3 24.1
+Q 69.0 26.9, 69.0 32.5
+Q 69.0 38.3, 71.3 41.1
+Q 73.7 44.0, 78.0 44.0
+' fill='#FF0000'/>
+</svg>

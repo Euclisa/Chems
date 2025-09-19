@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<svg version='1.1' baseProfile='full'
+              xmlns='http://www.w3.org/2000/svg'
+                      xmlns:rdkit='http://www.rdkit.org/xml'
+                      xmlns:xlink='http://www.w3.org/1999/xlink'
+                  xml:space='preserve'
+width='300px' height='300px' viewBox='0 0 300 300'>
+<!-- END OF HEADER -->
+<rect style='opacity:1.0;fill:#FFFFFF;stroke:none' width='300.0' height='300.0' x='0.0' y='0.0'> </rect>
+<path class='bond-0 atom-0 atom-1' d='M 15.5,204.1 L 75.2,169.6' style='fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' />
+<path class='bond-0 atom-0 atom-1' d='M 75.2,169.6 L 134.9,135.2' style='fill:none;fill-rule:evenodd;stroke:#FF7F00;stroke-width:2.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' />
+<path class='bond-1 atom-1 atom-2' d='M 163.2,135.2 L 219.4,167.6' style='fill:none;fill-rule:evenodd;stroke:#FF7F00;stroke-width:2.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' />
+<path class='bond-1 atom-1 atom-2' d='M 219.4,167.6 L 275.6,200.1' style='fill:none;fill-rule:evenodd;stroke:#A01EEF;stroke-width:2.0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1' />
+<path class='atom-1' d='M 148.4 112.8
+Q 153.2 112.8, 155.7 115.0
+Q 158.1 117.2, 158.1 121.2
+Q 158.1 125.1, 155.6 127.3
+Q 153.1 129.5, 148.4 129.5
+L 143.9 129.5
+L 143.9 141.2
+L 140.0 141.2
+L 140.0 112.8
+L 148.4 112.8
+M 148.4 126.3
+Q 151.1 126.3, 152.6 125.0
+Q 154.1 123.7, 154.1 121.2
+Q 154.1 118.6, 152.6 117.4
+Q 151.2 116.0, 148.4 116.0
+L 143.9 116.0
+L 143.9 126.3
+L 148.4 126.3
+' fill='#FF7F00'/>
+<path class='atom-1' d='M 138.0 81.7
+L 141.8 81.7
+L 141.8 93.7
+L 156.3 93.7
+L 156.3 81.7
+L 160.1 81.7
+L 160.1 110.0
+L 156.3 110.0
+L 156.3 96.9
+L 141.8 96.9
+L 141.8 110.0
+L 138.0 110.0
+L 138.0 81.7
+' fill='#FF7F00'/>
+<path class='atom-2' d='M 280.7 189.9
+L 284.5 189.9
+L 284.5 218.3
+L 280.7 218.3
+L 280.7 189.9
+' fill='#A01EEF'/>
+</svg>

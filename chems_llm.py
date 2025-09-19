@@ -7,6 +7,9 @@ import re
 import pubchempy as pcp
 import shutil
 from chempy import balance_stoichiometry
+from rdkit import Chem
+from rdkit.Chem import Draw
+import hashlib
 
 
 class ChemsLLM:
@@ -30,9 +33,14 @@ class ChemsLLM:
         self.data_dir = data_dir
         if not os.path.exists(self.data_dir):
             os.makedirs(self.data_dir)
+        
+        self.structures_dir = os.path.join(self.data_dir, 'structures')
+        if not os.path.exists(self.structures_dir):
+            os.makedirs(self.structures_dir)
 
         self.raw_reactions_fn = os.path.join(self.data_dir, "raw_reactions.jsonl")
         self.wiki_raw_reactions_fn = os.path.join(self.data_dir, "wiki_raw_reactions.jsonl")
+        self.top_rare_raw_reactions_fn = os.path.join(self.data_dir, "top_rare_raw_reactions.jsonl")
         self.raw_reactions_verdict_fn = os.path.join(self.data_dir, "raw_reactions_verdict.jsonl")
         self.raw_reactions_staged_fn = os.path.join(self.data_dir, "raw_reactions_staged.jsonl")
         self.reactions_parsed_fn = os.path.join(self.data_dir, "reactions_parsed.jsonl")
@@ -42,6 +50,7 @@ class ChemsLLM:
         self.unbalancing_cids_fn = os.path.join(self.data_dir, "unbalancing_cids.txt")
         self.chems_fn = os.path.join(self.data_dir, "chems.jsonl")
         self.wiki_chems_fn = os.path.join(self.data_dir, "wiki_chems.jsonl")
+        self.hazards_chems_fn = os.path.join(self.data_dir, "hazards_chems.jsonl")
 
 
 
@@ -85,20 +94,27 @@ class ChemsLLM:
         return reactions
     
     
-    def __fetch_raw_reactions(self, chem, uncommon=False):
+    def __fetch_raw_reactions(self, chem, uncommon_mode=0):
         try:
             chem_name = chem['cmpdname']
             
-            if not uncommon:
+            if uncommon_mode == 0:
                 instruct = \
                 f"Please, provide a comprehensive list of documented chemical reactions involving {chem_name}, where it appears as either a reactant or a product. " \
                 "Write the reactions as schemes using only '->' and '+' symbols. Use the full chemical names of substances instead of formulas or generic terms. " \
                 "Do not include balancing coefficients, comments, or any markup - only the reaction schemes themselves. " \
                 "If no such substance exists or no documented reactions are available, return 'None'."
-            else:
+            elif uncommon_mode == 1:
                 instruct = \
                 f"Please provide a comprehensive and diverse list of documented chemical reactions involving {chem_name}, where it appears as either a reactant or a product. " \
                 "Include not only the most common reactions, but also less common or more unusual or exotic ones, as long as you are absolutely sure they are real and correct. " \
+                "Write the reactions as schemes using only '->' and '+' symbols. Use the full chemical names of substances instead of formulas or generic terms. " \
+                "Do not include balancing coefficients, comments, or any markup – only the reaction schemes themselves. " \
+                "If no such substance exists or no documented reactions are available, return 'None'."
+            elif uncommon_mode == 2:
+                instruct = \
+                f"Please provide a comprehensive and diverse list of chemical reactions involving {chem_name}, where it appears as either a reactant or a product. " \
+                "Include only the uncommon, rare and exotic reactions, but you must be absolutely sure they are real and correct. " \
                 "Write the reactions as schemes using only '->' and '+' symbols. Use the full chemical names of substances instead of formulas or generic terms. " \
                 "Do not include balancing coefficients, comments, or any markup – only the reaction schemes themselves. " \
                 "If no such substance exists or no documented reactions are available, return 'None'."
@@ -181,7 +197,7 @@ class ChemsLLM:
             for chem in chems:
                 cid = chem['cid']
                 if cid not in processed and cid in wiki_chems_cids:
-                    futures.append(executor.submit(self.__fetch_raw_reactions, chem, True))
+                    futures.append(executor.submit(self.__fetch_raw_reactions, chem, 1))
             
             for future in as_completed(futures):
                 res = future.result()
@@ -189,6 +205,39 @@ class ChemsLLM:
                     continue
                 f_out.write(json.dumps(res) + '\n')
                 f_out.flush()
+    
+
+    def get_rare_raw_reactions_for_top_chems(self, max_workers=1):
+        with open(self.chems_fn) as f:
+            chems = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        hazards_chems = dict()
+        with open(self.hazards_chems_fn) as f:
+            for line in f:
+                hazard = json.loads(line)
+                hazards_chems[hazard['cid']] = hazard
+        
+        processed = self.__get_processed_entries(self.top_rare_raw_reactions_fn, 'cid')
+
+        def is_top_chem(hazards):
+            for pic in hazards['pictograms']:
+                if pic in {'GHS01', 'GHS03', 'GHS06'}:
+                    return True
+
+        with ThreadPoolExecutor(max_workers=max_workers) as executor, open(self.top_rare_raw_reactions_fn, 'a') as f_out:
+            futures = []
+            for chem in chems:
+                cid = chem['cid']
+                if cid not in processed and cid in hazards_chems and is_top_chem(hazards_chems[cid]):
+                    futures.append(executor.submit(self.__fetch_raw_reactions, chem, 2))
+            
+            for future in as_completed(futures):
+                res = future.result()
+                if res is None:
+                    continue
+                f_out.write(json.dumps(res) + '\n')
+                f_out.flush()
+
     
 
     def __get_verdicts_bool_from_response(self, response: str):
@@ -217,7 +266,7 @@ class ChemsLLM:
                 {"role": "user", "content": f"{instruct_validate}\n{reactions_str}"}
             ]
 
-            models_to_try = [self.gpt_oss, self.qwen]
+            models_to_try = [self.gpt_oss, self.grok]
             model_i = 0
 
             valid_i = 0
@@ -354,6 +403,7 @@ class ChemsLLM:
             chem_name = re.sub(r' \([^\d]+\)$', '', chem_name)
             chem_name = chem_name.replace('vapor', '')
             chem_name = chem_name.replace('dust', '')
+            chem_name = chem_name.replace('solution', '')
             chem_name = chem_name.replace('elemental', '')
             chem_name = chem_name.replace('metal', '')
             chem_name = chem_name.replace('aqueus', '')
@@ -378,8 +428,20 @@ class ChemsLLM:
                     name_cid_map[self.__normalize_chem_name(syn, is_clean=True)] = cid
         
         return name_cid_map
+
     
-    def __parse_reaction_str(self, reaction_str: str, name_cid_map: dict):
+    def __get_reaction_hash(self, reaction):
+        reagents_cids = sorted([x['cid'] for x in reaction['reagents']])
+        products_cids = sorted([x['cid'] for x in reaction['products']])
+        reagents_str = '(' + ','.join([str(x) for x in reagents_cids]) + ')'
+        products_str = '(' + ','.join([str(x) for x in products_cids]) + ')'
+        reaction_enc = (reagents_str + products_str).encode("utf-8")
+        hash_val = hashlib.sha256(reaction_enc).digest()
+
+        return int.from_bytes(hash_val, byteorder="big")
+
+    
+    def __parse_reaction_str(self, reaction_str: str, name_cid_map: dict, cid_chem_map: dict):
         reactions_str_split = reaction_str.split('->')
         if len(reactions_str_split) != 2:
             return None
@@ -426,12 +488,35 @@ class ChemsLLM:
 
         if products_cids & reagents_cids:
             parse_success = False
+        
+        reaction = {'reagents': reagents_clean, 'products': products_clean}
+
+        if parse_success:
+            av_complexity = 0
+            for chem in products_clean:
+                av_complexity += cid_chem_map[chem['cid']]['complexity']
+            
+            for chem in reagents_clean:
+                av_complexity += cid_chem_map[chem['cid']]['complexity']
+            
+            av_complexity /= len(products_clean) + len(reagents_clean)
+            reaction['complexity'] = av_complexity
+            
+            reaction_hash = self.__get_reaction_hash(reaction)
+            reaction['rid'] = reaction_hash
 
 
-        return parse_success, {'reagents': reagents_clean, 'products': products_clean}, unmapped_names
+        return parse_success, reaction, unmapped_names
 
 
     def map_raw_reactions_chems_to_cids(self):
+        cid_chem_map = dict()
+        with open(self.chems_fn) as f:
+            for line in f:
+                chem = json.loads(line)
+                cid = chem['cid']
+                cid_chem_map[cid] = chem
+
         name_cid_map = self.__extract_name_cid_map()
         self.log(f"Name-CID map size: {len(name_cid_map)}")
 
@@ -449,7 +534,7 @@ class ChemsLLM:
                 confidence = entry['confidence']
                 if confidence < 0.4:
                     continue
-                parse_res = self.__parse_reaction_str(reaction, name_cid_map)
+                parse_res = self.__parse_reaction_str(reaction, name_cid_map, cid_chem_map)
                 if parse_res is None:
                     continue
                 parse_success, parsed_reaction, unmapped_names_curr = parse_res
@@ -680,6 +765,30 @@ class ChemsLLM:
         with open(self.unbalancing_cids_fn, 'w') as f:
             for entry in res_entries:
                 f.write(json.dumps(entry) + '\n')
+    
+
+    def generate_chems_structures_svg(self):
+        with open(self.chems_fn) as f:
+            chems = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        for chem in chems:
+            cid = chem['cid']
+            name = chem['cmpdname']
+            smiles = chem['smiles']
+
+            try:
+                mol = Chem.MolFromSmiles(smiles)
+
+                drawer = Draw.MolDraw2DSVG(300, 300)  # width, height
+                drawer.DrawMolecule(mol)
+                drawer.FinishDrawing()
+                svg = drawer.GetDrawingText()
+            except Exception as e:
+                print(f"Failed to generate structure for '{name}'")
+                continue
+
+            with open(os.path.join(self.structures_dir, f"{cid}.svg"), "w") as f:
+                f.write(svg)
 
 
 
@@ -694,11 +803,13 @@ if __name__ == "__main__":
     #chemsllm.validate_raw_reactions(max_workers=20)
     #chemsllm.fix_broken_raw_reactions(max_workers=1)
     #print(chemsllm.find_all_unicode_chars_in_raw_reactions())
-    #chemsllm.map_raw_reactions_chems_to_cids()
+    chemsllm.map_raw_reactions_chems_to_cids()
     #chemsllm.fetch_unmapped_names_from_pubchem()
     #chemsllm.organize_chems_file()
     chemsllm.balance_parsed_reactions()
     #chemsllm.find_unbalancing_chems()
     #chemsllm.get_uncommon_raw_reactions_for_wiki_chems(max_workers=20)
-    #chemsllm.validate_raw_reactions(raw_reactions_fn="data/wiki_raw_reactions.jsonl", max_workers=20)
+    #chemsllm.validate_raw_reactions(raw_reactions_fn="data/top_rare_raw_reactions.jsonl", max_workers=20)
+    #chemsllm.generate_chems_structures_svg()
+    #chemsllm.get_rare_raw_reactions_for_top_chems(max_workers=20)
     
