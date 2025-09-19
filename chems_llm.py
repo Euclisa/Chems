@@ -444,7 +444,10 @@ class ChemsLLM:
                 entry = json.loads(line)
                 valid = entry['valid']
                 reaction = entry['reaction']
-                if not valid:
+                if 'confidence' not in entry:
+                    continue
+                confidence = entry['confidence']
+                if confidence < 0.4:
                     continue
                 parse_res = self.__parse_reaction_str(reaction, name_cid_map)
                 if parse_res is None:
@@ -461,7 +464,7 @@ class ChemsLLM:
                     continue
                 processed_reactions_ids.add(reaction_id)
                 
-                parsed_reaction['confidence'] = entry['confidence']
+                parsed_reaction['confidence'] = confidence
                 parsed.append(parsed_reaction)
         
         with open(self.reactions_parsed_fn, 'w') as f:
@@ -691,10 +694,10 @@ if __name__ == "__main__":
     #chemsllm.validate_raw_reactions(max_workers=20)
     #chemsllm.fix_broken_raw_reactions(max_workers=1)
     #print(chemsllm.find_all_unicode_chars_in_raw_reactions())
-    chemsllm.map_raw_reactions_chems_to_cids()
+    #chemsllm.map_raw_reactions_chems_to_cids()
     #chemsllm.fetch_unmapped_names_from_pubchem()
     #chemsllm.organize_chems_file()
-    #chemsllm.balance_parsed_reactions()
+    chemsllm.balance_parsed_reactions()
     #chemsllm.find_unbalancing_chems()
     #chemsllm.get_uncommon_raw_reactions_for_wiki_chems(max_workers=20)
     #chemsllm.validate_raw_reactions(raw_reactions_fn="data/wiki_raw_reactions.jsonl", max_workers=20)
