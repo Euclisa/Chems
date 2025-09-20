@@ -7,9 +7,14 @@ import re
 import pubchempy as pcp
 import shutil
 from chempy import balance_stoichiometry
-from rdkit import Chem
-from rdkit.Chem import Draw
+from rdkit import Chem, RDLogger
+from rdkit.Chem import Draw, AllChem
 import hashlib
+from scipy.sparse.linalg import svds
+import numpy as np
+
+# Disable all RDKit warnings and info messages
+RDLogger.DisableLog('rdApp.*')
 
 
 class ChemsLLM:
@@ -51,6 +56,7 @@ class ChemsLLM:
         self.chems_fn = os.path.join(self.data_dir, "chems.jsonl")
         self.wiki_chems_fn = os.path.join(self.data_dir, "wiki_chems.jsonl")
         self.hazards_chems_fn = os.path.join(self.data_dir, "hazards_chems.jsonl")
+        self.chems_edges_fn = os.path.join(self.data_dir, 'chems_edges.jsonl')
 
 
 
@@ -599,7 +605,7 @@ class ChemsLLM:
                     # Workaround to prevent fetching gibberish
                     all_names = chem.synonyms + [chem.iupac_name]
                     all_names = [self.__normalize_chem_name(x,is_clean=True) for x in all_names]
-                    if any(x in blacklist for x in all_names):
+                    if any([x in blacklist for x in all_names]):
                         continue
 
                     f_out.write(json.dumps(chem_pc_data) + '\n')
@@ -789,8 +795,142 @@ class ChemsLLM:
 
             with open(os.path.join(self.structures_dir, f"{cid}.svg"), "w") as f:
                 f.write(svg)
+    
+
+    def generate_organic_marks_for_chems(self):
+        shutil.copy(self.chems_fn, f"{self.chems_fn}.backup")
+
+        with open(self.chems_fn) as f:
+            chems = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        def is_organic(chem):
+            try:
+                smiles = chem['smiles']
+                mol = Chem.MolFromSmiles(smiles)
+                
+                if mol is None:
+                    raise ValueError("Неверный формат SMILES")
+
+                atoms = mol.GetAtoms()
+                bonds = mol.GetBonds()
+                
+                has_carbon = any(atom.GetAtomicNum() == 6 for atom in atoms)
+                
+                if not has_carbon:
+                    return False
+                
+                for bond in bonds:
+                    atom1 = bond.GetBeginAtom()
+                    atom2 = bond.GetEndAtom()
+                    
+                    if (atom1.GetAtomicNum() == 6 and atom2.GetAtomicNum() == 6):
+                        return True
+                    
+                    if (atom1.GetAtomicNum() == 6 and atom2.GetAtomicNum() == 1) or \
+                    (atom1.GetAtomicNum() == 1 and atom2.GetAtomicNum() == 6):
+                        return True
+                
+                return False
+                
+            except Exception as e:
+                print(f"Error processing smiles SMILES: {e}")
+                # If complex smiles then likely organic
+                return True
+        
+        for chem in chems:
+            chem['organic'] = is_organic(chem)
+        
+        with open(self.chems_fn, 'w') as f:
+            for chem in chems:
+                f.write(json.dumps(chem) + '\n')
 
 
+    def generate_edges(self):
+        with open(self.reactions_parsed_balanced_fn) as f:
+            reactions = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        edge_reaction_id_map = dict()
+        for react in reactions:
+            react_id = react['rid']
+            for r in react['reagents']:
+                r_cid = r['cid']
+                for p in react['products']:
+                    p_cid = p['cid']
+                    edge = (r_cid, p_cid)
+                    if edge not in edge_reaction_id_map:
+                        edge_reaction_id_map[edge] = []
+                    edge_reaction_id_map[edge].append(react_id)
+        
+        with open(self.chems_edges_fn, 'w') as f:
+            for edge in edge_reaction_id_map:
+                entry = {'first': edge[0], 'second': edge[1], 'reactions': edge_reaction_id_map[edge]}
+                f.write(json.dumps(entry) + '\n')
+    
+
+    def filter_chems_with_invalid_smiles(self):
+        shutil.copy(self.chems_fn, f"{self.chems_fn}.backup")
+
+        with open(self.chems_fn) as f:
+            chems = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        with open(self.unmapped_names_blacklisted_fn, 'a') as f_black:
+            filtred_chems = []
+            for chem in chems:
+                mol = Chem.MolFromSmiles(chem['smiles'])
+                if mol is None:
+                    print(f"Discarding {chem['cmpdname']}")
+                    f_black.write(chem['cmpdname'] + '\n')
+                    continue
+                filtred_chems.append(chem)
+
+        with open(self.chems_fn, 'w') as f:
+            for chem in filtred_chems:
+                f.write(json.dumps(chem) + '\n')
+        
+        print(f"Discarded {len(chems)-len(filtred_chems)} substances")
+    
+
+    def compute_chems_fingerprints(self):
+        shutil.copy(self.chems_fn, f"{self.chems_fn}.backup")
+
+        with open(self.chems_fn) as f:
+            chems = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        for chem in chems:
+            mol = Chem.MolFromSmiles(chem['smiles'])
+            if mol is None:
+                raise Exception(f"Invalid smiles for {chem['cmpdname']}")
+
+            fp = AllChem.GetMorganFingerprintAsBitVect(mol, radius=2, nBits=2048)
+            bitstring = fp.ToBitString()
+            popcount = sum([int(x) for x in bitstring])
+
+            chunks = [bitstring[i:i+32] for i in range(0, 1024, 32)]
+            ints32 = [int(chunk, 2) for chunk in chunks]
+
+            chem['ECFP4_fp'] = {'bits': ints32, 'popcount': popcount}
+        
+        with open(self.chems_fn, 'w') as f:
+            for chem in chems:
+                f.write(json.dumps(chem) + '\n')
+    
+
+    def merge_wiki_chems(self):
+        shutil.copy(self.chems_fn, f"{self.chems_fn}.backup")
+
+        with open(self.chems_fn) as f:
+            chems = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        cid_wiki_map = dict()
+        with open(self.wiki_chems_fn) as f:
+            for line in f:
+                entry = json.loads(line)
+                cid_wiki_map[entry['cid']] = entry['wiki']
+        
+        with open(self.chems_fn, 'w') as f:
+            for chem in chems:
+                chem['wiki'] = cid_wiki_map.get(chem['cid'])
+                f.write(json.dumps(chem) + '\n')
 
 
 
@@ -803,13 +943,18 @@ if __name__ == "__main__":
     #chemsllm.validate_raw_reactions(max_workers=20)
     #chemsllm.fix_broken_raw_reactions(max_workers=1)
     #print(chemsllm.find_all_unicode_chars_in_raw_reactions())
-    chemsllm.map_raw_reactions_chems_to_cids()
+    #chemsllm.map_raw_reactions_chems_to_cids()
     #chemsllm.fetch_unmapped_names_from_pubchem()
     #chemsllm.organize_chems_file()
-    chemsllm.balance_parsed_reactions()
+    #chemsllm.balance_parsed_reactions()
     #chemsllm.find_unbalancing_chems()
     #chemsllm.get_uncommon_raw_reactions_for_wiki_chems(max_workers=20)
     #chemsllm.validate_raw_reactions(raw_reactions_fn="data/top_rare_raw_reactions.jsonl", max_workers=20)
     #chemsllm.generate_chems_structures_svg()
     #chemsllm.get_rare_raw_reactions_for_top_chems(max_workers=20)
+    #chemsllm.generate_organic_marks_for_chems()
+    #chemsllm.generate_edges()
+    #chemsllm.filter_chems_with_invalid_smiles()
+    #chemsllm.compute_chems_fingerprints()
+    chemsllm.merge_wiki_chems()
     

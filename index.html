@@ -1,0 +1,1466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+<title>App with Vertical Toggle Stripe & Side Panel</title>
+<style>
+    :root{
+        --page-bg: #d0d0d0;
+        --canvas-bg: #fafafa;
+        --frame: #cfcfcf;
+        --main-bg: #ffffff;
+        --panel-bg: #f7f7fb;
+        --stripe-width: 1.25rem;               /* toggle stripe width */
+        --stripe-half: calc(var(--stripe-width) / 2);
+        --transition: 300ms cubic-bezier(.2,.9,.3,1);
+    }
+
+    html,body{
+        height:100%;
+        margin:0;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        background: var(--page-bg);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:1.5rem;
+        box-sizing:border-box;
+        overflow: hidden;
+    }
+
+    .app-wrap{
+        width: 95vw;
+        height: 90vh;
+        background: linear-gradient(180deg, var(--canvas-bg), #ffffff);
+        border: 0.0625rem solid var(--frame);
+        border-radius: 0.5rem;
+        box-shadow: 0 0.375rem 1.25rem rgba(0,0,0,0.08);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Main window fills container */
+    .main-window{
+        position: absolute;
+        inset: 0;
+        background: var(--main-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #333;
+        font-size: 1.125rem;
+        z-index: 1;
+        padding: 1.5rem;
+    }
+
+    /* Side panel overlays the main window, width = 25% of app */
+    .side-panel{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 25%;
+        background: var(--panel-bg);
+        box-shadow: 0 0.375rem 1.125rem rgba(0,0,0,0.06);
+        z-index: 3;
+        transform: translateX(-100%); /* hidden to the left initially */
+        transition: transform var(--transition);
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Toggle stripe: vertical, full height of app container */
+    .toggle-stripe{
+        position: absolute;
+        top: 0;
+        left: 0; /* closed position */
+        height: 100%;
+        width: var(--stripe-width);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        cursor: pointer;
+        user-select: none;
+        z-index: 4; /* above everything so it's always visible */
+        background: linear-gradient(180deg, rgb(250, 250, 250), rgba(0,0,0,0));
+        border-radius: 0 0.375rem 0.375rem 0;
+        box-shadow: 0 0.125rem 0.375rem rgba(0,0,0,0.04);
+        transition: left var(--transition), background var(--transition);
+        border: none;
+        outline: none;
+    }
+
+    /* Arrow svg inside the vertical stripe — centered */
+    .toggle-stripe svg{
+        width: 0.875rem;
+        height: 0.875rem;
+        display:block;
+        stroke: #333;
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill: none;
+        transition: transform var(--transition);
+        transform-origin: center;
+    }
+
+    /* Open state: slide panel in */
+    .app-wrap.open .side-panel{
+        transform: translateX(0);
+    }
+
+    /* Move stripe to the edge of the opened panel (no rotation) */
+    .app-wrap.open .toggle-stripe{
+        left: calc(25%);
+    }
+
+    /* Only the arrow flips direction */
+    .app-wrap.open .toggle-stripe svg{
+        transform: rotate(180deg);
+    }
+
+    .panel-content{
+        font-size: 1rem;
+        color: #222;
+        padding: 1rem;
+        text-align: left;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        min-height: 0; /* allows flex children to shrink */
+    }
+
+  /* Search bar */
+    .search-bar {
+        display: flex;
+        align-items: stretch; /* ensures children fill full height */
+        background: #f5f5f5;
+        border-radius: 0.2rem;
+        overflow: hidden;
+        min-height: 2.5rem;
+        flex-shrink: 0; /* prevents search bar from shrinking */
+    }
+
+    .search-bar button {
+        display: inline-flex;       /* shrink to content */
+        align-items: center;        /* vertical center */
+        justify-content: center;    /* horizontal center */
+        padding: 0.5rem;            /* fixed padding instead of percentage */
+        border: none;
+        background: #ddd;
+        cursor: pointer;
+        font-size: 0.875rem;
+        min-width: 2.5rem;
+        flex-shrink: 0; /* prevents buttons from disappearing */
+        transition: background-color 0.2s;
+    }
+
+    .search-bar button:hover {
+        background: #ccc;
+    }
+
+    .search-bar input {
+        flex: 1;
+        border: none;
+        padding: 0.75rem;
+        outline: none;
+        font-size: 0.875rem;
+        min-width: 0; /* allows input to shrink if needed */
+    }
+
+    /* Slider container */
+    .slider-container {
+        display: flex;
+        align-items: center;
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .slider-container label {
+        margin-right: 0.5rem;
+    }
+
+    .slider-container input[type="range"] {
+        flex: 1;
+        margin-right: 0.5rem;
+    }
+
+    /* Results area */
+    .results {
+        background: #f5f5f5;
+        flex: 1;
+        overflow-y: auto;
+        box-shadow: inset 0 0.125rem 0.25rem rgba(0,0,0,0.15);
+        margin-top: 0.5rem;
+        min-height: 0; /* important for flex scrolling */
+        padding: 0.5rem 0;
+    }
+
+    .result-item {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem;
+        border-bottom: 0.0625rem solid rgba(0,0,0,0.1);
+        font-size: 0.875rem;
+        transition: background-color 0.2s;
+        cursor: pointer;
+    }
+
+    .result-item:hover {
+        background-color: rgba(0,0,0,0.05);
+    }
+
+    .result-item:last-child {
+        border-bottom: none;
+    }
+
+    .item-check {
+        margin-right: 0.5rem;
+        width: 0.875rem;
+        height: 0.875rem;
+    }
+
+    .item-icon {
+        flex-shrink: 0;
+        margin-right: 0.75rem;
+        width: 6rem;
+        height: 6rem;
+        border: 1px solid #ddd;
+        border-radius: 0.25rem;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .item-icon svg {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .item-icon.loading {
+        background: #f0f0f0;
+        color: #999;
+        font-size: 0.75rem;
+    }
+
+    .item-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .item-name {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+        word-break: break-word;
+    }
+
+    .item-extra {
+        font-size: 0.75rem;
+        color: #666;
+    }
+
+    .load-more-btn {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        margin: 0.5rem 0;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        font-size: 0.875rem;
+        transition: background-color 0.2s;
+    }
+
+    .load-more-btn:hover {
+        background: #0056b3;
+    }
+
+    .load-more-btn:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+    }
+
+    .no-results {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+        font-style: italic;
+    }
+
+    .loading-indicator {
+        text-align: center;
+        padding: 1rem;
+        color: #666;
+    }
+
+  * { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+
+  /* Responsive adjustments for small screens */
+  @media (max-height: 30rem) {
+    .panel-content {
+        padding: 0.5rem;
+    }
+    
+    .search-bar {
+        min-height: 2rem;
+    }
+    
+    .search-bar button {
+        min-width: 2rem;
+        padding: 0.25rem;
+        font-size: 0.75rem;
+    }
+    
+    .search-bar input {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .result-item {
+        padding: 0.375rem;
+    }
+  }
+
+  @media (max-width: 30rem) {
+    .app-wrap {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+    }
+    
+    html, body {
+        padding: 0;
+    }
+    
+    .side-panel {
+        width: 80%;
+    }
+    
+    .app-wrap.open .toggle-stripe {
+        left: 80%;
+    }
+  }
+
+  /* Tooltip style */
+  .tooltip {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    text-align: center;
+    z-index: 9999;
+  }
+
+  .tooltip img {
+    max-width: 100px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* Popup style */
+  .popup {
+    position: fixed;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 300px;
+    height: 200px;
+    display: none;
+    z-index: 5;
+    overflow: hidden;
+  }
+
+  .popup-header {
+    background: #f0f0f0;
+    padding: 5px;
+    cursor: move;
+    position: relative;
+    user-select: none;
+  }
+
+  .popup-close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+
+  .popup-content {
+    padding: 10px;
+    white-space: pre-wrap;
+  }
+
+  /* Path section styles */
+  .path-section {
+    margin-top: 0.5rem;
+    flex: 0 0 auto;
+  }
+
+  .level {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+
+  .level.selected {
+    background-color: #e6f7ff;
+  }
+
+  .level-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .level-items .result-item {
+    cursor: default;
+  }
+
+  .remove-item {
+    margin-left: auto;
+    background: #ffdddd;
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  .remove-item:hover {
+    background: #ffaaaa;
+  }
+
+  /* Catalog section */
+  .catalog-section {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    margin-top: 1rem;
+  }
+
+  /* Loading overlay */
+  #loading-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.8);
+    z-index: 10;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 1rem;
+  }
+
+  #loading-overlay button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #ff0000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.25rem;
+  }
+</style>
+</head>
+<body>
+    <div class="app-wrap" id="app" aria-live="polite">
+        <div id="loading-overlay">
+            <i class="fa fa-spinner fa-spin" style="font-size:2rem;"></i>
+            <p id="loading-message">Loading...</p>
+            <button id="cancel-compute" style="display:none;">Cancel</button>
+        </div>
+        <div class="main-window" id="main" role="main" aria-label="Main content area">
+            <div>
+                <strong>Chemical Compound Search</strong>
+                <div style="font-size:0.8125rem; color:#666; margin-top:0.375rem;">Search for chemical compounds using the side panel</div>
+            </div>
+        </div>
+
+    <div class="side-panel" id="sidePanel" role="complementary" aria-hidden="true" aria-label="Side panel">
+        <div class="panel-content">
+            <!-- Search bar -->
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search compounds..." />
+                <button class="submit-btn" id="submit-button">
+                    <i class="fa fa-check"></i>
+                </button>
+            </div>
+
+            <!-- Sliders -->
+            <div class="slider-container">
+                <label for="k-slider">Top K:</label>
+                <input type="range" id="k-slider" min="1" max="11" value="1">
+                <span id="k-value">1</span>
+            </div>
+            <div class="slider-container">
+                <label for="n-slider">Max Length N:</label>
+                <input type="range" id="n-slider" min="1" max="10" value="5">
+                <span id="n-value">5</span>
+            </div>
+
+            <!-- Path section -->
+            <div class="path-section">
+                <h3>Path</h3>
+                <div id="path-levels">
+                    <div id="level1" class="level selected" data-level="1">
+                        <div class="level-title">1</div>
+                        <div class="level-items"></div>
+                    </div>
+                    <div id="level2" class="level" data-level="2">
+                        <div class="level-title">2</div>
+                        <div class="level-items"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catalog section -->
+            <div class="catalog-section">
+                <h3>Catalog</h3>
+                <div class="results" id="results-container">
+                    <div class="loading-indicator">
+                        <i class="fa fa-spinner fa-spin"></i> Loading compounds...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vertical toggle stripe: full height button -->
+    <button class="toggle-stripe" id="toggle" aria-expanded="false" aria-controls="sidePanel" title="Toggle side panel">
+      <!-- Arrow points right by default -->
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M8 5l8 7-8 7"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div id="popup" class="popup">
+    <div class="popup-header">
+      <span id="popup-title">Title</span>
+      <span class="popup-close" onclick="closePopup()">×</span>
+    </div>
+    <div class="popup-content" id="popup-content">
+      Content
+    </div>
+  </div>
+
+<script>
+    // Global variables
+    let chemsData = [];
+    let edgesData = [];
+    let fuse = null;
+    let currentResults = [];
+    let currentPage = 0;
+    const RESULTS_PER_PAGE = 20;
+    let selectedCIDs = new Set();
+    let cidToCompound = new Map();
+    let originalMainContent = '';
+    let hoverTimeout;
+    let selectedLevel = 1;
+    let level1Cids = new Set();
+    let level2Cids = new Set();
+    let graph = new Map();
+
+    async function loadData(fileName) {
+        try {
+            const response = await fetch(fileName, { cache: "no-store" });
+            const text = await response.text();
+
+            let data = text.split('\n').filter(line => line.trim() !== '');
+            data = data.map(line => {
+                const parsed = JSON.parse(line);
+                if (fileName.includes('edges')) {
+                    parsed.first = parseInt(parsed.first);
+                    parsed.second = parseInt(parsed.second);
+                } else {
+                    parsed.cid = parseInt(parsed.cid);
+                }
+                return parsed;
+            });
+
+            return data;
+        } catch(error) {
+            console.log(`Error during fetching: ${fileName}; ${error}`);
+            return [];
+        }
+    }
+
+    async function initializeData() {
+        showLoading('Loading data...');
+        const resultsContainer = document.getElementById('results-container');
+        originalMainContent = document.getElementById('main').innerHTML;
+        
+        try {
+            chemsData = await loadData('data/chems.jsonl');
+            edgesData = await loadData('data/chems_edges.jsonl');
+            
+            if (chemsData.length === 0) {
+                resultsContainer.innerHTML = '<div class="no-results">No compound data available</div>';
+                hideLoading();
+                return;
+            }
+
+            // Create CID to compound map
+            chemsData.forEach(comp => {
+                cidToCompound.set(comp.cid, comp);
+            });
+
+            // Build graph (directed)
+            edgesData.forEach(edge => {
+                if (!graph.has(edge.first)) graph.set(edge.first, []);
+                graph.get(edge.first).push(edge.second);
+            });
+
+            // Initialize Fuse.js
+            const fuseOptions = {
+                keys: ['cmpdname', 'wiki'],
+                threshold: 0.3,
+                includeScore: true,
+                minMatchCharLength: 2
+            };
+            
+            fuse = new Fuse(chemsData, fuseOptions);
+            
+            // Show initial results (first 20 compounds)
+            displayResults(chemsData.slice(0, RESULTS_PER_PAGE));
+            currentResults = chemsData;
+            currentPage = 0;
+            
+            if (chemsData.length > RESULTS_PER_PAGE) {
+                addLoadMoreButton();
+            }
+            
+        } catch (error) {
+            console.error('Error initializing data:', error);
+            resultsContainer.innerHTML = '<div class="no-results">Error loading compound data</div>';
+        }
+        hideLoading();
+
+        makeDraggable(document.getElementById('popup'));
+        renderPathList();
+
+        // Setup level selection
+        document.getElementById('level1').addEventListener('click', () => selectLevel(1));
+        document.getElementById('level2').addEventListener('click', () => selectLevel(2));
+
+        // Setup sliders
+        const kSlider = document.getElementById('k-slider');
+        const kValue = document.getElementById('k-value');
+        kSlider.addEventListener('input', () => {
+            kValue.textContent = kSlider.value === '11' ? 'All' : kSlider.value;
+        });
+        kValue.textContent = '1';
+
+        const nSlider = document.getElementById('n-slider');
+        const nValue = document.getElementById('n-value');
+        nSlider.addEventListener('input', () => {
+            nValue.textContent = nSlider.value;
+        });
+        nValue.textContent = '5';
+    }
+
+    function selectLevel(level) {
+        selectedLevel = level;
+        document.getElementById('level1').classList.toggle('selected', level === 1);
+        document.getElementById('level2').classList.toggle('selected', level === 2);
+    }
+
+    function renderPathList() {
+        const level1Items = document.querySelector('#level1 .level-items');
+        const level2Items = document.querySelector('#level2 .level-items');
+        level1Items.innerHTML = '';
+        level2Items.innerHTML = '';
+
+        level1Cids.forEach(cid => {
+            const comp = cidToCompound.get(cid);
+            if (comp) {
+                const item = createPathItem(comp);
+                level1Items.appendChild(item);
+            }
+        });
+
+        level2Cids.forEach(cid => {
+            const comp = cidToCompound.get(cid);
+            if (comp) {
+                const item = createPathItem(comp);
+                level2Items.appendChild(item);
+            }
+        });
+    }
+
+    function createPathItem(compound) {
+        const item = document.createElement('div');
+        item.className = 'result-item';
+        item.dataset.cid = compound.cid;
+
+        const iconContainer = document.createElement('div');
+        iconContainer.className = 'item-icon loading';
+        iconContainer.textContent = 'Loading...';
+        loadStructureSVG(compound.cid, iconContainer);
+
+        const itemInfo = document.createElement('div');
+        itemInfo.className = 'item-info';
+
+        const itemName = document.createElement('div');
+        itemName.className = 'item-name';
+        itemName.textContent = compound.cmpdname || 'Unknown compound';
+
+        const itemExtra = document.createElement('div');
+        itemExtra.className = 'item-extra';
+        itemExtra.textContent = `CID: ${compound.cid}${compound.wiki ? ` | Wiki: ${compound.wiki}` : ''}`;
+
+        itemInfo.appendChild(itemName);
+        itemInfo.appendChild(itemExtra);
+
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'remove-item';
+        removeBtn.textContent = 'X';
+        removeBtn.addEventListener('click', () => {
+            if (selectedLevel === 1) {
+                level1Cids.delete(compound.cid);
+            } else {
+                level2Cids.delete(compound.cid);
+            }
+            renderPathList();
+        });
+
+        item.appendChild(iconContainer);
+        item.appendChild(itemInfo);
+        item.appendChild(removeBtn);
+
+        return item;
+    }
+
+    function createResultItem(compound) {
+        const item = document.createElement('div');
+        item.className = 'result-item';
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'item-check';
+        checkbox.checked = selectedCIDs.has(compound.cid);
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                selectedCIDs.add(compound.cid);
+            } else {
+                selectedCIDs.delete(compound.cid);
+            }
+            updateGraph();
+        });
+        
+        const iconContainer = document.createElement('div');
+        iconContainer.className = 'item-icon loading';
+        iconContainer.textContent = 'Loading...';
+        
+        // Try to load SVG structure
+        loadStructureSVG(compound.cid, iconContainer);
+        
+        const itemInfo = document.createElement('div');
+        itemInfo.className = 'item-info';
+        
+        const itemName = document.createElement('div');
+        itemName.className = 'item-name';
+        itemName.textContent = compound.cmpdname || 'Unknown compound';
+        
+        const itemExtra = document.createElement('div');
+        itemExtra.className = 'item-extra';
+
+        // CID link
+        const cidLink = document.createElement('a');
+        cidLink.href = `https://pubchem.ncbi.nlm.nih.gov/compound/${compound.cid}`;
+        cidLink.textContent = `${compound.cid}`;
+        cidLink.target = '_blank';  // optional: open in new tab
+        const cidPrefix = document.createTextNode('CID: ');
+        itemExtra.appendChild(cidPrefix);
+        itemExtra.appendChild(cidLink);
+
+        // Wiki link (if exists)
+        if (compound.wiki) {
+            const wikiLink = document.createElement('a');
+            wikiLink.href = compound.wiki;
+            wikiLink.textContent = `${compound.wiki.split('/').at(-1).replace('_', ' ')}`;
+            wikiLink.target = '_blank';
+            
+            // Add a separator
+            const sep_wiki_prefix = document.createTextNode(' | Wiki: ');
+            itemExtra.appendChild(sep_wiki_prefix);
+            itemExtra.appendChild(wikiLink);
+}
+        
+        itemInfo.appendChild(itemName);
+        itemInfo.appendChild(itemExtra);
+        
+        item.appendChild(checkbox);
+        item.appendChild(iconContainer);
+        item.appendChild(itemInfo);
+
+        // Add right-click to add to path
+        item.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            if (selectedLevel === 1) {
+                level1Cids.add(compound.cid);
+            } else {
+                level2Cids.add(compound.cid);
+            }
+            renderPathList();
+        });
+        
+        return item;
+    }
+
+    function loadStructureSVG(cid, container) {
+        const svgPath = `data/structures/${cid}.svg`;
+        
+        fetch(svgPath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(svgContent => {
+                container.innerHTML = svgContent;
+                container.classList.remove('loading');
+            })
+            .catch(error => {
+                container.innerHTML = '<i class="fa fa-flask" style="color: #ccc;"></i>';
+                container.classList.remove('loading');
+            });
+    }
+
+    function displayResults(results) {
+        const resultsContainer = document.getElementById('results-container');
+        
+        // Remove existing load more button if present
+        const existingBtn = resultsContainer.querySelector('.load-more-btn');
+        if (existingBtn) {
+            existingBtn.remove();
+        }
+        
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '<div class="no-results">No compounds found</div>';
+            return;
+        }
+        
+        // Clear container if this is a new search
+        if (currentPage === 0) {
+            resultsContainer.innerHTML = '';
+        }
+        
+        // Add new results
+        results.forEach(compound => {
+            const resultData = compound.item || compound;
+            const resultItem = createResultItem(resultData);
+            resultsContainer.appendChild(resultItem);
+        });
+    }
+
+    function addLoadMoreButton() {
+        const resultsContainer = document.getElementById('results-container');
+        const loadMoreBtn = document.createElement('button');
+        loadMoreBtn.className = 'load-more-btn';
+        loadMoreBtn.textContent = 'Load More Results';
+        loadMoreBtn.onclick = loadMoreResults;
+        resultsContainer.appendChild(loadMoreBtn);
+    }
+
+    function loadMoreResults() {
+        const startIndex = (currentPage + 1) * RESULTS_PER_PAGE;
+        const endIndex = startIndex + RESULTS_PER_PAGE;
+        const nextResults = currentResults.slice(startIndex, endIndex);
+        
+        if (nextResults.length > 0) {
+            displayResults(nextResults);
+            currentPage++;
+            
+            // Add load more button if there are more results
+            if (endIndex < currentResults.length) {
+                addLoadMoreButton();
+            }
+        }
+    }
+
+    function performSearch(query) {
+        const resultsContainer = document.getElementById('results-container');
+        
+        if (!query.trim()) {
+            // Show all compounds when search is empty
+            currentResults = chemsData;
+            currentPage = 0;
+            displayResults(chemsData.slice(0, RESULTS_PER_PAGE));
+            
+            if (chemsData.length > RESULTS_PER_PAGE) {
+                addLoadMoreButton();
+            }
+            return;
+        }
+        
+        if (!fuse) {
+            resultsContainer.innerHTML = '<div class="no-results">Search not available</div>';
+            return;
+        }
+        
+        // Perform search with Fuse.js
+        const searchResults = fuse.search(query);
+        currentResults = searchResults;
+        currentPage = 0;
+        
+        const firstPageResults = searchResults.slice(0, RESULTS_PER_PAGE);
+        displayResults(firstPageResults);
+        
+        if (searchResults.length > RESULTS_PER_PAGE) {
+            addLoadMoreButton();
+        }
+    }
+
+    function bitCount(n) {
+        n = n - ((n >> 1) & 0x55555555);
+        n = (n & 0x33333333) + ((n >> 2) & 0x33333333);
+        return ((n + (n >> 4) & 0x0f0f0f0f) * 0x01010101) >> 24;
+    }
+
+    function computeTanimoto(fp1, fp2) {
+        let andPop = 0;
+        for (let i = 0; i < 32; i++) {
+            const and = fp1.bits[i] & fp2.bits[i];
+            andPop += bitCount(and);
+        }
+        const orPop = fp1.popcount + fp2.popcount - andPop;
+        return orPop === 0 ? 1 : andPop / orPop;
+    }
+
+    function minH(node, ends) {
+        let maxSim = 0;
+        for (let end of ends) {
+            const sim = computeTanimoto(cidToCompound.get(node).ECFP4_fp, cidToCompound.get(end).ECFP4_fp);
+            if (sim > maxSim) maxSim = sim;
+        }
+        return 1 - maxSim;
+    }
+
+    class PriorityQueue {
+        constructor(comparator = (a, b) => a - b) {
+            this._heap = [];
+            this._comparator = comparator;
+        }
+        size() {
+            return this._heap.length;
+        }
+        peek() {
+            return this._heap[0];
+        }
+        push(value) {
+            this._heap.push(value);
+            this._siftUp();
+            return this.size();
+        }
+        pop() {
+            const poppedValue = this.peek();
+            const bottom = this.size() - 1;
+            if (bottom > 0) {
+                this._swap(0, bottom);
+            }
+            this._heap.pop();
+            this._siftDown();
+            return poppedValue;
+        }
+        _greater(i, j) {
+            return this._comparator(this._heap[i], this._heap[j]) < 0;
+        }
+        _swap(i, j) {
+            [this._heap[i], this._heap[j]] = [this._heap[j], this._heap[i]];
+        }
+        _siftUp() {
+            let node = this.size() - 1;
+            while (node > 0 && this._greater(node, Math.floor((node - 1) / 2))) {
+                this._swap(node, Math.floor((node - 1) / 2));
+                node = Math.floor((node - 1) / 2);
+            }
+        }
+        _siftDown() {
+            let node = 0;
+            while (
+                (2 * node + 1 < this.size() && this._greater(2 * node + 1, node)) ||
+                (2 * node + 2 < this.size() && this._greater(2 * node + 2, node))
+            ) {
+                let maxChild = (2 * node + 2 < this.size() && this._greater(2 * node + 2, 2 * node + 1)) ? 2 * node + 2 : 2 * node + 1;
+                this._swap(node, maxChild);
+                node = maxChild;
+            }
+        }
+    }
+
+    function findKShortestPaths(starts, ends, k, maxLen) {
+        const endSet = new Set(ends);
+        const pq = new PriorityQueue((a, b) => a.f - b.f);
+        const paths = [];
+
+        for (let start of starts) {
+            const h = minH(start, ends);
+            pq.push({f: 0 + h, cost: 0, node: start, path: [start]});
+        }
+
+        while (pq.size() > 0 && paths.length < k) {
+            const current = pq.pop();
+            const {cost, node, path} = current;
+
+            if (cost > maxLen) continue;
+
+            if (endSet.has(node) && cost > 0) {
+                paths.push({path, length: cost});
+                continue;
+            }
+
+            for (let neigh of graph.get(node) || []) {
+                if (path.includes(neigh)) continue;
+                const newCost = cost + 1;
+                const h = minH(neigh, ends);
+                const newF = newCost + h;
+                const newPath = [...path, neigh];
+                pq.push({f: newF, cost: newCost, node: neigh, path: newPath});
+            }
+        }
+
+        return paths;
+    }
+
+    function getProcessedLinks(directedEdges) {
+        const links = [];
+        const processed = new Set();
+        for (let edge of directedEdges) {
+            if (processed.has(edge)) continue;
+            const [a, b] = edge.split('-').map(Number);
+            const reverse = `${b}-${a}`;
+            if (directedEdges.has(reverse)) {
+                // bi
+                const source = a;
+                const target = b;
+                links.push({source, target, type: 'bi'});
+                processed.add(reverse);
+            } else {
+                // directed
+                links.push({source: a, target: b, type: 'directed'});
+            }
+            processed.add(edge);
+        }
+        return links;
+    }
+
+    function handleSubmit() {
+        const starts = Array.from(level1Cids);
+        const ends = Array.from(level2Cids);
+        if (starts.length === 0 || ends.length === 0) {
+            alert('Please add starting and resulting substances.');
+            return;
+        }
+
+        let k = parseInt(document.getElementById('k-slider').value);
+        if (k === 11) k = Infinity;
+        const n = parseInt(document.getElementById('n-slider').value);
+
+        showLoading('Computing paths...', true);
+
+        setTimeout(() => {
+            const allPaths = findKShortestPaths(starts, ends, k, n);
+
+            const nodesSet = new Set();
+            const directedEdges = new Set();
+
+            allPaths.forEach(({path}) => {
+                path.forEach(node => nodesSet.add(node));
+                for (let i = 0; i < path.length - 1; i++) {
+                    directedEdges.add(`${path[i]}-${path[i+1]}`);
+                }
+            });
+
+            const nodes = Array.from(nodesSet).map(cid => {
+                const comp = cidToCompound.get(cid);
+                return {
+                    id: cid,
+                    name: comp ? comp.cmpdname : 'Unknown',
+                    organic: comp ? comp.organic : false
+                };
+            });
+
+            const links = getProcessedLinks(directedEdges);
+
+            hideLoading();
+            renderGraph(nodes, links);
+        }, 0);
+    }
+
+    function updateGraph() {
+        const selectedArray = Array.from(selectedCIDs);
+        if (selectedArray.length === 0) {
+            document.getElementById('main').innerHTML = originalMainContent;
+            return;
+        }
+        const selectedSet = new Set(selectedArray);
+        const directedEdges = new Set();
+        edgesData
+            .filter(edge => selectedSet.has(edge.first) && selectedSet.has(edge.second))
+            .forEach(edge => {
+                directedEdges.add(`${edge.first}-${edge.second}`);
+            });
+
+        const nodes = selectedArray.map(cid => {
+            const comp = cidToCompound.get(cid);
+            return {
+                id: cid,
+                name: comp ? comp.cmpdname : 'Unknown',
+                organic: comp ? comp.organic : false
+            };
+        });
+
+        const links = getProcessedLinks(directedEdges);
+
+        renderGraph(nodes, links);
+    }
+
+    function renderGraph(nodes, links) {
+        const main = d3.select("#main");
+        main.html(""); // Clear current content
+
+        const width = main.node().clientWidth;
+        const height = main.node().clientHeight;
+
+        const svg = main.append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("viewBox", [0, 0, width, height])
+            .style("max-width", "100%")
+            .style("height", "auto");
+
+        // Markers
+        const defs = svg.append("defs");
+
+        defs.append("marker")
+            .attr("id", "arrow")
+            .attr("viewBox", "0 -3 10 6")
+            .attr("refX", "10")
+            .attr("refY", "0")
+            .attr("markerWidth", "6")
+            .attr("markerHeight", "6")
+            .attr("orient", "auto")
+            .append("path")
+            .attr("d", "M0,-3L10,0L0,3")
+            .attr("fill", "#999");
+
+        defs.append("marker")
+            .attr("id", "arrow-start")
+            .attr("viewBox", "0 -3 10 6")
+            .attr("refX", "0")
+            .attr("refY", "0")
+            .attr("markerWidth", "6")
+            .attr("markerHeight", "6")
+            .attr("orient", "auto-start-reverse")
+            .append("path")
+            .attr("d", "M0,-3L10,0L0,3")
+            .attr("fill", "#999");
+
+        const g = svg.append("g");
+
+        const simulation = d3.forceSimulation(nodes)
+            .force("link", d3.forceLink(links).id(d => d.id).distance(100))
+            .force("charge", d3.forceManyBody().strength(-200))
+            .force("center", d3.forceCenter(width / 2, height / 2));
+
+        const link = g.append("g")
+            .attr("stroke", "#999")
+            .attr("stroke-opacity", 0.6)
+            .selectAll("line")
+            .data(links)
+            .join("line")
+            .attr("stroke-width", 1.5)
+            .attr("marker-end", d => "url(#arrow)")
+            .attr("marker-start", d => d.type === 'bi' ? "url(#arrow-start)" : null)
+            .on("mouseover", function(event, d) {
+                d3.select(this).attr("stroke-width", 3);
+            })
+            .on("mouseout", function(event, d) {
+                d3.select(this).attr("stroke-width", 1.5);
+            })
+            .on("click", function(event, d) {
+                showPopup('edge', d);
+            });
+
+        const node = g.append("g")
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 1.5)
+            .selectAll("circle")
+            .data(nodes)
+            .join("circle")
+            .attr("r", 5)
+            .attr("fill", d => d.organic ? "green" : "blue")
+            .on("mouseover", function(event, d) {
+                d3.select(this).attr("r", 8);
+                hoverTimeout = setTimeout(() => {
+                    tooltip.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    tooltip.html(`<img src="data/structures/${d.id}.svg" alt="${d.name}"><br>${d.name}`)
+                        .style("left", (event.pageX + 10) + "px")
+                        .style("top", (event.pageY - 28) + "px");
+                }, 500);
+            })
+            .on("mousemove", function(event, d) {
+                tooltip.style("left", (event.pageX + 10) + "px")
+                    .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mouseout", function(event, d) {
+                d3.select(this).attr("r", 5);
+                clearTimeout(hoverTimeout);
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            })
+            .on("click", function(event, d) {
+                showPopup('node', d);
+            });
+
+        const labels = g.append("g")
+            .selectAll("text")
+            .data(nodes)
+            .join("text")
+            .text(d => d.name)
+            .attr("font-size", 10)
+            .attr("text-anchor", "middle")
+            .attr("dy", 20);
+
+        // Tooltip
+        const tooltip = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+        simulation.on("tick", () => {
+            link
+                .attr("x1", d => {
+                    const dx = d.target.x - d.source.x;
+                    const dy = d.target.y - d.source.y;
+                    const dr = Math.sqrt(dx * dx + dy * dy);
+                    const normX = dx / dr;
+                    const sourcePadding = d.type === 'bi' ? 8 : 0;
+                    return d.source.x + (normX * sourcePadding);
+                })
+                .attr("y1", d => {
+                    const dx = d.target.x - d.source.x;
+                    const dy = d.target.y - d.source.y;
+                    const dr = Math.sqrt(dx * dx + dy * dy);
+                    const normY = dy / dr;
+                    const sourcePadding = d.type === 'bi' ? 8 : 0;
+                    return d.source.y + (normY * sourcePadding);
+                })
+                .attr("x2", d => {
+                    const dx = d.target.x - d.source.x;
+                    const dy = d.target.y - d.source.y;
+                    const dr = Math.sqrt(dx * dx + dy * dy);
+                    const normX = dx / dr;
+                    const targetPadding = (d.type === 'directed' || d.type === 'bi') ? 8 : 0;
+                    return d.target.x - (normX * targetPadding);
+                })
+                .attr("y2", d => {
+                    const dx = d.target.x - d.source.x;
+                    const dy = d.target.y - d.source.y;
+                    const dr = Math.sqrt(dx * dx + dy * dy);
+                    const normY = dy / dr;
+                    const targetPadding = (d.type === 'directed' || d.type === 'bi') ? 8 : 0;
+                    return d.target.y - (normY * targetPadding);
+                });
+
+            node
+                .attr("cx", d => d.x)
+                .attr("cy", d => d.y);
+
+            labels
+                .attr("x", d => d.x)
+                .attr("y", d => d.y);
+        });
+
+        // Draggable nodes
+        node.call(d3.drag()
+            .on("start", function(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            })
+            .on("drag", function(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            })
+            .on("end", function(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            })
+        );
+
+        // Zoom
+        const zoom = d3.zoom()
+            .scaleExtent([0.5, 4])
+            .on("zoom", ({transform}) => {
+                g.attr("transform", transform);
+            });
+
+        svg.call(zoom);
+    }
+
+    function showPopup(type, data) {
+        const popup = document.getElementById('popup');
+        const title = document.getElementById('popup-title');
+        const content = document.getElementById('popup-content');
+
+        if (type === 'node') {
+            title.textContent = 'Node Info';
+            content.textContent = `Name: ${data.name}\nCID: ${data.id}`;
+        } else if (type === 'edge') {
+            title.textContent = 'Edge Info';
+            const biText = data.type === 'bi' ? ' (bidirectional)' : '';
+            content.textContent = `Between ${data.source.name || data.source.id} and ${data.target.name || data.target.id}${biText}`;
+        }
+
+        popup.style.display = 'block';
+
+        // Center it
+        const rect = popup.getBoundingClientRect();
+        popup.style.left = (window.innerWidth / 2 - rect.width / 2) + 'px';
+        popup.style.top = (window.innerHeight / 2 - rect.height / 2) + 'px';
+    }
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+
+    function makeDraggable(element) {
+        const header = element.querySelector('.popup-header');
+        header.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+            let shiftX = e.clientX - element.getBoundingClientRect().left;
+            let shiftY = e.clientY - element.getBoundingClientRect().top;
+
+            function moveAt(pageX, pageY) {
+                element.style.left = pageX - shiftX + 'px';
+                element.style.top = pageY - shiftY + 'px';
+            }
+
+            function onMouseMove(e) {
+                moveAt(e.pageX, e.pageY);
+            }
+
+            document.addEventListener('mousemove', onMouseMove);
+
+            document.addEventListener('mouseup', function() {
+                document.removeEventListener('mousemove', onMouseMove);
+            }, {once: true});
+        });
+    }
+
+    function showLoading(message, showCancel = false) {
+        const overlay = document.getElementById('loading-overlay');
+        document.getElementById('loading-message').textContent = message;
+        document.getElementById('cancel-compute').style.display = showCancel ? 'block' : 'none';
+        overlay.style.display = 'flex';
+    }
+
+    function hideLoading() {
+        document.getElementById('loading-overlay').style.display = 'none';
+    }
+
+    // Panel toggle functionality
+    (function(){
+        const app = document.getElementById('app');
+        const toggle = document.getElementById('toggle');
+        const sidePanel = document.getElementById('sidePanel');
+
+        let isOpen = false;
+
+        function setOpen(open){
+            if(open){
+                app.classList.add('open');
+                toggle.setAttribute('aria-expanded','true');
+                sidePanel.setAttribute('aria-hidden','false');
+            } else {
+                app.classList.remove('open');
+                toggle.setAttribute('aria-expanded','false');
+                sidePanel.setAttribute('aria-hidden','true');
+            }
+        }
+
+        setOpen(isOpen);
+
+        toggle.addEventListener('click', function(){
+            isOpen = !isOpen;
+            setOpen(isOpen);
+        });
+
+        document.addEventListener('keydown', function(e){
+            if(e.key === 'Escape' && isOpen){
+                isOpen = false;
+                setOpen(isOpen);
+                toggle.focus();
+            }
+        });
+    })();
+
+    // Search and submit functionality
+    (function(){
+        const submitButton = document.getElementById('submit-button');
+        const searchInput = document.getElementById('search-input');
+        const cancelCompute = document.getElementById('cancel-compute');
+        
+        let searchTimeout;
+
+        function handleSearch() {
+            const query = searchInput.value;
+            performSearch(query);
+        }
+
+        // Submit on button click
+        submitButton.addEventListener('click', handleSubmit);
+
+        // Search on Enter key press
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                handleSearch();
+            }
+        });
+
+        // Real-time search with debouncing
+        searchInput.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                handleSearch();
+            }, 300);
+        });
+
+        // Cancel compute
+        cancelCompute.addEventListener('click', hideLoading);
+    })();
+
+    // Initialize the app when DOM is loaded
+    document.addEventListener('DOMContentLoaded', initializeData);
+</script>
+</body>
+</html>

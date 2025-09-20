@@ -6432,3 +6432,17 @@ sulfane
 bromane
 oxidane
 iodane
+Krypton difluoride
+Cesium tribromide
+Bromine trifluoride
+Chlorine trifluoride
+Fluorochlorane oxide
+Chlorine Dioxide
+Phosphorus heptabromide
+Chlorine pentafluoride
+Bromine pentafluoride
+Triethylmethylammonium trichloride
+Chloryl fluoride ((ClO2)F)
+Fluoro(dioxo)-lambda~5~-bromane
+Iodine heptafluoride
+Tetrabutylammonium tribromide
