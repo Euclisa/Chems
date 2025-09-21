@@ -571,6 +571,7 @@
     // Global variables
     let chemsData = [];
     let edgesData = [];
+    let reactionsData = [];
     let fuse = null;
     let currentResults = [];
     let currentPage = 0;
@@ -580,9 +581,14 @@
     let originalMainContent = '';
     let hoverTimeout;
     let selectedLevel = 1;
-    let level1Cids = new Set();
-    let level2Cids = new Set();
     let graph = new Map();
+    let edgeToReactionID = new Map();
+    let RIDToReaction = new Map();
+    let currentEdges = new Set();
+    let sourceNodes = new Set();
+    let targetNodes = new Set();
+    let secondaryNodes = new Set();
+    let directedEdges = new Set();
 
     async function loadData(fileName) {
         try {
@@ -590,20 +596,11 @@
             const text = await response.text();
 
             let data = text.split('\n').filter(line => line.trim() !== '');
-            data = data.map(line => {
-                const parsed = JSON.parse(line);
-                if (fileName.includes('edges')) {
-                    parsed.first = parseInt(parsed.first);
-                    parsed.second = parseInt(parsed.second);
-                } else {
-                    parsed.cid = parseInt(parsed.cid);
-                }
-                return parsed;
-            });
+            data = data.map(line => JSON.parse(line));
 
             return data;
         } catch(error) {
-            console.log(`Error during fetching: ${fileName}; ${error}`);
+            console.error(`Error during fetching: ${fileName}; ${error}`);
             return [];
         }
     }
@@ -616,12 +613,27 @@
         try {
             chemsData = await loadData('data/chems.jsonl');
             edgesData = await loadData('data/chems_edges.jsonl');
+            reactionsData = await loadData('data/reactions_parsed_balanced.jsonl');
             
             if (chemsData.length === 0) {
                 resultsContainer.innerHTML = '<div class="no-results">No compound data available</div>';
                 hideLoading();
                 return;
             }
+            
+            // Create edge to reaction-ids-list map
+            edgesData.forEach(entry => {
+                const edgeStr = `${entry.first}-${entry.second}`;
+                edgeToReactionID.set(edgeStr, entry.reactions);
+            });
+            
+            // Create ReactionID to reaction map
+            reactionsData.forEach(entry => {
+                const rid = entry.rid;
+                const copy = { ...entry };
+                delete copy.rid;
+                RIDToReaction.set(rid, copy);
+            });
 
             // Create CID to compound map
             chemsData.forEach(comp => {
@@ -694,7 +706,7 @@
         level1Items.innerHTML = '';
         level2Items.innerHTML = '';
 
-        level1Cids.forEach(cid => {
+        sourceNodes.forEach(cid => {
             const comp = cidToCompound.get(cid);
             if (comp) {
                 const item = createPathItem(comp);
@@ -702,7 +714,7 @@
             }
         });
 
-        level2Cids.forEach(cid => {
+        targetNodes.forEach(cid => {
             const comp = cidToCompound.get(cid);
             if (comp) {
                 const item = createPathItem(comp);
@@ -711,73 +723,8 @@
         });
     }
 
-    function createPathItem(compound) {
-        const item = document.createElement('div');
-        item.className = 'result-item';
-        item.dataset.cid = compound.cid;
 
-        const iconContainer = document.createElement('div');
-        iconContainer.className = 'item-icon loading';
-        iconContainer.textContent = 'Loading...';
-        loadStructureSVG(compound.cid, iconContainer);
-
-        const itemInfo = document.createElement('div');
-        itemInfo.className = 'item-info';
-
-        const itemName = document.createElement('div');
-        itemName.className = 'item-name';
-        itemName.textContent = compound.cmpdname || 'Unknown compound';
-
-        const itemExtra = document.createElement('div');
-        itemExtra.className = 'item-extra';
-        itemExtra.textContent = `CID: ${compound.cid}${compound.wiki ? ` | Wiki: ${compound.wiki}` : ''}`;
-
-        itemInfo.appendChild(itemName);
-        itemInfo.appendChild(itemExtra);
-
-        const removeBtn = document.createElement('button');
-        removeBtn.className = 'remove-item';
-        removeBtn.textContent = 'X';
-        removeBtn.addEventListener('click', () => {
-            if (selectedLevel === 1) {
-                level1Cids.delete(compound.cid);
-            } else {
-                level2Cids.delete(compound.cid);
-            }
-            renderPathList();
-        });
-
-        item.appendChild(iconContainer);
-        item.appendChild(itemInfo);
-        item.appendChild(removeBtn);
-
-        return item;
-    }
-
-    function createResultItem(compound) {
-        const item = document.createElement('div');
-        item.className = 'result-item';
-        
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.className = 'item-check';
-        checkbox.checked = selectedCIDs.has(compound.cid);
-        checkbox.addEventListener('change', function() {
-            if (this.checked) {
-                selectedCIDs.add(compound.cid);
-            } else {
-                selectedCIDs.delete(compound.cid);
-            }
-            updateGraph();
-        });
-        
-        const iconContainer = document.createElement('div');
-        iconContainer.className = 'item-icon loading';
-        iconContainer.textContent = 'Loading...';
-        
-        // Try to load SVG structure
-        loadStructureSVG(compound.cid, iconContainer);
-        
+    function createItemInfo(compound) {
         const itemInfo = document.createElement('div');
         itemInfo.className = 'item-info';
         
@@ -808,10 +755,98 @@
             const sep_wiki_prefix = document.createTextNode(' | Wiki: ');
             itemExtra.appendChild(sep_wiki_prefix);
             itemExtra.appendChild(wikiLink);
-}
+        }
         
         itemInfo.appendChild(itemName);
         itemInfo.appendChild(itemExtra);
+
+        return itemInfo;
+    }
+
+    function createPathItem(compound) {
+        const item = document.createElement('div');
+        item.className = 'result-item';
+        item.dataset.cid = compound.cid;
+
+        const iconContainer = document.createElement('div');
+        iconContainer.className = 'item-icon loading';
+        iconContainer.textContent = 'Loading...';
+        loadStructureSVG(compound.cid, iconContainer);
+
+        const itemInfo = createItemInfo(compound);
+
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'remove-item';
+        removeBtn.textContent = 'X';
+        removeBtn.addEventListener('click', () => {
+            if (selectedLevel === 1) {
+                sourceNodes.delete(compound.cid);
+            } else {
+                targetNodes.delete(compound.cid);
+            }
+            renderPathList();
+        });
+
+        item.appendChild(iconContainer);
+        item.appendChild(itemInfo);
+        item.appendChild(removeBtn);
+
+        return item;
+    }
+
+    function removeNode(cid, force = true) {
+        let edges_to_del = []
+        let secondary_parents = []
+        let has_children = false;
+        for(const edge of directedEdges) {
+            let [a, b] = edge.split('-').map(Number);
+            if(a === cid) {
+                edges_to_del.push(edge);
+                has_children = true;
+            }
+            else if(b === cid) {
+                edges_to_del.push(edge);
+                if(secondaryNodes.has(a))
+                    secondary_parents.push(a);
+            }
+        }
+
+        if(force || !has_children) {
+            selectedCIDs.delete(cid);
+            secondaryNodes.delete(cid);
+
+            for(const edge of edges_to_del)
+                directedEdges.delete(edge);
+            for(const cid of secondary_parents)
+                removeNode(cid, false);
+        }
+    }
+
+    function createResultItem(compound) {
+        const item = document.createElement('div');
+        item.className = 'result-item';
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'item-check';
+        checkbox.checked = selectedCIDs.has(compound.cid);
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                selectedCIDs.add(compound.cid);
+            } else {
+                removeNode(compound.cid)
+            }
+            updateGraph(compound.cid);
+        });
+        
+        const iconContainer = document.createElement('div');
+        iconContainer.className = 'item-icon loading';
+        iconContainer.textContent = 'Loading...';
+        
+        // Try to load SVG structure
+        loadStructureSVG(compound.cid, iconContainer);
+        
+        const itemInfo = createItemInfo(compound);
         
         item.appendChild(checkbox);
         item.appendChild(iconContainer);
@@ -821,9 +856,9 @@
         item.addEventListener('contextmenu', (e) => {
             e.preventDefault();
             if (selectedLevel === 1) {
-                level1Cids.add(compound.cid);
+                sourceNodes.add(compound.cid);
             } else {
-                level2Cids.add(compound.cid);
+                targetNodes.add(compound.cid);
             }
             renderPathList();
         });
@@ -1047,31 +1082,35 @@
         return paths;
     }
 
-    function getProcessedLinks(directedEdges) {
+    function getProcessedLinks() {
         const links = [];
         const processed = new Set();
         for (let edge of directedEdges) {
             if (processed.has(edge)) continue;
             const [a, b] = edge.split('-').map(Number);
+
             const reverse = `${b}-${a}`;
+            let type = null;
             if (directedEdges.has(reverse)) {
-                // bi
-                const source = a;
-                const target = b;
-                links.push({source, target, type: 'bi'});
+                type = 'bi';
                 processed.add(reverse);
             } else {
-                // directed
-                links.push({source: a, target: b, type: 'directed'});
+                type = 'directed';
             }
+
+            const secondary = secondaryNodes.has(a) || secondaryNodes.has(b);
+            links.push({source: a, target: b, type, secondary});
             processed.add(edge);
         }
         return links;
     }
 
     function handleSubmit() {
-        const starts = Array.from(level1Cids);
-        const ends = Array.from(level2Cids);
+        secondaryNodes = new Set();
+        directedEdges = new Set();
+
+        const starts = Array.from(sourceNodes);
+        const ends = Array.from(targetNodes);
         if (starts.length === 0 || ends.length === 0) {
             alert('Please add starting and resulting substances.');
             return;
@@ -1085,58 +1124,90 @@
 
         setTimeout(() => {
             const allPaths = findKShortestPaths(starts, ends, k, n);
+            selectedCIDs.clear();
 
-            const nodesSet = new Set();
-            const directedEdges = new Set();
-
+            allPaths.forEach(({path}) => path.forEach(node => selectedCIDs.add(node)));
             allPaths.forEach(({path}) => {
-                path.forEach(node => nodesSet.add(node));
                 for (let i = 0; i < path.length - 1; i++) {
-                    directedEdges.add(`${path[i]}-${path[i+1]}`);
+                    const edgeStr = `${path[i]}-${path[i+1]}`;
+                    const reactionIDs = edgeToReactionID.get(edgeStr);
+                    for(const rid of reactionIDs) {
+                        const reaction = RIDToReaction.get(rid);
+                        for(const reagent of reaction.reagents) {
+                            const cid = reagent.cid;
+                            if(!reagent.crucial)
+                                continue;
+                            
+                            directedEdges.add(`${cid}-${path[i+1]}`);
+                            if(!selectedCIDs.has(cid)) {
+                                secondaryNodes.add(cid);
+                                selectedCIDs.add(cid);
+                            }
+                        }
+                    }
                 }
             });
 
-            const nodes = Array.from(nodesSet).map(cid => {
+            /*
+            const nodes = Array.from(nodesSet).map(node => {
+                const cid = node.cid;
                 const comp = cidToCompound.get(cid);
                 return {
                     id: cid,
                     name: comp ? comp.cmpdname : 'Unknown',
-                    organic: comp ? comp.organic : false
+                    organic: comp ? comp.organic : false,
+                    secondary: node.secondary
                 };
             });
 
             const links = getProcessedLinks(directedEdges);
-
+            */
+            
+            updateGraph(directedEdges);
             hideLoading();
-            renderGraph(nodes, links);
+            //renderGraph(nodes, links);
         }, 0);
     }
 
-    function updateGraph() {
+    function updateGraph(cid = null) {
         const selectedArray = Array.from(selectedCIDs);
         if (selectedArray.length === 0) {
             document.getElementById('main').innerHTML = originalMainContent;
             return;
         }
-        const selectedSet = new Set(selectedArray);
-        const directedEdges = new Set();
-        edgesData
-            .filter(edge => selectedSet.has(edge.first) && selectedSet.has(edge.second))
-            .forEach(edge => {
-                directedEdges.add(`${edge.first}-${edge.second}`);
-            });
 
-        const nodes = selectedArray.map(cid => {
-            const comp = cidToCompound.get(cid);
+        edges_filter = edges => {
+            if(cid !== null) {
+                return selectedCIDs.has(edge.first) && selectedCIDs.has(edge.second) && (edge.first === cid || edge.second === cid);
+            }
+            else
+                return selectedCIDs.has(edge.first) && selectedCIDs.has(edge.second) && !secondaryNodes.has(edge.first) && !secondaryNodes.has(edge.second);
+        }
+
+        if(cid !== null) {
+            edgesData
+                .filter(edge =>
+                    selectedCIDs.has(edge.first) && selectedCIDs.has(edge.second) &&
+                    (edge.first === cid || edge.second === cid) &&
+                    !secondaryNodes.has(edge.first) && !secondaryNodes.has(edge.second))
+                .forEach(edge => {
+                    directedEdges.add(`${edge.first}-${edge.second}`);
+                });
+        }
+
+        const nodes = selectedArray.map(node => {
+            const comp = cidToCompound.get(node);
             return {
-                id: cid,
+                id: node,
                 name: comp ? comp.cmpdname : 'Unknown',
-                organic: comp ? comp.organic : false
+                organic: comp ? comp.organic : false,
+                secondary: secondaryNodes.has(node)
             };
         });
 
-        const links = getProcessedLinks(directedEdges);
+        const links = getProcessedLinks();
 
+        displayResults(currentResults);
         renderGraph(nodes, links);
     }
 
@@ -1172,7 +1243,7 @@
         defs.append("marker")
             .attr("id", "arrow-start")
             .attr("viewBox", "0 -3 10 6")
-            .attr("refX", "0")
+            .attr("refX", "10")
             .attr("refY", "0")
             .attr("markerWidth", "6")
             .attr("markerHeight", "6")
@@ -1190,13 +1261,13 @@
 
         const link = g.append("g")
             .attr("stroke", "#999")
-            .attr("stroke-opacity", 0.6)
             .selectAll("line")
             .data(links)
             .join("line")
             .attr("stroke-width", 1.5)
             .attr("marker-end", d => "url(#arrow)")
             .attr("marker-start", d => d.type === 'bi' ? "url(#arrow-start)" : null)
+            .attr("stroke-opacity", d => d.secondary ? 0.2 : 0.6)
             .on("mouseover", function(event, d) {
                 d3.select(this).attr("stroke-width", 3);
             })
@@ -1214,12 +1285,13 @@
             .data(nodes)
             .join("circle")
             .attr("r", 5)
+            .attr("opacity", d => secondaryNodes.has(d.id) ? 0.3 : 1)
             .attr("fill", d => d.organic ? "green" : "blue")
             .on("mouseover", function(event, d) {
                 d3.select(this).attr("r", 8);
                 hoverTimeout = setTimeout(() => {
                     tooltip.transition()
-                        .duration(200)
+                        .duration(100)
                         .style("opacity", .9);
                     tooltip.html(`<img src="data/structures/${d.id}.svg" alt="${d.name}"><br>${d.name}`)
                         .style("left", (event.pageX + 10) + "px")
@@ -1248,7 +1320,8 @@
             .text(d => d.name)
             .attr("font-size", 10)
             .attr("text-anchor", "middle")
-            .attr("dy", 20);
+            .attr("dy", 20)
+            .attr('opacity', d => secondaryNodes.has(d.id) ? 0.3 : 1);
 
         // Tooltip
         const tooltip = d3.select("body").append("div")
@@ -1262,7 +1335,7 @@
                     const dy = d.target.y - d.source.y;
                     const dr = Math.sqrt(dx * dx + dy * dy);
                     const normX = dx / dr;
-                    const sourcePadding = d.type === 'bi' ? 8 : 0;
+                    const sourcePadding = 8
                     return d.source.x + (normX * sourcePadding);
                 })
                 .attr("y1", d => {
@@ -1270,7 +1343,7 @@
                     const dy = d.target.y - d.source.y;
                     const dr = Math.sqrt(dx * dx + dy * dy);
                     const normY = dy / dr;
-                    const sourcePadding = d.type === 'bi' ? 8 : 0;
+                    const sourcePadding = 8;
                     return d.source.y + (normY * sourcePadding);
                 })
                 .attr("x2", d => {

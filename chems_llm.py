@@ -442,9 +442,19 @@ class ChemsLLM:
         reagents_str = '(' + ','.join([str(x) for x in reagents_cids]) + ')'
         products_str = '(' + ','.join([str(x) for x in products_cids]) + ')'
         reaction_enc = (reagents_str + products_str).encode("utf-8")
-        hash_val = hashlib.sha256(reaction_enc).digest()
+        hash_val = hashlib.sha256(reaction_enc).hexdigest()
 
-        return int.from_bytes(hash_val, byteorder="big")
+        return hash_val
+
+
+    def __get_cid_chem_map(self):
+        cid_chem_map = dict()
+        with open(self.chems_fn) as f:
+            for line in f:
+                chem = json.loads(line)
+                cid_chem_map[chem['cid']] = chem
+        
+        return cid_chem_map
 
     
     def __parse_reaction_str(self, reaction_str: str, name_cid_map: dict, cid_chem_map: dict):
@@ -495,21 +505,31 @@ class ChemsLLM:
         if products_cids & reagents_cids:
             parse_success = False
         
-        reaction = {'reagents': reagents_clean, 'products': products_clean}
+        if not parse_success:
+            return parse_success, None, unmapped_names
+        
+        max_reagent_complexity = max([cid_chem_map[x['cid']]['complexity'] for x in reagents_clean])
+        max_product_complexity = max([cid_chem_map[x['cid']]['complexity'] for x in products_clean])
+        for reagent in reagents_clean:
+            r_complexity = cid_chem_map[reagent['cid']]['complexity']
+            complexity_difference_thr = 20.0
+            crucial = r_complexity*2 > max_product_complexity or (max_product_complexity-r_complexity) < complexity_difference_thr or r_complexity*2 > max_reagent_complexity or (max_reagent_complexity-r_complexity) < complexity_difference_thr
+            reagent['crucial'] = crucial
 
-        if parse_success:
-            av_complexity = 0
-            for chem in products_clean:
-                av_complexity += cid_chem_map[chem['cid']]['complexity']
-            
-            for chem in reagents_clean:
-                av_complexity += cid_chem_map[chem['cid']]['complexity']
-            
-            av_complexity /= len(products_clean) + len(reagents_clean)
-            reaction['complexity'] = av_complexity
-            
-            reaction_hash = self.__get_reaction_hash(reaction)
-            reaction['rid'] = reaction_hash
+        av_complexity = 0
+        for chem in products_clean:
+            av_complexity += cid_chem_map[chem['cid']]['complexity']
+        
+        for chem in reagents_clean:
+            av_complexity += cid_chem_map[chem['cid']]['complexity']
+        
+        reaction = {'reagents': reagents_clean, 'products': products_clean}
+        
+        av_complexity /= len(products_clean) + len(reagents_clean)
+        reaction['complexity'] = av_complexity
+        
+        reaction_hash = self.__get_reaction_hash(reaction)
+        reaction['rid'] = reaction_hash
 
 
         return parse_success, reaction, unmapped_names
@@ -854,6 +874,8 @@ class ChemsLLM:
             react_id = react['rid']
             for r in react['reagents']:
                 r_cid = r['cid']
+                if not r['crucial']:
+                    continue
                 for p in react['products']:
                     p_cid = p['cid']
                     edge = (r_cid, p_cid)
@@ -865,6 +887,8 @@ class ChemsLLM:
             for edge in edge_reaction_id_map:
                 entry = {'first': edge[0], 'second': edge[1], 'reactions': edge_reaction_id_map[edge]}
                 f.write(json.dumps(entry) + '\n')
+        
+        print(f"Generated {len(edge_reaction_id_map)} edges")
     
 
     def filter_chems_with_invalid_smiles(self):
@@ -943,18 +967,18 @@ if __name__ == "__main__":
     #chemsllm.validate_raw_reactions(max_workers=20)
     #chemsllm.fix_broken_raw_reactions(max_workers=1)
     #print(chemsllm.find_all_unicode_chars_in_raw_reactions())
-    #chemsllm.map_raw_reactions_chems_to_cids()
+    chemsllm.map_raw_reactions_chems_to_cids()
     #chemsllm.fetch_unmapped_names_from_pubchem()
     #chemsllm.organize_chems_file()
-    #chemsllm.balance_parsed_reactions()
+    chemsllm.balance_parsed_reactions()
     #chemsllm.find_unbalancing_chems()
     #chemsllm.get_uncommon_raw_reactions_for_wiki_chems(max_workers=20)
     #chemsllm.validate_raw_reactions(raw_reactions_fn="data/top_rare_raw_reactions.jsonl", max_workers=20)
     #chemsllm.generate_chems_structures_svg()
     #chemsllm.get_rare_raw_reactions_for_top_chems(max_workers=20)
     #chemsllm.generate_organic_marks_for_chems()
-    #chemsllm.generate_edges()
+    chemsllm.generate_edges()
     #chemsllm.filter_chems_with_invalid_smiles()
     #chemsllm.compute_chems_fingerprints()
-    chemsllm.merge_wiki_chems()
+    #chemsllm.merge_wiki_chems()
     
