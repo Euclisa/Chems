@@ -512,13 +512,13 @@
             <!-- Sliders -->
             <div class="slider-container">
                 <label for="k-slider">Top K:</label>
-                <input type="range" id="k-slider" min="1" max="11" value="1">
-                <span id="k-value">1</span>
+                <input type="range" id="k-slider" min="1" max="11" value="2">
+                <span id="k-value">2</span>
             </div>
             <div class="slider-container">
                 <label for="n-slider">Max Length N:</label>
-                <input type="range" id="n-slider" min="1" max="10" value="5">
-                <span id="n-value">5</span>
+                <input type="range" id="n-slider" min="1" max="10" value="3">
+                <span id="n-value">3</span>
             </div>
 
             <!-- Path section -->
@@ -684,14 +684,14 @@
         kSlider.addEventListener('input', () => {
             kValue.textContent = kSlider.value === '11' ? 'All' : kSlider.value;
         });
-        kValue.textContent = '1';
+        //kValue.textContent = '1';
 
         const nSlider = document.getElementById('n-slider');
         const nValue = document.getElementById('n-value');
         nSlider.addEventListener('input', () => {
             nValue.textContent = nSlider.value;
         });
-        nValue.textContent = '5';
+        //nValue.textContent = '5';
     }
 
     function selectLevel(level) {
@@ -814,6 +814,8 @@
         if(force || !has_children) {
             selectedCIDs.delete(cid);
             secondaryNodes.delete(cid);
+            sourceNodes.delete(cid);
+            targetNodes.delete(cid);
 
             for(const edge of edges_to_del)
                 directedEdges.delete(edge);
@@ -1277,21 +1279,31 @@
             .on("click", function(event, d) {
                 showPopup('edge', d);
             });
+        
+        const secondaryOpacity = 0.3;
+        const defaultOpacity = 1.0;
 
-        const node = g.append("g")
-            .attr("stroke", "#fff")
-            .attr("stroke-width", 1.5)
-            .selectAll("circle")
+        const nodeGroups = g.append("g")
+            .selectAll("g")
             .data(nodes)
-            .join("circle")
-            .attr("r", 5)
-            .attr("opacity", d => secondaryNodes.has(d.id) ? 0.3 : 1)
-            .attr("fill", d => d.organic ? "green" : "blue")
+            .join("g")
+            .attr("opacity", d => secondaryNodes.has(d.id) ? secondaryOpacity : defaultOpacity)
+            .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended)
+            )
             .on("mouseover", function(event, d) {
-                d3.select(this).attr("r", 8);
+                d3
+                .select(this)
+                .attr('opacity', defaultOpacity)
+                .select("circle, rect, polygon")
+                .attr("r", 8).attr("width", 16)
+                .attr("height", 16)
+                .attr("points", "0,-8 8,8 -8,8");
                 hoverTimeout = setTimeout(() => {
                     tooltip.transition()
-                        .duration(100)
+                        .duration(200)
                         .style("opacity", .9);
                     tooltip.html(`<img src="data/structures/${d.id}.svg" alt="${d.name}"><br>${d.name}`)
                         .style("left", (event.pageX + 10) + "px")
@@ -1303,7 +1315,14 @@
                     .style("top", (event.pageY - 28) + "px");
             })
             .on("mouseout", function(event, d) {
-                d3.select(this).attr("r", 5);
+                d3
+                .select(this)
+                .attr('opacity', d => secondaryNodes.has(d.id) ? secondaryOpacity : defaultOpacity)
+                .select("circle, rect, polygon")
+                .attr("r", 5)
+                .attr("width", 10)
+                .attr("height", 10)
+                .attr("points", "0,-5 5,5 -5,5");
                 clearTimeout(hoverTimeout);
                 tooltip.transition()
                     .duration(500)
@@ -1313,15 +1332,31 @@
                 showPopup('node', d);
             });
 
-        const labels = g.append("g")
-            .selectAll("text")
-            .data(nodes)
-            .join("text")
+        nodeGroups.each(function(d) {
+            const sel = d3.select(this);
+            if (sourceNodes.has(d.id)) {
+                sel.append("rect")
+                    .attr("x", -5)
+                    .attr("y", -5)
+                    .attr("width", 10)
+                    .attr("height", 10)
+                    .attr("fill", d.organic ? "green" : "blue");
+            } else if (targetNodes.has(d.id)) {
+                sel.append("polygon")
+                    .attr("points", "0,-5 5,5 -5,5")
+                    .attr("fill", d.organic ? "green" : "blue");
+            } else {
+                sel.append("circle")
+                    .attr("r", 5)
+                    .attr("fill", d.organic ? "green" : "blue");
+            }
+        });
+
+        const labels = nodeGroups.append("text")
             .text(d => d.name)
             .attr("font-size", 10)
             .attr("text-anchor", "middle")
-            .attr("dy", 20)
-            .attr('opacity', d => secondaryNodes.has(d.id) ? 0.3 : 1);
+            .attr("dy", 20);
 
         // Tooltip
         const tooltip = d3.select("body").append("div")
@@ -1335,7 +1370,7 @@
                     const dy = d.target.y - d.source.y;
                     const dr = Math.sqrt(dx * dx + dy * dy);
                     const normX = dx / dr;
-                    const sourcePadding = 8
+                    const sourcePadding = d.type === 'bi' ? 8 : 0;
                     return d.source.x + (normX * sourcePadding);
                 })
                 .attr("y1", d => {
@@ -1343,7 +1378,7 @@
                     const dy = d.target.y - d.source.y;
                     const dr = Math.sqrt(dx * dx + dy * dy);
                     const normY = dy / dr;
-                    const sourcePadding = 8;
+                    const sourcePadding = d.type === 'bi' ? 8 : 0;
                     return d.source.y + (normY * sourcePadding);
                 })
                 .attr("x2", d => {
@@ -1363,32 +1398,26 @@
                     return d.target.y - (normY * targetPadding);
                 });
 
-            node
-                .attr("cx", d => d.x)
-                .attr("cy", d => d.y);
-
-            labels
-                .attr("x", d => d.x)
-                .attr("y", d => d.y);
+            nodeGroups
+                .attr("transform", d => `translate(${d.x}, ${d.y})`);
         });
 
-        // Draggable nodes
-        node.call(d3.drag()
-            .on("start", function(event, d) {
-                if (!event.active) simulation.alphaTarget(0.3).restart();
-                d.fx = d.x;
-                d.fy = d.y;
-            })
-            .on("drag", function(event, d) {
-                d.fx = event.x;
-                d.fy = event.y;
-            })
-            .on("end", function(event, d) {
-                if (!event.active) simulation.alphaTarget(0);
-                d.fx = null;
-                d.fy = null;
-            })
-        );
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
 
         // Zoom
         const zoom = d3.zoom()
