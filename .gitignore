@@ -1,3 +1,6 @@
 .env/
 *.backup
 pubchem.json
+cleaned_ord.jsonl
+ord/
+ord-data/
