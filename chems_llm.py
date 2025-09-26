@@ -10,17 +10,20 @@ from chempy import balance_stoichiometry
 from rdkit import Chem, RDLogger
 from rdkit.Chem import Draw, AllChem, GraphDescriptors, rdMolDescriptors
 import hashlib
-from scipy.sparse.linalg import svds
-import numpy as np
+import psycopg2
+from psycopg2.extras import execute_values
+import base64
 
 # Disable all RDKit warnings and info messages
 RDLogger.DisableLog('rdApp.*')
 
 
 class ChemsLLM:
-    def __init__(self, data_dir, api_key=None):
+    def __init__(self, data_dir, db_name, api_key=None):
         if api_key is None:
             api_key = os.getenv("OPENROUTER_API_KEY")
+        
+        self.db_name = db_name
 
         self.client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=api_key)
 
@@ -451,9 +454,10 @@ class ChemsLLM:
         reagents_str = '(' + ','.join([str(x) for x in reagents_cids]) + ')'
         products_str = '(' + ','.join([str(x) for x in products_cids]) + ')'
         reaction_enc = (reagents_str + products_str).encode("utf-8")
-        hash_val = hashlib.sha256(reaction_enc).hexdigest()
+        hash_bytes = hashlib.sha256(reaction_enc).digest()
+        hash_b64 = base64.b64encode(hash_bytes[:16]).decode("utf-8")
 
-        return hash_val
+        return hash_b64
 
 
     def __get_cid_chem_map(self):
@@ -750,6 +754,7 @@ class ChemsLLM:
             if max_coeff > 30:
                 react['balanced'] = False
                 processed_reactions.append(react)
+                continue
 
             for chem in react['reagents']:
                 mf = cid_to_mf[chem['cid']]
@@ -944,12 +949,12 @@ class ChemsLLM:
             if mol is None:
                 raise Exception(f"Invalid smiles for {chem['cmpdname']}")
 
-            fp = AllChem.GetMorganFingerprintAsBitVect(mol, radius=2, nBits=2048)
+            fp = AllChem.GetMorganFingerprintAsBitVect(mol, radius=2, nBits=1024)
             bitstring = fp.ToBitString()
             popcount = sum([int(x) for x in bitstring])
 
             chunks = [bitstring[i:i+32] for i in range(0, 1024, 32)]
-            ints32 = [int(chunk, 2) for chunk in chunks]
+            ints32 = [int(c, 2) - 2**32 if int(c, 2) >= 2**31 else int(c, 2) for c in chunks]
 
             chem['ECFP4_fp'] = {'bits': ints32, 'popcount': popcount}
         
@@ -972,7 +977,12 @@ class ChemsLLM:
         
         with open(self.chems_fn, 'w') as f:
             for chem in chems:
-                chem['wiki'] = cid_wiki_map.get(chem['cid'])
+                cid = chem['cid']
+                if cid in cid_wiki_map:
+                    chem['wiki'] = cid_wiki_map[cid]
+                else:
+                    if 'wiki' in chem:
+                        chem.pop('wiki')
                 f.write(json.dumps(chem) + '\n')
     
 
@@ -1285,6 +1295,386 @@ class ChemsLLM:
                 f.write(json.dumps(react) + '\n')
         
         print(f"Total reactions number: {total_reactions}; unique reactions written: {len(reactions_res)}")
+    
+
+    def fix_details(self):
+        shutil.copy(self.reactions_parsed_details_ord_fn, f"{self.reactions_parsed_details_ord_fn}.backup")
+
+        with open(self.reactions_parsed_details_ord_fn) as f:
+            details = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        def fix_part(entry, part):
+            if entry[part] is not None:
+                unique = set()
+                chems = []
+                for chem in entry[part]:
+                    if chem['cid'] not in unique:
+                        unique.add(chem['cid'])
+                        chems.append(chem)
+                entry[part] = chems
+            else:
+                entry[part] = []
+        
+        for entry in details:
+            fix_part(entry, 'solvents')
+            fix_part(entry, 'catalysts')
+            
+            if entry['provenance'] is None:
+                entry['provenance'] = {'doi': None, 'patent': None}
+        
+        with open(self.reactions_parsed_details_ord_fn, 'w') as f:
+            for entry in details:
+                f.write(json.dumps(entry) + '\n')
+
+
+    def fix_reactions(self):
+        shutil.copy(self.reactions_parsed_balanced_fn, f"{self.reactions_parsed_balanced_fn}.backup")
+
+        with open(self.reactions_parsed_balanced_fn) as f:
+            reactions = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        def fix_part(entry, part):
+            unique = set()
+            chems = []
+            for chem in entry[part]:
+                if chem['cid'] not in unique:
+                    unique.add(chem['cid'])
+                    chems.append(chem)
+            entry[part] = chems
+
+        for entry in reactions:
+            fix_part(entry, 'reagents')
+            fix_part(entry, 'products')
+        
+        with open(self.reactions_parsed_balanced_fn, 'w') as f:
+            for entry in reactions:
+                f.write(json.dumps(entry) + '\n')
+        
+        # Remove duplicates taking into account source priorities
+        self.merge_parsed_reactions_files(self.reactions_parsed_balanced_fn, self.reactions_parsed_balanced_fn)
+    
+
+    def fix_hazards(self):
+        shutil.copy(self.hazards_chems_fn, f"{self.hazards_chems_fn}.backup")
+
+        with open(self.hazards_chems_fn) as f:
+            hazards = [json.loads(x) for x in f.read().strip().split('\n')]
+
+        unique = set()
+        new_hazards = []
+        for entry in hazards:
+            if entry['cid'] not in unique:
+                unique.add(entry['cid'])
+                new_hazards.append(entry)
+            entry['statements'] = list(set(entry['statements']))
+            entry['pictograms'] = list(set(entry['pictograms'])) 
+        
+        with open(self.hazards_chems_fn, 'w') as f:
+            for entry in new_hazards:
+                f.write(json.dumps(entry) + '\n')
+    
+
+    def rehash_reactions(self, out_rid_map_fn):
+        with open(self.reactions_parsed_balanced_fn) as f:
+            reactions = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        rid_map = []
+        for react in reactions:
+            old_rid = react['rid']
+            react['rid'] = self.__get_reaction_hash(react)
+            rid_map.append((old_rid, react['rid']))
+        
+        with open(out_rid_map_fn, 'w') as f:
+            for entry in rid_map:
+                f.write(f"{entry[0]} {entry[1]}\n")
+    
+
+    def replace_old_rids(self, in_file, rid_map_fn):
+        with open(in_file) as f:
+            entries = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        with open(rid_map_fn) as f:
+            rid_map = [x.split() for x in f.read().strip().split('\n')]
+            rid_map = {old: new for old, new in rid_map}
+        
+        for entry in entries:
+            entry['rid'] = rid_map[entry['rid']]
+        
+
+        with open(in_file, 'w') as f:
+            for entry in entries:
+                f.write(json.dumps(entry) + '\n')
+        
+        print(f"Successfully rehashed '{in_file}'")
+
+    
+
+    def deduplicate_chems_rebind_reactions(self, out_cid_map_fn):
+        shutil.copy(self.chems_fn, f"{self.chems_fn}.backup")
+        shutil.copy(self.reactions_parsed_balanced_fn, f"{self.reactions_parsed_balanced_fn}.backup")
+
+        with open(self.chems_fn) as f:
+            chems = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        with open(self.reactions_parsed_balanced_fn) as f:
+            reactions = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        def get_cid_index_map(entries, parts):
+            cid_i_map = dict()
+            for i, entry in enumerate(entries):
+                cids = set([x['cid'] for part in parts for x in entry[part]])
+                for cid in cids:
+                    if cid not in cid_i_map:
+                        cid_i_map[cid] = set()
+                    cid_i_map[cid].add(i)
+            
+            return cid_i_map
+        
+        cid_reaction_i_map = get_cid_index_map(reactions, ['reagents', 'products'])
+
+        new_chems = dict()
+        unique_inchikeys = dict()
+        cid_merge_map = []
+        for i, chem in enumerate(chems):
+            inchikey = chem['inchikey']
+            curr_cid = chem['cid']
+            if inchikey not in unique_inchikeys:
+                unique_inchikeys[inchikey] = i
+                new_chems[curr_cid] = chem
+            else:
+                old_i = unique_inchikeys[inchikey]
+                old_cid = chems[old_i]['cid']
+                
+                old_cid_reactions = cid_reaction_i_map.get(old_cid, set())
+                curr_cid_reactions = cid_reaction_i_map.get(curr_cid, set())
+                
+                def update_cid(entries, reaction_indices, old_value, new_value, parts):
+                    for i in reaction_indices:
+                        for part in parts:
+                            for chem in entries[i][part]:
+                                if chem['cid'] == old_value:
+                                    chem['cid'] = new_value   
+
+                if len(old_cid_reactions) > len(curr_cid_reactions):
+                    update_cid(reactions, curr_cid_reactions, curr_cid, old_cid, ['reagents', 'products'])
+                    cid_merge_map.append((curr_cid, old_cid))
+                    print(f"Merged {chem['cmpdname']}({curr_cid}) -> {chems[old_i]['cmpdname']}({old_cid}); {len(curr_cid_reactions)} reactions fixed")
+                else:
+                    update_cid(reactions, old_cid_reactions, old_cid, curr_cid, ['reagents', 'products'])
+                    new_chems.pop(old_cid)
+                    new_chems[curr_cid] = chem
+                    cid_merge_map.append((old_cid, curr_cid))
+                    print(f"Merged {chem['cmpdname']}({curr_cid}) <- {chems[old_i]['cmpdname']}({old_cid}); {len(old_cid_reactions)} reactions fixed")
+
+
+        with open(self.reactions_parsed_balanced_fn, 'w') as f:
+            for react in reactions:
+                f.write(json.dumps(react) + '\n')
+        
+        with open(self.chems_fn, 'w') as f:
+            for chem in new_chems.values():
+                f.write(json.dumps(chem) + '\n')
+        
+        with open(out_cid_map_fn, 'w') as f:
+            for old_cid, new_cid in cid_merge_map:
+                f.write(f"{old_cid} {new_cid}\n")
+    
+
+    def replace_old_cids(self, in_file, parts, cid_map_fn):
+        with open(in_file) as f:
+            entries = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        with open(cid_map_fn) as f:
+            cid_map = [list(map(int, x.split())) for x in f.read().strip().split('\n')]
+            cid_map = {old: new for old, new in cid_map}
+        
+        cnt = 0
+        for entry in entries:
+            if parts:
+                for part in parts:
+                    for part_entry in entry[part]:
+                        curr_cid = part_entry['cid']
+                        if curr_cid in cid_map:
+                            part_entry['cid'] = cid_map[curr_cid]
+                            cnt += 1
+            else:
+                curr_cid = entry['cid']
+                if curr_cid in cid_map:
+                    entry['cid'] = cid_map[curr_cid]
+                    cnt += 1
+        
+        with open(in_file, 'w') as f:
+            for entry in entries:
+                f.write(json.dumps(entry) + '\n')
+        
+        print(f"Fixed {cnt} cids in '{in_file}'")
+    
+
+    def test(self):
+        with open(self.reactions_parsed_balanced_fn) as f:
+            reactions = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        res = [(x['rid'], len(x['rid'])) for x in reactions]
+        res.sort(key=lambda x: x[1], reverse=True)
+
+        print(res[:10])
+
+    
+
+    def populate_db(self):
+        with open(self.chems_fn) as f:
+            chems = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        all_cids = set([chem['cid'] for chem in chems])
+        
+        conn = psycopg2.connect(database=self.db_name)
+        cur = conn.cursor()
+
+        sql = \
+        "INSERT INTO compounds (cid, name, mf, mw, charge, smiles, inchi, inchikey, complexity, bertz_complexity, organic) " \
+        "VALUES %s " \
+        "ON CONFLICT (cid) DO NOTHING "
+
+        
+        execute_values(cur, sql, [(chem['cid'],
+                                    chem['cmpdname'],
+                                    chem['mf'],
+                                    chem['mw'],
+                                    chem['charge'],
+                                    chem['smiles'],
+                                    chem['inchi'],
+                                    chem['inchikey'],
+                                    chem['complexity'],
+                                    chem['bertz_complexity'],
+                                    chem['organic']) for chem in chems])
+
+        sql = \
+        "INSERT INTO compound_synonyms (cid, synonym) " \
+        "VALUES %s " \
+        "ON CONFLICT (cid, synonym) DO NOTHING"
+        data = [(chem['cid'], syn) for chem in chems for syn in chem['cmpdsynonym']]
+        execute_values(cur, sql, data)
+
+
+        sql = \
+        "INSERT INTO compound_fingerprints (cid, ECFP4_fp, popcount) " \
+        "VALUES %s " \
+        "ON CONFLICT (cid) DO NOTHING"
+        data = [(chem['cid'], chem['ECFP4_fp']['bits'], chem['ECFP4_fp']['popcount']) for chem in chems]
+        execute_values(cur, sql, data)
+
+
+        sql = \
+        "INSERT INTO compound_wiki (cid, wiki) " \
+        "VALUES %s "
+        data = [(x['cid'], x['wiki']) for x in chems if 'wiki' in x]
+        execute_values(cur, sql, data)
+
+        with open(self.hazards_chems_fn) as f:
+            hazards = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        sql = \
+        "INSERT INTO compound_nfpa (cid, health, flammability, instability) " \
+        "VALUES %s"
+
+        nfpa_data = [(entry['cid'], entry['nfpa'].get('healthHazard'), entry['nfpa'].get('fireHazard'), entry['nfpa'].get('instability')) for entry in hazards if entry['cid'] in all_cids]
+        execute_values(cur, sql, nfpa_data)
+
+
+        sql = \
+        "INSERT INTO compound_hazard_statements (cid, statement) " \
+        "VALUES %s"
+        statements_data = [(entry['cid'], statement) for entry in hazards for statement in entry['statements'] if entry['cid'] in all_cids]
+        execute_values(cur, sql, statements_data)
+
+        sql = \
+        "INSERT INTO compound_hazard_pictograms (cid, pictogram) " \
+        "VALUES %s"
+        pictograms_data = [(entry['cid'], pic) for entry in hazards for pic in entry['pictograms'] if entry['cid'] in all_cids]
+        execute_values(cur, sql, pictograms_data)
+
+
+        with open(self.reactions_parsed_balanced_fn) as f:
+            reactions = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        with open(self.reactions_parsed_details_ord_fn) as f:
+            details = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        rid_local_id_map = dict()
+        for i, react in enumerate(reactions):
+            rid_local_id_map[react['rid']] = i+1
+        
+        rid_details_map = dict()
+        for entry in details:
+            rid_details_map[entry['rid']] = entry
+        
+        
+        sql = \
+        "INSERT INTO reactions (rid, complexity, source, balanced, confidence) " \
+        "VALUES %s"
+        sql_reactants = \
+        "INSERT INTO reaction_reactants (cid, rid) " \
+        "VALUES %s"
+        sql_products = \
+        "INSERT INTO reaction_products (cid, rid) " \
+        "VALUES %s"
+        sql_solvents = \
+        "INSERT INTO reaction_solvents (cid, rid) " \
+        "VALUES %s"
+        sql_catalysts = \
+        "INSERT INTO reaction_catalysts (cid, rid) " \
+        "VALUES %s"
+        sql_details = \
+        "INSERT INTO reaction_details (rid, doi, patent, description) " \
+        "VALUES %s"
+        execute_values(cur, sql, [(x['rid'], x['complexity'], x['source'], x['balanced'], x['confidence']) for x in reactions])
+        execute_values(cur, sql_reactants, [(x['cid'], react['rid']) for react in reactions for x in react['reagents']])
+        execute_values(cur, sql_products, [(x['cid'], react['rid']) for react in reactions for x in react['products']])
+        execute_values(cur, sql_solvents, [(x['cid'], rid) for rid in rid_details_map for x in rid_details_map[rid]['solvents']])
+        execute_values(cur, sql_catalysts, [(x['cid'], rid) for rid in rid_details_map for x in rid_details_map[rid]['catalysts']])
+        execute_values(cur, sql_details, [(rid, rid_details_map[rid]['provenance']['doi'], rid_details_map[rid]['provenance']['patent'], rid_details_map[rid]['description']) for rid in rid_details_map])
+
+        
+        conn.commit()
+
+        cur.close()
+        conn.close()
+
+
+    def clean_data_populate_tables(self):
+        chemsllm.compute_chems_bertz_complexity()
+        chemsllm.compute_chems_fingerprints()
+        chemsllm.generate_organic_marks_for_chems()
+        chemsllm.merge_wiki_chems()
+        chemsllm.organize_chems_file()
+    
+        chemsllm.fix_reactions()
+        chemsllm.fix_details()
+        chemsllm.fix_hazards()
+    
+        chemsllm.deduplicate_chems_rebind_reactions('cid_map.txt')
+        chemsllm.replace_old_cids('data/hazards_chems.jsonl', [], 'cid_map.txt')
+        chemsllm.replace_old_cids('data/merged_reactions_parsed.jsonl', ['reagents', 'products'], 'cid_map.txt')
+        chemsllm.replace_old_cids('data/raw_reactions_verdict.jsonl', [], 'cid_map.txt')
+        chemsllm.replace_old_cids('data/raw_reactions.jsonl', [], 'cid_map.txt')
+        chemsllm.replace_old_cids('data/top_rare_raw_reactions.jsonl', [], 'cid_map.txt')
+        chemsllm.replace_old_cids('data/wiki_raw_reactions.jsonl', [], 'cid_map.txt')
+        chemsllm.replace_old_cids('data/reactions_parsed_details_ord.jsonl', ['solvents', 'catalysts'], 'cid_map.txt')
+        chemsllm.replace_old_cids('data/reactions_parsed_ord.jsonl', ['reagents', 'products'], 'cid_map.txt')
+        chemsllm.replace_old_cids('data/reactions_parsed.jsonl', ['reagents', 'products'], 'cid_map.txt')
+        chemsllm.replace_old_cids('data/wiki_chems.jsonl', [], 'cid_map.txt')
+    
+
+        chemsllm.rehash_reactions('rid_map.txt')
+        chemsllm.replace_old_rids('data/reactions_parsed_details_ord.jsonl', 'rid_map.txt')
+        chemsllm.replace_old_rids('data/reactions_parsed_ord.jsonl', 'rid_map.txt')
+        chemsllm.replace_old_rids('data/reactions_parsed.jsonl', 'rid_map.txt')
+        chemsllm.replace_old_rids('data/merged_reactions_parsed.jsonl', 'rid_map.txt')
+        chemsllm.replace_old_rids('data/reactions_parsed_balanced.jsonl', 'rid_map.txt')
+
+        chemsllm.fix_reactions()
+
+        chemsllm.populate_db()
 
 
 
@@ -1297,7 +1687,7 @@ class ChemsLLM:
 
 
 if __name__ == "__main__":
-    chemsllm = ChemsLLM("data/")
+    chemsllm = ChemsLLM("data/", "chemistry")
     #chemsllm.get_raw_reactions(max_workers=20)
     #chemsllm.process_raw_reactions('raw_reactions.jsonl')
     #chemsllm.deduplicate_raw_reactions()
@@ -1325,4 +1715,12 @@ if __name__ == "__main__":
     #chemsllm.fetch_unmapped_smiles_from_pubchem()
     #chemsllm.fetch_chems_cids_from_pubchem('cids.txt')
     #chemsllm.merge_parsed_reactions_files("data/merged_reactions_parsed.jsonl", "data/reactions_parsed_ord.jsonl", "data/reactions_parsed.jsonl")
-    chemsllm.balance_parsed_reactions("data/merged_reactions_parsed.jsonl")
+    #chemsllm.balance_parsed_reactions("data/merged_reactions_parsed.jsonl")
+    #chemsllm.populate_db()
+    #chemsllm.deduplicate_chems_rebind_reactions()
+    #chemsllm.fix_details()
+    #chemsllm.fix_reactions()
+    #chemsllm.test()
+
+    
+
