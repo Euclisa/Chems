@@ -1,0 +1,1020 @@
+{"code": "D004785", "name": "Environmental Pollutants", "domain": "MeSH"}
+{"code": "D000393", "name": "Air Pollutants", "domain": "MeSH"}
+{"code": "D018377", "name": "Neurotransmitter Agents", "domain": "MeSH"}
+{"code": "D064426", "name": "Gasotransmitters", "domain": "MeSH"}
+{"code": "D000970", "name": "Antineoplastic Agents", "domain": "MeSH"}
+{"code": "D020011", "name": "Protective Agents", "domain": "MeSH"}
+{"code": "D011837", "name": "Radiation-Protective Agents", "domain": "MeSH"}
+{"code": "C1446", "name": "Radiopharmaceutical Compound", "domain": "ChEBI"}
+{"code": "V", "name": "Various", "domain": "ATC"}
+{"code": "V09", "name": "Diagnostic radiopharmaceuticals", "domain": "ATC"}
+{"code": "V09G", "name": "Cardiovascular system", "domain": "ATC"}
+{"code": "C254", "name": "Anti-Infective Agent", "domain": "ChEBI"}
+{"code": "C28394", "name": "Topical Anti-Infective Agent", "domain": "ChEBI"}
+{"code": "D", "name": "Dermatologicals", "domain": "ATC"}
+{"code": "D08", "name": "Antiseptics and disinfectants", "domain": "ATC"}
+{"code": "D08A", "name": "Antiseptics and disinfectants", "domain": "ATC"}
+{"code": "D08AK", "name": "Mercurial products", "domain": "ATC"}
+{"code": "D002327", "name": "Cariostatic Agents", "domain": "MeSH"}
+{"code": "D005459", "name": "Fluorides", "domain": "MeSH"}
+{"code": "D009676", "name": "Noxae", "domain": "MeSH"}
+{"code": "D009153", "name": "Mutagens", "domain": "MeSH"}
+{"code": "A", "name": "Alimentary tract and metabolism", "domain": "ATC"}
+{"code": "A01", "name": "Stomatological preparations", "domain": "ATC"}
+{"code": "A01A", "name": "Stomatological preparations", "domain": "ATC"}
+{"code": "A01AB", "name": "Antiinfectives and antiseptics for local oral treatment", "domain": "ATC"}
+{"code": "D000890", "name": "Anti-Infective Agents", "domain": "MeSH"}
+{"code": "D016877", "name": "Oxidants", "domain": "MeSH"}
+{"code": "D010545", "name": "Peroxides", "domain": "MeSH"}
+{"code": "S", "name": "Sensory organs", "domain": "ATC"}
+{"code": "S02", "name": "Otologicals", "domain": "ATC"}
+{"code": "S02A", "name": "Antiinfectives", "domain": "ATC"}
+{"code": "S02AA", "name": "Antiinfectives", "domain": "ATC"}
+{"code": "V03", "name": "All other therapeutic products", "domain": "ATC"}
+{"code": "V03A", "name": "All other therapeutic products", "domain": "ATC"}
+{"code": "V03AN", "name": "Medical gases", "domain": "ATC"}
+{"code": "D002491", "name": "Central Nervous System Agents", "domain": "MeSH"}
+{"code": "D000927", "name": "Anticonvulsants", "domain": "MeSH"}
+{"code": "D001965", "name": "Bromides", "domain": "MeSH"}
+{"code": "D010575", "name": "Pesticides", "domain": "MeSH"}
+{"code": "D007306", "name": "Insecticides", "domain": "MeSH"}
+{"code": "D016573", "name": "Agrochemicals", "domain": "MeSH"}
+{"code": "D001697", "name": "Biomedical and Dental Materials", "domain": "MeSH"}
+{"code": "C471", "name": "Enzyme Inhibitor", "domain": "ChEBI"}
+{"code": "C667", "name": "Monoamine Oxidase Inhibitor", "domain": "ChEBI"}
+{"code": "C78281", "name": "Agent Affecting Musculoskeletal System", "domain": "ChEBI"}
+{"code": "C1935", "name": "Anticachexia Agent", "domain": "ChEBI"}
+{"code": "D002273", "name": "Carcinogens", "domain": "MeSH"}
+{"code": "C1907", "name": "Drug, Natural Product", "domain": "ChEBI"}
+{"code": "C28269", "name": "Phytochemical", "domain": "ChEBI"}
+{"code": "D006133", "name": "Growth Substances", "domain": "MeSH"}
+{"code": "D010937", "name": "Plant Growth Regulators", "domain": "MeSH"}
+{"code": "B", "name": "Blood and blood forming organs", "domain": "ATC"}
+{"code": "B05", "name": "Blood substitutes and perfusion solutions", "domain": "ATC"}
+{"code": "B05X", "name": "I.v. solution additives", "domain": "ATC"}
+{"code": "B05XA", "name": "Electrolyte solutions", "domain": "ATC"}
+{"code": "C78275", "name": "Agent Affecting Blood or Body Fluid", "domain": "ChEBI"}
+{"code": "C29730", "name": "Electrolyte Replacement Agent", "domain": "ChEBI"}
+{"code": "G", "name": "Genito urinary system and sex hormones", "domain": "ATC"}
+{"code": "G04", "name": "Urologicals", "domain": "ATC"}
+{"code": "G04B", "name": "Urologicals", "domain": "ATC"}
+{"code": "G04BA", "name": "Acidifiers", "domain": "ATC"}
+{"code": "A09", "name": "Digestives, incl. enzymes", "domain": "ATC"}
+{"code": "A09A", "name": "Digestives, incl. enzymes", "domain": "ATC"}
+{"code": "A09AB", "name": "Acid preparations", "domain": "ATC"}
+{"code": "C2140", "name": "Adjuvant", "domain": "ChEBI"}
+{"code": "C308", "name": "Immunotherapeutic Agent", "domain": "ChEBI"}
+{"code": "C210", "name": "Immunoadjuvant", "domain": "ChEBI"}
+{"code": "C2554", "name": "Vaccine Adjuvant", "domain": "ChEBI"}
+{"code": "D014002", "name": "Tin Fluorides", "domain": "MeSH"}
+{"code": "D10", "name": "Anti-acne preparations", "domain": "ATC"}
+{"code": "D10A", "name": "Anti-acne preparations for topical use", "domain": "ATC"}
+{"code": "D018977", "name": "Micronutrients", "domain": "MeSH"}
+{"code": "D014131", "name": "Trace Elements", "domain": "MeSH"}
+{"code": "D011042", "name": "Poisons", "domain": "MeSH"}
+{"code": "D002619", "name": "Chemical Warfare Agents", "domain": "MeSH"}
+{"code": "D000975", "name": "Antioxidants", "domain": "MeSH"}
+{"code": "D08AL", "name": "Silver compounds", "domain": "ATC"}
+{"code": "C274", "name": "Antineoplastic Agent", "domain": "ChEBI"}
+{"code": "C2122", "name": "Cell Differentiating Agent", "domain": "ChEBI"}
+{"code": "C1934", "name": "Differentiation Inducer", "domain": "ChEBI"}
+{"code": "L", "name": "Antineoplastic and immunomodulating agents", "domain": "ATC"}
+{"code": "L01", "name": "Antineoplastic agents", "domain": "ATC"}
+{"code": "D000077264", "name": "Calcium-Regulating Hormones and Agents", "domain": "ChEBI"}
+{"code": "G02", "name": "Other gynecologicals", "domain": "ATC"}
+{"code": "G02B", "name": "Contraceptives for topical use", "domain": "ATC"}
+{"code": "G02BA", "name": "Intrauterine contraceptives", "domain": "ATC"}
+{"code": "D005765", "name": "Gastrointestinal Agents", "domain": "MeSH"}
+{"code": "D000863", "name": "Antacids", "domain": "MeSH"}
+{"code": "D08AG", "name": "Iodine products", "domain": "ATC"}
+{"code": "D006401", "name": "Hematologic Agents", "domain": "MeSH"}
+{"code": "D006397", "name": "Hematinics", "domain": "MeSH"}
+{"code": "D005290", "name": "Ferric Compounds", "domain": "MeSH"}
+{"code": "C1892", "name": "Chemopreventive Agent", "domain": "ChEBI"}
+{"code": "C851", "name": "Sunscreen", "domain": "ChEBI"}
+{"code": "N", "name": "Nervous system", "domain": "ATC"}
+{"code": "N05", "name": "Psycholeptics", "domain": "ATC"}
+{"code": "N05A", "name": "Antipsychotics", "domain": "ATC"}
+{"code": "N05AN", "name": "Lithium", "domain": "ATC"}
+{"code": "C78276", "name": "Agent Affecting Digestive System or Metabolism", "domain": "ChEBI"}
+{"code": "C29697", "name": "Laxative", "domain": "ChEBI"}
+{"code": "C78272", "name": "Agent Affecting Nervous System", "domain": "ChEBI"}
+{"code": "C264", "name": "Anticonvulsant Agent", "domain": "ChEBI"}
+{"code": "C29756", "name": "Sedative and Hypnotic", "domain": "ChEBI"}
+{"code": "D002424", "name": "Caustics", "domain": "MeSH"}
+{"code": "D016166", "name": "Free Radical Scavengers", "domain": "MeSH"}
+{"code": "D002317", "name": "Cardiovascular Agents", "domain": "MeSH"}
+{"code": "D014665", "name": "Vasodilator Agents", "domain": "MeSH"}
+{"code": "D045462", "name": "Endothelium-Dependent Relaxing Factors", "domain": "MeSH"}
+{"code": "D018373", "name": "Peripheral Nervous System Agents", "domain": "MeSH"}
+{"code": "D001337", "name": "Autonomic Agents", "domain": "MeSH"}
+{"code": "D019141", "name": "Respiratory System Agents", "domain": "MeSH"}
+{"code": "D018927", "name": "Anti-Asthmatic Agents", "domain": "MeSH"}
+{"code": "D001993", "name": "Bronchodilator Agents", "domain": "MeSH"}
+{"code": "R", "name": "Respiratory system", "domain": "ATC"}
+{"code": "A12", "name": "Mineral supplements", "domain": "ATC"}
+{"code": "A12B", "name": "Potassium", "domain": "ATC"}
+{"code": "A12BA", "name": "Potassium", "domain": "ATC"}
+{"code": "D019995", "name": "Laboratory Chemicals", "domain": "MeSH"}
+{"code": "D007202", "name": "Indicators and Reagents", "domain": "MeSH"}
+{"code": "A01AA", "name": "Caries prophylactic agents", "domain": "ATC"}
+{"code": "A12C", "name": "Other mineral supplements", "domain": "ATC"}
+{"code": "A12CD", "name": "Fluoride", "domain": "ATC"}
+{"code": "D018696", "name": "Neuroprotective Agents", "domain": "MeSH"}
+{"code": "D000893", "name": "Anti-Inflammatory Agents", "domain": "MeSH"}
+{"code": "D000894", "name": "Anti-Inflammatory Agents, Non-Steroidal", "domain": "MeSH"}
+{"code": "D012459", "name": "Salicylates", "domain": "MeSH"}
+{"code": "D003358", "name": "Cosmetics", "domain": "MeSH"}
+{"code": "D003879", "name": "Dermatologic Agents", "domain": "MeSH"}
+{"code": "D013473", "name": "Sunscreening Agents", "domain": "MeSH"}
+{"code": "A12CA", "name": "Sodium", "domain": "ATC"}
+{"code": "B05C", "name": "Irrigating solutions", "domain": "ATC"}
+{"code": "B05CB", "name": "Salt solutions", "domain": "ATC"}
+{"code": "S01", "name": "Ophthalmologicals", "domain": "ATC"}
+{"code": "D004202", "name": "Disinfectants", "domain": "MeSH"}
+{"code": "D005404", "name": "Fixatives", "domain": "MeSH"}
+{"code": "D012997", "name": "Solvents", "domain": "MeSH"}
+{"code": "C26170", "name": "Protective Agent", "domain": "ChEBI"}
+{"code": "C797", "name": "Radioprotective Agent", "domain": "ChEBI"}
+{"code": "R05", "name": "Cough and cold preparations", "domain": "ATC"}
+{"code": "R05C", "name": "Expectorants, excl. combinations with cough suppressants", "domain": "ATC"}
+{"code": "R05CA", "name": "Expectorants", "domain": "ATC"}
+{"code": "V03AB", "name": "Antidotes", "domain": "ATC"}
+{"code": "D003764", "name": "Dental Materials", "domain": "MeSH"}
+{"code": "D002492", "name": "Central Nervous System Depressants", "domain": "MeSH"}
+{"code": "D011619", "name": "Psychotropic Drugs", "domain": "MeSH"}
+{"code": "D014149", "name": "Tranquilizing Agents", "domain": "MeSH"}
+{"code": "D018692", "name": "Antimanic Agents", "domain": "MeSH"}
+{"code": "D007155", "name": "Immunologic Factors", "domain": "MeSH"}
+{"code": "D016587", "name": "Antimutagenic Agents", "domain": "MeSH"}
+{"code": "D004791", "name": "Enzyme Inhibitors", "domain": "MeSH"}
+{"code": "D016859", "name": "Lipoxygenase Inhibitors", "domain": "MeSH"}
+{"code": "D018494", "name": "Histamine Agents", "domain": "MeSH"}
+{"code": "D006633", "name": "Histamine Antagonists", "domain": "MeSH"}
+{"code": "D018926", "name": "Anti-Allergic Agents", "domain": "MeSH"}
+{"code": "C241", "name": "Analgesic Agent", "domain": "ChEBI"}
+{"code": "D000777", "name": "Anesthetics", "domain": "MeSH"}
+{"code": "D018689", "name": "Sensory System Agents", "domain": "MeSH"}
+{"code": "N01", "name": "Anesthetics", "domain": "ATC"}
+{"code": "N01B", "name": "Anesthetics, local", "domain": "ATC"}
+{"code": "V03AZ", "name": "Nerve depressants", "domain": "ATC"}
+{"code": "A02", "name": "Drugs for acid related disorders", "domain": "ATC"}
+{"code": "A02A", "name": "Antacids", "domain": "ATC"}
+{"code": "A02AA", "name": "Magnesium compounds", "domain": "ATC"}
+{"code": "A06", "name": "Drugs for constipation", "domain": "ATC"}
+{"code": "A06A", "name": "Drugs for constipation", "domain": "ATC"}
+{"code": "A06AD", "name": "Osmotically acting laxatives", "domain": "ATC"}
+{"code": "D009067", "name": "Mouthwashes", "domain": "MeSH"}
+{"code": "C245", "name": "Anesthetic Agent", "domain": "ChEBI"}
+{"code": "C1744", "name": "Multidrug Resistance Modulator", "domain": "ChEBI"}
+{"code": "D000477", "name": "Alkylating Agents", "domain": "MeSH"}
+{"code": "D004127", "name": "Dimethylhydrazines", "domain": "MeSH"}
+{"code": "C", "name": "Cardiovascular system", "domain": "ATC"}
+{"code": "C10", "name": "Lipid modifying agents", "domain": "ATC"}
+{"code": "C10A", "name": "Lipid modifying agents, plain", "domain": "ATC"}
+{"code": "C186664", "name": "Cytotoxic Chemotherapeutic Agent", "domain": "ChEBI"}
+{"code": "C2842", "name": "DNA Binding Agent", "domain": "ChEBI"}
+{"code": "C798", "name": "Radiosensitizing Agent", "domain": "ChEBI"}
+{"code": "C1450", "name": "Platinum Compound", "domain": "ChEBI"}
+{"code": "D051520", "name": "Antiperspirants", "domain": "MeSH"}
+{"code": "D013723", "name": "Teratogens", "domain": "MeSH"}
+{"code": "D09", "name": "Medicated dressings", "domain": "ATC"}
+{"code": "D09A", "name": "Medicated dressings", "domain": "ATC"}
+{"code": "D09AA", "name": "Medicated dressings with antiinfectives", "domain": "ATC"}
+{"code": "N01A", "name": "Anesthetics, general", "domain": "ATC"}
+{"code": "N01AB", "name": "Halogenated hydrocarbons", "domain": "ATC"}
+{"code": "D000963", "name": "Antimetabolites", "domain": "MeSH"}
+{"code": "V04", "name": "Diagnostic agents", "domain": "ATC"}
+{"code": "D001672", "name": "Biocompatible Materials", "domain": "MeSH"}
+{"code": "A16", "name": "Other alimentary tract and metabolism products", "domain": "ATC"}
+{"code": "A16A", "name": "Other alimentary tract and metabolism products", "domain": "ATC"}
+{"code": "A16AA", "name": "Amino acids and derivatives", "domain": "ATC"}
+{"code": "C29701", "name": "Anti-ulcer Agent", "domain": "ChEBI"}
+{"code": "D065104", "name": "Cystine Depleting Agents", "domain": "MeSH"}
+{"code": "C29578", "name": "Histamine-1 Receptor Antagonist", "domain": "ChEBI"}
+{"code": "D005659", "name": "Fungicides, Industrial", "domain": "MeSH"}
+{"code": "D005035", "name": "Ethylmercury Compounds", "domain": "MeSH"}
+{"code": "N01AA", "name": "Ethers", "domain": "ATC"}
+{"code": "C276", "name": "Antiparasitic Agent", "domain": "ChEBI"}
+{"code": "C250", "name": "Antihelminthic Agent", "domain": "ChEBI"}
+{"code": "C2826", "name": "Telomerase Inhibitor", "domain": "ChEBI"}
+{"code": "D000074385", "name": "Food Ingredients", "domain": "ChEBI"}
+{"code": "D005503", "name": "Food Additives", "domain": "MeSH"}
+{"code": "D005520", "name": "Food Preservatives", "domain": "MeSH"}
+{"code": "D03", "name": "Preparations for treatment of wounds and ulcers", "domain": "ATC"}
+{"code": "D03A", "name": "Cicatrizants", "domain": "ATC"}
+{"code": "D007166", "name": "Immunosuppressive Agents", "domain": "MeSH"}
+{"code": "C129819", "name": "Antineoplastic Radiopharmaceutical Agent", "domain": "ChEBI"}
+{"code": "D004396", "name": "Coloring Agents", "domain": "MeSH"}
+{"code": "D011838", "name": "Radiation-Sensitizing Agents", "domain": "MeSH"}
+{"code": "D017319", "name": "Photosensitizing Agents", "domain": "MeSH"}
+{"code": "N07", "name": "Other nervous system drugs", "domain": "ATC"}
+{"code": "N07B", "name": "Drugs used in addictive disorders", "domain": "ATC"}
+{"code": "N07BB", "name": "Drugs used in alcohol dependence", "domain": "ATC"}
+{"code": "A07", "name": "Antidiarrheals, intestinal antiinflammatory/antiinfective agents", "domain": "ATC"}
+{"code": "A07B", "name": "Intestinal adsorbents", "domain": "ATC"}
+{"code": "C266", "name": "Antidiarrheal Agent", "domain": "ChEBI"}
+{"code": "D000931", "name": "Antidotes", "domain": "MeSH"}
+{"code": "C29710", "name": "Antipsychotic Agent", "domain": "ChEBI"}
+{"code": "D000928", "name": "Antidepressive Agents", "domain": "MeSH"}
+{"code": "D005308", "name": "Fertilizers", "domain": "MeSH"}
+{"code": "D053834", "name": "Explosive Agents", "domain": "MeSH"}
+{"code": "C67439", "name": "Bone Resorption Inhibitor", "domain": "ChEBI"}
+{"code": "B03", "name": "Antianemic preparations", "domain": "ATC"}
+{"code": "B03A", "name": "Iron preparations", "domain": "ATC"}
+{"code": "B03AA", "name": "Iron bivalent, oral preparations", "domain": "ATC"}
+{"code": "D015386", "name": "Hazardous Substances", "domain": "MeSH"}
+{"code": "A12CE", "name": "Selenium", "domain": "ATC"}
+{"code": "A02AC", "name": "Calcium compounds", "domain": "ATC"}
+{"code": "A12A", "name": "Calcium", "domain": "ATC"}
+{"code": "A12AA", "name": "Calcium", "domain": "ATC"}
+{"code": "D057886", "name": "Bleaching Agents", "domain": "MeSH"}
+{"code": "D058427", "name": "Hygroscopic Agents", "domain": "MeSH"}
+{"code": "V03AE", "name": "Drugs for treatment of hyperkalemia and hyperphosphatemia", "domain": "ATC"}
+{"code": "D005731", "name": "Ganglionic Stimulants", "domain": "MeSH"}
+{"code": "C1742", "name": "Angiogenesis Inhibitor", "domain": "ChEBI"}
+{"code": "D020533", "name": "Angiogenesis Inhibitors", "domain": "MeSH"}
+{"code": "D006131", "name": "Growth Inhibitors", "domain": "MeSH"}
+{"code": "D043924", "name": "Angiogenesis Modulating Agents", "domain": "MeSH"}
+{"code": "D064449", "name": "Sequestering Agents", "domain": "MeSH"}
+{"code": "D002614", "name": "Chelating Agents", "domain": "MeSH"}
+{"code": "D010592", "name": "Pharmaceutic Aids", "domain": "MeSH"}
+{"code": "D014677", "name": "Pharmaceutical Vehicles", "domain": "MeSH"}
+{"code": "D014815", "name": "Vitamins", "domain": "MeSH"}
+{"code": "D002021", "name": "Buffers", "domain": "MeSH"}
+{"code": "D001639", "name": "Bicarbonates", "domain": "MeSH"}
+{"code": "A06AG", "name": "Enemas", "domain": "ATC"}
+{"code": "D003451", "name": "Cryoprotective Agents", "domain": "MeSH"}
+{"code": "C66880", "name": "Anticholinergic Agent", "domain": "ChEBI"}
+{"code": "A16AX", "name": "Various alimentary tract and metabolism products", "domain": "ATC"}
+{"code": "D019163", "name": "Reducing Agents", "domain": "MeSH"}
+{"code": "D000700", "name": "Analgesics", "domain": "MeSH"}
+{"code": "D020030", "name": "Nitric Oxide Donors", "domain": "MeSH"}
+{"code": "D000977", "name": "Antiparasitic Agents", "domain": "MeSH"}
+{"code": "D000871", "name": "Anthelmintics", "domain": "MeSH"}
+{"code": "P", "name": "Antiparasitic products, insecticides and repellents", "domain": "ATC"}
+{"code": "P02", "name": "Anthelmintics", "domain": "ATC"}
+{"code": "P02C", "name": "Antinematodal agents", "domain": "ATC"}
+{"code": "P02CB", "name": "Piperazine and derivatives", "domain": "ATC"}
+{"code": "D018678", "name": "Cholinergic Agents", "domain": "MeSH"}
+{"code": "D018680", "name": "Cholinergic Antagonists", "domain": "MeSH"}
+{"code": "D003432", "name": "Cross-Linking Reagents", "domain": "MeSH"}
+{"code": "C78284", "name": "Agent Affecting Integumentary System", "domain": "ChEBI"}
+{"code": "C265", "name": "Antidepressant Agent", "domain": "ChEBI"}
+{"code": "D018726", "name": "Anti-Dyskinesia Agents", "domain": "MeSH"}
+{"code": "N06", "name": "Psychoanaleptics", "domain": "ATC"}
+{"code": "N06B", "name": "Psychostimulants, agents used for adhd and nootropics", "domain": "ATC"}
+{"code": "D009151", "name": "Mustard Gas", "domain": "MeSH"}
+{"code": "D018906", "name": "Antineoplastic Agents, Alkylating", "domain": "MeSH"}
+{"code": "D009588", "name": "Nitrogen Mustard Compounds", "domain": "MeSH"}
+{"code": "D058205", "name": "Tooth Bleaching Agents", "domain": "MeSH"}
+{"code": "M", "name": "Musculo-skeletal system", "domain": "ATC"}
+{"code": "M02", "name": "Topical products for joint and muscular pain", "domain": "ATC"}
+{"code": "M02A", "name": "Topical products for joint and muscular pain", "domain": "ATC"}
+{"code": "B05B", "name": "I.v. solutions", "domain": "ATC"}
+{"code": "B05BC", "name": "Solutions producing osmotic diuresis", "domain": "ATC"}
+{"code": "C448", "name": "Diuretic", "domain": "ChEBI"}
+{"code": "C49187", "name": "Osmotic Diuretic", "domain": "ChEBI"}
+{"code": "D02", "name": "Emollients and protectives", "domain": "ATC"}
+{"code": "D02A", "name": "Emollients and protectives", "domain": "ATC"}
+{"code": "D02AE", "name": "Carbamide products", "domain": "ATC"}
+{"code": "D002121", "name": "Calcium Channel Blockers", "domain": "MeSH"}
+{"code": "D049990", "name": "Membrane Transport Modulators", "domain": "MeSH"}
+{"code": "D000900", "name": "Anti-Bacterial Agents", "domain": "MeSH"}
+{"code": "G01", "name": "Gynecological antiinfectives and antiseptics", "domain": "ATC"}
+{"code": "G01A", "name": "Antiinfectives and antiseptics, excl. combinations with corticosteroids", "domain": "ATC"}
+{"code": "G01AD", "name": "Organic acids", "domain": "ATC"}
+{"code": "D002629", "name": "Chemosterilants", "domain": "MeSH"}
+{"code": "D000906", "name": "Antibodies", "domain": "MeSH"}
+{"code": "D007136", "name": "Immunoglobulins", "domain": "MeSH"}
+{"code": "D007641", "name": "Keratolytic Agents", "domain": "MeSH"}
+{"code": "D006730", "name": "Hormones, Hormone Substitutes, and Hormone Antagonists", "domain": "MeSH"}
+{"code": "D006727", "name": "Hormone Antagonists", "domain": "MeSH"}
+{"code": "D011448", "name": "Prostaglandin Antagonists", "domain": "MeSH"}
+{"code": "D005411", "name": "Flame Retardants", "domain": "MeSH"}
+{"code": "V03AG", "name": "Drugs for treatment of hypercalcemia", "domain": "ATC"}
+{"code": "A02AB", "name": "Aluminium compounds", "domain": "ATC"}
+{"code": "C783", "name": "Protease Inhibitor", "domain": "ChEBI"}
+{"code": "D013439", "name": "Sulfhydryl Reagents", "domain": "MeSH"}
+{"code": "D010277", "name": "Parasympathomimetics", "domain": "MeSH"}
+{"code": "D000935", "name": "Antifungal Agents", "domain": "MeSH"}
+{"code": "D000697", "name": "Central Nervous System Stimulants", "domain": "MeSH"}
+{"code": "D003292", "name": "Convulsants", "domain": "MeSH"}
+{"code": "C272", "name": "Antimetabolite", "domain": "ChEBI"}
+{"code": "C2150", "name": "Ribonucleotide Reductase Inhibitor", "domain": "ChEBI"}
+{"code": "D019384", "name": "Nucleic Acid Synthesis Inhibitors", "domain": "MeSH"}
+{"code": "D000986", "name": "Antisickling Agents", "domain": "MeSH"}
+{"code": "D012378", "name": "Rodenticides", "domain": "MeSH"}
+{"code": "D007461", "name": "Iodoacetates", "domain": "MeSH"}
+{"code": "D018684", "name": "Glycine Agents", "domain": "MeSH"}
+{"code": "D007509", "name": "Irritants", "domain": "MeSH"}
+{"code": "L01A", "name": "Alkylating agents", "domain": "ATC"}
+{"code": "L01AA", "name": "Nitrogen mustard analogues", "domain": "ATC"}
+{"code": "C78274", "name": "Agent Affecting Cardiovascular System", "domain": "ChEBI"}
+{"code": "R01", "name": "Nasal preparations", "domain": "ATC"}
+{"code": "R01A", "name": "Decongestants and other nasal preparations for topical use", "domain": "ATC"}
+{"code": "R01AA", "name": "Sympathomimetics, plain", "domain": "ATC"}
+{"code": "R01AB", "name": "Sympathomimetics, combinations excl. corticosteroids", "domain": "ATC"}
+{"code": "D018501", "name": "Antirheumatic Agents", "domain": "MeSH"}
+{"code": "D006540", "name": "Herbicides", "domain": "MeSH"}
+{"code": "S01A", "name": "Antiinfectives", "domain": "ATC"}
+{"code": "C281", "name": "Antiviral Agent", "domain": "ChEBI"}
+{"code": "C05", "name": "Vasoprotectives", "domain": "ATC"}
+{"code": "C05B", "name": "Antivaricose therapy", "domain": "ATC"}
+{"code": "C05BB", "name": "Sclerosing agents for local injection", "domain": "ATC"}
+{"code": "D08AE", "name": "Phenol and derivatives", "domain": "ATC"}
+{"code": "D019999", "name": "Pharmaceutical Solutions", "domain": "MeSH"}
+{"code": "D012597", "name": "Sclerosing Solutions", "domain": "MeSH"}
+{"code": "R02", "name": "Throat preparations", "domain": "ATC"}
+{"code": "R02A", "name": "Throat preparations", "domain": "ATC"}
+{"code": "R02AA", "name": "Antiseptics", "domain": "ATC"}
+{"code": "D018697", "name": "Nootropic Agents", "domain": "MeSH"}
+{"code": "D057847", "name": "Lipid Regulating Agents", "domain": "MeSH"}
+{"code": "D000960", "name": "Hypolipidemic Agents", "domain": "MeSH"}
+{"code": "D008082", "name": "Lipotropic Agents", "domain": "MeSH"}
+{"code": "D026902", "name": "Potassium Channel Blockers", "domain": "MeSH"}
+{"code": "C93038", "name": "Cation Channel Blocker", "domain": "ChEBI"}
+{"code": "C147908", "name": "Hormone Therapy Agent", "domain": "ChEBI"}
+{"code": "C547", "name": "Hormone Antagonist", "domain": "ChEBI"}
+{"code": "C885", "name": "Antithyroid Agent", "domain": "ChEBI"}
+{"code": "C2087", "name": "Inosine Monophosphate Dehydrogenase Inhibitor", "domain": "ChEBI"}
+{"code": "D013501", "name": "Surface-Active Agents", "domain": "MeSH"}
+{"code": "D011092", "name": "Polyethylene Glycols", "domain": "MeSH"}
+{"code": "D007096", "name": "Imidoesters", "domain": "MeSH"}
+{"code": "D018682", "name": "GABA Agents", "domain": "MeSH"}
+{"code": "A12CC", "name": "Magnesium", "domain": "ATC"}
+{"code": "C29629", "name": "Combination Medication", "domain": "ChEBI"}
+{"code": "C29639", "name": "Topical Preparation", "domain": "ChEBI"}
+{"code": "C163758", "name": "Targeted Therapy Agent", "domain": "ChEBI"}
+{"code": "C1946", "name": "Histone Deacetylase Inhibitor", "domain": "ChEBI"}
+{"code": "B05BB", "name": "Solutions affecting the electrolyte balance", "domain": "ATC"}
+{"code": "D005079", "name": "Excipients", "domain": "MeSH"}
+{"code": "D005456", "name": "Fluorescent Dyes", "domain": "MeSH"}
+{"code": "D049408", "name": "Luminescent Agents", "domain": "MeSH"}
+{"code": "P03", "name": "Ectoparasiticides, incl. scabicides, insecticides and repellents", "domain": "ATC"}
+{"code": "P03A", "name": "Ectoparasiticides, incl. scabicides", "domain": "ATC"}
+{"code": "D014014", "name": "Tissue Adhesives", "domain": "MeSH"}
+{"code": "D005421", "name": "Flavoring Agents", "domain": "MeSH"}
+{"code": "C2199", "name": "Adjuvant Analgesic", "domain": "ChEBI"}
+{"code": "D006993", "name": "Hypnotics and Sedatives", "domain": "MeSH"}
+{"code": "N05C", "name": "Hypnotics and sedatives", "domain": "ATC"}
+{"code": "N05CC", "name": "Aldehydes and derivatives", "domain": "ATC"}
+{"code": "D010663", "name": "Phenylmercury Compounds", "domain": "MeSH"}
+{"code": "D000959", "name": "Antihypertensive Agents", "domain": "MeSH"}
+{"code": "D000988", "name": "Antispermatogenic Agents", "domain": "MeSH"}
+{"code": "D013089", "name": "Spermatocidal Agents", "domain": "MeSH"}
+{"code": "D012102", "name": "Reproductive Control Agents", "domain": "MeSH"}
+{"code": "D003270", "name": "Contraceptive Agents", "domain": "MeSH"}
+{"code": "D016588", "name": "Anticarcinogenic Agents", "domain": "MeSH"}
+{"code": "C29747", "name": "Adrenergic Agent", "domain": "ChEBI"}
+{"code": "C87053", "name": "Adrenergic Agonist", "domain": "ChEBI"}
+{"code": "A04", "name": "Antiemetics and antinauseants", "domain": "ATC"}
+{"code": "A04A", "name": "Antiemetics and antinauseants", "domain": "ATC"}
+{"code": "C263", "name": "Anticoagulant Agent", "domain": "ChEBI"}
+{"code": "D004639", "name": "Emetics", "domain": "MeSH"}
+{"code": "A12CB", "name": "Zinc", "domain": "ATC"}
+{"code": "D001252", "name": "Astringents", "domain": "MeSH"}
+{"code": "D000889", "name": "Anti-Arrhythmia Agents", "domain": "MeSH"}
+{"code": "D015149", "name": "Tocolytic Agents", "domain": "MeSH"}
+{"code": "V04C", "name": "Other diagnostic agents", "domain": "ATC"}
+{"code": "V04CC", "name": "Tests for bile duct patency", "domain": "ATC"}
+{"code": "C275", "name": "Antioxidant", "domain": "ChEBI"}
+{"code": "D002400", "name": "Cathartics", "domain": "MeSH"}
+{"code": "V08", "name": "Contrast media", "domain": "ATC"}
+{"code": "V08D", "name": "Ultrasound contrast media", "domain": "ATC"}
+{"code": "V08DA", "name": "Ultrasound contrast media", "domain": "ATC"}
+{"code": "C66886", "name": "Nicotinic Antagonist", "domain": "ChEBI"}
+{"code": "A03", "name": "Drugs for functional gastrointestinal disorders", "domain": "ATC"}
+{"code": "A03A", "name": "Drugs for functional gastrointestinal disorders", "domain": "ATC"}
+{"code": "C29707", "name": "Vasodilating Agent", "domain": "ChEBI"}
+{"code": "D007004", "name": "Hypoglycemic Agents", "domain": "MeSH"}
+{"code": "C2139", "name": "Immunostimulant", "domain": "ChEBI"}
+{"code": "D017442", "name": "Histamine Agonists", "domain": "MeSH"}
+{"code": "V04CG", "name": "Tests for gastric secretion", "domain": "ATC"}
+{"code": "C129839", "name": "Apoptotic Pathway-targeting Antineoplastic Agent", "domain": "ChEBI"}
+{"code": "C04", "name": "Peripheral vasodilators", "domain": "ATC"}
+{"code": "C04A", "name": "Peripheral vasodilators", "domain": "ATC"}
+{"code": "C04AC", "name": "Nicotinic acid and derivatives", "domain": "ATC"}
+{"code": "C10AD", "name": "Nicotinic acid and derivatives", "domain": "ATC"}
+{"code": "C307", "name": "Biological Agent", "domain": "ChEBI"}
+{"code": "C923", "name": "Vaccine", "domain": "ChEBI"}
+{"code": "C39619", "name": "DNA Vaccine", "domain": "ChEBI"}
+{"code": "C28197", "name": "Antianxiety Agent", "domain": "ChEBI"}
+{"code": "D023303", "name": "Oxazolidinones", "domain": "MeSH"}
+{"code": "D011500", "name": "Protein Synthesis Inhibitors", "domain": "MeSH"}
+{"code": "D009604", "name": "Nitrosoguanidines", "domain": "MeSH"}
+{"code": "P03B", "name": "Insecticides and repellents", "domain": "ATC"}
+{"code": "D009465", "name": "Neuromuscular Agents", "domain": "MeSH"}
+{"code": "D000897", "name": "Anti-Ulcer Agents", "domain": "MeSH"}
+{"code": "N02", "name": "Analgesics", "domain": "ATC"}
+{"code": "D010975", "name": "Platelet Aggregation Inhibitors", "domain": "MeSH"}
+{"code": "D008996", "name": "Monoamine Oxidase Inhibitors", "domain": "MeSH"}
+{"code": "N06A", "name": "Antidepressants", "domain": "ATC"}
+{"code": "N06AF", "name": "Monoamine oxidase inhibitors, non-selective", "domain": "ATC"}
+{"code": "M01", "name": "Antiinflammatory and antirheumatic products", "domain": "ATC"}
+{"code": "M01C", "name": "Specific antirheumatic agents", "domain": "ATC"}
+{"code": "M01CB", "name": "Gold preparations", "domain": "ATC"}
+{"code": "D000995", "name": "Antitubercular Agents", "domain": "MeSH"}
+{"code": "C29703", "name": "Antilipidemic Agent", "domain": "ChEBI"}
+{"code": "C98148", "name": "Bile Acid Sequestrant", "domain": "ChEBI"}
+{"code": "D001647", "name": "Bile Acids and Salts", "domain": "MeSH"}
+{"code": "D000998", "name": "Antiviral Agents", "domain": "MeSH"}
+{"code": "C78273", "name": "Agent Affecting Respiratory System", "domain": "ChEBI"}
+{"code": "C29767", "name": "Expectorant", "domain": "ChEBI"}
+{"code": "B02", "name": "Antihemorrhagics", "domain": "ATC"}
+{"code": "B02A", "name": "Antifibrinolytics", "domain": "ATC"}
+{"code": "B02AA", "name": "Amino acids", "domain": "ATC"}
+{"code": "C78311", "name": "Hemostatic Agent", "domain": "ChEBI"}
+{"code": "D003029", "name": "Coagulants", "domain": "MeSH"}
+{"code": "D006490", "name": "Hemostatics", "domain": "MeSH"}
+{"code": "D050299", "name": "Fibrin Modulating Agents", "domain": "MeSH"}
+{"code": "D000933", "name": "Antifibrinolytic Agents", "domain": "MeSH"}
+{"code": "N07C", "name": "Antivertigo preparations", "domain": "ATC"}
+{"code": "N07CA", "name": "Antivertigo preparations", "domain": "ATC"}
+{"code": "D013424", "name": "Sulfanilamides", "domain": "MeSH"}
+{"code": "D018683", "name": "Excitatory Amino Acid Agents", "domain": "MeSH"}
+{"code": "D018690", "name": "Excitatory Amino Acid Agonists", "domain": "MeSH"}
+{"code": "C47795", "name": "CNS Stimulant", "domain": "ChEBI"}
+{"code": "D014179", "name": "Neurotransmitter Uptake Inhibitors", "domain": "MeSH"}
+{"code": "D018765", "name": "Dopamine Uptake Inhibitors", "domain": "MeSH"}
+{"code": "D015259", "name": "Dopamine Agents", "domain": "MeSH"}
+{"code": "N06BA", "name": "Centrally acting sympathomimetics", "domain": "ATC"}
+{"code": "D013566", "name": "Sympathomimetics", "domain": "MeSH"}
+{"code": "D018759", "name": "Adrenergic Uptake Inhibitors", "domain": "MeSH"}
+{"code": "D018663", "name": "Adrenergic Agents", "domain": "MeSH"}
+{"code": "C255", "name": "Urinary Anti-Infective Agent", "domain": "ChEBI"}
+{"code": "J", "name": "Antiinfectives for systemic use", "domain": "ATC"}
+{"code": "J01", "name": "Antibacterials for systemic use", "domain": "ATC"}
+{"code": "C2198", "name": "Nonnarcotic Analgesic", "domain": "ChEBI"}
+{"code": "C74536", "name": "Mucolytic Agent", "domain": "ChEBI"}
+{"code": "D005100", "name": "Expectorants", "domain": "MeSH"}
+{"code": "R05CB", "name": "Mucolytics", "domain": "ATC"}
+{"code": "D018757", "name": "GABA Modulators", "domain": "MeSH"}
+{"code": "D007769", "name": "Lactams", "domain": "MeSH"}
+{"code": "D008975", "name": "Molluscacides", "domain": "MeSH"}
+{"code": "D009498", "name": "Neurotoxins", "domain": "MeSH"}
+{"code": "D002800", "name": "Cholinesterase Inhibitors", "domain": "MeSH"}
+{"code": "D010276", "name": "Parasympatholytics", "domain": "MeSH"}
+{"code": "C52588", "name": "Antibacterial Agent", "domain": "ChEBI"}
+{"code": "C280", "name": "Antitubercular Agent", "domain": "ChEBI"}
+{"code": "J04", "name": "Antimycobacterials", "domain": "ATC"}
+{"code": "J04A", "name": "Drugs for treatment of tuberculosis", "domain": "ATC"}
+{"code": "J04AB", "name": "Antibiotics", "domain": "ATC"}
+{"code": "N03", "name": "Antiepileptics", "domain": "ATC"}
+{"code": "N03A", "name": "Antiepileptics", "domain": "ATC"}
+{"code": "N03AG", "name": "Fatty acid derivatives", "domain": "ATC"}
+{"code": "D019440", "name": "Anti-Obesity Agents", "domain": "MeSH"}
+{"code": "D001067", "name": "Appetite Depressants", "domain": "MeSH"}
+{"code": "C514", "name": "Antifungal Agent", "domain": "ChEBI"}
+{"code": "D002863", "name": "Chromogenic Compounds", "domain": "MeSH"}
+{"code": "D014704", "name": "Veratrum Alkaloids", "domain": "MeSH"}
+{"code": "C47792", "name": "Acetylcholinesterase Inhibitor", "domain": "ChEBI"}
+{"code": "C2081", "name": "Hepatoprotective Agent", "domain": "ChEBI"}
+{"code": "D000345", "name": "Affinity Labels", "domain": "MeSH"}
+{"code": "D001645", "name": "Biguanides", "domain": "MeSH"}
+{"code": "D01", "name": "Antifungals for dermatological use", "domain": "ATC"}
+{"code": "D01A", "name": "Antifungals for topical use", "domain": "ATC"}
+{"code": "D018756", "name": "GABA Antagonists", "domain": "MeSH"}
+{"code": "D011480", "name": "Protease Inhibitors", "domain": "MeSH"}
+{"code": "D015842", "name": "Serine Proteinase Inhibitors", "domain": "MeSH"}
+{"code": "D000981", "name": "Antiprotozoal Agents", "domain": "MeSH"}
+{"code": "A09AA", "name": "Enzyme preparations", "domain": "ATC"}
+{"code": "P03AB", "name": "Chlorine containing products", "domain": "ATC"}
+{"code": "C1509", "name": "Neuroprotective Agent", "domain": "ChEBI"}
+{"code": "A11", "name": "Vitamins", "domain": "ATC"}
+{"code": "D010368", "name": "Pectins", "domain": "MeSH"}
+{"code": "D045283", "name": "Natriuretic Agents", "domain": "MeSH"}
+{"code": "D004232", "name": "Diuretics", "domain": "MeSH"}
+{"code": "A08", "name": "Antiobesity preparations, excl. diet products", "domain": "ATC"}
+{"code": "A08A", "name": "Antiobesity preparations, excl. diet products", "domain": "ATC"}
+{"code": "A08AA", "name": "Centrally acting antiobesity products", "domain": "ATC"}
+{"code": "D004793", "name": "Enzyme Reactivators", "domain": "MeSH"}
+{"code": "D002801", "name": "Cholinesterase Reactivators", "domain": "MeSH"}
+{"code": "B05XB", "name": "Amino acids", "domain": "ATC"}
+{"code": "D002316", "name": "Cardiotonic Agents", "domain": "MeSH"}
+{"code": "D002301", "name": "Cardiac Glycosides", "domain": "MeSH"}
+{"code": "D004071", "name": "Digitalis Glycosides", "domain": "MeSH"}
+{"code": "D007502", "name": "Iron Chelating Agents", "domain": "MeSH"}
+{"code": "D018490", "name": "Serotonin Agents", "domain": "MeSH"}
+{"code": "D009184", "name": "Mydriatics", "domain": "MeSH"}
+{"code": "C87006", "name": "Pharmacological Chaperone", "domain": "ChEBI"}
+{"code": "D014662", "name": "Vasoconstrictor Agents", "domain": "MeSH"}
+{"code": "D000322", "name": "Adrenergic Agonists", "domain": "MeSH"}
+{"code": "D014663", "name": "Nasal Decongestants", "domain": "MeSH"}
+{"code": "R01B", "name": "Nasal decongestants for systemic use", "domain": "ATC"}
+{"code": "R01BA", "name": "Sympathomimetics", "domain": "ATC"}
+{"code": "C784", "name": "Protein Synthesis Inhibitor", "domain": "ChEBI"}
+{"code": "D000269", "name": "Adhesives", "domain": "MeSH"}
+{"code": "C01", "name": "Cardiac therapy", "domain": "ATC"}
+{"code": "C01C", "name": "Cardiac stimulants excl. cardiac glycosides", "domain": "ATC"}
+{"code": "C01CA", "name": "Adrenergic and dopaminergic agents", "domain": "ATC"}
+{"code": "C29728", "name": "Anorexiant", "domain": "ChEBI"}
+{"code": "C2079", "name": "Cardioprotective Agent", "domain": "ChEBI"}
+{"code": "D006728", "name": "Hormones", "domain": "MeSH"}
+{"code": "D018691", "name": "Excitatory Amino Acid Antagonists", "domain": "MeSH"}
+{"code": "C1327", "name": "Antiplatelet Agent", "domain": "ChEBI"}
+{"code": "D003902", "name": "Detergents", "domain": "MeSH"}
+{"code": "C10AC", "name": "Bile acid sequestrants", "domain": "ATC"}
+{"code": "D007475", "name": "Ion Exchange Resins", "domain": "MeSH"}
+{"code": "D000837", "name": "Anion Exchange Resins", "domain": "MeSH"}
+{"code": "R07", "name": "Other respiratory system products", "domain": "ATC"}
+{"code": "R07A", "name": "Other respiratory system products", "domain": "ATC"}
+{"code": "R07AB", "name": "Respiratory stimulants", "domain": "ATC"}
+{"code": "D014151", "name": "Anti-Anxiety Agents", "domain": "MeSH"}
+{"code": "D012304", "name": "Riot Control Agents, Chemical", "domain": "MeSH"}
+{"code": "D013665", "name": "Tear Gases", "domain": "MeSH"}
+{"code": "H", "name": "Systemic hormonal preparations, excl. sex hormones and insulins", "domain": "ATC"}
+{"code": "H03", "name": "Thyroid therapy", "domain": "ATC"}
+{"code": "H03B", "name": "Antithyroid preparations", "domain": "ATC"}
+{"code": "H03BC", "name": "Perchlorates", "domain": "ATC"}
+{"code": "D050258", "name": "Mitosis Modulators", "domain": "MeSH"}
+{"code": "D008934", "name": "Mitogens", "domain": "MeSH"}
+{"code": "D026403", "name": "S-Nitrosothiols", "domain": "MeSH"}
+{"code": "N05B", "name": "Anxiolytics", "domain": "ATC"}
+{"code": "N05BC", "name": "Carbamates", "domain": "ATC"}
+{"code": "D05", "name": "Antipsoriatics", "domain": "ATC"}
+{"code": "D05A", "name": "Antipsoriatics for topical use", "domain": "ATC"}
+{"code": "D006213", "name": "Hallucinogens", "domain": "MeSH"}
+{"code": "D013956", "name": "Antithyroid Agents", "domain": "MeSH"}
+{"code": "H03BB", "name": "Sulfur-containing imidazole derivatives", "domain": "ATC"}
+{"code": "D015853", "name": "Cysteine Proteinase Inhibitors", "domain": "MeSH"}
+{"code": "C1589", "name": "Reverse Transcriptase Inhibitor", "domain": "ChEBI"}
+{"code": "C97453", "name": "Non-nucleoside Reverse Transcriptase Inhibitor", "domain": "ChEBI"}
+{"code": "D018894", "name": "Reverse Transcriptase Inhibitors", "domain": "MeSH"}
+{"code": "J05", "name": "Antivirals for systemic use", "domain": "ATC"}
+{"code": "J05A", "name": "Direct acting antivirals", "domain": "ATC"}
+{"code": "J05AD", "name": "Phosphonic acid derivatives", "domain": "ATC"}
+{"code": "D054872", "name": "Fatty Acid Synthesis Inhibitors", "domain": "MeSH"}
+{"code": "J04AC", "name": "Hydrazides", "domain": "ATC"}
+{"code": "D007466", "name": "Iodophors", "domain": "MeSH"}
+{"code": "D11", "name": "Other dermatological preparations", "domain": "ATC"}
+{"code": "D11A", "name": "Other dermatological preparations", "domain": "ATC"}
+{"code": "D11AC", "name": "Medicated shampoos", "domain": "ATC"}
+{"code": "D000982", "name": "Antipruritics", "domain": "MeSH"}
+{"code": "R03", "name": "Drugs for obstructive airway diseases", "domain": "ATC"}
+{"code": "R03C", "name": "Adrenergics for systemic use", "domain": "ATC"}
+{"code": "R03CA", "name": "Alpha- and beta-adrenoreceptor agonists", "domain": "ATC"}
+{"code": "S01F", "name": "Mydriatics and cycloplegics", "domain": "ATC"}
+{"code": "S01FB", "name": "Sympathomimetics excl. antiglaucoma preparations", "domain": "ATC"}
+{"code": "C1420", "name": "Photosensitizing Agent", "domain": "ChEBI"}
+{"code": "L01X", "name": "Other antineoplastic agents", "domain": "ATC"}
+{"code": "L01XD", "name": "Sensitizers used in photodynamic/radiation therapy", "domain": "ATC"}
+{"code": "S01G", "name": "Decongestants and antiallergics", "domain": "ATC"}
+{"code": "S01GA", "name": "Sympathomimetics used as decongestants", "domain": "ATC"}
+{"code": "D018846", "name": "Excitatory Amino Acids", "domain": "MeSH"}
+{"code": "N02B", "name": "Other analgesics and antipyretics", "domain": "ATC"}
+{"code": "N02BF", "name": "Gabapentinoids", "domain": "ATC"}
+{"code": "C323", "name": "Butyrophenone", "domain": "ChEBI"}
+{"code": "D018674", "name": "Adrenergic Antagonists", "domain": "MeSH"}
+{"code": "C1971", "name": "Angiogenesis Activator Inhibitor", "domain": "ChEBI"}
+{"code": "M01CC", "name": "Penicillamine and similar agents", "domain": "ATC"}
+{"code": "D000925", "name": "Anticoagulants", "domain": "MeSH"}
+{"code": "D004643", "name": "Emollients", "domain": "MeSH"}
+{"code": "D000934", "name": "Antifoaming Agents", "domain": "MeSH"}
+{"code": "A05", "name": "Bile and liver therapy", "domain": "ATC"}
+{"code": "A05A", "name": "Bile therapy", "domain": "ATC"}
+{"code": "A05AB", "name": "Preparations for biliary tract therapy", "domain": "ATC"}
+{"code": "D011310", "name": "Preservatives, Pharmaceutical", "domain": "MeSH"}
+{"code": "D010226", "name": "Parabens", "domain": "MeSH"}
+{"code": "C47796", "name": "Cholinergic Agonist", "domain": "ChEBI"}
+{"code": "C574", "name": "Immunosuppressant", "domain": "ChEBI"}
+{"code": "D000924", "name": "Anticholesteremic Agents", "domain": "MeSH"}
+{"code": "C177430", "name": "Agent Targeting Cancer Metabolism", "domain": "ChEBI"}
+{"code": "D02B", "name": "Protectives against uv-radiation", "domain": "ATC"}
+{"code": "D02BA", "name": "Protectives against uv-radiation for topical use", "domain": "ATC"}
+{"code": "C126567", "name": "Vasopressor", "domain": "ChEBI"}
+{"code": "C270", "name": "Antihypertensive Agent", "domain": "ChEBI"}
+{"code": "D005730", "name": "Ganglionic Blockers", "domain": "MeSH"}
+{"code": "C73579", "name": "Nicotinic Agonist", "domain": "ChEBI"}
+{"code": "A10", "name": "Drugs used in diabetes", "domain": "ATC"}
+{"code": "A10B", "name": "Blood glucose lowering drugs, excl. insulins", "domain": "ATC"}
+{"code": "A10BA", "name": "Biguanides", "domain": "ATC"}
+{"code": "C29711", "name": "Anti-diabetic Agent", "domain": "ChEBI"}
+{"code": "C98234", "name": "Biguanide Antidiabetic Agent", "domain": "ChEBI"}
+{"code": "D018755", "name": "GABA Agonists", "domain": "MeSH"}
+{"code": "S01B", "name": "Antiinflammatory agents", "domain": "ATC"}
+{"code": "S01BC", "name": "Antiinflammatory agents, non-steroids", "domain": "ATC"}
+{"code": "D016861", "name": "Cyclooxygenase Inhibitors", "domain": "MeSH"}
+{"code": "D018492", "name": "Dopamine Antagonists", "domain": "MeSH"}
+{"code": "D002969", "name": "Clavulanic Acids", "domain": "MeSH"}
+{"code": "D047090", "name": "beta-Lactams", "domain": "MeSH"}
+{"code": "D000067856", "name": "Poly(ADP-ribose) Polymerase Inhibitors", "domain": "ChEBI"}
+{"code": "D016085", "name": "Bronchoconstrictor Agents", "domain": "MeSH"}
+{"code": "N02BA", "name": "Salicylic acid and derivatives", "domain": "ATC"}
+{"code": "C98151", "name": "Niacin-based Antilipidemic Agent", "domain": "ChEBI"}
+{"code": "R03CB", "name": "Non-selective beta-adrenoreceptor agonists", "domain": "ATC"}
+{"code": "D008916", "name": "Miotics", "domain": "MeSH"}
+{"code": "D018679", "name": "Cholinergic Agonists", "domain": "MeSH"}
+{"code": "D000892", "name": "Anti-Infective Agents, Urinary", "domain": "MeSH"}
+{"code": "D008333", "name": "Mandelic Acids", "domain": "MeSH"}
+{"code": "B05CA", "name": "Antiinfectives", "domain": "ATC"}
+{"code": "D08AH", "name": "Quinoline derivatives", "domain": "ATC"}
+{"code": "G01AC", "name": "Quinoline derivatives", "domain": "ATC"}
+{"code": "C29696", "name": "Muscle Relaxant", "domain": "ChEBI"}
+{"code": "M03", "name": "Muscle relaxants", "domain": "ATC"}
+{"code": "M03B", "name": "Muscle relaxants, centrally acting agents", "domain": "ATC"}
+{"code": "N02BE", "name": "Anilides", "domain": "ATC"}
+{"code": "D058633", "name": "Antipyretics", "domain": "MeSH"}
+{"code": "C01B", "name": "Antiarrhythmics, class i and iii", "domain": "ATC"}
+{"code": "C01BB", "name": "Antiarrhythmics, class ib", "domain": "ATC"}
+{"code": "C47793", "name": "Antiarrhythmic Agent", "domain": "ChEBI"}
+{"code": "D026941", "name": "Sodium Channel Blockers", "domain": "MeSH"}
+{"code": "D061567", "name": "Voltage-Gated Sodium Channel Blockers", "domain": "MeSH"}
+{"code": "D000930", "name": "Antidiarrheals", "domain": "MeSH"}
+{"code": "L04", "name": "Immunosuppressants", "domain": "ATC"}
+{"code": "L04A", "name": "Immunosuppressants", "domain": "ATC"}
+{"code": "C29708", "name": "Anti-psoriatic Agent", "domain": "ChEBI"}
+{"code": "D009183", "name": "Mycotoxins", "domain": "MeSH"}
+{"code": "P03AA", "name": "Sulfur containing products", "domain": "ATC"}
+{"code": "C66883", "name": "Dopamine Antagonist", "domain": "ChEBI"}
+{"code": "D013565", "name": "Sympatholytics", "domain": "MeSH"}
+{"code": "D002729", "name": "Chloromercuribenzoates", "domain": "MeSH"}
+{"code": "D008626", "name": "Mercuribenzoates", "domain": "MeSH"}
+{"code": "C54630", "name": "Phase II Enzymes Inducer", "domain": "ChEBI"}
+{"code": "C38149", "name": "Antiparkinsonian Agent", "domain": "ChEBI"}
+{"code": "D000978", "name": "Antiparkinson Agents", "domain": "MeSH"}
+{"code": "N04", "name": "Anti-parkinson drugs", "domain": "ATC"}
+{"code": "N04B", "name": "Dopaminergic agents", "domain": "ATC"}
+{"code": "N04BB", "name": "Adamantane derivatives", "domain": "ATC"}
+{"code": "C277", "name": "Antiprotozoal Agent", "domain": "ChEBI"}
+{"code": "S01E", "name": "Antiglaucoma preparations and miotics", "domain": "ATC"}
+{"code": "S01EB", "name": "Parasympathomimetics", "domain": "ATC"}
+{"code": "N07BA", "name": "Drugs used in nicotine dependence", "domain": "ATC"}
+{"code": "D000077444", "name": "Smoking Cessation Agents", "domain": "ChEBI"}
+{"code": "J04AD", "name": "Thiocarbamide derivatives", "domain": "ATC"}
+{"code": "C29704", "name": "Antimuscarinic Agent", "domain": "ChEBI"}
+{"code": "D014475", "name": "Uncoupling Agents", "domain": "MeSH"}
+{"code": "C02", "name": "Antihypertensives", "domain": "ATC"}
+{"code": "C02D", "name": "Arteriolar smooth muscle, agents acting on", "domain": "ATC"}
+{"code": "C02DB", "name": "Hydrazinophthalazine derivatives", "domain": "ATC"}
+{"code": "D065098", "name": "Catechol O-Methyltransferase Inhibitors", "domain": "MeSH"}
+{"code": "D050071", "name": "Bone Density Conservation Agents", "domain": "MeSH"}
+{"code": "D004164", "name": "Diphosphonates", "domain": "MeSH"}
+{"code": "V06", "name": "General nutrients", "domain": "ATC"}
+{"code": "V06D", "name": "Other nutrients", "domain": "ATC"}
+{"code": "V06DC", "name": "Carbohydrates", "domain": "ATC"}
+{"code": "V04CA", "name": "Tests for diabetes", "domain": "ATC"}
+{"code": "C05A", "name": "Agents for treatment of hemorrhoids and anal fissures for topical use", "domain": "ATC"}
+{"code": "C05AD", "name": "Local anesthetics", "domain": "ATC"}
+{"code": "D04", "name": "Antipruritics, incl. antihistamines, anesthetics, etc.", "domain": "ATC"}
+{"code": "D04A", "name": "Antipruritics, incl. antihistamines, anesthetics, etc.", "domain": "ATC"}
+{"code": "D04AB", "name": "Anesthetics for topical use", "domain": "ATC"}
+{"code": "N01BA", "name": "Esters of aminobenzoic acid", "domain": "ATC"}
+{"code": "R02AD", "name": "Anesthetics, local", "domain": "ATC"}
+{"code": "D004399", "name": "Dynorphins", "domain": "MeSH"}
+{"code": "D018847", "name": "Opioid Peptides", "domain": "MeSH"}
+{"code": "D019275", "name": "Radiopharmaceuticals", "domain": "MeSH"}
+{"code": "V09B", "name": "Skeleton", "domain": "ATC"}
+{"code": "V09BA", "name": "Technetium (99mtc) compounds", "domain": "ATC"}
+{"code": "D006074", "name": "Gout Suppressants", "domain": "MeSH"}
+{"code": "D014528", "name": "Uricosuric Agents", "domain": "MeSH"}
+{"code": "V04CE", "name": "Tests for liver functional capacity", "domain": "ATC"}
+{"code": "M03BA", "name": "Carbamic acid esters", "domain": "ATC"}
+{"code": "B02B", "name": "Vitamin k and other hemostatics", "domain": "ATC"}
+{"code": "B02BC", "name": "Local hemostatics", "domain": "ATC"}
+{"code": "R03A", "name": "Adrenergics, inhalants", "domain": "ATC"}
+{"code": "R03AA", "name": "Alpha- and beta-adrenoreceptor agonists", "domain": "ATC"}
+{"code": "S01EA", "name": "Sympathomimetics in glaucoma therapy", "domain": "ATC"}
+{"code": "C921", "name": "Uricosuric Agent", "domain": "ChEBI"}
+{"code": "D005343", "name": "Fibrinolytic Agents", "domain": "MeSH"}
+{"code": "C04AA", "name": "2-amino-1-phenylethanol derivatives", "domain": "ATC"}
+{"code": "L01AD", "name": "Nitrosoureas", "domain": "ATC"}
+{"code": "C1931", "name": "Antineoplastic Plant Product", "domain": "ChEBI"}
+{"code": "D017366", "name": "Serotonin Receptor Agonists", "domain": "MeSH"}
+{"code": "D019161", "name": "Hydroxymethylglutaryl-CoA Reductase Inhibitors", "domain": "MeSH"}
+{"code": "C72900", "name": "Adrenergic Antagonist", "domain": "ChEBI"}
+{"code": "C02K", "name": "Other antihypertensives", "domain": "ATC"}
+{"code": "C02KC", "name": "Mao inhibitors", "domain": "ATC"}
+{"code": "C02C", "name": "Antiadrenergic agents, peripherally acting", "domain": "ATC"}
+{"code": "C02CC", "name": "Guanidine derivatives", "domain": "ATC"}
+{"code": "J04AA", "name": "Aminosalicylic acid and derivatives", "domain": "ATC"}
+{"code": "A07E", "name": "Intestinal antiinflammatory agents", "domain": "ATC"}
+{"code": "A07EC", "name": "Aminosalicylic acid and similar agents", "domain": "ATC"}
+{"code": "C29574", "name": "Nitric Oxide Synthase Inhibitor", "domain": "ChEBI"}
+{"code": "C66917", "name": "Antitussive Agent", "domain": "ChEBI"}
+{"code": "D007302", "name": "Insect Repellents", "domain": "MeSH"}
+{"code": "D000996", "name": "Antitussive Agents", "domain": "MeSH"}
+{"code": "C2189", "name": "Signal Transduction Inhibitor", "domain": "ChEBI"}
+{"code": "C129824", "name": "Antineoplastic Protein Inhibitor", "domain": "ChEBI"}
+{"code": "C2088", "name": "Ornithine Decarboxylase Inhibitor", "domain": "ChEBI"}
+{"code": "D065108", "name": "Ornithine Decarboxylase Inhibitors", "domain": "MeSH"}
+{"code": "P01", "name": "Antiprotozoals", "domain": "ATC"}
+{"code": "P01C", "name": "Agents against leishmaniasis and trypanosomiasis", "domain": "ATC"}
+{"code": "C258", "name": "Antibiotic", "domain": "ChEBI"}
+{"code": "A05B", "name": "Liver therapy, lipotropics", "domain": "ATC"}
+{"code": "A05BA", "name": "Liver therapy", "domain": "ATC"}
+{"code": "C04AB", "name": "Imidazoline derivatives", "domain": "ATC"}
+{"code": "D06", "name": "Antibiotics and chemotherapeutics for dermatological use", "domain": "ATC"}
+{"code": "D06B", "name": "Chemotherapeutics for topical use", "domain": "ATC"}
+{"code": "G01AF", "name": "Imidazole derivatives", "domain": "ATC"}
+{"code": "J01X", "name": "Other antibacterials", "domain": "ATC"}
+{"code": "J01XD", "name": "Imidazole derivatives", "domain": "ATC"}
+{"code": "P01A", "name": "Agents against amoebiasis and other protozoal diseases", "domain": "ATC"}
+{"code": "P01AB", "name": "Nitroimidazole derivatives", "domain": "ATC"}
+{"code": "C47794", "name": "Serotonin Agonist", "domain": "ChEBI"}
+{"code": "C2459", "name": "Chemoprotective Agent", "domain": "ChEBI"}
+{"code": "C2080", "name": "Cytoprotective Agent", "domain": "ChEBI"}
+{"code": "C2196", "name": "Antimetastatic Agent", "domain": "ChEBI"}
+{"code": "C129820", "name": "Antineoplastic Immunomodulating Agent", "domain": "ChEBI"}
+{"code": "C2117", "name": "Carbohydrate Processing Inhibitor", "domain": "ChEBI"}
+{"code": "C2119", "name": "Golgi Alpha-Mannosidase II Inhibitor", "domain": "ChEBI"}
+{"code": "D007005", "name": "Hypoglycins", "domain": "MeSH"}
+{"code": "C29712", "name": "Anti-asthmatic Agent", "domain": "ChEBI"}
+{"code": "C319", "name": "Bronchodilator", "domain": "ChEBI"}
+{"code": "R03AB", "name": "Non-selective beta-adrenoreceptor agonists", "domain": "ATC"}
+{"code": "D012702", "name": "Serotonin Antagonists", "domain": "MeSH"}
+{"code": "C2020", "name": "Farnesyl Transferase Inhibitor", "domain": "ChEBI"}
+{"code": "A10BF", "name": "Alpha glucosidase inhibitors", "domain": "ATC"}
+{"code": "C2846", "name": "Glucosidase Inhibitor", "domain": "ChEBI"}
+{"code": "D065089", "name": "Glycoside Hydrolase Inhibitors", "domain": "MeSH"}
+{"code": "D017367", "name": "Selective Serotonin Reuptake Inhibitors", "domain": "MeSH"}
+{"code": "J05AC", "name": "Cyclic amines", "domain": "ATC"}
+{"code": "C29698", "name": "Antispasmodic Agent", "domain": "ChEBI"}
+{"code": "P01CB", "name": "Antimony compounds", "domain": "ATC"}
+{"code": "D007364", "name": "Intercalating Agents", "domain": "MeSH"}
+{"code": "P02B", "name": "Antitrematodals", "domain": "ATC"}
+{"code": "P02BB", "name": "Organophosphorous compounds", "domain": "ATC"}
+{"code": "C66913", "name": "Cholagogues or Choleretic Agents", "domain": "ChEBI"}
+{"code": "C29700", "name": "Astringent", "domain": "ChEBI"}
+{"code": "D10AB", "name": "Preparations containing sulfur", "domain": "ATC"}
+{"code": "M03BB", "name": "Oxazol, thiazine, and triazine derivatives", "domain": "ATC"}
+{"code": "D014283", "name": "Triiodobenzoic Acids", "domain": "MeSH"}
+{"code": "C267", "name": "Antiemetic Agent", "domain": "ChEBI"}
+{"code": "C740", "name": "Phenothiazine", "domain": "ChEBI"}
+{"code": "D002257", "name": "Carbonic Anhydrase Inhibitors", "domain": "MeSH"}
+{"code": "D018491", "name": "Dopamine Agonists", "domain": "MeSH"}
+{"code": "N04BC", "name": "Dopamine agonists", "domain": "ATC"}
+{"code": "N03AD", "name": "Succinimide derivatives", "domain": "ATC"}
+{"code": "C66884", "name": "Dopamine Agonist", "domain": "ChEBI"}
+{"code": "C795", "name": "Quinolone Antibiotic", "domain": "ChEBI"}
+{"code": "P01AA", "name": "Hydroxyquinoline derivatives", "domain": "ATC"}
+{"code": "D044966", "name": "Anti-Retroviral Agents", "domain": "MeSH"}
+{"code": "L01B", "name": "Antimetabolites", "domain": "ATC"}
+{"code": "L01BB", "name": "Purine analogues", "domain": "ATC"}
+{"code": "A07A", "name": "Intestinal antiinfectives", "domain": "ATC"}
+{"code": "C1637", "name": "Xanthine Oxidase Inhibitor", "domain": "ChEBI"}
+{"code": "M04", "name": "Antigout preparations", "domain": "ATC"}
+{"code": "M04A", "name": "Antigout preparations", "domain": "ATC"}
+{"code": "M04AA", "name": "Preparations inhibiting uric acid production", "domain": "ATC"}
+{"code": "C1017", "name": "Glucuronidase Inhibitor", "domain": "ChEBI"}
+{"code": "R03AC", "name": "Selective beta-2-adrenoreceptor agonists", "domain": "ATC"}
+{"code": "R03CC", "name": "Selective beta-2-adrenoreceptor agonists", "domain": "ATC"}
+{"code": "D012989", "name": "Soil Pollutants", "domain": "MeSH"}
+{"code": "D009294", "name": "Narcotics", "domain": "MeSH"}
+{"code": "N02A", "name": "Opioids", "domain": "ATC"}
+{"code": "D019653", "name": "Myeloablative Agonists", "domain": "MeSH"}
+{"code": "L01AC", "name": "Ethylene imines", "domain": "ATC"}
+{"code": "N04BD", "name": "Monoamine oxidase b inhibitors", "domain": "ATC"}
+{"code": "D007210", "name": "Indoleacetic Acids", "domain": "MeSH"}
+{"code": "H03BA", "name": "Thiouracils", "domain": "ATC"}
+{"code": "N03AC", "name": "Oxazolidine derivatives", "domain": "ATC"}
+{"code": "G04BD", "name": "Drugs for urinary frequency and incontinence", "domain": "ATC"}
+{"code": "C02B", "name": "Antiadrenergic agents, ganglion-blocking", "domain": "ATC"}
+{"code": "C02BB", "name": "Secondary and tertiary amines", "domain": "ATC"}
+{"code": "C2021", "name": "Thymidylate Synthase Inhibitor", "domain": "ChEBI"}
+{"code": "L01BC", "name": "Pyrimidine analogues", "domain": "ATC"}
+{"code": "B03AB", "name": "Iron trivalent, oral preparations", "domain": "ATC"}
+{"code": "C2136", "name": "Malignancy-Associated Hypercalcemia Inhibitor", "domain": "ChEBI"}
+{"code": "D08AJ", "name": "Quaternary ammonium compounds", "domain": "ATC"}
+{"code": "C29702", "name": "Histamine-2 Receptor Antagonist", "domain": "ChEBI"}
+{"code": "D000427", "name": "Alcohol Deterrents", "domain": "MeSH"}
+{"code": "C2160", "name": "Proteasome Inhibitor", "domain": "ChEBI"}
+{"code": "D065086", "name": "Acetaldehyde Dehydrogenase Inhibitors", "domain": "MeSH"}
+{"code": "D000072664", "name": "Provitamins", "domain": "ChEBI"}
+{"code": "D000932", "name": "Antiemetics", "domain": "MeSH"}
+{"code": "M01A", "name": "Antiinflammatory and antirheumatic products, non-steroids", "domain": "ATC"}
+{"code": "M01AE", "name": "Propionic acid derivatives", "domain": "ATC"}
+{"code": "G02C", "name": "Other gynecologicals", "domain": "ATC"}
+{"code": "G02CC", "name": "Antiinflammatory products for vaginal administration", "domain": "ATC"}
+{"code": "M02AA", "name": "Antiinflammatory preparations, non-steroids for topical use", "domain": "ATC"}
+{"code": "C1323", "name": "Cyclooxygenase Inhibitor", "domain": "ChEBI"}
+{"code": "C2158", "name": "Glutamine Amidotransferase Inhibitor", "domain": "ChEBI"}
+{"code": "C01D", "name": "Vasodilators used in cardiac diseases", "domain": "ATC"}
+{"code": "C744", "name": "Phosphodiesterase Inhibitor", "domain": "ChEBI"}
+{"code": "D010726", "name": "Phosphodiesterase Inhibitors", "domain": "MeSH"}
+{"code": "D056810", "name": "Acaricides", "domain": "MeSH"}
+{"code": "D08AA", "name": "Acridine derivatives", "domain": "ATC"}
+{"code": "R05D", "name": "Cough suppressants, excl. combinations with expectorants", "domain": "ATC"}
+{"code": "D014688", "name": "Venoms", "domain": "MeSH"}
+{"code": "J02", "name": "Antimycotics for systemic use", "domain": "ATC"}
+{"code": "J02A", "name": "Antimycotics for systemic use", "domain": "ATC"}
+{"code": "D011078", "name": "Polychlorinated Biphenyls", "domain": "MeSH"}
+{"code": "D004967", "name": "Estrogens", "domain": "MeSH"}
+{"code": "N04BA", "name": "Dopa and dopa derivatives", "domain": "ATC"}
+{"code": "L01XB", "name": "Methylhydrazines", "domain": "ATC"}
+{"code": "M05", "name": "Drugs for treatment of bone diseases", "domain": "ATC"}
+{"code": "M05B", "name": "Drugs affecting bone structure and mineralization", "domain": "ATC"}
+{"code": "M05BA", "name": "Bisphosphonates", "domain": "ATC"}
+{"code": "C02KB", "name": "Tyrosine hydroxylase inhibitors", "domain": "ATC"}
+{"code": "C2155", "name": "Tyrosine Hydroxylase Inhibitor", "domain": "ChEBI"}
+{"code": "V08C", "name": "Magnetic resonance imaging contrast media", "domain": "ATC"}
+{"code": "V08CA", "name": "Paramagnetic contrast media", "domain": "ATC"}
+{"code": "D04AA", "name": "Antihistamines for topical use", "domain": "ATC"}
+{"code": "R06", "name": "Antihistamines for systemic use", "domain": "ATC"}
+{"code": "R06A", "name": "Antihistamines for systemic use", "domain": "ATC"}
+{"code": "R06AA", "name": "Aminoalkyl ethers", "domain": "ATC"}
+{"code": "C29739", "name": "Sulfonamide Anti-Infective Agent", "domain": "ChEBI"}
+{"code": "D06BA", "name": "Sulfonamides", "domain": "ATC"}
+{"code": "J01E", "name": "Sulfonamides and trimethoprim", "domain": "ATC"}
+{"code": "J01EB", "name": "Short-acting sulfonamides", "domain": "ATC"}
+{"code": "B01", "name": "Antithrombotic agents", "domain": "ATC"}
+{"code": "B01A", "name": "Antithrombotic agents", "domain": "ATC"}
+{"code": "B01AC", "name": "Platelet aggregation inhibitors excl. heparin", "domain": "ATC"}
+{"code": "D01AC", "name": "Imidazole and triazole derivatives", "domain": "ATC"}
+{"code": "P02CA", "name": "Benzimidazole derivatives", "domain": "ATC"}
+{"code": "D010752", "name": "Phosphoramide Mustards", "domain": "MeSH"}
+{"code": "D002756", "name": "Cholagogues and Choleretics", "domain": "MeSH"}
+{"code": "C287", "name": "Aspirin", "domain": "ChEBI"}
+{"code": "C185721", "name": "Norepinephrine Reuptake Inhibitor", "domain": "ChEBI"}
+{"code": "D009793", "name": "Ochratoxins", "domain": "MeSH"}
+{"code": "N07A", "name": "Parasympathomimetics", "domain": "ATC"}
+{"code": "C07", "name": "Beta blocking agents", "domain": "ATC"}
+{"code": "C07A", "name": "Beta blocking agents", "domain": "ATC"}
+{"code": "C07AB", "name": "Beta blocking agents, selective", "domain": "ATC"}
+{"code": "C01DA", "name": "Organic nitrates", "domain": "ATC"}
+{"code": "N06D", "name": "Anti-dementia drugs", "domain": "ATC"}
+{"code": "N06DA", "name": "Anticholinesterases", "domain": "ATC"}
+{"code": "C2124", "name": "Radioconjugate", "domain": "ChEBI"}
+{"code": "V09I", "name": "Tumour detection", "domain": "ATC"}
+{"code": "C05AE", "name": "Muscle relaxants", "domain": "ATC"}
+{"code": "N01BB", "name": "Amides", "domain": "ATC"}
+{"code": "C02A", "name": "Antiadrenergic agents, centrally acting", "domain": "ATC"}
+{"code": "C02AC", "name": "Imidazoline receptor agonists", "domain": "ATC"}
+{"code": "C29634", "name": "Antirheumatic Preparation", "domain": "ChEBI"}
+{"code": "C78322", "name": "Cardiotonic Agent", "domain": "ChEBI"}
+{"code": "D004140", "name": "Dinitrophenols", "domain": "MeSH"}
+{"code": "C01BA", "name": "Antiarrhythmics, class ia", "domain": "ATC"}
+{"code": "R06AB", "name": "Substituted alkylamines", "domain": "ATC"}
+{"code": "S01H", "name": "Local anesthetics", "domain": "ATC"}
+{"code": "S01HA", "name": "Local anesthetics", "domain": "ATC"}
+{"code": "N02C", "name": "Antimigraine preparations", "domain": "ATC"}
+{"code": "C273", "name": "Antimitotic Agent", "domain": "ChEBI"}
+{"code": "D000091062", "name": "Gamma Secretase Inhibitors and Modulators", "domain": "ChEBI"}
+{"code": "V04CH", "name": "Tests for renal function and ureteral injuries", "domain": "ATC"}
+{"code": "C2254", "name": "Amidophosphoribosyltransferase Inhibitor", "domain": "ChEBI"}
+{"code": "D047428", "name": "Protein Kinase Inhibitors", "domain": "MeSH"}
+{"code": "D010120", "name": "Oxytocics", "domain": "MeSH"}
+{"code": "P02D", "name": "Anticestodals", "domain": "ATC"}
+{"code": "D065093", "name": "beta-Lactamase Inhibitors", "domain": "MeSH"}
+{"code": "D065096", "name": "Calcium Chelating Agents", "domain": "MeSH"}
+{"code": "C62554", "name": "Poly (ADP-Ribose) Polymerase Inhibitor", "domain": "ChEBI"}
+{"code": "S02D", "name": "Other otologicals", "domain": "ATC"}
+{"code": "S02DA", "name": "Analgesics and anesthetics", "domain": "ATC"}
+{"code": "V03AC", "name": "Iron chelating agents", "domain": "ATC"}
+{"code": "C67413", "name": "Opioid Receptor Agonist", "domain": "ChEBI"}
+{"code": "M01AB", "name": "Acetic acid derivatives and related substances", "domain": "ATC"}
+{"code": "N05CE", "name": "Piperidinedione derivatives", "domain": "ATC"}
+{"code": "C07AA", "name": "Beta blocking agents, non-selective", "domain": "ATC"}
+{"code": "A11G", "name": "Ascorbic acid (vitamin c), incl. combinations", "domain": "ATC"}
+{"code": "A11GA", "name": "Ascorbic acid (vitamin c), plain", "domain": "ATC"}
+{"code": "D014150", "name": "Antipsychotic Agents", "domain": "MeSH"}
+{"code": "C10AB", "name": "Fibrates", "domain": "ATC"}
+{"code": "C98150", "name": "Fibrate Antilipidemic Agent", "domain": "ChEBI"}
+{"code": "D015110", "name": "4-Hydroxycoumarins", "domain": "MeSH"}
+{"code": "D054709", "name": "Lecithins", "domain": "MeSH"}
+{"code": "C94725", "name": "Selective Serotonin Reuptake Inhibitor", "domain": "ChEBI"}
+{"code": "D011722", "name": "Pyrethrins", "domain": "MeSH"}
+{"code": "R06AC", "name": "Substituted ethylene diamines", "domain": "ATC"}
+{"code": "C78283", "name": "Agent Affecting Organs of Special Senses", "domain": "ChEBI"}
+{"code": "C2153", "name": "Dihydrofolate Reductase Inhibitor", "domain": "ChEBI"}
+{"code": "D005493", "name": "Folic Acid Antagonists", "domain": "MeSH"}
+{"code": "P01B", "name": "Antimalarials", "domain": "ATC"}
+{"code": "P01BD", "name": "Diaminopyrimidines", "domain": "ATC"}
+{"code": "D009292", "name": "Narcotic Antagonists", "domain": "MeSH"}
+{"code": "N06AG", "name": "Monoamine oxidase a inhibitors", "domain": "ATC"}
+{"code": "D000806", "name": "Angiotensin-Converting Enzyme Inhibitors", "domain": "MeSH"}
+{"code": "C09", "name": "Agents acting on the renin-angiotensin system", "domain": "ATC"}
+{"code": "C09A", "name": "Ace inhibitors, plain", "domain": "ATC"}
+{"code": "C09AA", "name": "Ace inhibitors, plain", "domain": "ATC"}
+{"code": "C247", "name": "ACE Inhibitor", "domain": "ChEBI"}
+{"code": "C08", "name": "Calcium channel blockers", "domain": "ATC"}
+{"code": "C08E", "name": "Non-selective calcium channel blockers", "domain": "ATC"}
+{"code": "C333", "name": "Calcium Channel Blocker", "domain": "ChEBI"}
+{"code": "C02AB", "name": "Methyldopa", "domain": "ATC"}
+{"code": "C2141", "name": "Chemo Immunostimulant Adjuvant", "domain": "ChEBI"}
+{"code": "P02CE", "name": "Imidazothiazole derivatives", "domain": "ATC"}
+{"code": "C67084", "name": "Barbiturate", "domain": "ChEBI"}
+{"code": "N05CA", "name": "Barbiturates, plain", "domain": "ATC"}
+{"code": "D065607", "name": "Cytochrome P-450 Enzyme Inhibitors", "domain": "MeSH"}
+{"code": "D065690", "name": "Cytochrome P-450 CYP2D6 Inhibitors", "domain": "MeSH"}
+{"code": "C2355", "name": "Anti-Adrenal", "domain": "ChEBI"}
+{"code": "D009466", "name": "Neuromuscular Blocking Agents", "domain": "MeSH"}
+{"code": "P02CC", "name": "Tetrahydropyrimidine derivatives", "domain": "ATC"}
+{"code": "C29750", "name": "Thrombolytic Agent", "domain": "ChEBI"}
+{"code": "R06AE", "name": "Piperazine derivatives", "domain": "ATC"}
+{"code": "L04AA", "name": "Selective immunosuppressants", "domain": "ATC"}
+{"code": "D000081243", "name": "Sphingosine 1 Phosphate Receptor Modulators", "domain": "ChEBI"}
+{"code": "D000073943", "name": "Neonicotinoids", "domain": "ChEBI"}
+{"code": "D10AE", "name": "Peroxides", "domain": "ATC"}
+{"code": "D000072317", "name": "Polychlorinated Dibenzodioxins", "domain": "ChEBI"}
+{"code": "D003583", "name": "Cytokinins", "domain": "MeSH"}
+{"code": "D009883", "name": "Ophthalmic Solutions", "domain": "MeSH"}
+{"code": "C63817", "name": "Chemokine Receptor Antagonist", "domain": "ChEBI"}
+{"code": "D007369", "name": "Interferon Inducers", "domain": "MeSH"}
+{"code": "N06AB", "name": "Selective serotonin reuptake inhibitors", "domain": "ATC"}
+{"code": "D065686", "name": "Cytochrome P-450 CYP2B6 Inhibitors", "domain": "MeSH"}
+{"code": "D08AF", "name": "Nitrofuran derivatives", "domain": "ATC"}
+{"code": "P01CC", "name": "Nitrofuran derivatives", "domain": "ATC"}
+{"code": "D065105", "name": "Aromatic Amino Acid Decarboxylase Inhibitors", "domain": "MeSH"}
+{"code": "C190801", "name": "P2Y12 Inhibitor", "domain": "ChEBI"}
+{"code": "D065689", "name": "Cytochrome P-450 CYP2C19 Inhibitors", "domain": "MeSH"}
+{"code": "D058905", "name": "Purinergic Agents", "domain": "MeSH"}
+{"code": "D058914", "name": "Purinergic Antagonists", "domain": "MeSH"}
+{"code": "P01BA", "name": "Aminoquinolines", "domain": "ATC"}
+{"code": "C54629", "name": "Phase I Enzymes Inhibitor", "domain": "ChEBI"}
+{"code": "D052246", "name": "Cyclooxygenase 2 Inhibitors", "domain": "MeSH"}
+{"code": "N07BC", "name": "Drugs used in opioid dependence", "domain": "ATC"}
+{"code": "C2090", "name": "S-Adenosyl-Methionine Decarboxylase Inhibitor", "domain": "ChEBI"}
+{"code": "N02BB", "name": "Pyrazolones", "domain": "ATC"}
+{"code": "D000068760", "name": "Serotonin and Noradrenaline Reuptake Inhibitors", "domain": "ChEBI"}
+{"code": "D000089162", "name": "Genitourinary Agents", "domain": "ChEBI"}
+{"code": "D064804", "name": "Urological Agents", "domain": "MeSH"}
+{"code": "C94727", "name": "Tricyclic Antidepressant", "domain": "ChEBI"}
+{"code": "N06AA", "name": "Non-selective monoamine reuptake inhibitors", "domain": "ATC"}
+{"code": "C03", "name": "Diuretics", "domain": "ATC"}
+{"code": "C03B", "name": "Low-ceiling diuretics, excl. thiazides", "domain": "ATC"}
+{"code": "C03BD", "name": "Xanthine derivatives", "domain": "ATC"}
+{"code": "R03D", "name": "Other systemic drugs for obstructive airway diseases", "domain": "ATC"}
+{"code": "R03DA", "name": "Xanthines", "domain": "ATC"}
+{"code": "N05CH", "name": "Melatonin receptor agonists", "domain": "ATC"}
+{"code": "C548", "name": "Therapeutic Hormone", "domain": "ChEBI"}
+{"code": "C2134", "name": "O6-Alkylguanine-DNA Alkyltransferase Inhibitor", "domain": "ChEBI"}
+{"code": "D010968", "name": "Plasticizers", "domain": "MeSH"}
+{"code": "D01AA", "name": "Antibiotics", "domain": "ATC"}
+{"code": "D065687", "name": "Cytochrome P-450 CYP2C8 Inhibitors", "domain": "MeSH"}
+{"code": "R01AC", "name": "Antiallergic agents, excl. corticosteroids", "domain": "ATC"}
+{"code": "C483", "name": "Therapeutic Estrogen", "domain": "ChEBI"}
+{"code": "C1012", "name": "Benzodiazepine", "domain": "ChEBI"}
+{"code": "C242", "name": "Anti-Androgen", "domain": "ChEBI"}
+{"code": "C1322", "name": "Lipooxygenase Inhibitor", "domain": "ChEBI"}
+{"code": "D020024", "name": "Leukotriene Antagonists", "domain": "MeSH"}
+{"code": "V04CD", "name": "Tests for pituitary function", "domain": "ATC"}
+{"code": "D004965", "name": "Estrogen Antagonists", "domain": "MeSH"}
+{"code": "N02AB", "name": "Phenylpiperidine derivatives", "domain": "ATC"}
+{"code": "V08A", "name": "X-ray contrast media, iodinated", "domain": "ATC"}
+{"code": "V08AC", "name": "Watersoluble, hepatotropic x-ray contrast media", "domain": "ATC"}
+{"code": "D063385", "name": "Cannabinoid Receptor Modulators", "domain": "MeSH"}
+{"code": "D063386", "name": "Cannabinoid Receptor Agonists", "domain": "MeSH"}
+{"code": "N05AD", "name": "Butyrophenone derivatives", "domain": "ATC"}
+{"code": "C03D", "name": "Aldosterone antagonists and other potassium-sparing agents", "domain": "ATC"}
+{"code": "C49186", "name": "Potassium-Sparing Diuretic", "domain": "ChEBI"}
+{"code": "D062646", "name": "Acid Sensing Ion Channel Blockers", "domain": "MeSH"}
+{"code": "D062686", "name": "Epithelial Sodium Channel Blockers", "domain": "MeSH"}
+{"code": "V08AD", "name": "Non-watersoluble x-ray contrast media", "domain": "ATC"}
+{"code": "N03AA", "name": "Barbiturates and derivatives", "domain": "ATC"}
+{"code": "D003603", "name": "Cytotoxins", "domain": "MeSH"}
+{"code": "C66885", "name": "Serotonin Antagonist", "domain": "ChEBI"}
+{"code": "C25995", "name": "RNA Polymerase Inhibitor", "domain": "ChEBI"}
+{"code": "N03AF", "name": "Carboxamide derivatives", "domain": "ATC"}
+{"code": "C1404", "name": "Protein Kinase Inhibitor", "domain": "ChEBI"}
+{"code": "C1967", "name": "Tyrosine Kinase Inhibitor", "domain": "ChEBI"}
+{"code": "D011564", "name": "Furocoumarins", "domain": "MeSH"}
+{"code": "G02CA", "name": "Sympathomimetics, labour repressants", "domain": "ATC"}
+{"code": "N05AA", "name": "Phenothiazines with aliphatic side-chain", "domain": "ATC"}
+{"code": "C29577", "name": "Carbonic Anhydrase Inhibitor", "domain": "ChEBI"}
+{"code": "G03", "name": "Sex hormones and modulators of the genital system", "domain": "ATC"}
+{"code": "G03C", "name": "Estrogens", "domain": "ATC"}
+{"code": "G03CB", "name": "Synthetic estrogens, plain", "domain": "ATC"}
+{"code": "G03CC", "name": "Estrogens, combinations with other drugs", "domain": "ATC"}
+{"code": "L02", "name": "Endocrine therapy", "domain": "ATC"}
+{"code": "L02A", "name": "Hormones and related agents", "domain": "ATC"}
+{"code": "L02AA", "name": "Estrogens", "domain": "ATC"}
+{"code": "S01ED", "name": "Beta blocking agents", "domain": "ATC"}
+{"code": "D05AC", "name": "Antracen derivatives", "domain": "ATC"}
+{"code": "R03DC", "name": "Leukotriene receptor antagonists", "domain": "ATC"}
+{"code": "B02BA", "name": "Vitamin k", "domain": "ATC"}
+{"code": "G01AB", "name": "Arsenic compounds", "domain": "ATC"}
+{"code": "P01CD", "name": "Arsenic compounds", "domain": "ATC"}
+{"code": "D050256", "name": "Antimitotic Agents", "domain": "MeSH"}
+{"code": "D050257", "name": "Tubulin Modulators", "domain": "MeSH"}
+{"code": "D002338", "name": "Carotenoids", "domain": "MeSH"}
+{"code": "M01AG", "name": "Fenamates", "domain": "ATC"}
+{"code": "L01AB", "name": "Alkyl sulfonates", "domain": "ATC"}
+{"code": "N06BC", "name": "Xanthine derivatives", "domain": "ATC"}
+{"code": "D06BB", "name": "Antivirals", "domain": "ATC"}
+{"code": "C129825", "name": "Antineoplastic Enzyme Inhibitor", "domain": "ChEBI"}
+{"code": "A02B", "name": "Drugs for peptic ulcer and gastro-oesophageal reflux disease (gord)", "domain": "ATC"}
+{"code": "A02BA", "name": "H<sub>2</sub>-receptor antagonists", "domain": "ATC"}
+{"code": "D065609", "name": "Cytochrome P-450 CYP1A2 Inhibitors", "domain": "MeSH"}
+{"code": "J01EA", "name": "Trimethoprim and derivatives", "domain": "ATC"}
+{"code": "C129818", "name": "Antineoplastic Hormonal/Endocrine Agent", "domain": "ChEBI"}
+{"code": "C481", "name": "Antiestrogen", "domain": "ChEBI"}
+{"code": "C1740", "name": "Aromatase Inhibitor", "domain": "ChEBI"}
+{"code": "D001548", "name": "Benzalkonium Compounds", "domain": "MeSH"}
+{"code": "S01EC", "name": "Carbonic anhydrase inhibitors", "domain": "ATC"}
+{"code": "M01AA", "name": "Butylpyrazolidines", "domain": "ATC"}
+{"code": "R06AD", "name": "Phenothiazine derivatives", "domain": "ATC"}
+{"code": "D10AF", "name": "Antiinfectives for treatment of acne", "domain": "ATC"}
+{"code": "S01AB", "name": "Sulfonamides", "domain": "ATC"}
+{"code": "D003619", "name": "Dansyl Compounds", "domain": "MeSH"}
+{"code": "N05BA", "name": "Benzodiazepine derivatives", "domain": "ATC"}
+{"code": "A06AB", "name": "Contact laxatives", "domain": "ATC"}
+{"code": "D010635", "name": "Phenolphthaleins", "domain": "MeSH"}
+{"code": "D007917", "name": "Leprostatic Agents", "domain": "MeSH"}
+{"code": "C157388", "name": "Immunomodulatory Imide Drug", "domain": "ChEBI"}
+{"code": "D002511", "name": "Cephalosporins", "domain": "MeSH"}
+{"code": "C78568", "name": "Prostaglandin Analogue", "domain": "ChEBI"}
+{"code": "G02A", "name": "Uterotonics", "domain": "ATC"}
+{"code": "G02AD", "name": "Prostaglandins", "domain": "ATC"}
+{"code": "D002793", "name": "Cholic Acids", "domain": "MeSH"}
+{"code": "C2078", "name": "Folic Acid Derivative", "domain": "ChEBI"}

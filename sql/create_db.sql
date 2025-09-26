@@ -24,8 +24,8 @@ CREATE TABLE compound_fingerprints (
 
 
 CREATE TABLE compound_synonyms (
-    cid INTEGER REFERENCES compounds(cid),
-    synonym VARCHAR(1000),
+    cid INTEGER NOT NULL REFERENCES compounds(cid),
+    synonym VARCHAR(1000) NOT NULL,
     PRIMARY KEY (cid, synonym)
 );
 
@@ -44,15 +44,29 @@ CREATE TABLE compound_nfpa (
 );
 
 
+CREATE TABLE categories (
+    code VARCHAR(10) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    domain VARCHAR(10) NOT NULL
+);
+
+
+CREATE TABLE compound_categories (
+    cid INTEGER NOT NULL REFERENCES compounds(cid),
+    category_code VARCHAR(10) NOT NULL REFERENCES categories(code),
+    PRIMARY KEY (cid, category_code)
+);
+
+
 CREATE TABLE compound_hazard_statements (
-    cid INTEGER REFERENCES compounds(cid),
+    cid INTEGER NOT NULL REFERENCES compounds(cid),
     statement CHAR(4) NOT NULL,
     PRIMARY KEY (cid, statement)
 );
 
 
 CREATE TABLE compound_hazard_pictograms (
-    cid INTEGER REFERENCES compounds(cid),
+    cid INTEGER NOT NULL REFERENCES compounds(cid),
     pictogram CHAR(5) NOT NULL,
     PRIMARY KEY (cid, pictogram)
 );

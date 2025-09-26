@@ -57,6 +57,8 @@ class ChemsLLM:
         self.unmapped_names_blacklisted_fn = os.path.join(self.data_dir, "unmapped_names_blacklisted.txt")
         self.unbalancing_cids_fn = os.path.join(self.data_dir, "unbalancing_cids.txt")
         self.chems_fn = os.path.join(self.data_dir, "chems.jsonl")
+        self.chems_categories_fn = os.path.join(self.data_dir, "chems_categories.jsonl")
+        self.categories_fn = os.path.join(self.data_dir, "categories.jsonl")
         self.wiki_chems_fn = os.path.join(self.data_dir, "wiki_chems.jsonl")
         self.hazards_chems_fn = os.path.join(self.data_dir, "hazards_chems.jsonl")
         self.chems_edges_fn = os.path.join(self.data_dir, 'chems_edges.jsonl')
@@ -1511,13 +1513,12 @@ class ChemsLLM:
     
 
     def test(self):
-        with open(self.reactions_parsed_balanced_fn) as f:
-            reactions = [json.loads(x) for x in f.read().strip().split('\n')]
+        with open(self.chems_fn) as f:
+            chems = [json.loads(x) for x in f.read().strip().split('\n')]
         
-        res = [(x['rid'], len(x['rid'])) for x in reactions]
-        res.sort(key=lambda x: x[1], reverse=True)
-
-        print(res[:10])
+        with open('cids.txt', 'w') as f:
+            for chem in chems:
+                f.write(f"{chem['cid']}\n")
 
     
 
@@ -1592,6 +1593,25 @@ class ChemsLLM:
         "VALUES %s"
         pictograms_data = [(entry['cid'], pic) for entry in hazards for pic in entry['pictograms'] if entry['cid'] in all_cids]
         execute_values(cur, sql, pictograms_data)
+
+        with open(self.categories_fn) as f:
+            categories = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        sql = \
+        "INSERT INTO categories (code, name, domain) " \
+        "VALUES %s"
+        categories_data = [(c['code'], c['name'], c['domain']) for c in categories]
+        execute_values(cur, sql, categories_data)
+
+
+        with open(self.chems_categories_fn) as f:
+            chems_categories = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        sql = \
+        "INSERT INTO compound_categories (cid, category_code) " \
+        "VALUES %s"
+        chems_categories_data = [(entry['cid'], cat) for entry in chems_categories for cat in entry['categories']]
+        execute_values(cur, sql, chems_categories_data)
 
 
         with open(self.reactions_parsed_balanced_fn) as f:
@@ -1716,7 +1736,7 @@ if __name__ == "__main__":
     #chemsllm.fetch_chems_cids_from_pubchem('cids.txt')
     #chemsllm.merge_parsed_reactions_files("data/merged_reactions_parsed.jsonl", "data/reactions_parsed_ord.jsonl", "data/reactions_parsed.jsonl")
     #chemsllm.balance_parsed_reactions("data/merged_reactions_parsed.jsonl")
-    #chemsllm.populate_db()
+    chemsllm.populate_db()
     #chemsllm.deduplicate_chems_rebind_reactions()
     #chemsllm.fix_details()
     #chemsllm.fix_reactions()
