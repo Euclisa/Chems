@@ -13,6 +13,7 @@ import hashlib
 import psycopg2
 from psycopg2.extras import execute_values
 import base64
+import random
 
 # Disable all RDKit warnings and info messages
 RDLogger.DisableLog('rdApp.*')
@@ -51,6 +52,7 @@ class ChemsLLM:
         self.top_rare_raw_reactions_fn = os.path.join(self.data_dir, "top_rare_raw_reactions.jsonl")
         self.raw_reactions_verdict_fn = os.path.join(self.data_dir, "raw_reactions_verdict.jsonl")
         self.raw_reactions_staged_fn = os.path.join(self.data_dir, "raw_reactions_staged.jsonl")
+        self.products_wiki_raw_reactions_fn = os.path.join(self.data_dir, 'wiki_products_raw_reactions.jsonl')
         self.reactions_parsed_fn = os.path.join(self.data_dir, "reactions_parsed.jsonl")
         self.reactions_parsed_balanced_fn = os.path.join(self.data_dir, "reactions_parsed_balanced.jsonl")
         self.unmapped_names_fn = os.path.join(self.data_dir, "unmapped_names.txt")
@@ -78,10 +80,11 @@ class ChemsLLM:
         with self.print_lock:
             print(message)
     
-    def __fetch_llm_answer(self, messages, model):
+    def __fetch_llm_answer(self, messages, model, reasoning_effort="medium"):
         completion = self.client.chat.completions.create(
             model=model,
-            messages=messages
+            messages=messages,
+            reasoning_effort=reasoning_effort
             )
 
         with self.tokens_total_lock:
@@ -114,30 +117,39 @@ class ChemsLLM:
         return reactions
     
     
-    def __fetch_raw_reactions(self, chem, uncommon_mode=0):
+    def __fetch_raw_reactions(self, chem, mode="documented_rp"):
         try:
             chem_name = chem['cmpdname']
             
-            if uncommon_mode == 0:
+            if mode == "documented_rp":
                 instruct = \
                 f"Please, provide a comprehensive list of documented chemical reactions involving {chem_name}, where it appears as either a reactant or a product. " \
                 "Write the reactions as schemes using only '->' and '+' symbols. Use the full chemical names of substances instead of formulas or generic terms. " \
                 "Do not include balancing coefficients, comments, or any markup - only the reaction schemes themselves. " \
                 "If no such substance exists or no documented reactions are available, return 'None'."
-            elif uncommon_mode == 1:
+            elif mode == "documented_less_common_rp":
                 instruct = \
                 f"Please provide a comprehensive and diverse list of documented chemical reactions involving {chem_name}, where it appears as either a reactant or a product. " \
                 "Include not only the most common reactions, but also less common or more unusual or exotic ones, as long as you are absolutely sure they are real and correct. " \
                 "Write the reactions as schemes using only '->' and '+' symbols. Use the full chemical names of substances instead of formulas or generic terms. " \
                 "Do not include balancing coefficients, comments, or any markup – only the reaction schemes themselves. " \
                 "If no such substance exists or no documented reactions are available, return 'None'."
-            elif uncommon_mode == 2:
+            elif mode == "documented_less_common_p":
+                instruct = \
+                f"Please provide a comprehensive and diverse list of documented chemical reactions involving {chem_name}, where it appears as a product. " \
+                "Include not only the most common reactions, but also less common or more unusual or exotic ones, as long as you are absolutely sure they are real and correct. " \
+                "Write the reactions as schemes using only '->' and '+' symbols. Use the full chemical names of substances instead of formulas or generic terms. " \
+                "Do not include balancing coefficients, comments, or any markup – only the reaction schemes themselves. " \
+                "If no such substance exists or no documented reactions are available, return 'None'."
+            elif mode == "rare_rp":
                 instruct = \
                 f"Please provide a comprehensive and diverse list of chemical reactions involving {chem_name}, where it appears as either a reactant or a product. " \
                 "Include only the uncommon, rare and exotic reactions, but you must be absolutely sure they are real and correct. " \
                 "Write the reactions as schemes using only '->' and '+' symbols. Use the full chemical names of substances instead of formulas or generic terms. " \
                 "Do not include balancing coefficients, comments, or any markup – only the reaction schemes themselves. " \
                 "If no such substance exists or no documented reactions are available, return 'None'."
+            else:
+                raise Exception(f"Invalid raw reactions generation mode: {mode}")
 
             instruct_revalidate = \
             "Please, review the provided reactions. Identify any erroneous reactions and correct them where possible. Return revised reactions list that comply with the initial requirements."
@@ -217,7 +229,7 @@ class ChemsLLM:
             for chem in chems:
                 cid = chem['cid']
                 if cid not in processed and cid in wiki_chems_cids:
-                    futures.append(executor.submit(self.__fetch_raw_reactions, chem, 1))
+                    futures.append(executor.submit(self.__fetch_raw_reactions, chem, "documented_less_common_rp"))
             
             for future in as_completed(futures):
                 res = future.result()
@@ -249,7 +261,30 @@ class ChemsLLM:
             for chem in chems:
                 cid = chem['cid']
                 if cid not in processed and cid in hazards_chems and is_top_chem(hazards_chems[cid]):
-                    futures.append(executor.submit(self.__fetch_raw_reactions, chem, 2))
+                    futures.append(executor.submit(self.__fetch_raw_reactions, chem, "rare_rp"))
+            
+            for future in as_completed(futures):
+                res = future.result()
+                if res is None:
+                    continue
+                f_out.write(json.dumps(res) + '\n')
+                f_out.flush()
+    
+
+    def get_uncommon_raw_reactions_for_wiki_chems_products_only(self, max_workers=1):
+        with open(self.chems_fn) as f:
+            chems = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        processed = self.__get_processed_entries(self.products_wiki_raw_reactions_fn, 'cid')
+
+        staged_chems = [chem for chem in chems if 'wiki' in chem and chem['cid'] not in processed]
+        random.shuffle(staged_chems)
+        print(f"Staged {len(staged_chems)} compounds")
+
+        with ThreadPoolExecutor(max_workers=max_workers) as executor, open(self.products_wiki_raw_reactions_fn, 'a') as f_out:
+            futures = []
+            for chem in staged_chems:
+                futures.append(executor.submit(self.__fetch_raw_reactions, chem, "documented_less_common_p"))
             
             for future in as_completed(futures):
                 res = future.result()
@@ -276,6 +311,7 @@ class ChemsLLM:
             instruct_validate = \
             "You will be given a list of unbalanced chemical reaction schemes. " \
             "For each scheme, determine if the reaction is chemically possible and whether the listed reactants and products are correct. " \
+            "Assume that necessary reaction conditions, solvents, or catalysts are implied even if not explicitly shown. " \
             "If the reaction is valid, output only 'Valid'. If it is not valid, output only 'Invalid'. " \
             "Print one result per line and do not include any additional text."
 
@@ -293,7 +329,7 @@ class ChemsLLM:
             mistakes_cnt = 0
             valid_ratio = [0.0 for i in range(len(reactions))]
             while valid_i < valid_cnt:
-                response = self.__fetch_llm_answer(messages, models_to_try[model_i])
+                response = self.__fetch_llm_answer(messages, models_to_try[model_i], reasoning_effort="low")
                 verdicts = self.__get_verdicts_bool_from_response(response)
                 if len(verdicts) != len(reactions):
                     self.log(f"Mistake: {len(verdicts)} != {len(reactions)}: '{response}'")
@@ -519,7 +555,7 @@ class ChemsLLM:
             cid = name_cid_map.get(norm_name)
             if cid is None:
                 parse_success = False
-                unmapped_names.add(norm_name)
+                unmapped_names.add(clean_name)
 
             if cid not in reagents_cids or cid is None:
                 reagents_clean.append({'norm_name': norm_name, 'original_name': clean_name, 'cid': cid})
@@ -535,9 +571,9 @@ class ChemsLLM:
             cid = name_cid_map.get(norm_name)
             if cid is None:
                 parse_success = False
-                unmapped_names.add(norm_name)
+                unmapped_names.add(clean_name)
     
-            if cid not in products_cids or cid is None:
+            if (cid not in products_cids or cid is None) and (cid not in reagents_cids or cid is None):
                 products_clean.append({'norm_name': norm_name, 'original_name': clean_name, 'cid': cid})
                 products_cids.add(cid)
         
@@ -616,11 +652,12 @@ class ChemsLLM:
         blacklist = set()
         if os.path.exists(self.unmapped_names_blacklisted_fn):
             with open(self.unmapped_names_blacklisted_fn) as f:
-                blacklist = set(f.read().strip().split('\n'))
+                blacklist = set(map(lambda x: self.__normalize_chem_name(x), f.read().strip().split('\n')))
         
         with open(self.chems_fn, 'a') as f_out, open(self.unmapped_names_blacklisted_fn, 'a') as f_out_black:
             for chem_name in unmapped_names:
-                if chem_name in blacklist:
+                chem_name_norm = self.__normalize_chem_name(chem_name)
+                if chem_name_norm in blacklist:
                     continue
                 fetched_chems = pcp.get_compounds(chem_name, 'name')
                 if not fetched_chems:
@@ -646,6 +683,10 @@ class ChemsLLM:
                     all_names = chem.synonyms + [chem.iupac_name]
                     all_names = [self.__normalize_chem_name(x,is_clean=True) for x in all_names]
                     if any([x in blacklist for x in all_names]):
+                        continue
+                    if not any([x == chem_name_norm for x in all_names]):
+                        f_out_black.write(chem_name + '\n')
+                        f_out_black.flush()
                         continue
 
                     f_out.write(json.dumps(chem_pc_data) + '\n')
@@ -1736,11 +1777,12 @@ if __name__ == "__main__":
     #chemsllm.fetch_chems_cids_from_pubchem('cids.txt')
     #chemsllm.merge_parsed_reactions_files("data/merged_reactions_parsed.jsonl", "data/reactions_parsed_ord.jsonl", "data/reactions_parsed.jsonl")
     #chemsllm.balance_parsed_reactions("data/merged_reactions_parsed.jsonl")
-    chemsllm.populate_db()
+    #chemsllm.populate_db()
     #chemsllm.deduplicate_chems_rebind_reactions()
     #chemsllm.fix_details()
     #chemsllm.fix_reactions()
     #chemsllm.test()
+    chemsllm.get_uncommon_raw_reactions_for_wiki_chems_products_only(max_workers=20)
 
     
 
