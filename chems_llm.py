@@ -68,6 +68,8 @@ class ChemsLLM:
         self.unmapped_smiles_blacklisted_fn = os.path.join(self.data_dir, 'unmapped_smiles_blacklisted.txt')
         self.reactions_parsed_ord_fn = os.path.join(self.data_dir, 'reactions_parsed_ord.jsonl')
         self.reactions_parsed_details_ord_fn = os.path.join(self.data_dir, 'reactions_parsed_details_ord.jsonl')
+
+        self.unmapped_names_delimiter = "||"
         
         self.sources_priority = {
             "ord": 10,
@@ -460,12 +462,19 @@ class ChemsLLM:
             chem_name = chem_name.replace('vapor', '')
             chem_name = chem_name.replace('dust', '')
             chem_name = chem_name.replace('solution', '')
+            chem_name = chem_name.replace('concentrated', '')
+            chem_name = chem_name.replace('dilute', '')
+            chem_name = chem_name.replace('solid', '')
             chem_name = chem_name.replace('elemental', '')
             chem_name = chem_name.replace('metal', '')
-            chem_name = chem_name.replace('aqueus', '')
+            chem_name = chem_name.replace('aqueous', '')
+            chem_name = chem_name.replace('gas', '')
             chem_name = chem_name.replace('uv light', 'light')
             chem_name = chem_name.replace('blue light', 'light')
             chem_name = chem_name.replace('ultraviolet light', 'light')
+            
+            if "catalyst" in chem_name:
+                chem_name = "catalyst"
 
         chem_name = re.sub(r'\s+', '', chem_name)
 
@@ -549,7 +558,7 @@ class ChemsLLM:
         reagents_cids = set()
         for chem_name in reagents.split('+'):
             norm_name = self.__normalize_chem_name(chem_name)
-            if norm_name == "light" or norm_name == "heat":
+            if norm_name in {"light", "heat", "catalyst"}:
                 continue
             clean_name = self.__clean_chem_name(chem_name)
             cid = name_cid_map.get(norm_name)
@@ -567,6 +576,8 @@ class ChemsLLM:
         products_cids = set()
         for chem_name in products.split('+'):
             norm_name = self.__normalize_chem_name(chem_name)
+            if norm_name in {"otherproducts"}:
+                continue
             clean_name = self.__clean_chem_name(chem_name)
             cid = name_cid_map.get(norm_name)
             if cid is None:
@@ -579,7 +590,7 @@ class ChemsLLM:
         
         products_clean = list({d["cid"]: d for d in products_clean}.values())
 
-        if products_cids & reagents_cids:
+        if products_cids & reagents_cids or not products_clean:
             parse_success = False
         
         if not parse_success:
@@ -601,7 +612,7 @@ class ChemsLLM:
         name_cid_map = self.__extract_name_cid_map()
         self.log(f"Name-CID map size: {len(name_cid_map)}")
 
-        unmapped_names = set()
+        unmapped_names = dict()
 
         parsed = []
         processed_reactions_ids = set()
@@ -619,7 +630,11 @@ class ChemsLLM:
                 if parse_res is None:
                     continue
                 parse_success, parsed_reaction, unmapped_names_curr = parse_res
-                unmapped_names.update(unmapped_names_curr)
+                for name in unmapped_names_curr:
+                    norm_name = self.__normalize_chem_name(name)
+                    if norm_name not in unmapped_names:
+                        unmapped_names[norm_name] = [0, name]
+                    unmapped_names[norm_name][0] += 1
                 if not parse_success:
                     continue
                 
@@ -638,9 +653,11 @@ class ChemsLLM:
             for react in parsed:
                 f.write(json.dumps(react) + '\n')
         
+        unmapped_names_list = list(unmapped_names.keys())
+        unmapped_names_list.sort(key=lambda x: unmapped_names[x][0], reverse=True)
         with open(self.unmapped_names_fn, 'w') as f:
-            for chem_name in unmapped_names:
-                f.write(chem_name + '\n')
+            for chem_name in unmapped_names_list:
+                f.write(f"{chem_name}{self.unmapped_names_delimiter}{unmapped_names[chem_name][1]}{self.unmapped_names_delimiter}{unmapped_names[chem_name][0]}\n")
         
         self.log(f"Successfully parsed {len(parsed)} reactions; unmapped names size: {len(unmapped_names)}")
 
@@ -655,8 +672,8 @@ class ChemsLLM:
                 blacklist = set(map(lambda x: self.__normalize_chem_name(x), f.read().strip().split('\n')))
         
         with open(self.chems_fn, 'a') as f_out, open(self.unmapped_names_blacklisted_fn, 'a') as f_out_black:
-            for chem_name in unmapped_names:
-                chem_name_norm = self.__normalize_chem_name(chem_name)
+            for entry in unmapped_names:
+                chem_name_norm, chem_name, cnt = entry.split(self.unmapped_names_delimiter)
                 if chem_name_norm in blacklist:
                     continue
                 fetched_chems = pcp.get_compounds(chem_name, 'name')
@@ -679,12 +696,17 @@ class ChemsLLM:
                     'complexity': chem.complexity
                 }
                 if chem:
-                    # Workaround to prevent fetching gibberish
-                    all_names = chem.synonyms + [chem.iupac_name]
-                    all_names = [self.__normalize_chem_name(x,is_clean=True) for x in all_names]
-                    if any([x in blacklist for x in all_names]):
-                        continue
-                    if not any([x == chem_name_norm for x in all_names]):
+                    try:
+                        # Workaround to prevent fetching gibberish
+                        all_names = chem.synonyms + [chem.iupac_name]
+                        all_names = [self.__normalize_chem_name(x,is_clean=True) for x in all_names]
+                        if any([x in blacklist for x in all_names]):
+                            continue
+                        if not any([x == chem_name_norm for x in all_names]):
+                            f_out_black.write(chem_name + '\n')
+                            f_out_black.flush()
+                            continue
+                    except Exception as e:
                         f_out_black.write(chem_name + '\n')
                         f_out_black.flush()
                         continue
@@ -692,7 +714,33 @@ class ChemsLLM:
                     f_out.write(json.dumps(chem_pc_data) + '\n')
                     f_out.flush()
                     self.log(f"Fetched '{chem_pc_data['cmpdname']}' for unmapped name '{chem_name}'")
+        
+    
+    def fetch_chems_cids_from_pubchem(self, *args):
+        with open(self.chems_fn, 'a') as f_out:
+            for cid in args:
+                fetched_chems = pcp.get_compounds(cid, 'cid')
+                if not fetched_chems:
+                    self.log(f"Failed to fetch pubchem data for cid '{cid}'")
+                    continue
                 
+                chem = fetched_chems[0]
+                chem_pc_data = {
+                    'cid': chem.cid,
+                    'cmpdname': chem.iupac_name,
+                    'cmpdsynonym': chem.synonyms,
+                    'mf': chem.molecular_formula,
+                    'mw': chem.molecular_weight,
+                    'charge': chem.charge,
+                    'smiles': chem.smiles,
+                    'inchi': chem.inchi,
+                    'inchikey': chem.inchikey,
+                    'complexity': chem.complexity
+                }
+
+                f_out.write(json.dumps(chem_pc_data) + '\n')
+                f_out.flush()
+                self.log(f"Fetched '{chem_pc_data['cmpdname']}' for cid '{cid}'")
 
 
 
@@ -1275,7 +1323,7 @@ class ChemsLLM:
                 self.log(f"Fetched '{chem_pc_data['cmpdname']}' for unmapped smiles '{chem_smiles}'")
     
 
-    def fetch_chems_cids_from_pubchem(self, cids_fn):
+    def fetch_chems_cids_from_pubchem_f(self, cids_fn):
         with open(cids_fn) as f:
             cids = [int(x) for x in f.read().strip().split('\n')]
         
@@ -1755,7 +1803,7 @@ if __name__ == "__main__":
     #chemsllm.validate_raw_reactions(max_workers=20)
     #chemsllm.fix_broken_raw_reactions(max_workers=1)
     #print(chemsllm.find_all_unicode_chars_in_raw_reactions())
-    #chemsllm.map_raw_reactions_chems_to_cids()
+    chemsllm.map_raw_reactions_chems_to_cids()
     #chemsllm.fetch_unmapped_names_from_pubchem()
     #chemsllm.organize_chems_file()
     #chemsllm.balance_parsed_reactions()
@@ -1782,7 +1830,7 @@ if __name__ == "__main__":
     #chemsllm.fix_details()
     #chemsllm.fix_reactions()
     #chemsllm.test()
-    chemsllm.get_uncommon_raw_reactions_for_wiki_chems_products_only(max_workers=20)
+    #chemsllm.get_uncommon_raw_reactions_for_wiki_chems_products_only(max_workers=20)
 
     
 
