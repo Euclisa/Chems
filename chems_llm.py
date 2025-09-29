@@ -1932,8 +1932,9 @@ class ChemsLLM:
         cnt = 0
         for chem in chems:
             cas_numbers = list(map(lambda x: x.strip(), (filter(lambda x: re.fullmatch(r'\d{2,7}-\d\d-\d', x), chem['cmpdsynonym']))))
-            if len(cas_numbers) == 1:
-                chem['cas'] = cas_numbers[0]
+            cas_numbers = list(set(cas_numbers))
+            chem['cas'] = cas_numbers
+            if len(cas_numbers) != 0:
                 cnt += 1
         
         with open(self.chems_fn, 'w') as f:
@@ -1999,7 +2000,7 @@ class ChemsLLM:
         sql = \
         "INSERT INTO compound_cas (cid, cas) " \
         "VALUES %s"
-        data = [(chem['cid'], chem['cas']) for chem in chems if 'cas' in chem]
+        data = [(chem['cid'], cas) for chem in chems for cas in chem['cas'] if 'cas' in chem]
         execute_values(cur, sql, data)
 
 

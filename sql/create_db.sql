@@ -17,8 +17,9 @@ CREATE TABLE compounds (
 
 
 CREATE TABLE compound_cas (
-    cid INTEGER PRIMARY KEY REFERENCES compounds(cid),
-    cas VARCHAR(15) NOT NULL
+    cid INTEGER NOT NULL REFERENCES compounds(cid),
+    cas VARCHAR(15) NOT NULL,
+    PRIMARY KEY (cid, cas)
 );
 
 
