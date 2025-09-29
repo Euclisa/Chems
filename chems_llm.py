@@ -15,6 +15,8 @@ from psycopg2.extras import execute_values
 import base64
 import random
 from time import sleep
+import requests
+from bs4 import BeautifulSoup
 
 # Disable all RDKit warnings and info messages
 RDLogger.DisableLog('rdApp.*')
@@ -1921,6 +1923,27 @@ class ChemsLLM:
         print(f"Fixed {cnt} cids in '{in_file}'")
     
 
+    def extract_chems_cas_numbers(self):
+        shutil.copy(self.chems_fn, f"{self.chems_fn}.backup")
+
+        with open(self.chems_fn) as f:
+            chems = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        cnt = 0
+        for chem in chems:
+            cas_numbers = list(map(lambda x: x.strip(), (filter(lambda x: re.fullmatch(r'\d{2,7}-\d\d-\d', x), chem['cmpdsynonym']))))
+            if len(cas_numbers) == 1:
+                chem['cas'] = cas_numbers[0]
+                cnt += 1
+        
+        with open(self.chems_fn, 'w') as f:
+            for chem in chems:
+                f.write(json.dumps(chem) + '\n')
+        
+        print(f"Extracted CAS numbers for {cnt} chems")
+            
+    
+
     def test(self):
         with open(self.chems_fn) as f:
             chems = [json.loads(x) for x in f.read().strip().split('\n')]
@@ -1962,15 +1985,21 @@ class ChemsLLM:
         "INSERT INTO compound_synonyms (cid, synonym) " \
         "VALUES %s " \
         "ON CONFLICT (cid, synonym) DO NOTHING"
-        data = [(chem['cid'], syn) for chem in chems for syn in chem['cmpdsynonym']]
+        data = [(chem['cid'], syn) for chem in chems for syn in chem['cmpdsynonym'] if syn]
         execute_values(cur, sql, data)
 
 
         sql = \
         "INSERT INTO compound_fingerprints (cid, ECFP4_fp, popcount) " \
-        "VALUES %s " \
-        "ON CONFLICT (cid) DO NOTHING"
+        "VALUES %s "
         data = [(chem['cid'], chem['ECFP4_fp']['bits'], chem['ECFP4_fp']['popcount']) for chem in chems]
+        execute_values(cur, sql, data)
+
+
+        sql = \
+        "INSERT INTO compound_cas (cid, cas) " \
+        "VALUES %s"
+        data = [(chem['cid'], chem['cas']) for chem in chems if 'cas' in chem]
         execute_values(cur, sql, data)
 
 
@@ -2085,6 +2114,7 @@ class ChemsLLM:
         chemsllm.compute_chems_fingerprints()
         chemsllm.generate_organic_marks_for_chems()
         chemsllm.merge_wiki_chems()
+        chemsllm.extract_chems_cas_numbers()
         chemsllm.organize_chems_file()
     
         chemsllm.fix_reactions()
@@ -2169,7 +2199,7 @@ if __name__ == "__main__":
     #chemsllm.fetch_chems_cids_from_pubchem('cids.txt')
     #chemsllm.merge_parsed_reactions_files("data/merged_reactions_parsed.jsonl", "data/reactions_parsed_ord.jsonl", "data/reactions_parsed.jsonl")
     #chemsllm.balance_parsed_reactions("data/merged_reactions_parsed.jsonl")
-    #chemsllm.populate_db()
+    chemsllm.populate_db()
     #chemsllm.deduplicate_chems_rebind_reactions()
     #chemsllm.fix_details()
     #chemsllm.fix_reactions()
@@ -2179,7 +2209,8 @@ if __name__ == "__main__":
     #chemsllm.get_reactions_descriptions(max_workers=20)
     #chemsllm.validate_raw_reactions(raw_reactions_fn="data/wiki_products_raw_reactions.jsonl", max_workers=20)
     #chemsllm.merge_parsed_reactions_files("reactions_descriptions.jsonl", "data/reactions_parsed_details_ord.jsonl", "reactions_descriptions.jsonl")
-    chemsllm.clean_data_populate_tables(rehash_required=True)
+    #chemsllm.clean_data_populate_tables(rehash_required=True)
+    #chemsllm.extract_chems_cas_numbers()
 
     
 

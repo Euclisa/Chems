@@ -16,6 +16,12 @@ CREATE TABLE compounds (
 );
 
 
+CREATE TABLE compound_cas (
+    cid INTEGER PRIMARY KEY REFERENCES compounds(cid),
+    cas VARCHAR(15) NOT NULL
+);
+
+
 CREATE TABLE compound_fingerprints (
     cid INTEGER PRIMARY KEY REFERENCES compounds(cid),
     ECFP4_fp INTEGER[64] NOT NULL,
