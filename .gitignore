@@ -4,3 +4,5 @@ pubchem.json
 cleaned_ord.jsonl
 ord/
 ord-data/
+cid_map.txt
+rid_map.txt

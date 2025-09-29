@@ -72,6 +72,12 @@ CREATE TABLE compound_hazard_pictograms (
 );
 
 
+CREATE TABLE compound_descriptions (
+    cid INTEGER NOT NULL REFERENCES compounds(cid),
+    description TEXT NOT NULL
+);
+
+
 CREATE TABLE reactions (
     rid CHAR(24) PRIMARY KEY,
     complexity REAL NOT NULL,
@@ -113,5 +119,7 @@ CREATE TABLE reaction_details (
     rid CHAR(24) PRIMARY KEY REFERENCES reactions(rid),
     doi VARCHAR(100),
     patent VARCHAR(100),
-    description TEXT
+    description TEXT,
+    source VARCHAR(100) NOT NULL,
+    confidence REAL
 );
