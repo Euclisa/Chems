@@ -12,24 +12,31 @@
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
 <script src="https://d3js.org/d3.v7.min.js"></script>
 
-<title>App with Vertical Toggle Stripe & Side Panel</title>
+<title>Chemical Reactions Graph Explorer</title>
 <style>
     :root{
-        --page-bg: #d0d0d0;
-        --canvas-bg: #fafafa;
-        --frame: #cfcfcf;
-        --main-bg: #ffffff;
-        --panel-bg: #f7f7fb;
-        --stripe-width: 1.25rem;               /* toggle stripe width */
+        --page-bg: #e8f4f8;
+        --canvas-bg: #fef9f3;
+        --frame: #d4e4f0;
+        --main-bg: #fffef9;
+        --panel-bg: #f7f4ff;
+        --stripe-width: 1.25rem;
         --stripe-half: calc(var(--stripe-width) / 2);
         --transition: 300ms cubic-bezier(.2,.9,.3,1);
+        --primary: #b8a8d9;
+        --primary-hover: #9d89c7;
+        --secondary: #a8d4e6;
+        --accent: #f5c6cb;
+        --text-primary: #4a4a6a;
+        --text-secondary: #6b7280;
+        --border: #e5d9f2;
     }
 
     html,body{
         height:100%;
         margin:0;
-        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-        background: var(--page-bg);
+        font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background: linear-gradient(135deg, var(--page-bg) 0%, #fef0f5 100%);
         display:flex;
         align-items:center;
         justify-content:center;
@@ -41,15 +48,14 @@
     .app-wrap{
         width: 95vw;
         height: 90vh;
-        background: linear-gradient(180deg, var(--canvas-bg), #ffffff);
-        border: 0.0625rem solid var(--frame);
-        border-radius: 0.5rem;
-        box-shadow: 0 0.375rem 1.25rem rgba(0,0,0,0.08);
+        background: linear-gradient(135deg, var(--canvas-bg) 0%, #fff 100%);
+        border: 1px solid var(--frame);
+        border-radius: 1rem;
+        box-shadow: 0 20px 60px rgba(140, 130, 190, 0.15);
         position: relative;
         overflow: hidden;
     }
 
-    /* Main window fills container */
     .main-window{
         position: absolute;
         inset: 0;
@@ -57,13 +63,30 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #333;
+        color: var(--text-primary);
         font-size: 1.125rem;
         z-index: 1;
-        padding: 1.5rem;
+        padding: 2rem;
     }
 
-    /* Side panel overlays the main window, width = 25% of app */
+    .main-window-content {
+        text-align: center;
+        max-width: 500px;
+    }
+
+    .main-window-content strong {
+        font-size: 1.5rem;
+        color: var(--primary);
+        display: block;
+        margin-bottom: 0.75rem;
+    }
+
+    .main-window-content p {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
     .side-panel{
         position: absolute;
         top: 0;
@@ -71,19 +94,19 @@
         height: 100%;
         width: 25%;
         background: var(--panel-bg);
-        box-shadow: 0 0.375rem 1.125rem rgba(0,0,0,0.06);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(140, 130, 190, 0.2);
         z-index: 3;
-        transform: translateX(-100%); /* hidden to the left initially */
+        transform: translateX(-100%);
         transition: transform var(--transition);
         display: flex;
         flex-direction: column;
     }
 
-    /* Toggle stripe: vertical, full height of app container */
     .toggle-stripe{
         position: absolute;
         top: 0;
-        left: 0; /* closed position */
+        left: 0;
         height: 100%;
         width: var(--stripe-width);
         display:flex;
@@ -91,22 +114,26 @@
         justify-content:center;
         cursor: pointer;
         user-select: none;
-        z-index: 4; /* above everything so it's always visible */
-        background: linear-gradient(180deg, rgb(250, 250, 250), rgba(0,0,0,0));
-        border-radius: 0 0.375rem 0.375rem 0;
-        box-shadow: 0 0.125rem 0.375rem rgba(0,0,0,0.04);
+        z-index: 4;
+        background: linear-gradient(180deg, rgba(184, 168, 217, 0.4), rgba(168, 212, 230, 0.3));
+        backdrop-filter: blur(8px);
+        border-radius: 0 0.5rem 0.5rem 0;
+        box-shadow: 0 4px 12px rgba(140, 130, 190, 0.15);
         transition: left var(--transition), background var(--transition);
         border: none;
         outline: none;
     }
 
-    /* Arrow svg inside the vertical stripe — centered */
+    .toggle-stripe:hover {
+        background: linear-gradient(180deg, rgba(184, 168, 217, 0.6), rgba(168, 212, 230, 0.5));
+    }
+
     .toggle-stripe svg{
         width: 0.875rem;
         height: 0.875rem;
         display:block;
-        stroke: #333;
-        stroke-width: 2.2;
+        stroke: var(--text-primary);
+        stroke-width: 2.5;
         stroke-linecap: round;
         stroke-linejoin: round;
         fill: none;
@@ -114,111 +141,167 @@
         transform-origin: center;
     }
 
-    /* Open state: slide panel in */
     .app-wrap.open .side-panel{
         transform: translateX(0);
     }
 
-    /* Move stripe to the edge of the opened panel (no rotation) */
     .app-wrap.open .toggle-stripe{
         left: calc(25%);
     }
 
-    /* Only the arrow flips direction */
     .app-wrap.open .toggle-stripe svg{
         transform: rotate(180deg);
     }
 
     .panel-content{
         font-size: 1rem;
-        color: #222;
-        padding: 1rem;
+        color: var(--text-primary);
+        padding: 1.5rem;
         text-align: left;
         height: 100%;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
-        min-height: 0; /* allows flex children to shrink */
+        min-height: 0;
     }
 
-  /* Search bar */
+    .panel-content h3 {
+        color: var(--primary);
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin: 0 0 0.75rem 0;
+    }
+
     .search-bar {
         display: flex;
-        align-items: stretch; /* ensures children fill full height */
-        background: #f5f5f5;
-        border-radius: 0.2rem;
+        align-items: stretch;
+        background: white;
+        border: 2px solid var(--border);
+        border-radius: 0.75rem;
         overflow: hidden;
-        min-height: 2.5rem;
-        flex-shrink: 0; /* prevents search bar from shrinking */
+        min-height: 3rem;
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(184, 168, 217, 0.1);
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-bar:focus-within {
+        border-color: var(--primary);
+        box-shadow: 0 4px 12px rgba(184, 168, 217, 0.2);
     }
 
     .search-bar button {
-        display: inline-flex;       /* shrink to content */
-        align-items: center;        /* vertical center */
-        justify-content: center;    /* horizontal center */
-        padding: 0.5rem;            /* fixed padding instead of percentage */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem;
         border: none;
-        background: #ddd;
+        background: var(--primary);
         cursor: pointer;
-        font-size: 0.875rem;
-        min-width: 2.5rem;
-        flex-shrink: 0; /* prevents buttons from disappearing */
+        font-size: 0.9rem;
+        min-width: 3rem;
+        flex-shrink: 0;
         transition: background-color 0.2s;
+        color: white;
     }
 
     .search-bar button:hover {
-        background: #ccc;
+        background: var(--primary-hover);
     }
 
     .search-bar input {
         flex: 1;
         border: none;
-        padding: 0.75rem;
+        padding: 0.75rem 1rem;
         outline: none;
-        font-size: 0.875rem;
-        min-width: 0; /* allows input to shrink if needed */
+        font-size: 0.9rem;
+        min-width: 0;
+        background: transparent;
+        color: var(--text-primary);
     }
 
-    /* Slider container */
+    .search-bar input::placeholder {
+        color: var(--text-secondary);
+        opacity: 0.6;
+    }
+
     .slider-container {
         display: flex;
         align-items: center;
-        margin-top: 0.5rem;
-        font-size: 0.875rem;
+        margin-top: 0.75rem;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
     }
 
     .slider-container label {
-        margin-right: 0.5rem;
+        margin-right: 0.75rem;
+        font-weight: 500;
     }
 
     .slider-container input[type="range"] {
         flex: 1;
-        margin-right: 0.5rem;
+        margin-right: 0.75rem;
+        height: 6px;
+        border-radius: 3px;
+        background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        outline: none;
+        -webkit-appearance: none;
     }
 
-    /* Results area */
+    .slider-container input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--primary);
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(184, 168, 217, 0.3);
+    }
+
+    .slider-container input[type="range"]::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--primary);
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(184, 168, 217, 0.3);
+        border: none;
+    }
+
+    .slider-container span {
+        min-width: 2rem;
+        text-align: right;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
     .results {
-        background: #f5f5f5;
+        background: white;
         flex: 1;
         overflow-y: auto;
-        box-shadow: inset 0 0.125rem 0.25rem rgba(0,0,0,0.15);
-        margin-top: 0.5rem;
-        min-height: 0; /* important for flex scrolling */
+        border-radius: 0.75rem;
+        box-shadow: inset 0 2px 8px rgba(184, 168, 217, 0.08);
+        margin-top: 0.75rem;
+        min-height: 0;
         padding: 0.5rem 0;
+        border: 1px solid var(--border);
     }
 
     .result-item {
         display: flex;
         align-items: center;
-        padding: 0.5rem;
-        border-bottom: 0.0625rem solid rgba(0,0,0,0.1);
-        font-size: 0.875rem;
+        padding: 0.75rem;
+        border-bottom: 1px solid #f3f0ff;
+        font-size: 0.85rem;
         transition: background-color 0.2s;
         cursor: pointer;
     }
 
     .result-item:hover {
-        background-color: rgba(0,0,0,0.05);
+        background-color: #faf8ff;
     }
 
     .result-item:last-child {
@@ -226,22 +309,25 @@
     }
 
     .item-check {
-        margin-right: 0.5rem;
-        width: 0.875rem;
-        height: 0.875rem;
+        margin-right: 0.75rem;
+        width: 1rem;
+        height: 1rem;
+        accent-color: var(--primary);
+        cursor: pointer;
     }
 
     .item-icon {
         flex-shrink: 0;
-        margin-right: 0.75rem;
-        width: 6rem;
-        height: 6rem;
-        border: 1px solid #ddd;
-        border-radius: 0.25rem;
+        margin-right: 1rem;
+        width: 5rem;
+        height: 5rem;
+        border: 2px solid var(--border);
+        border-radius: 0.5rem;
         background: white;
         display: flex;
         align-items: center;
         justify-content: center;
+        box-shadow: 0 2px 6px rgba(184, 168, 217, 0.1);
     }
 
     .item-icon svg {
@@ -250,9 +336,9 @@
     }
 
     .item-icon.loading {
-        background: #f0f0f0;
-        color: #999;
-        font-size: 0.75rem;
+        background: #faf8ff;
+        color: var(--text-secondary);
+        font-size: 0.7rem;
     }
 
     .item-info {
@@ -265,243 +351,393 @@
 
     .item-name {
         font-weight: 600;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.35rem;
         word-break: break-word;
+        color: var(--text-primary);
     }
 
     .item-extra {
         font-size: 0.75rem;
-        color: #666;
+        color: var(--text-secondary);
+    }
+
+    .item-extra a {
+        color: var(--primary);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .item-extra a:hover {
+        color: var(--primary-hover);
+        text-decoration: underline;
     }
 
     .load-more-btn {
         display: block;
-        width: 100%;
+        width: calc(100% - 1rem);
         padding: 0.75rem;
-        margin: 0.5rem 0;
-        background: #007bff;
+        margin: 0.5rem;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
         color: white;
         border: none;
-        border-radius: 0.25rem;
+        border-radius: 0.5rem;
         cursor: pointer;
-        font-size: 0.875rem;
-        transition: background-color 0.2s;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px rgba(184, 168, 217, 0.2);
     }
 
     .load-more-btn:hover {
-        background: #0056b3;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(184, 168, 217, 0.3);
     }
 
     .load-more-btn:disabled {
-        background: #ccc;
+        background: #e5d9f2;
         cursor: not-allowed;
+        transform: none;
     }
 
     .no-results {
         text-align: center;
         padding: 2rem;
-        color: #666;
+        color: var(--text-secondary);
         font-style: italic;
     }
 
     .loading-indicator {
         text-align: center;
+        padding: 1.5rem;
+        color: var(--text-secondary);
+    }
+
+    * { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+
+    .tooltip {
+        position: absolute;
+        background: white;
+        border: 2px solid var(--border);
+        padding: 0.75rem;
+        border-radius: 0.75rem;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s;
+        text-align: center;
+        z-index: 9999;
+        box-shadow: 0 8px 24px rgba(184, 168, 217, 0.25);
+        max-width: 200px;
+    }
+
+    .tooltip img {
+        max-width: 120px;
+        display: block;
+        margin: 0 auto 0.5rem;
+        border-radius: 0.5rem;
+    }
+
+    .tooltip-name {
+        font-weight: 600;
+        color: var(--text-primary);
+        font-size: 0.85rem;
+    }
+
+    .popup {
+        position: fixed;
+        background: white;
+        border: 2px solid var(--border);
+        border-radius: 1rem;
+        box-shadow: 0 12px 40px rgba(184, 168, 217, 0.3);
+        width: 600px;
+        max-width: 90vw;
+        max-height: 80vh;
+        display: none;
+        z-index: 1000;
+        overflow: hidden;
+    }
+
+    .popup-header {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        padding: 1rem 1.25rem;
+        cursor: move;
+        position: relative;
+        user-select: none;
+        color: white;
+        font-weight: 600;
+    }
+
+    .popup-close {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: white;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.5rem;
+        transition: background 0.2s;
+    }
+
+    .popup-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .popup-content {
+        padding: 1.25rem;
+        overflow-y: auto;
+        max-height: calc(80vh - 60px);
+    }
+
+    .popup-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .popup-direction {
+        border: 2px solid var(--border);
+        border-radius: 0.75rem;
         padding: 1rem;
-        color: #666;
+        background: #faf8ff;
     }
 
-  * { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+    .popup-direction h4 {
+        margin: 0 0 0.75rem 0;
+        color: var(--primary);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
 
-  /* Responsive adjustments for small screens */
-  @media (max-height: 30rem) {
-    .panel-content {
-        padding: 0.5rem;
+    .reaction-item {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        margin-bottom: 0.75rem;
+        font-size: 0.8rem;
     }
-    
-    .search-bar {
-        min-height: 2rem;
+
+    .reaction-item:last-child {
+        margin-bottom: 0;
     }
-    
-    .search-bar button {
-        min-width: 2rem;
-        padding: 0.25rem;
+
+    .reaction-equation {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        font-family: 'Courier New', monospace;
+    }
+
+    .reaction-reagents {
+        color: var(--text-secondary);
         font-size: 0.75rem;
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid #f3f0ff;
     }
-    
-    .search-bar input {
-        padding: 0.5rem;
-        font-size: 0.75rem;
+
+    .path-section {
+        margin-top: 1rem;
+        flex: 0 0 auto;
     }
-    
-    .result-item {
-        padding: 0.375rem;
+
+    .level {
+        padding: 0.75rem;
+        border: 2px solid var(--border);
+        margin-bottom: 0.75rem;
+        border-radius: 0.75rem;
+        cursor: pointer;
+        background: white;
+        transition: all 0.2s;
     }
-  }
 
-  @media (max-width: 30rem) {
-    .app-wrap {
-        width: 100vw;
-        height: 100vh;
-        border-radius: 0;
+    .level:hover {
+        border-color: var(--primary);
     }
-    
-    html, body {
-        padding: 0;
+
+    .level.selected {
+        background: linear-gradient(135deg, #f3f0ff 0%, #faf8ff 100%);
+        border-color: var(--primary);
+        box-shadow: 0 2px 8px rgba(184, 168, 217, 0.2);
     }
-    
-    .side-panel {
-        width: 80%;
+
+    .level-title {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--primary);
+        font-size: 0.85rem;
     }
-    
-    .app-wrap.open .toggle-stripe {
-        left: 80%;
+
+    .level-items .result-item {
+        cursor: default;
     }
-  }
 
-  /* Tooltip style */
-  .tooltip {
-    position: absolute;
-    background: white;
-    border: 1px solid #ccc;
-    padding: 5px;
-    border-radius: 4px;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s;
-    text-align: center;
-    z-index: 9999;
-  }
+    .remove-item {
+        margin-left: auto;
+        background: var(--accent);
+        border: none;
+        cursor: pointer;
+        padding: 0.35rem 0.75rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        color: #8b4049;
+        transition: all 0.2s;
+    }
 
-  .tooltip img {
-    max-width: 100px;
-    display: block;
-    margin: 0 auto;
-  }
+    .remove-item:hover {
+        background: #f0a5af;
+        transform: scale(1.05);
+    }
 
-  /* Popup style */
-  .popup {
-    position: fixed;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    width: 300px;
-    height: 200px;
-    display: none;
-    z-index: 5;
-    overflow: hidden;
-  }
+    .catalog-section {
+        flex: 1;
+        overflow-y: auto;
+        min-height: 0;
+        margin-top: 1rem;
+    }
 
-  .popup-header {
-    background: #f0f0f0;
-    padding: 5px;
-    cursor: move;
-    position: relative;
-    user-select: none;
-  }
+    #loading-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        z-index: 10;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-size: 1rem;
+        color: var(--text-primary);
+    }
 
-  .popup-close {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    cursor: pointer;
-    font-size: 1.2rem;
-  }
+    #loading-overlay i {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+    }
 
-  .popup-content {
-    padding: 10px;
-    white-space: pre-wrap;
-  }
+    #loading-overlay button {
+        margin-top: 1.5rem;
+        padding: 0.75rem 1.5rem;
+        background: var(--accent);
+        color: #8b4049;
+        border: none;
+        cursor: pointer;
+        border-radius: 0.75rem;
+        font-weight: 500;
+        transition: all 0.2s;
+    }
 
-  /* Path section styles */
-  .path-section {
-    margin-top: 0.5rem;
-    flex: 0 0 auto;
-  }
+    #loading-overlay button:hover {
+        background: #f0a5af;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(245, 198, 203, 0.3);
+    }
 
-  .level {
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    margin-bottom: 0.5rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
-  }
+    .compound-info {
+        background: #faf8ff;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
 
-  .level.selected {
-    background-color: #e6f7ff;
-  }
+    .compound-info-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #f3f0ff;
+        font-size: 0.85rem;
+    }
 
-  .level-title {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
+    .compound-info-row:last-child {
+        border-bottom: none;
+    }
 
-  .level-items .result-item {
-    cursor: default;
-  }
+    .compound-info-label {
+        font-weight: 600;
+        color: var(--text-secondary);
+    }
 
-  .remove-item {
-    margin-left: auto;
-    background: #ffdddd;
-    border: none;
-    cursor: pointer;
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.25rem;
-  }
+    .compound-info-value {
+        color: var(--text-primary);
+        font-weight: 500;
+    }
 
-  .remove-item:hover {
-    background: #ffaaaa;
-  }
+    .compound-structure {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
 
-  /* Catalog section */
-  .catalog-section {
-    flex: 1;
-    overflow-y: auto;
-    min-height: 0;
-    margin-top: 1rem;
-  }
+    .compound-structure img {
+        max-width: 200px;
+        border: 2px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        background: white;
+    }
 
-  /* Loading overlay */
-  #loading-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(255,255,255,0.8);
-    z-index: 10;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 1rem;
-  }
+    @media (max-height: 30rem) {
+        .panel-content {
+            padding: 0.75rem;
+        }
+        
+        .search-bar {
+            min-height: 2.5rem;
+        }
+    }
 
-  #loading-overlay button {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background: #ff0000;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 0.25rem;
-  }
+    @media (max-width: 30rem) {
+        .app-wrap {
+            width: 100vw;
+            height: 100vh;
+            border-radius: 0;
+        }
+        
+        html, body {
+            padding: 0;
+        }
+        
+        .side-panel {
+            width: 80%;
+        }
+        
+        .app-wrap.open .toggle-stripe {
+            left: 80%;
+        }
+
+        .popup {
+            width: 95vw;
+        }
+
+        .popup-split {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
 </head>
 <body>
     <div class="app-wrap" id="app" aria-live="polite">
         <div id="loading-overlay">
-            <i class="fa fa-spinner fa-spin" style="font-size:2rem;"></i>
+            <i class="fa fa-spinner fa-spin"></i>
             <p id="loading-message">Loading...</p>
             <button id="cancel-compute" style="display:none;">Cancel</button>
         </div>
         <div class="main-window" id="main" role="main" aria-label="Main content area">
-            <div>
-                <strong>Chemical Compound Search</strong>
-                <div style="font-size:0.8125rem; color:#666; margin-top:0.375rem;">Search for chemical compounds using the side panel</div>
+            <div class="main-window-content">
+                <strong>Chemical Reactions Graph Explorer</strong>
+                <p>Search for chemical compounds using the side panel and build reaction pathways between source and target substances</p>
             </div>
         </div>
 
     <div class="side-panel" id="sidePanel" role="complementary" aria-hidden="true" aria-label="Side panel">
         <div class="panel-content">
-            <!-- Search bar -->
             <div class="search-bar">
                 <input type="text" id="search-input" placeholder="Search compounds..." />
                 <button class="submit-btn" id="submit-button">
@@ -509,7 +745,6 @@
                 </button>
             </div>
 
-            <!-- Sliders -->
             <div class="slider-container">
                 <label for="k-slider">Top K:</label>
                 <input type="range" id="k-slider" min="1" max="11" value="2">
@@ -521,22 +756,20 @@
                 <span id="n-value">3</span>
             </div>
 
-            <!-- Path section -->
             <div class="path-section">
                 <h3>Path</h3>
                 <div id="path-levels">
                     <div id="level1" class="level selected" data-level="1">
-                        <div class="level-title">1</div>
+                        <div class="level-title">Sources</div>
                         <div class="level-items"></div>
                     </div>
                     <div id="level2" class="level" data-level="2">
-                        <div class="level-title">2</div>
+                        <div class="level-title">Targets</div>
                         <div class="level-items"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Catalog section -->
             <div class="catalog-section">
                 <h3>Catalog</h3>
                 <div class="results" id="results-container">
@@ -548,9 +781,7 @@
         </div>
     </div>
 
-    <!-- Vertical toggle stripe: full height button -->
     <button class="toggle-stripe" id="toggle" aria-expanded="false" aria-controls="sidePanel" title="Toggle side panel">
-      <!-- Arrow points right by default -->
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M8 5l8 7-8 7"></path>
       </svg>
@@ -568,7 +799,6 @@
   </div>
 
 <script>
-    // Global variables
     let chemsData = [];
     let edgesData = [];
     let reactionsData = [];
@@ -621,13 +851,11 @@
                 return;
             }
             
-            // Create edge to reaction-ids-list map
             edgesData.forEach(entry => {
                 const edgeStr = `${entry.first}-${entry.second}`;
                 edgeToReactionID.set(edgeStr, entry.reactions);
             });
             
-            // Create ReactionID to reaction map
             reactionsData.forEach(entry => {
                 const rid = entry.rid;
                 const copy = { ...entry };
@@ -635,18 +863,15 @@
                 RIDToReaction.set(rid, copy);
             });
 
-            // Create CID to compound map
             chemsData.forEach(comp => {
                 cidToCompound.set(comp.cid, comp);
             });
 
-            // Build graph (directed)
             edgesData.forEach(edge => {
                 if (!graph.has(edge.first)) graph.set(edge.first, []);
                 graph.get(edge.first).push(edge.second);
             });
 
-            // Initialize Fuse.js
             const fuseOptions = {
                 keys: ['cmpdname', 'wiki'],
                 threshold: 0.3,
@@ -656,7 +881,6 @@
             
             fuse = new Fuse(chemsData, fuseOptions);
             
-            // Show initial results (first 20 compounds)
             displayResults(chemsData.slice(0, RESULTS_PER_PAGE));
             currentResults = chemsData;
             currentPage = 0;
@@ -674,24 +898,20 @@
         makeDraggable(document.getElementById('popup'));
         renderPathList();
 
-        // Setup level selection
         document.getElementById('level1').addEventListener('click', () => selectLevel(1));
         document.getElementById('level2').addEventListener('click', () => selectLevel(2));
 
-        // Setup sliders
         const kSlider = document.getElementById('k-slider');
         const kValue = document.getElementById('k-value');
         kSlider.addEventListener('input', () => {
             kValue.textContent = kSlider.value === '11' ? 'All' : kSlider.value;
         });
-        //kValue.textContent = '1';
 
         const nSlider = document.getElementById('n-slider');
         const nValue = document.getElementById('n-value');
         nSlider.addEventListener('input', () => {
             nValue.textContent = nSlider.value;
         });
-        //nValue.textContent = '5';
     }
 
     function selectLevel(level) {
@@ -723,7 +943,6 @@
         });
     }
 
-
     function createItemInfo(compound) {
         const itemInfo = document.createElement('div');
         itemInfo.className = 'item-info';
@@ -735,23 +954,20 @@
         const itemExtra = document.createElement('div');
         itemExtra.className = 'item-extra';
 
-        // CID link
         const cidLink = document.createElement('a');
         cidLink.href = `https://pubchem.ncbi.nlm.nih.gov/compound/${compound.cid}`;
         cidLink.textContent = `${compound.cid}`;
-        cidLink.target = '_blank';  // optional: open in new tab
+        cidLink.target = '_blank';
         const cidPrefix = document.createTextNode('CID: ');
         itemExtra.appendChild(cidPrefix);
         itemExtra.appendChild(cidLink);
 
-        // Wiki link (if exists)
         if (compound.wiki) {
             const wikiLink = document.createElement('a');
             wikiLink.href = compound.wiki;
             wikiLink.textContent = `${compound.wiki.split('/').at(-1).replace('_', ' ')}`;
             wikiLink.target = '_blank';
             
-            // Add a separator
             const sep_wiki_prefix = document.createTextNode(' | Wiki: ');
             itemExtra.appendChild(sep_wiki_prefix);
             itemExtra.appendChild(wikiLink);
@@ -845,7 +1061,6 @@
         iconContainer.className = 'item-icon loading';
         iconContainer.textContent = 'Loading...';
         
-        // Try to load SVG structure
         loadStructureSVG(compound.cid, iconContainer);
         
         const itemInfo = createItemInfo(compound);
@@ -854,7 +1069,6 @@
         item.appendChild(iconContainer);
         item.appendChild(itemInfo);
 
-        // Add right-click to add to path
         item.addEventListener('contextmenu', (e) => {
             e.preventDefault();
             if (selectedLevel === 1) {
@@ -891,7 +1105,6 @@
     function displayResults(results) {
         const resultsContainer = document.getElementById('results-container');
         
-        // Remove existing load more button if present
         const existingBtn = resultsContainer.querySelector('.load-more-btn');
         if (existingBtn) {
             existingBtn.remove();
@@ -902,12 +1115,10 @@
             return;
         }
         
-        // Clear container if this is a new search
         if (currentPage === 0) {
             resultsContainer.innerHTML = '';
         }
         
-        // Add new results
         results.forEach(compound => {
             const resultData = compound.item || compound;
             const resultItem = createResultItem(resultData);
@@ -933,7 +1144,6 @@
             displayResults(nextResults);
             currentPage++;
             
-            // Add load more button if there are more results
             if (endIndex < currentResults.length) {
                 addLoadMoreButton();
             }
@@ -944,7 +1154,6 @@
         const resultsContainer = document.getElementById('results-container');
         
         if (!query.trim()) {
-            // Show all compounds when search is empty
             currentResults = chemsData;
             currentPage = 0;
             displayResults(chemsData.slice(0, RESULTS_PER_PAGE));
@@ -960,7 +1169,6 @@
             return;
         }
         
-        // Perform search with Fuse.js
         const searchResults = fuse.search(query);
         currentResults = searchResults;
         currentPage = 0;
@@ -1149,25 +1357,9 @@
                     }
                 }
             });
-
-            /*
-            const nodes = Array.from(nodesSet).map(node => {
-                const cid = node.cid;
-                const comp = cidToCompound.get(cid);
-                return {
-                    id: cid,
-                    name: comp ? comp.cmpdname : 'Unknown',
-                    organic: comp ? comp.organic : false,
-                    secondary: node.secondary
-                };
-            });
-
-            const links = getProcessedLinks(directedEdges);
-            */
             
             updateGraph(directedEdges);
             hideLoading();
-            //renderGraph(nodes, links);
         }, 0);
     }
 
@@ -1176,14 +1368,6 @@
         if (selectedArray.length === 0) {
             document.getElementById('main').innerHTML = originalMainContent;
             return;
-        }
-
-        edges_filter = edges => {
-            if(cid !== null) {
-                return selectedCIDs.has(edge.first) && selectedCIDs.has(edge.second) && (edge.first === cid || edge.second === cid);
-            }
-            else
-                return selectedCIDs.has(edge.first) && selectedCIDs.has(edge.second) && !secondaryNodes.has(edge.first) && !secondaryNodes.has(edge.second);
         }
 
         if(cid !== null) {
@@ -1215,7 +1399,7 @@
 
     function renderGraph(nodes, links) {
         const main = d3.select("#main");
-        main.html(""); // Clear current content
+        main.html("");
 
         const width = main.node().clientWidth;
         const height = main.node().clientHeight;
@@ -1227,7 +1411,6 @@
             .style("max-width", "100%")
             .style("height", "auto");
 
-        // Markers
         const defs = svg.append("defs");
 
         defs.append("marker")
@@ -1240,7 +1423,7 @@
             .attr("orient", "auto")
             .append("path")
             .attr("d", "M0,-3L10,0L0,3")
-            .attr("fill", "#999");
+            .attr("fill", "#b8a8d9");
 
         defs.append("marker")
             .attr("id", "arrow-start")
@@ -1252,7 +1435,7 @@
             .attr("orient", "auto-start-reverse")
             .append("path")
             .attr("d", "M0,-3L10,0L0,3")
-            .attr("fill", "#999");
+            .attr("fill", "#b8a8d9");
 
         const g = svg.append("g");
 
@@ -1262,19 +1445,20 @@
             .force("center", d3.forceCenter(width / 2, height / 2));
 
         const link = g.append("g")
-            .attr("stroke", "#999")
+            .attr("stroke", "#b8a8d9")
             .selectAll("line")
             .data(links)
             .join("line")
-            .attr("stroke-width", 1.5)
+            .attr("stroke-width", 2)
             .attr("marker-end", d => "url(#arrow)")
             .attr("marker-start", d => d.type === 'bi' ? "url(#arrow-start)" : null)
-            .attr("stroke-opacity", d => d.secondary ? 0.2 : 0.6)
+            .attr("stroke-opacity", d => d.secondary ? 0.3 : 0.7)
+            .style("cursor", "pointer")
             .on("mouseover", function(event, d) {
-                d3.select(this).attr("stroke-width", 3);
+                d3.select(this).attr("stroke-width", 4).attr("stroke", "#9d89c7");
             })
             .on("mouseout", function(event, d) {
-                d3.select(this).attr("stroke-width", 1.5);
+                d3.select(this).attr("stroke-width", 2).attr("stroke", "#b8a8d9");
             })
             .on("click", function(event, d) {
                 showPopup('edge', d);
@@ -1288,6 +1472,7 @@
             .data(nodes)
             .join("g")
             .attr("opacity", d => secondaryNodes.has(d.id) ? secondaryOpacity : defaultOpacity)
+            .style("cursor", "pointer")
             .call(d3.drag()
                 .on("start", dragstarted)
                 .on("drag", dragged)
@@ -1305,7 +1490,7 @@
                     tooltip.transition()
                         .duration(200)
                         .style("opacity", .9);
-                    tooltip.html(`<img src="data/structures/${d.id}.svg" alt="${d.name}"><br>${d.name}`)
+                    tooltip.html(`<img src="data/structures/${d.id}.svg" alt="${d.name}"><div class="tooltip-name">${d.name}</div>`)
                         .style("left", (event.pageX + 10) + "px")
                         .style("top", (event.pageY - 28) + "px");
                 }, 500);
@@ -1334,21 +1519,22 @@
 
         nodeGroups.each(function(d) {
             const sel = d3.select(this);
+            const color = d.organic ? "#7bc67b" : "#6ba3d6";
             if (sourceNodes.has(d.id)) {
                 sel.append("rect")
                     .attr("x", -5)
                     .attr("y", -5)
                     .attr("width", 10)
                     .attr("height", 10)
-                    .attr("fill", d.organic ? "green" : "blue");
+                    .attr("fill", color);
             } else if (targetNodes.has(d.id)) {
                 sel.append("polygon")
                     .attr("points", "0,-5 5,5 -5,5")
-                    .attr("fill", d.organic ? "green" : "blue");
+                    .attr("fill", color);
             } else {
                 sel.append("circle")
                     .attr("r", 5)
-                    .attr("fill", d.organic ? "green" : "blue");
+                    .attr("fill", color);
             }
         });
 
@@ -1356,9 +1542,10 @@
             .text(d => d.name)
             .attr("font-size", 10)
             .attr("text-anchor", "middle")
-            .attr("dy", 20);
+            .attr("dy", 20)
+            .attr("fill", "#4a4a6a")
+            .attr("font-weight", 500);
 
-        // Tooltip
         const tooltip = d3.select("body").append("div")
             .attr("class", "tooltip")
             .style("opacity", 0);
@@ -1419,7 +1606,6 @@
             d.fy = null;
         }
 
-        // Zoom
         const zoom = d3.zoom()
             .scaleExtent([0.5, 4])
             .on("zoom", ({transform}) => {
@@ -1435,17 +1621,155 @@
         const content = document.getElementById('popup-content');
 
         if (type === 'node') {
-            title.textContent = 'Node Info';
-            content.textContent = `Name: ${data.name}\nCID: ${data.id}`;
+            const compound = cidToCompound.get(data.id);
+            title.textContent = compound ? compound.cmpdname : 'Node Info';
+            
+            let html = '<div class="compound-structure">';
+            html += `<img src="data/structures/${data.id}.svg" alt="${data.name}" onerror="this.style.display='none'">`;
+            html += '</div>';
+            
+            html += '<div class="compound-info">';
+            html += '<div class="compound-info-row">';
+            html += '<span class="compound-info-label">CID:</span>';
+            html += `<span class="compound-info-value"><a href="https://pubchem.ncbi.nlm.nih.gov/compound/${data.id}" target="_blank">${data.id}</a></span>`;
+            html += '</div>';
+            
+            if (compound && compound.wiki) {
+                html += '<div class="compound-info-row">';
+                html += '<span class="compound-info-label">Wikipedia:</span>';
+                html += `<span class="compound-info-value"><a href="${compound.wiki}" target="_blank">${compound.wiki.split('/').at(-1).replace('_', ' ')}</a></span>`;
+                html += '</div>';
+            }
+            
+            html += '<div class="compound-info-row">';
+            html += '<span class="compound-info-label">Type:</span>';
+            html += `<span class="compound-info-value">${data.organic ? 'Organic' : 'Inorganic'}</span>`;
+            html += '</div>';
+            
+            if (sourceNodes.has(data.id)) {
+                html += '<div class="compound-info-row">';
+                html += '<span class="compound-info-label">Role:</span>';
+                html += '<span class="compound-info-value">Source</span>';
+                html += '</div>';
+            } else if (targetNodes.has(data.id)) {
+                html += '<div class="compound-info-row">';
+                html += '<span class="compound-info-label">Role:</span>';
+                html += '<span class="compound-info-value">Target</span>';
+                html += '</div>';
+            } else if (secondaryNodes.has(data.id)) {
+                html += '<div class="compound-info-row">';
+                html += '<span class="compound-info-label">Role:</span>';
+                html += '<span class="compound-info-value">Reagent</span>';
+                html += '</div>';
+            }
+            
+            html += '</div>';
+            
+            content.innerHTML = html;
         } else if (type === 'edge') {
-            title.textContent = 'Edge Info';
-            const biText = data.type === 'bi' ? ' (bidirectional)' : '';
-            content.textContent = `Between ${data.source.name || data.source.id} and ${data.target.name || data.target.id}${biText}`;
+            const sourceId = typeof data.source === 'object' ? data.source.id : data.source;
+            const targetId = typeof data.target === 'object' ? data.target.id : data.target;
+            const sourceComp = cidToCompound.get(sourceId);
+            const targetComp = cidToCompound.get(targetId);
+            const sourceName = sourceComp ? sourceComp.cmpdname : sourceId;
+            const targetName = targetComp ? targetComp.cmpdname : targetId;
+            
+            title.textContent = 'Reactions';
+            
+            const edgeStr = `${sourceId}-${targetId}`;
+            const reverseEdgeStr = `${targetId}-${sourceId}`;
+            const forwardReactionIDs = edgeToReactionID.get(edgeStr) || [];
+            const reverseReactionIDs = data.type === 'bi' ? (edgeToReactionID.get(reverseEdgeStr) || []) : [];
+            
+            let html = '';
+            
+            if (data.type === 'bi') {
+                html += '<div class="popup-split">';
+                
+                html += '<div class="popup-direction">';
+                html += `<h4><i class="fa fa-arrow-right"></i> ${sourceName} → ${targetName}</h4>`;
+                if (forwardReactionIDs.length > 0) {
+                    forwardReactionIDs.forEach(rid => {
+                        const reaction = RIDToReaction.get(rid);
+                        if (reaction) {
+                            html += '<div class="reaction-item">';
+                            html += `<div class="reaction-equation">${reaction.equation || 'N/A'}</div>`;
+                            if (reaction.reagents && reaction.reagents.length > 0) {
+                                html += '<div class="reaction-reagents">';
+                                html += '<strong>Reagents:</strong> ';
+                                const reagentNames = reaction.reagents.map(r => {
+                                    const comp = cidToCompound.get(r.cid);
+                                    return comp ? comp.cmpdname : `CID ${r.cid}`;
+                                });
+                                html += reagentNames.join(', ');
+                                html += '</div>';
+                            }
+                            html += '</div>';
+                        }
+                    });
+                } else {
+                    html += '<div class="reaction-item">No reactions found</div>';
+                }
+                html += '</div>';
+                
+                html += '<div class="popup-direction">';
+                html += `<h4><i class="fa fa-arrow-left"></i> ${targetName} → ${sourceName}</h4>`;
+                if (reverseReactionIDs.length > 0) {
+                    reverseReactionIDs.forEach(rid => {
+                        const reaction = RIDToReaction.get(rid);
+                        if (reaction) {
+                            html += '<div class="reaction-item">';
+                            html += `<div class="reaction-equation">${reaction.equation || 'N/A'}</div>`;
+                            if (reaction.reagents && reaction.reagents.length > 0) {
+                                html += '<div class="reaction-reagents">';
+                                html += '<strong>Reagents:</strong> ';
+                                const reagentNames = reaction.reagents.map(r => {
+                                    const comp = cidToCompound.get(r.cid);
+                                    return comp ? comp.cmpdname : `CID ${r.cid}`;
+                                });
+                                html += reagentNames.join(', ');
+                                html += '</div>';
+                            }
+                            html += '</div>';
+                        }
+                    });
+                } else {
+                    html += '<div class="reaction-item">No reactions found</div>';
+                }
+                html += '</div>';
+                
+                html += '</div>';
+            } else {
+                html += `<h4 style="color: var(--primary); margin-bottom: 1rem;"><i class="fa fa-arrow-right"></i> ${sourceName} → ${targetName}</h4>`;
+                if (forwardReactionIDs.length > 0) {
+                    forwardReactionIDs.forEach(rid => {
+                        const reaction = RIDToReaction.get(rid);
+                        if (reaction) {
+                            html += '<div class="reaction-item">';
+                            html += `<div class="reaction-equation">${reaction.equation || 'N/A'}</div>`;
+                            if (reaction.reagents && reaction.reagents.length > 0) {
+                                html += '<div class="reaction-reagents">';
+                                html += '<strong>Reagents:</strong> ';
+                                const reagentNames = reaction.reagents.map(r => {
+                                    const comp = cidToCompound.get(r.cid);
+                                    return comp ? comp.cmpdname : `CID ${r.cid}`;
+                                });
+                                html += reagentNames.join(', ');
+                                html += '</div>';
+                            }
+                            html += '</div>';
+                        }
+                    });
+                } else {
+                    html += '<div class="reaction-item">No reactions found</div>';
+                }
+            }
+            
+            content.innerHTML = html;
         }
 
         popup.style.display = 'block';
 
-        // Center it
         const rect = popup.getBoundingClientRect();
         popup.style.left = (window.innerWidth / 2 - rect.width / 2) + 'px';
         popup.style.top = (window.innerHeight / 2 - rect.height / 2) + 'px';
@@ -1490,7 +1814,6 @@
         document.getElementById('loading-overlay').style.display = 'none';
     }
 
-    // Panel toggle functionality
     (function(){
         const app = document.getElementById('app');
         const toggle = document.getElementById('toggle');
@@ -1526,7 +1849,6 @@
         });
     })();
 
-    // Search and submit functionality
     (function(){
         const submitButton = document.getElementById('submit-button');
         const searchInput = document.getElementById('search-input');
@@ -1539,17 +1861,14 @@
             performSearch(query);
         }
 
-        // Submit on button click
         submitButton.addEventListener('click', handleSubmit);
 
-        // Search on Enter key press
         searchInput.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
                 handleSearch();
             }
         });
 
-        // Real-time search with debouncing
         searchInput.addEventListener('input', function() {
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(() => {
@@ -1557,11 +1876,9 @@
             }, 300);
         });
 
-        // Cancel compute
         cancelCompute.addEventListener('click', hideLoading);
     })();
 
-    // Initialize the app when DOM is loaded
     document.addEventListener('DOMContentLoaded', initializeData);
 </script>
 </body>
