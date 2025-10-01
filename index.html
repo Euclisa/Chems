@@ -1452,22 +1452,23 @@
             const currentH = hMetrics(node);
 
             if (cost > maxLen) continue;
-
-            if (hMetrics(node) === 0) {
+            
+            if (cost > 0)
                 paths.push({path, length: cost});
-                continue;
-            }
+            if (paths.length > k)
+                paths.shift();
 
             for (let neigh of graph_reverse.get(node) || []) {
                 const h = hMetrics(neigh);
-                if (h > currentH || path.includes(neigh) || (backgroundCids.has(neigh) && !sourceSet.has(neigh))) continue;
+                if (h > currentH || path.includes(neigh) || backgroundCids.has(neigh)) continue;
                 const newCost = cost + 1;
                 const newPath = [...path, neigh];
                 queue.push({cost: newCost, node: neigh, path: newPath});
             }
         }
 
-        paths.forEach(path => { path.path.reverse() })
+        paths.forEach(path => { path.path.reverse() });
+        console.log(JSON.stringify(paths));
 
         return paths;
     }
