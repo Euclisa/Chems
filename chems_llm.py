@@ -1310,8 +1310,6 @@ class ChemsLLM:
             react_id = react['rid']
             for r in react['reagents']:
                 r_cid = r['cid']
-                if not r['crucial']:
-                    continue
                 for p in react['products']:
                     p_cid = p['cid']
                     edge = (r_cid, p_cid)
@@ -1998,6 +1996,26 @@ class ChemsLLM:
         with open('cids.txt', 'w') as f:
             for chem in chems:
                 f.write(f"{chem['cid']}\n")
+    
+
+    def filter_ord_reactions(self):
+        with open(self.reactions_parsed_balanced_fn) as f:
+            reactions = [json.loads(x) for x in f.read().strip().split('\n')]
+
+        with open(self.reactions_details_fn) as f:
+            details = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        rids_to_filter = set(map(lambda x: x['rid'], filter(lambda x: not x['description'] and x['source'] == 'ord', details)))
+
+        with open(self.reactions_details_fn, 'w') as f:
+            for entry in details:
+                if entry['rid'] not in rids_to_filter:
+                    f.write(json.dumps(entry) + '\n')
+        
+        with open(self.reactions_parsed_balanced_fn, 'w') as f:
+            for entry in reactions:
+                if entry['rid'] not in rids_to_filter:
+                    f.write(json.dumps(entry) + '\n')
 
     
 
@@ -2258,8 +2276,9 @@ if __name__ == "__main__":
     #chemsllm.merge_parsed_reactions_files("reactions_descriptions.jsonl", "data/reactions_parsed_details_ord.jsonl", "reactions_descriptions.jsonl")
     #chemsllm.clean_data_populate_tables(rehash_required=True)
     #chemsllm.extract_chems_cas_numbers()
-    chemsllm.get_background_substances(20)
-    chemsllm.get_commonnes_chems_sorting()
+    #chemsllm.get_background_substances(20)
+    #chemsllm.get_commonnes_chems_sorting()
+    #chemsllm.filter_ord_reactions()
 
     
 
