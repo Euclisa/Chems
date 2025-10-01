@@ -526,6 +526,7 @@
         padding: 1rem;
         background: #faf8ff;
         min-width: 0;
+        margin-bottom: 2.5rem;
     }
 
     .popup-direction h4 {
@@ -572,6 +573,7 @@
         height: 5rem;
         background-color: #f9f9f9;
         border: 0.1rem solid #eee;
+        cursor: pointer;
     }
 
     .reaction-reactants, .reaction-products {
@@ -882,16 +884,6 @@
     </button>
   </div>
 
-  <div id="popup" class="popup">
-    <div class="popup-header">
-      <span id="popup-title">Title</span>
-      <span class="popup-close" onclick="closePopup()">×</span>
-    </div>
-    <div class="popup-content" id="popup-content">
-      Content
-    </div>
-  </div>
-
 <script>
     let chemsData = [];
     let edgesData = [];
@@ -1022,7 +1014,6 @@
         }
         hideLoading();
 
-        makeDraggable(document.getElementById('popup'));
         renderPathList();
 
         document.getElementById('level1').addEventListener('click', () => selectLevel(1));
@@ -1965,8 +1956,10 @@
                 
                 html += '</div>';
             } else {
+                html += '<div class="popup-direction">';
                 html += `<h4> ${sourceName} → ${targetName}</h4>`;
                 html += generateReactionList(forwardReactionIDs);
+                html += '</div>';
             }
             
             content.innerHTML = html;
