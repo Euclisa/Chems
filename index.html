@@ -557,7 +557,8 @@
         overflow-x: auto;
         display: flex;
         flex-wrap: nowrap;
-        align-items: flex-start;;
+        align-items: flex-start;
+        justify-content: center;
     }
 
     .reaction-description {
@@ -634,6 +635,14 @@
         padding: 0.125rem 0.3125rem; /* 2px 5px */
         border-radius: 0.1875rem; /* ~3px */
         font-weight: bold;
+    }
+
+    .reaction-participant-balanced {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin-left: 0.3rem;
+        margin-right: 0.3rem;
     }
 
     .path-section {
@@ -1914,17 +1923,22 @@
             
             let html = '';
 
-            const generateReactionParticipants = (participants) => {
-                let reactants_htmls = []
+            const generateReactionParticipants = (participants, balanced) => {
+                let reactants_htmls = [];
                 for (const entry of participants) {
                     const cid = entry.cid;
                     const compound = cidToCompound.get(cid);
                     const name = compound.cmpdname;
-                    curr_html = ""
+                    let curr_html = ""
                     curr_html += `<div class="reaction-participant">`;
                     curr_html += `<img class="reaction-svg-image" src="data/structures/${cid}.svg" alt="${name}" data-cid="${cid}">`;
                     curr_html += `<span class="reaction-participant-name" title="${name}">${name}</span>`;
                     curr_html += '</div>';
+                    
+                    if (balanced) {
+                        const coeff = entry.coeff;
+                        curr_html = `<div class="reaction-participant-balanced"><span class="reaction-participant-coeff">${coeff}</span>${curr_html}</div>`
+                    }
                     reactants_htmls.push(curr_html)
                 }
                 return reactants_htmls.join('<span class="reaction-sep reaction-sep-plus">+</span>')
@@ -1944,11 +1958,13 @@
                 item_html = "";
                 const reaction = RIDToReaction.get(rid);
                 if (reaction) {
+                    const balanced = reaction.balanced;
+                    console.log(balanced)
                     item_html += '<div class="reaction-item">';
                     item_html += `<div class="reaction-equation">`;
-                    item_html += generateReactionParticipants(reaction.reagents);
+                    item_html += generateReactionParticipants(reaction.reagents, balanced);
                     item_html += '<span class="reaction-sep reaction-sep-arrow">→</span>';
-                    item_html += generateReactionParticipants(reaction.products);
+                    item_html += generateReactionParticipants(reaction.products, balanced);
                     item_html += '</div>';
 
                     const description = ridToDescription.get(rid);
