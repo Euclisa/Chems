@@ -1,0 +1,5 @@
+openai
+pubchempy
+chempy
+rdkit
+psycopg2-binary

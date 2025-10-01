@@ -15,8 +15,6 @@ from psycopg2.extras import execute_values
 import base64
 import random
 from time import sleep
-import requests
-from bs4 import BeautifulSoup
 
 # Disable all RDKit warnings and info messages
 RDLogger.DisableLog('rdApp.*')
@@ -50,32 +48,32 @@ class ChemsLLM:
         if not os.path.exists(self.structures_dir):
             os.makedirs(self.structures_dir)
 
-        self.raw_reactions_fn = os.path.join(self.data_dir, "raw_reactions.jsonl")
-        self.wiki_raw_reactions_fn = os.path.join(self.data_dir, "wiki_raw_reactions.jsonl")
-        self.top_rare_raw_reactions_fn = os.path.join(self.data_dir, "top_rare_raw_reactions.jsonl")
-        self.raw_reactions_verdict_fn = os.path.join(self.data_dir, "raw_reactions_verdict.jsonl")
-        self.raw_reactions_staged_fn = os.path.join(self.data_dir, "raw_reactions_staged.jsonl")
-        self.products_wiki_raw_reactions_fn = os.path.join(self.data_dir, 'wiki_products_raw_reactions.jsonl')
-        self.reactions_parsed_fn = os.path.join(self.data_dir, "reactions_parsed.jsonl")
-        self.reactions_parsed_balanced_fn = os.path.join(self.data_dir, "reactions_parsed_balanced.jsonl")
+        self.raw_reactions_fn = os.path.join(self.data_dir, 'raw_reactions', "raw_reactions.jsonl")
+        self.wiki_raw_reactions_fn = os.path.join(self.data_dir, 'raw_reactions', "wiki_raw_reactions.jsonl")
+        self.top_rare_raw_reactions_fn = os.path.join(self.data_dir, 'raw_reactions', "top_rare_raw_reactions.jsonl")
+        self.raw_reactions_verdict_fn = os.path.join(self.data_dir, 'raw_reactions', "raw_reactions_verdict.jsonl")
+        self.raw_reactions_staged_fn = os.path.join(self.data_dir, 'raw_reactions', "raw_reactions_staged.jsonl")
+        self.products_wiki_raw_reactions_fn = os.path.join(self.data_dir, 'raw_reactions', 'wiki_products_raw_reactions.jsonl')
+        self.reactions_parsed_fn = os.path.join(self.data_dir, 'reactions_parsed', "reactions_parsed.jsonl")
+        self.reactions_parsed_balanced_fn = os.path.join(self.data_dir, 'reactions_parsed', "reactions_parsed_balanced.jsonl")
         self.unmapped_names_fn = os.path.join(self.data_dir, "unmapped_names.txt")
         self.unmapped_names_blacklisted_fn = os.path.join(self.data_dir, "unmapped_names_blacklisted.txt")
         self.unbalancing_cids_fn = os.path.join(self.data_dir, "unbalancing_cids.txt")
-        self.chems_fn = os.path.join(self.data_dir, "chems.jsonl")
-        self.chems_categories_fn = os.path.join(self.data_dir, "chems_categories.jsonl")
-        self.categories_fn = os.path.join(self.data_dir, "categories.jsonl")
-        self.wiki_chems_fn = os.path.join(self.data_dir, "wiki_chems.jsonl")
-        self.hazards_chems_fn = os.path.join(self.data_dir, "hazards_chems.jsonl")
-        self.chems_edges_fn = os.path.join(self.data_dir, 'chems_edges.jsonl')
+        self.chems_fn = os.path.join(self.data_dir, 'chems', "chems.jsonl")
+        self.chems_categories_fn = os.path.join(self.data_dir, 'chems', "chems_categories.jsonl")
+        self.categories_fn = os.path.join(self.data_dir, 'misc', "categories.jsonl")
+        self.wiki_chems_fn = os.path.join(self.data_dir, 'chems', "wiki_chems.jsonl")
+        self.hazards_chems_fn = os.path.join(self.data_dir, 'chems', "hazards_chems.jsonl")
+        self.chems_edges_fn = os.path.join(self.data_dir, 'chems', 'chems_edges.jsonl')
         self.unmapped_smiles_fn = os.path.join(self.data_dir, 'unmapped_smiles.txt')
         self.unmapped_smiles_blacklisted_fn = os.path.join(self.data_dir, 'unmapped_smiles_blacklisted.txt')
-        self.reactions_parsed_ord_fn = os.path.join(self.data_dir, 'reactions_parsed_ord.jsonl')
-        self.reactions_parsed_details_ord_fn = os.path.join(self.data_dir, 'reactions_parsed_details_ord.jsonl')
-        self.reactions_details_fn = os.path.join(self.data_dir, 'reactions_details.jsonl')
-        self.chems_descriptions_fn = os.path.join(self.data_dir, 'chems_descriptions.jsonl')
-        self.reactions_descriptions_fn = os.path.join(self.data_dir, 'reactions_descriptions.jsonl')
-        self.background_cids_fn = os.path.join(self.data_dir, 'background_cids.json')
-        self.commonness_sorted_cids_fn = os.path.join(self.data_dir, 'commonness_sorted_cid.json')
+        self.reactions_parsed_ord_fn = os.path.join(self.data_dir, 'reactions_parsed', 'reactions_parsed_ord.jsonl')
+        self.reactions_parsed_details_ord_fn = os.path.join(self.data_dir, 'reactions_details', 'reactions_parsed_details_ord.jsonl')
+        self.reactions_details_fn = os.path.join(self.data_dir, 'reactions_details', 'reactions_details.jsonl')
+        self.chems_descriptions_fn = os.path.join(self.data_dir, 'chems', 'chems_descriptions.jsonl')
+        self.reactions_descriptions_fn = os.path.join(self.data_dir, 'reactions_details', 'reactions_descriptions.jsonl')
+        self.background_cids_fn = os.path.join(self.data_dir, 'misc', 'background_cids.json')
+        self.commonness_sorted_cids_fn = os.path.join(self.data_dir, 'misc', 'commonness_sorted_cids.json')
 
         self.unmapped_names_delimiter = "||"
         
@@ -2264,7 +2262,7 @@ if __name__ == "__main__":
     #chemsllm.fetch_chems_cids_from_pubchem('cids.txt')
     #chemsllm.merge_parsed_reactions_files("data/merged_reactions_parsed.jsonl", "data/reactions_parsed_ord.jsonl", "data/reactions_parsed.jsonl")
     #chemsllm.balance_parsed_reactions("data/merged_reactions_parsed.jsonl")
-    #chemsllm.populate_db()
+    chemsllm.populate_db()
     #chemsllm.deduplicate_chems_rebind_reactions()
     #chemsllm.fix_details()
     #chemsllm.fix_reactions()

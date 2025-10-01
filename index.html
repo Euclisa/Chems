@@ -621,9 +621,20 @@
         font-weight: bold;
     }
 
-    .reaction-confidence-low { background-color: #FFB3BA; }
+    .reaction-confidence-low { background-color: #FFB3BA; color: #333; }
     .reaction-confidence-medium { background-color: #FFEBA7; color: #333; }
     .reaction-confidence-high { background-color: #B5EAD7; color: #333; }
+
+    .reaction-ord-label {
+        position: absolute;
+        top: 0.3rem;       /* ~5px */
+        right: 0.3rem;     /* ~5px */
+        width: 2rem;
+        height: 2rem;
+        padding: 0.125rem 0.3125rem; /* 2px 5px */
+        border-radius: 0.1875rem; /* ~3px */
+        font-weight: bold;
+    }
 
     .path-section {
         display: flex;
@@ -939,18 +950,18 @@
         originalMainContent = document.getElementById('main').innerHTML;
         
         try {
-            chemsData = await loadData('data/chems.jsonl');
-            edgesData = await loadData('data/chems_edges.jsonl');
-            reactionsData = await loadData('data/reactions_parsed_balanced.jsonl');
-            backgroundCids = await loadData('data/background_cids.json');
+            chemsData = await loadData('data/chems/chems.jsonl');
+            edgesData = await loadData('data/chems/chems_edges.jsonl');
+            reactionsData = await loadData('data/reactions_parsed/reactions_parsed_balanced.jsonl');
+            backgroundCids = await loadData('data/misc/background_cids.json');
             backgroundCids = new Set(backgroundCids.map(Number));
-            commonnesSortedCids = await loadData('data/commonness_sorted_cid.json');
+            commonnesSortedCids = await loadData('data/misc/commonness_sorted_cids.json');
             commonnesSortedCids = commonnesSortedCids.map(Number);
             
-            let chemsDescriptionsLoaded = await loadData('data/chems_descriptions.jsonl');
+            let chemsDescriptionsLoaded = await loadData('data/chems/chems_descriptions.jsonl');
             chemsDescriptionsLoaded.forEach(entry => cidToDescription.set(entry.cid, entry.description));
 
-            let reactionsDescriptionsLoaded = await loadData('data/reactions_details.jsonl');
+            let reactionsDescriptionsLoaded = await loadData('data/reactions_details/reactions_details.jsonl');
             reactionsDescriptionsLoaded.forEach(entry => ridToDescription.set(entry.rid, entry.description));
             
             if (chemsData.length === 0) {
@@ -1496,7 +1507,6 @@
         }
 
         paths.forEach(path => { path.path.reverse() });
-        console.log(JSON.stringify(paths));
 
         return paths;
     }
@@ -1953,6 +1963,8 @@
                     if (confidence) {
                         const confidenceClass = getConfidenceClass(confidence);
                         item_html += `<span class="reaction-confidence ${confidenceClass}" title="This reaction is generated automatically and this is its validation score.">${confidence.toFixed(2)}</span>`;
+                    } else if (reaction.source == 'ord') {
+                        item_html += `<img src="data/assets/ord.svg" class="reaction-ord-label" title="Sourced from Open Reaction Database">`
                     }
 
                     item_html += '</div>';
