@@ -1032,6 +1032,13 @@
         });
     }
 
+    function returnToBlank() {
+        selectedCIDs.clear();
+        directedEdges.clear();
+        document.getElementById('main').innerHTML = originalMainContent;
+        refreshResults();
+    }
+
     function selectLevel(level) {
         selectedLevel = level;
         document.getElementById('level1').classList.toggle('selected', level === 1);
@@ -1123,7 +1130,17 @@
 
         item.appendChild(iconContainer);
         item.appendChild(itemInfo);
-        item.appendChild(removeBtn);
+        //item.appendChild(removeBtn);
+
+        item.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            if (selectedLevel === 1) {
+                sourceNodes.delete(compound.cid);
+            } else {
+                targetNodes.delete(compound.cid);
+            }
+            renderPathList();
+        });
 
         return item;
     }
@@ -1182,6 +1199,12 @@
         const iconContainer = document.createElement('div');
         iconContainer.className = 'item-icon loading';
         iconContainer.textContent = 'Loading...';
+        iconContainer.dataset.cid = `${compound.cid}`;
+        iconContainer.addEventListener('click', (e) => {
+            const target = event.currentTarget;
+            const cid = Number(target.dataset.cid);
+            showCompoundInfoPopup(cid);
+        });
         
         loadStructureSVG(compound.cid, iconContainer);
         
@@ -1202,6 +1225,11 @@
         });
         
         return item;
+    }
+
+    function showCompoundInfoPopup(cid) {
+        const name = cidToCompound.get(cid).cmpdname;
+        showPopup('node', {id: cid, name: name});
     }
 
     function loadStructureSVG(cid, container) {
@@ -1503,7 +1531,11 @@
         const sources = Array.from(sourceNodes);
         const targets = Array.from(targetNodes);
         if (targets.length === 0) {
-            alert('Please add at least one target substance.');
+            if (sources.length !== 0) {
+                alert('Please add at least one target substance.');
+                return;
+            }
+            returnToBlank();
             return;
         }
 
@@ -1980,8 +2012,7 @@
         document.querySelectorAll('.reaction-svg-image').forEach(el => {
             el.onclick = () => {
                 const cid = Number(el.dataset.cid);
-                const name = cidToCompound.get(cid).cmpdname;
-                showPopup('node', {id: cid, name: name});
+                showCompoundInfoPopup(cid);
             };
         });
     }
