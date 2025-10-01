@@ -32,6 +32,28 @@
         --border: #e5d9f2;
     }
 
+    /* Scrollbar width */
+    ::-webkit-scrollbar {
+        width: 0.25rem;       /* vertical scrollbar width */
+        height: 0.25rem;      /* horizontal scrollbar height */
+    }
+
+    /* Track (background behind the thumb) */
+    ::-webkit-scrollbar-track {
+        background: transparent;  /* invisible track */
+    }
+
+    /* Thumb (the draggable part) */
+    ::-webkit-scrollbar-thumb {
+        background-color: rgba(0,0,0,0.25); /* semi-transparent dark thumb */
+        border-radius: 1rem;               /* rounded ends */
+    }
+
+    /* Optional: hover effect */
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(0,0,0,0.5);
+    }
+
     html,body{
         height:100%;
         margin:0;
@@ -448,7 +470,6 @@
         border: 2px solid var(--border);
         border-radius: 1rem;
         box-shadow: 0 12px 40px rgba(184, 168, 217, 0.3);
-        width: 600px;
         max-width: 90vw;
         max-height: 80vh;
         display: none;
@@ -504,6 +525,7 @@
         border-radius: 0.75rem;
         padding: 1rem;
         background: #faf8ff;
+        min-width: 0;
     }
 
     .popup-direction h4 {
@@ -522,10 +544,7 @@
         padding: 0.75rem;
         margin-bottom: 0.75rem;
         font-size: 0.8rem;
-    }
-
-    .reaction-item:last-child {
-        margin-bottom: 0;
+        position: relative;
     }
 
     .reaction-equation {
@@ -533,19 +552,88 @@
         color: var(--text-primary);
         margin-bottom: 0.5rem;
         font-family: 'Courier New', monospace;
+        max-height: 10rem;
+        overflow-x: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;;
     }
 
-    .reaction-reagents {
+    .reaction-description {
         color: var(--text-secondary);
         font-size: 0.75rem;
         margin-top: 0.5rem;
         padding-top: 0.5rem;
-        border-top: 1px solid #f3f0ff;
+        border-top: 0.1rem solid #f3f0ff;
     }
 
-    .path-section {
-        margin-top: 1rem;
+    .reaction-svg-image {
+        width: 5rem;
+        height: 5rem;
+        background-color: #f9f9f9;
+        border: 0.1rem solid #eee;
+    }
+
+    .reaction-reactants, .reaction-products {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .reaction-participant {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 0.75rem;
+        max-width: 7rem;
         flex: 0 0 auto;
+    }
+
+    .reaction-participant-name {
+        white-space: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 5rem;
+        text-align: center;
+        margin-top: 0.5rem;
+    }
+
+    .reaction-sep {
+        align-self: center;
+        font-size: 2rem;
+        color: var(--text-secondary);
+        margin: 0.5rem;
+    }
+
+    .reaction-sep.reaction-sep-plus {
+        font-size: 1.5rem;
+    }
+
+    .reaction-confidence {
+        position: absolute;
+        top: 0.3rem;       /* ~5px */
+        right: 0.3rem;     /* ~5px */
+        font-size: 0.625rem; /* ~10px */
+        padding: 0.125rem 0.3125rem; /* 2px 5px */
+        border-radius: 0.1875rem; /* ~3px */
+        color: white;
+        font-weight: bold;
+    }
+
+    .reaction-confidence-low { background-color: #FFB3BA; }
+    .reaction-confidence-medium { background-color: #FFEBA7; color: #333; }
+    .reaction-confidence-high { background-color: #B5EAD7; color: #333; }
+
+    .path-section {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        max-height: 20rem;
+    }
+
+    #path-levels {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
     }
 
     .level {
@@ -597,8 +685,9 @@
     }
 
     .catalog-section {
+        display: flex;
+        flex-direction: column;
         flex: 1;
-        overflow-y: auto;
         min-height: 0;
         margin-top: 1rem;
     }
@@ -663,6 +752,11 @@
     .compound-info-label {
         font-weight: 600;
         color: var(--text-secondary);
+        font-size: 0.85rem;
+    }
+
+    .compound-info-label.description {
+        font-size: 1.2rem;
     }
 
     .compound-info-value {
@@ -812,6 +906,7 @@
     let hoverTimeout;
     let selectedLevel = 1;
     let graph = new Map();
+    let graph_reverse = new Map()
     let edgeToReactionID = new Map();
     let RIDToReaction = new Map();
     let currentEdges = new Set();
@@ -819,14 +914,25 @@
     let targetNodes = new Set();
     let secondaryNodes = new Set();
     let directedEdges = new Set();
+    let backgroundCids;
+    let cidToDescription = new Map();
+    let ridToDescription = new Map();
+    let commonnesSortedCids = []
+    let cidToEdges = new Map();
 
     async function loadData(fileName) {
         try {
             const response = await fetch(fileName, { cache: "no-store" });
             const text = await response.text();
 
-            let data = text.split('\n').filter(line => line.trim() !== '');
-            data = data.map(line => JSON.parse(line));
+            let data = [];
+            if (fileName.endsWith('.jsonl')) {
+                data = text.split('\n').filter(line => line.trim() !== '');
+                data = data.map(line => JSON.parse(line));
+            }
+            else if (fileName.endsWith('.json')) {
+                data = JSON.parse(text);
+            }
 
             return data;
         } catch(error) {
@@ -844,6 +950,16 @@
             chemsData = await loadData('data/chems.jsonl');
             edgesData = await loadData('data/chems_edges.jsonl');
             reactionsData = await loadData('data/reactions_parsed_balanced.jsonl');
+            backgroundCids = await loadData('data/background_cids.json');
+            backgroundCids = new Set(backgroundCids.map(Number));
+            commonnesSortedCids = await loadData('data/commonness_sorted_cid.json');
+            commonnesSortedCids = commonnesSortedCids.map(Number);
+            
+            let chemsDescriptionsLoaded = await loadData('data/chems_descriptions.jsonl');
+            chemsDescriptionsLoaded.forEach(entry => cidToDescription.set(entry.cid, entry.description));
+
+            let reactionsDescriptionsLoaded = await loadData('data/reactions_details.jsonl');
+            reactionsDescriptionsLoaded.forEach(entry => ridToDescription.set(entry.rid, entry.description));
             
             if (chemsData.length === 0) {
                 resultsContainer.innerHTML = '<div class="no-results">No compound data available</div>';
@@ -870,10 +986,19 @@
             edgesData.forEach(edge => {
                 if (!graph.has(edge.first)) graph.set(edge.first, []);
                 graph.get(edge.first).push(edge.second);
+
+                if (!graph_reverse.has(edge.second)) graph_reverse.set(edge.second, []);
+                graph_reverse.get(edge.second).push(edge.first);
+            });
+
+            for (const cid of commonnesSortedCids) cidToEdges.set(cid, []);
+            edgesData.forEach(edge => {
+                cidToEdges.get(edge.first).push(edge);
+                cidToEdges.get(edge.second).push(edge);
             });
 
             const fuseOptions = {
-                keys: ['cmpdname', 'wiki'],
+                keys: ['cmpdname', 'synonyms'],
                 threshold: 0.3,
                 includeScore: true,
                 minMatchCharLength: 2
@@ -881,6 +1006,8 @@
             
             fuse = new Fuse(chemsData, fuseOptions);
             
+            chemsData = commonnesSortedCids.map(cid => cidToCompound.get(cid));
+
             displayResults(chemsData.slice(0, RESULTS_PER_PAGE));
             currentResults = chemsData;
             currentPage = 0;
@@ -1051,10 +1178,14 @@
         checkbox.addEventListener('change', function() {
             if (this.checked) {
                 selectedCIDs.add(compound.cid);
+                // Updates graph adding edges attached to this node
+                updateGraph(compound.cid);
             } else {
-                removeNode(compound.cid)
+                // Removes node with attached edges
+                removeNode(compound.cid);
+                // Updates graph without updating edges
+                updateGraph();
             }
-            updateGraph(compound.cid);
         });
         
         const iconContainer = document.createElement('div');
@@ -1115,10 +1246,7 @@
             return;
         }
         
-        if (currentPage === 0) {
-            resultsContainer.innerHTML = '';
-        }
-        
+        resultsContainer.innerHTML = '';
         results.forEach(compound => {
             const resultData = compound.item || compound;
             const resultItem = createResultItem(resultData);
@@ -1136,13 +1264,25 @@
     }
 
     function loadMoreResults() {
-        const startIndex = (currentPage + 1) * RESULTS_PER_PAGE;
-        const endIndex = startIndex + RESULTS_PER_PAGE;
-        const nextResults = currentResults.slice(startIndex, endIndex);
+        const endIndex = (currentPage + 1) * RESULTS_PER_PAGE + RESULTS_PER_PAGE;
+        const nextResults = currentResults.slice(0, endIndex);
         
         if (nextResults.length > 0) {
             displayResults(nextResults);
             currentPage++;
+            
+            if (endIndex < currentResults.length) {
+                addLoadMoreButton();
+            }
+        }
+    }
+
+    function refreshResults() {
+        const endIndex = (currentPage + 1) * RESULTS_PER_PAGE + RESULTS_PER_PAGE;
+        const nextResults = currentResults.slice(0, endIndex);
+        
+        if (nextResults.length > 0) {
+            displayResults(nextResults);
             
             if (endIndex < currentResults.length) {
                 addLoadMoreButton();
@@ -1258,14 +1398,16 @@
         }
     }
 
-    function findKShortestPaths(starts, ends, k, maxLen) {
-        const endSet = new Set(ends);
+    function findKShortestPathsWithSources(sources, targets, k, maxLen) {
+        // Finds paths from targets to sources using reversed graph and then reverses paths
+
+        const sourceSet = new Set(sources);
         const pq = new PriorityQueue((a, b) => a.f - b.f);
         const paths = [];
 
-        for (let start of starts) {
-            const h = minH(start, ends);
-            pq.push({f: 0 + h, cost: 0, node: start, path: [start]});
+        for (let target of targets) {
+            const h = minH(target, sources);
+            pq.push({f: 0 + h, cost: 0, node: target, path: [target]});
         }
 
         while (pq.size() > 0 && paths.length < k) {
@@ -1274,20 +1416,67 @@
 
             if (cost > maxLen) continue;
 
-            if (endSet.has(node) && cost > 0) {
+            if (sourceSet.has(node) && cost > 0) {
                 paths.push({path, length: cost});
                 continue;
             }
 
-            for (let neigh of graph.get(node) || []) {
+            for (let neigh of graph_reverse.get(node) || []) {
                 if (path.includes(neigh)) continue;
+                if (backgroundCids.has(neigh) && !sourceSet.has(neigh)) continue;
                 const newCost = cost + 1;
-                const h = minH(neigh, ends);
+                const h = minH(neigh, sources);
                 const newF = newCost + h;
                 const newPath = [...path, neigh];
                 pq.push({f: newF, cost: newCost, node: neigh, path: newPath});
             }
         }
+
+        paths.forEach(path => { path.path.reverse() })
+
+        return paths;
+    }
+
+    function findKShortestPathsNoSources(targets, k, maxLen) {
+        // Finds paths from targets to compounds with complexity <= complexityThr using complexity difference as distance
+        
+        const queue = []
+        const paths = [];
+
+        const complexityThr = 10
+        
+        const hMetrics = node => {
+            const nodeComplexity = cidToCompound.get(node).complexity;
+            return nodeComplexity > complexityThr ? nodeComplexity - complexityThr : 0;
+        }
+
+        for (let target of targets) {
+            const h = hMetrics(target);
+            queue.push({cost: 0, node: target, path: [target]});
+        }
+
+        while (queue.length > 0 && paths.length < k) {
+            const current = queue.shift();
+            const {cost, node, path} = current;
+            const currentH = hMetrics(node);
+
+            if (cost > maxLen) continue;
+
+            if (hMetrics(node) === 0) {
+                paths.push({path, length: cost});
+                continue;
+            }
+
+            for (let neigh of graph_reverse.get(node) || []) {
+                const h = hMetrics(neigh);
+                if (h > currentH || path.includes(neigh) || (backgroundCids.has(neigh) && !sourceSet.has(neigh))) continue;
+                const newCost = cost + 1;
+                const newPath = [...path, neigh];
+                queue.push({cost: newCost, node: neigh, path: newPath});
+            }
+        }
+
+        paths.forEach(path => { path.path.reverse() })
 
         return paths;
     }
@@ -1319,12 +1508,14 @@
         secondaryNodes = new Set();
         directedEdges = new Set();
 
-        const starts = Array.from(sourceNodes);
-        const ends = Array.from(targetNodes);
-        if (starts.length === 0 || ends.length === 0) {
-            alert('Please add starting and resulting substances.');
+        const sources = Array.from(sourceNodes);
+        const targets = Array.from(targetNodes);
+        if (targets.length === 0) {
+            alert('Please add at least one target substance.');
             return;
         }
+
+        const sourcesSelected = sources.length > 0;
 
         let k = parseInt(document.getElementById('k-slider').value);
         if (k === 11) k = Infinity;
@@ -1333,7 +1524,7 @@
         showLoading('Computing paths...', true);
 
         setTimeout(() => {
-            const allPaths = findKShortestPaths(starts, ends, k, n);
+            const allPaths = sourcesSelected ? findKShortestPathsWithSources(sources, targets, k, n) : findKShortestPathsNoSources(targets, k, n);
             selectedCIDs.clear();
 
             allPaths.forEach(({path}) => path.forEach(node => selectedCIDs.add(node)));
@@ -1345,12 +1536,10 @@
                         const reaction = RIDToReaction.get(rid);
                         for(const reagent of reaction.reagents) {
                             const cid = reagent.cid;
-                            if(!reagent.crucial)
-                                continue;
-                            
                             directedEdges.add(`${cid}-${path[i+1]}`);
                             if(!selectedCIDs.has(cid)) {
-                                secondaryNodes.add(cid);
+                                if(sourcesSelected)
+                                    secondaryNodes.add(cid);
                                 selectedCIDs.add(cid);
                             }
                         }
@@ -1358,7 +1547,7 @@
                 }
             });
             
-            updateGraph(directedEdges);
+            updateGraph();
             hideLoading();
         }, 0);
     }
@@ -1371,14 +1560,14 @@
         }
 
         if(cid !== null) {
-            edgesData
-                .filter(edge =>
-                    selectedCIDs.has(edge.first) && selectedCIDs.has(edge.second) &&
-                    (edge.first === cid || edge.second === cid) &&
-                    !secondaryNodes.has(edge.first) && !secondaryNodes.has(edge.second))
-                .forEach(edge => {
-                    directedEdges.add(`${edge.first}-${edge.second}`);
-                });
+            selectedCIDs.forEach(selected_cid => {
+                cidToEdges.get(selected_cid)
+                    .filter(edge => 
+                        selectedCIDs.has(edge.first) && selectedCIDs.has(edge.second) &&
+                        (edge.first === cid || edge.second === cid) &&
+                        !secondaryNodes.has(edge.first) && !secondaryNodes.has(edge.second))
+                    .forEach(edge => directedEdges.add(`${edge.first}-${edge.second}`));
+            });
         }
 
         const nodes = selectedArray.map(node => {
@@ -1393,7 +1582,7 @@
 
         const links = getProcessedLinks();
 
-        displayResults(currentResults);
+        refreshResults();
         renderGraph(nodes, links);
     }
 
@@ -1616,16 +1805,31 @@
     }
 
     function showPopup(type, data) {
-        const popup = document.getElementById('popup');
-        const title = document.getElementById('popup-title');
-        const content = document.getElementById('popup-content');
+        // Create new popup container dynamically
+        const popup = document.createElement('div');
+        popup.classList.add('popup', `popup-${type}`);
+
+        popup.innerHTML = `
+            <div class="popup-header">
+                <span id="popup-title">Title</span>
+                <span class="popup-close" onclick="this.closest('.popup').remove()">×</span>
+            </div>
+            <div class="popup-content" id="popup-content">
+            Content
+            </div>
+        `;
+
+        document.body.appendChild(popup);
+
+        const title = popup.querySelector('#popup-title');
+        const content = popup.querySelector('#popup-content');
 
         if (type === 'node') {
             const compound = cidToCompound.get(data.id);
             title.textContent = compound ? compound.cmpdname : 'Node Info';
             
             let html = '<div class="compound-structure">';
-            html += `<img src="data/structures/${data.id}.svg" alt="${data.name}" onerror="this.style.display='none'">`;
+            html += `<img src="data/structures/${data.id}.svg" alt="${compound.cmpdname}" onerror="this.style.display='none'">`;
             html += '</div>';
             
             html += '<div class="compound-info">';
@@ -1643,27 +1847,20 @@
             
             html += '<div class="compound-info-row">';
             html += '<span class="compound-info-label">Type:</span>';
-            html += `<span class="compound-info-value">${data.organic ? 'Organic' : 'Inorganic'}</span>`;
+            html += `<span class="compound-info-value">${compound.organic ? 'Organic' : 'Inorganic'}</span>`;
+            html += '</div>';
+
             html += '</div>';
             
-            if (sourceNodes.has(data.id)) {
-                html += '<div class="compound-info-row">';
-                html += '<span class="compound-info-label">Role:</span>';
-                html += '<span class="compound-info-value">Source</span>';
+            const description = cidToDescription.get(data.id);
+            if (description) {
+                html += '<div class="compound-info">';
+                html += '<span class="compound-info-label description">Description:</span>';
+                description_html = '<p>' + description.split('\n\n').join('</p><p>') + '</p>';
+                html += `<span class="compound-info-value">${description_html}</span>`;
                 html += '</div>';
-            } else if (targetNodes.has(data.id)) {
-                html += '<div class="compound-info-row">';
-                html += '<span class="compound-info-label">Role:</span>';
-                html += '<span class="compound-info-value">Target</span>';
-                html += '</div>';
-            } else if (secondaryNodes.has(data.id)) {
-                html += '<div class="compound-info-row">';
-                html += '<span class="compound-info-label">Role:</span>';
-                html += '<span class="compound-info-value">Reagent</span>';
                 html += '</div>';
             }
-            
-            html += '</div>';
             
             content.innerHTML = html;
         } else if (type === 'edge') {
@@ -1682,101 +1879,117 @@
             const reverseReactionIDs = data.type === 'bi' ? (edgeToReactionID.get(reverseEdgeStr) || []) : [];
             
             let html = '';
+
+            const generateReactionParticipants = (participants) => {
+                let reactants_htmls = []
+                for (const entry of participants) {
+                    const cid = entry.cid;
+                    const compound = cidToCompound.get(cid);
+                    const name = compound.cmpdname;
+                    curr_html = ""
+                    curr_html += `<div class="reaction-participant">`;
+                    curr_html += `<img class="reaction-svg-image" src="data/structures/${cid}.svg" alt="${name}" data-cid="${cid}">`;
+                    curr_html += `<span class="reaction-participant-name" title="${name}">${name}</span>`;
+                    curr_html += '</div>';
+                    reactants_htmls.push(curr_html)
+                }
+                return reactants_htmls.join('<span class="reaction-sep reaction-sep-plus">+</span>')
+            };
+
+            const generateReactionItem = (rid) => {
+                const getConfidenceClass = (confidence) => {
+                    const classPrefix = 'reaction-confidence-'
+                    if (confidence < 0.5)
+                        return classPrefix + 'low';
+                    else if (confidence < 0.7)
+                        return classPrefix + 'medium';
+                    else
+                        return classPrefix + 'high';
+                };
+
+                item_html = "";
+                const reaction = RIDToReaction.get(rid);
+                if (reaction) {
+                    item_html += '<div class="reaction-item">';
+                    item_html += `<div class="reaction-equation">`;
+                    item_html += generateReactionParticipants(reaction.reagents);
+                    item_html += '<span class="reaction-sep reaction-sep-arrow">→</span>';
+                    item_html += generateReactionParticipants(reaction.products);
+                    item_html += '</div>';
+
+                    const description = ridToDescription.get(rid);
+                    if (description) {
+                        item_html += '<div class="reaction-description">';
+                        item_html += '<strong>Description:</strong> ';
+                        item_html += description;
+                        item_html += '</div>';
+                    }
+
+                    const confidence = reaction.confidence;
+                    if (confidence) {
+                        const confidenceClass = getConfidenceClass(confidence);
+                        item_html += `<span class="reaction-confidence ${confidenceClass}" title="This reaction is generated automatically and this is its validation score.">${confidence.toFixed(2)}</span>`;
+                    }
+
+                    item_html += '</div>';
+                }
+
+                return item_html;
+            };
+
+            const generateReactionList = (rids) => {
+                let reactionsHtml = "";
+                if (rids.length > 0) {
+                    rids.forEach(rid => {
+                        reactionsHtml += generateReactionItem(rid);
+                    });
+                } else {
+                    reactionsHtml += '<div class="reaction-item">No reactions found</div>';
+                }
+
+                return reactionsHtml;
+            };
             
             if (data.type === 'bi') {
                 html += '<div class="popup-split">';
                 
                 html += '<div class="popup-direction">';
-                html += `<h4><i class="fa fa-arrow-right"></i> ${sourceName} → ${targetName}</h4>`;
-                if (forwardReactionIDs.length > 0) {
-                    forwardReactionIDs.forEach(rid => {
-                        const reaction = RIDToReaction.get(rid);
-                        if (reaction) {
-                            html += '<div class="reaction-item">';
-                            html += `<div class="reaction-equation">${reaction.equation || 'N/A'}</div>`;
-                            if (reaction.reagents && reaction.reagents.length > 0) {
-                                html += '<div class="reaction-reagents">';
-                                html += '<strong>Reagents:</strong> ';
-                                const reagentNames = reaction.reagents.map(r => {
-                                    const comp = cidToCompound.get(r.cid);
-                                    return comp ? comp.cmpdname : `CID ${r.cid}`;
-                                });
-                                html += reagentNames.join(', ');
-                                html += '</div>';
-                            }
-                            html += '</div>';
-                        }
-                    });
-                } else {
-                    html += '<div class="reaction-item">No reactions found</div>';
-                }
+                html += `<h4> ${sourceName} → ${targetName}</h4>`;
+                html += generateReactionList(forwardReactionIDs);
                 html += '</div>';
                 
                 html += '<div class="popup-direction">';
-                html += `<h4><i class="fa fa-arrow-left"></i> ${targetName} → ${sourceName}</h4>`;
-                if (reverseReactionIDs.length > 0) {
-                    reverseReactionIDs.forEach(rid => {
-                        const reaction = RIDToReaction.get(rid);
-                        if (reaction) {
-                            html += '<div class="reaction-item">';
-                            html += `<div class="reaction-equation">${reaction.equation || 'N/A'}</div>`;
-                            if (reaction.reagents && reaction.reagents.length > 0) {
-                                html += '<div class="reaction-reagents">';
-                                html += '<strong>Reagents:</strong> ';
-                                const reagentNames = reaction.reagents.map(r => {
-                                    const comp = cidToCompound.get(r.cid);
-                                    return comp ? comp.cmpdname : `CID ${r.cid}`;
-                                });
-                                html += reagentNames.join(', ');
-                                html += '</div>';
-                            }
-                            html += '</div>';
-                        }
-                    });
-                } else {
-                    html += '<div class="reaction-item">No reactions found</div>';
-                }
+                html += `<h4> ${targetName} → ${sourceName}</h4>`;
+                html += generateReactionList(reverseReactionIDs);
                 html += '</div>';
                 
                 html += '</div>';
             } else {
-                html += `<h4 style="color: var(--primary); margin-bottom: 1rem;"><i class="fa fa-arrow-right"></i> ${sourceName} → ${targetName}</h4>`;
-                if (forwardReactionIDs.length > 0) {
-                    forwardReactionIDs.forEach(rid => {
-                        const reaction = RIDToReaction.get(rid);
-                        if (reaction) {
-                            html += '<div class="reaction-item">';
-                            html += `<div class="reaction-equation">${reaction.equation || 'N/A'}</div>`;
-                            if (reaction.reagents && reaction.reagents.length > 0) {
-                                html += '<div class="reaction-reagents">';
-                                html += '<strong>Reagents:</strong> ';
-                                const reagentNames = reaction.reagents.map(r => {
-                                    const comp = cidToCompound.get(r.cid);
-                                    return comp ? comp.cmpdname : `CID ${r.cid}`;
-                                });
-                                html += reagentNames.join(', ');
-                                html += '</div>';
-                            }
-                            html += '</div>';
-                        }
-                    });
-                } else {
-                    html += '<div class="reaction-item">No reactions found</div>';
-                }
+                html += `<h4> ${sourceName} → ${targetName}</h4>`;
+                html += generateReactionList(forwardReactionIDs);
             }
             
             content.innerHTML = html;
         }
 
         popup.style.display = 'block';
+        popup.style.position = 'absolute';
+        popup.style.visibility = 'visible';
+        popup.style.opacity = '1';
 
         const rect = popup.getBoundingClientRect();
         popup.style.left = (window.innerWidth / 2 - rect.width / 2) + 'px';
         popup.style.top = (window.innerHeight / 2 - rect.height / 2) + 'px';
-    }
 
-    function closePopup() {
-        document.getElementById('popup').style.display = 'none';
+        makeDraggable(popup);
+
+        document.querySelectorAll('.reaction-svg-image').forEach(el => {
+            el.onclick = () => {
+                const cid = Number(el.dataset.cid);
+                const name = cidToCompound.get(cid).cmpdname;
+                showPopup('node', {id: cid, name: name});
+            };
+        });
     }
 
     function makeDraggable(element) {

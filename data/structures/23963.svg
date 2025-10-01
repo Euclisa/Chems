@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<svg version='1.1' baseProfile='full'
+              xmlns='http://www.w3.org/2000/svg'
+                      xmlns:rdkit='http://www.rdkit.org/xml'
+                      xmlns:xlink='http://www.w3.org/1999/xlink'
+                  xml:space='preserve'
+width='300px' height='300px' viewBox='0 0 300 300'>
+<!-- END OF HEADER -->
+<rect style='opacity:1.0;fill:#FFFFFF;stroke:none' width='300.0' height='300.0' x='0.0' y='0.0'> </rect>
+<path class='atom-0' d='M 145.9 139.0
+L 137.1 139.0
+L 137.1 135.8
+L 158.0 135.8
+L 158.0 139.0
+L 149.7 139.0
+L 149.7 164.2
+L 145.9 164.2
+L 145.9 139.0
+' fill='#000000'/>
+<path class='atom-0' d='M 159.2 135.8
+L 162.9 135.8
+L 162.9 139.3
+L 159.2 139.3
+L 159.2 135.8
+M 159.2 143.6
+L 162.9 143.6
+L 162.9 164.2
+L 159.2 164.2
+L 159.2 143.6
+' fill='#000000'/>
+</svg>

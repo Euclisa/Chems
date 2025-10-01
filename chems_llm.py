@@ -74,6 +74,8 @@ class ChemsLLM:
         self.reactions_details_fn = os.path.join(self.data_dir, 'reactions_details.jsonl')
         self.chems_descriptions_fn = os.path.join(self.data_dir, 'chems_descriptions.jsonl')
         self.reactions_descriptions_fn = os.path.join(self.data_dir, 'reactions_descriptions.jsonl')
+        self.background_cids_fn = os.path.join(self.data_dir, 'background_cids.json')
+        self.commonness_sorted_cids_fn = os.path.join(self.data_dir, 'commonness_sorted_cid.json')
 
         self.unmapped_names_delimiter = "||"
         
@@ -1232,6 +1234,10 @@ class ChemsLLM:
             name = chem['cmpdname']
             smiles = chem['smiles']
 
+            svg_fn = os.path.join(self.structures_dir, f"{cid}.svg")
+            if os.path.exists(svg_fn):
+                continue
+
             try:
                 mol = Chem.MolFromSmiles(smiles)
 
@@ -1942,6 +1948,46 @@ class ChemsLLM:
                 f.write(json.dumps(chem) + '\n')
         
         print(f"Extracted CAS numbers for {cnt} chems")
+    
+
+    def get_background_substances(self, k):
+        with open(self.reactions_parsed_balanced_fn) as f:
+            reactions = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        cid_chem_map = self.__get_cid_chem_map()
+        
+        reagents_cids_count = dict()
+        for cid in cid_chem_map:
+            reagents_cids_count[cid] = 0
+        
+        for react in reactions:
+            for cid in [x['cid'] for x in react['reagents']]:
+                reagents_cids_count[cid] += 1
+        
+        background_cids = sorted(list(reagents_cids_count.keys()), key=lambda x: reagents_cids_count[x], reverse=True)[:k]
+
+        with open(self.background_cids_fn, 'w') as f:
+            f.write(json.dumps(background_cids, indent=2))
+    
+
+    def get_commonnes_chems_sorting(self):
+        with open(self.reactions_parsed_balanced_fn) as f:
+            reactions = [json.loads(x) for x in f.read().strip().split('\n')]
+        
+        cid_chem_map = self.__get_cid_chem_map()
+        
+        reagents_cids_count = dict()
+        for cid in cid_chem_map:
+            reagents_cids_count[cid] = 0
+        
+        for react in reactions:
+            for cid in [x['cid'] for x in react['reagents']]:
+                reagents_cids_count[cid] += 1
+        
+        sorted_cids = sorted(list(reagents_cids_count.keys()), key=lambda x: reagents_cids_count[x], reverse=True)
+
+        with open(self.commonness_sorted_cids_fn, 'w') as f:
+            f.write(json.dumps(sorted_cids, indent=2))
             
     
 
@@ -2200,7 +2246,7 @@ if __name__ == "__main__":
     #chemsllm.fetch_chems_cids_from_pubchem('cids.txt')
     #chemsllm.merge_parsed_reactions_files("data/merged_reactions_parsed.jsonl", "data/reactions_parsed_ord.jsonl", "data/reactions_parsed.jsonl")
     #chemsllm.balance_parsed_reactions("data/merged_reactions_parsed.jsonl")
-    chemsllm.populate_db()
+    #chemsllm.populate_db()
     #chemsllm.deduplicate_chems_rebind_reactions()
     #chemsllm.fix_details()
     #chemsllm.fix_reactions()
@@ -2212,6 +2258,8 @@ if __name__ == "__main__":
     #chemsllm.merge_parsed_reactions_files("reactions_descriptions.jsonl", "data/reactions_parsed_details_ord.jsonl", "reactions_descriptions.jsonl")
     #chemsllm.clean_data_populate_tables(rehash_required=True)
     #chemsllm.extract_chems_cas_numbers()
+    chemsllm.get_background_substances(20)
+    chemsllm.get_commonnes_chems_sorting()
 
     
 
