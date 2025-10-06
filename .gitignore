@@ -6,3 +6,5 @@ ord/
 ord-data/
 cid_map.txt
 rid_map.txt
+conformers/
+*_tmp/

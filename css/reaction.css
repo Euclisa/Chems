@@ -1,0 +1,106 @@
+.reaction-item {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.8rem;
+    position: relative;
+}
+
+.reaction-equation {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-family: 'Courier New', monospace;
+    max-height: 10rem;
+    overflow-x: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.reaction-description {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 0.1rem solid #f3f0ff;
+}
+
+.reaction-svg-image {
+    width: 5rem;
+    height: 5rem;
+    background-color: #f9f9f9;
+    border: 0.1rem solid #eee;
+    cursor: pointer;
+}
+
+.reaction-reactants, .reaction-products {
+    display: flex;
+    align-items: flex-start;
+}
+
+.reaction-participant {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0.75rem;
+    max-width: 7rem;
+    flex: 0 0 auto;
+}
+
+.reaction-participant-name {
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 5rem;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.reaction-sep {
+    align-self: center;
+    font-size: 2rem;
+    color: var(--text-secondary);
+    margin: 0.5rem;
+}
+
+.reaction-sep.reaction-sep-plus {
+    font-size: 1.5rem;
+}
+
+.reaction-confidence {
+    position: absolute;
+    top: 0.3rem;       /* ~5px */
+    right: 0.3rem;     /* ~5px */
+    font-size: 0.625rem; /* ~10px */
+    padding: 0.125rem 0.3125rem; /* 2px 5px */
+    border-radius: 0.1875rem; /* ~3px */
+    color: white;
+    font-weight: bold;
+}
+
+.reaction-confidence-low { background-color: #FFB3BA; color: #333; }
+.reaction-confidence-medium { background-color: #FFEBA7; color: #333; }
+.reaction-confidence-high { background-color: #B5EAD7; color: #333; }
+
+.reaction-ord-label {
+    position: absolute;
+    top: 0.3rem;       /* ~5px */
+    right: 0.3rem;     /* ~5px */
+    width: 2rem;
+    height: 2rem;
+    padding: 0.125rem 0.3125rem; /* 2px 5px */
+    border-radius: 0.1875rem; /* ~3px */
+    font-weight: bold;
+}
+
+.reaction-participant-balanced {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+}

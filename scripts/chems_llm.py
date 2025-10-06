@@ -1261,6 +1261,7 @@ class ChemsLLM:
             try:
                 smiles = chem['smiles']
                 mol = Chem.MolFromSmiles(smiles)
+                mol = Chem.AddHs(mol)
                 
                 if mol is None:
                     raise ValueError("Неверный формат SMILES")
@@ -1402,7 +1403,6 @@ class ChemsLLM:
                 mol = Chem.MolFromInchi(chem['inchi'])
                 chem['smiles'] = Chem.MolToSmiles(mol, canonical=True)
             except Exception as e:
-                print(f"Discarding '{chem['cmpdname']}'")
                 cids_to_discard.add(chem['cid'])
         
         return cids_to_discard
@@ -2017,6 +2017,19 @@ class ChemsLLM:
 
     
 
+    def __load_jsonl(self, filename):
+        with open(filename) as f:
+            return [json.loads(x) for x in f.read().strip().split('\n')]
+    
+    def __write_jsonl(self, entries, filename):
+        if os.path.exists(filename):
+            shutil.copy(filename, f"{filename}.backup")
+
+        with open(filename, 'w') as f:
+            for entry in entries:
+                f.write(json.dumps(entry) + '\n')
+    
+
     def populate_db(self):
         with open(self.chems_fn) as f:
             chems = [json.loads(x) for x in f.read().strip().split('\n')]
@@ -2262,7 +2275,7 @@ if __name__ == "__main__":
     #chemsllm.fetch_chems_cids_from_pubchem('cids.txt')
     #chemsllm.merge_parsed_reactions_files("data/merged_reactions_parsed.jsonl", "data/reactions_parsed_ord.jsonl", "data/reactions_parsed.jsonl")
     #chemsllm.balance_parsed_reactions("data/merged_reactions_parsed.jsonl")
-    chemsllm.populate_db()
+    #chemsllm.populate_db()
     #chemsllm.deduplicate_chems_rebind_reactions()
     #chemsllm.fix_details()
     #chemsllm.fix_reactions()

@@ -1,0 +1,97 @@
+.side-panel{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 25%;
+    background: var(--panel-bg);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(140, 130, 190, 0.2);
+    z-index: 3;
+    transform: translateX(-100%);
+    transition: transform var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.toggle-stripe{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--stripe-width);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor: pointer;
+    user-select: none;
+    z-index: 4;
+    background: linear-gradient(180deg, rgba(184, 168, 217, 0.4), rgba(168, 212, 230, 0.3));
+    backdrop-filter: blur(8px);
+    border-radius: 0 0.5rem 0.5rem 0;
+    box-shadow: 0 4px 12px rgba(140, 130, 190, 0.15);
+    transition: left var(--transition), background var(--transition);
+    border: none;
+    outline: none;
+}
+
+.toggle-stripe:hover {
+    background: linear-gradient(180deg, rgba(184, 168, 217, 0.6), rgba(168, 212, 230, 0.5));
+}
+
+.toggle-stripe svg{
+    width: 0.875rem;
+    height: 0.875rem;
+    display:block;
+    stroke: var(--text-primary);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    transition: transform var(--transition);
+    transform-origin: center;
+}
+
+.app-wrap.open .side-panel{
+    transform: translateX(0);
+}
+
+.app-wrap.open .toggle-stripe{
+    left: calc(25%);
+}
+
+.app-wrap.open .toggle-stripe svg{
+    transform: rotate(180deg);
+}
+
+.panel-content{
+    font-size: 1rem;
+    color: var(--text-primary);
+    padding: 1.5rem;
+    text-align: left;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.panel-content h3 {
+    color: var(--primary);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 0.75rem 0;
+}
+
+
+@media (max-height: 30rem) {
+    .panel-content {
+        padding: 0.75rem;
+    }
+    
+    .search-bar {
+        min-height: 2.5rem;
+    }
+}
