@@ -74,6 +74,9 @@ class ChemsLLM:
         self.reactions_descriptions_fn = os.path.join(self.data_dir, 'reactions_details', 'reactions_descriptions.jsonl')
         self.background_cids_fn = os.path.join(self.data_dir, 'misc', 'background_cids.json')
         self.commonness_sorted_cids_fn = os.path.join(self.data_dir, 'misc', 'commonness_sorted_cids.json')
+        self.cids_blacklist_fn = os.path.join(self.data_dir, 'misc', 'cids_blacklist.jsonl')
+
+        self.cids_blacklist = set([x['cid'] for x in self.__load_jsonl(self.cids_blacklist_fn)])
 
         self.unmapped_names_delimiter = "||"
         
@@ -830,6 +833,18 @@ class ChemsLLM:
                 cid_chem_map[chem['cid']] = chem
         
         return cid_chem_map
+    
+
+    def __get_reaction_complexity(self, reaction, cid_chem_map):
+        av_complexity = 0
+        for chem in reaction['products']:
+            av_complexity += cid_chem_map[chem['cid']]['complexity']
+        
+        for chem in reaction['reagents']:
+            av_complexity += cid_chem_map[chem['cid']]['complexity']
+        av_complexity /= len(reaction['reagents']) + len(reaction['products'])
+
+        return av_complexity
 
 
     def __assemble_reaction_from_participants(self, reagents, products, cid_chem_map: dict):
@@ -840,17 +855,9 @@ class ChemsLLM:
             complexity_difference_thr = 20.0
             crucial = r_complexity*2 > max_product_complexity or (max_product_complexity-r_complexity) < complexity_difference_thr or r_complexity*2 > max_reagent_complexity or (max_reagent_complexity-r_complexity) < complexity_difference_thr
             reagent['crucial'] = crucial
-        
-        av_complexity = 0
-        for chem in products:
-            av_complexity += cid_chem_map[chem['cid']]['complexity']
-        
-        for chem in reagents:
-            av_complexity += cid_chem_map[chem['cid']]['complexity']
-        av_complexity /= len(products) + len(reagents)
 
         reaction = {'reagents': reagents, 'products': products}
-        reaction['complexity'] = av_complexity
+        reaction['complexity'] = self.__get_reaction_complexity(reaction, cid_chem_map)
         
         reaction_hash = self.__get_reaction_hash(reaction)
         reaction['rid'] = reaction_hash
@@ -1053,9 +1060,10 @@ class ChemsLLM:
                     'complexity': chem.complexity
                 }
 
-                f_out.write(json.dumps(chem_pc_data) + '\n')
-                f_out.flush()
-                self.log(f"Fetched '{chem_pc_data['cmpdname']}' for cid '{cid}'")
+                if self.__write_chem_entry(chem_pc_data, f_out):
+                    self.log(f"Fetched '{chem_pc_data['cmpdname']}' for cid '{cid}'")
+                else:
+                    self.log(f"Failed to write '{chem_pc_data['cmpdname']}' with CID: '{cid}'")
 
 
 
@@ -1103,7 +1111,7 @@ class ChemsLLM:
         unique_cids = set()
         for chem in chems:
             cid = chem['cid']
-            if cid in unique_cids:
+            if cid in unique_cids or chem['charge'] != 0 or chem['cid'] in self.cids_blacklist:
                 continue
             if chem['cmpdname'] is None:
                 if chem['cmpdsynonym']:
@@ -1113,8 +1121,6 @@ class ChemsLLM:
                     chem['cmpdname'] = synonyms[0].lower()
                 else:
                     continue
-            if chem['charge'] != 0:
-                continue
 
             unique_cids.add(cid)
             unique_chems.append(chem)
@@ -1635,9 +1641,10 @@ class ChemsLLM:
                     self.log(f"Exception during fetching: {e}")
                     continue
 
-                f_out.write(json.dumps(chem_pc_data) + '\n')
-                f_out.flush()
-                self.log(f"Fetched '{chem_pc_data['cmpdname']}' for unmapped smiles '{chem_smiles}'")
+                if self.__write_chem_entry(chem_pc_data, f_out):
+                    self.log(f"Fetched '{chem_pc_data['cmpdname']}' for unmapped smiles '{chem_smiles}'")
+                else:
+                    self.log(f"Failed to write '{chem_pc_data['cmpdname']}' for unmapped smiles: '{chem_smiles}'")
     
 
     def fetch_chems_cids_from_pubchem_f(self, cids_fn):
@@ -1666,10 +1673,24 @@ class ChemsLLM:
                     'complexity': chem.complexity
                 }
 
-                f_out.write(json.dumps(chem_pc_data) + '\n')
-                f_out.flush()
-                self.log(f"Fetched '{chem_pc_data['cmpdname']}' for cid '{cid}'")
+                if self.__write_chem_entry(chem_pc_data, f_out):
+                    self.log(f"Fetched '{chem_pc_data['cmpdname']}' for cid '{cid}'")
+                else:
+                    self.log(f"Failed to write '{chem_pc_data['cmpdname']}' with CID: '{cid}'")
 
+    
+
+    def __write_chem_entry(self, entry, f_chem) -> bool:
+        if not isinstance(entry['cid'], int):
+            return False
+
+        if entry['cid'] in self.cids_blacklist:
+            return False
+
+        f_chem.write(json.dumps(entry) + '\n')
+        f_chem.flush()
+
+        return True
 
     def merge_parsed_reactions_files(self, out_fn, *parsed_reactions_files):
         processed_rids = set()
@@ -1733,14 +1754,9 @@ class ChemsLLM:
         with open(self.reactions_details_fn, 'w') as f:
             for entry in details:
                 f.write(json.dumps(entry) + '\n')
+    
 
-
-    def fix_reactions(self):
-        shutil.copy(self.reactions_parsed_balanced_fn, f"{self.reactions_parsed_balanced_fn}.backup")
-
-        with open(self.reactions_parsed_balanced_fn) as f:
-            reactions = [json.loads(x) for x in f.read().strip().split('\n')]
-        
+    def __fix_reaction_single(self, react):
         def fix_part(entry, part):
             unique = set()
             chems = []
@@ -1749,17 +1765,29 @@ class ChemsLLM:
                     unique.add(chem['cid'])
                     chems.append(chem)
             entry[part] = chems
-
-        for entry in reactions:
-            fix_part(entry, 'reagents')
-            fix_part(entry, 'products')
         
-        with open(self.reactions_parsed_balanced_fn, 'w') as f:
+        fix_part(react, 'reagents')
+        fix_part(react, 'products')
+
+
+    def fix_reactions(self, reactions_fn=None):
+        if reactions_fn is None:
+            reactions_fn = self.reactions_parsed_balanced_fn
+
+        shutil.copy(reactions_fn, f"{reactions_fn}.backup")
+
+        with open(reactions_fn) as f:
+            reactions = [json.loads(x) for x in f.read().strip().split('\n')]
+
+        for react in reactions:
+            self.__fix_reaction_single(react)
+        
+        with open(reactions_fn, 'w') as f:
             for entry in reactions:
                 f.write(json.dumps(entry) + '\n')
         
         # Remove duplicates taking into account source priorities
-        self.merge_parsed_reactions_files(self.reactions_parsed_balanced_fn, self.reactions_parsed_balanced_fn)
+        self.merge_parsed_reactions_files(reactions_fn, reactions_fn)
     
 
     def fix_hazards(self):
@@ -2014,15 +2042,84 @@ class ChemsLLM:
             for entry in reactions:
                 if entry['rid'] not in rids_to_filter:
                     f.write(json.dumps(entry) + '\n')
+    
 
+    def extract_radicals_list(self, out_fn):
+        chems = self.__load_jsonl(self.chems_fn)
+        radicals = []
+        for chem in chems:
+            all_names = chem['cmpdsynonym'] + [chem['cmpdname']]
+            for name in all_names:
+                if '(.)' in name:
+                    radicals.append({'cid': chem['cid'], 'name': chem['cmpdname']})
+                    break
+        
+        self.__write_jsonl(radicals, out_fn, backup=False)
+    
+
+    def clean_ord_reactions_from_radicals(self):
+        replace_cid_map = {
+            5460631: 783
+        }
+
+        cid_chem_map = self.__get_cid_chem_map()
+
+        reactions = self.__load_jsonl(self.reactions_parsed_ord_fn)
+        react_i_to_remove = set()
+        modified_react_i = set()
+        rid_map = dict()
+        for i, react in enumerate(reactions):
+            modified = False
+            for r in (react['reagents']+react['products']):
+                cid = r['cid']
+                if cid in self.cids_blacklist:
+                    if cid in replace_cid_map:
+                        new_cid = replace_cid_map[cid]
+                        new_name = cid_chem_map[new_cid]['cmpdname']
+                        r['cid'] = new_cid
+                        r['original_name'] = new_name
+                        r['norm_name'] = self.__normalize_chem_name(new_name)
+                        modified = True
+                    else:
+                        react_i_to_remove.add(i)
+                        break
+            else:
+                self.__fix_reaction_single(react)
+                new_rid = self.__get_reaction_hash(react)
+                rid_map[react['rid']] = new_rid
+                react['rid'] = new_rid
+                react['complexity'] = self.__get_reaction_complexity(react, cid_chem_map)
+
+                if modified:
+                    modified_react_i.add(i)
+        
+        reactions = [r for i, r in enumerate(reactions) if i not in react_i_to_remove]
+        self.__write_jsonl(reactions, self.reactions_parsed_ord_fn)
+        self.merge_parsed_reactions_files(self.reactions_parsed_ord_fn, self.reactions_parsed_ord_fn)
+
+        details_ord = self.__load_jsonl(self.reactions_parsed_details_ord_fn)
+        for entry in details_ord:
+            if entry['rid'] in rid_map:
+                entry['rid'] = rid_map[entry['rid']]
+        self.__write_jsonl(details_ord, self.reactions_parsed_details_ord_fn)
+        self.merge_parsed_reactions_files(self.reactions_parsed_details_ord_fn, self.reactions_parsed_details_ord_fn)
+
+        details = self.__load_jsonl(self.reactions_details_fn)
+        for entry in details:
+            if entry['rid'] in rid_map and entry['source'] == 'ord':
+                entry['rid'] = rid_map[entry['rid']]
+        self.__write_jsonl(details, self.reactions_details_fn)
+        self.merge_parsed_reactions_files(self.reactions_details_fn, self.reactions_details_fn)
+
+        print(f"Removed {len(react_i_to_remove)} reactions; modified {len(modified_react_i)}")
     
 
     def __load_jsonl(self, filename):
         with open(filename) as f:
             return [json.loads(x) for x in f.read().strip().split('\n')]
     
-    def __write_jsonl(self, entries, filename):
-        if os.path.exists(filename):
+    def __write_jsonl(self, entries, filename, backup=True):
+        if os.path.exists(filename) and backup:
             shutil.copy(filename, f"{filename}.backup")
 
         with open(filename, 'w') as f:
@@ -2273,9 +2370,10 @@ if __name__ == "__main__":
     #chemsllm.map_ord_reactions_chems_to_cids('cleaned_ord.jsonl')
     #chemsllm.fetch_unmapped_smiles_from_pubchem()
     #chemsllm.fetch_chems_cids_from_pubchem('cids.txt')
-    #chemsllm.merge_parsed_reactions_files("data/merged_reactions_parsed.jsonl", "data/reactions_parsed_ord.jsonl", "data/reactions_parsed.jsonl")
-    #chemsllm.balance_parsed_reactions("data/merged_reactions_parsed.jsonl")
-    #chemsllm.populate_db()
+    chemsllm.merge_parsed_reactions_files("data/reactions_parsed/merged_reactions_parsed.jsonl", "data/reactions_parsed/reactions_parsed_ord.jsonl", "data/reactions_parsed/reactions_parsed.jsonl")
+    chemsllm.balance_parsed_reactions("data/reactions_parsed/merged_reactions_parsed.jsonl")
+    chemsllm.generate_edges()
+    chemsllm.populate_db()
     #chemsllm.deduplicate_chems_rebind_reactions()
     #chemsllm.fix_details()
     #chemsllm.fix_reactions()
@@ -2290,6 +2388,8 @@ if __name__ == "__main__":
     #chemsllm.get_background_substances(20)
     #chemsllm.get_commonnes_chems_sorting()
     #chemsllm.filter_ord_reactions()
+    #chemsllm.extract_radicals_list('data/misc/radicals.jsonl')
+    #chemsllm.clean_ord_reactions_from_radicals()
 
     
 
