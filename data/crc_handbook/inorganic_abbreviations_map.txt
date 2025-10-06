@@ -1,0 +1,73 @@
+hp|heptane
+orth|orthorhombic
+s|soluble
+hyd|hydrate
+peth|petroleum ether
+sl|slightly soluble
+silv|silvery
+os|organic solvents
+HT|high temperature
+soln|solution
+pow|powder
+hyg|hygroscopic
+sp|sublimation point
+prec|precipitate
+i|insoluble
+stab|stable
+pur|purple
+liq|liquid
+subl|sublimes
+py|pyridine
+LT|low temperature
+temp|temperature
+reac|reacts with
+MeOH|methanol
+tetr|tetragonal
+refrac|refractory
+monocl|monoclinic
+thf|tetrahydrofuran
+rhom|rhombohedral
+octahed|octahedral
+tol|toluene
+r.t.|room temperature
+oran|orange
+tp|triple point
+trans|transition
+tricl|triclinic
+trig|trigonal
+unstab|unstable
+viol|violet
+visc|viscous
+vs|very soluble
+wh|white
+xyl|xylene
+yel|yellow
+Ac|acetyl
+ace|acetone
+acid|acid solutions
+alk|alkaline solutions
+amorp|amorphous
+anh|anhydrous
+aq|aqueous
+blk|black
+brn|brown
+bz|benzene
+chl|chloroform
+col|colorless
+conc|concentrated
+cry|crystals
+cub|cubic
+cyhex|cyclohexane
+dec|decomposes
+dil|dilute
+diox|dioxane
+eth|ethyl ether
+EtOH|ethanol
+exp|explodes
+extrap|extrapolated
+flam|flammable
+gl|glass
+grn|green
+hc|hydrocarbon solvents
+hex|hexane
+HO|water

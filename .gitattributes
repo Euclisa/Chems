@@ -1,3 +1,6 @@
 data/*.jsonl !text !filter !merge !diff
 data/*.txt !text !filter !merge !diff
 data/structures/*.svg !text !filter !merge !diff
+data/assets/crc_handbook/flammability.pdf filter=lfs diff=lfs merge=lfs -text
+data/assets/crc_handbook/inorganic_constants.pdf filter=lfs diff=lfs merge=lfs -text
+data/assets/crc_handbook/organic_constants.pdf filter=lfs diff=lfs merge=lfs -text

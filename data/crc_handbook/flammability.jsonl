@@ -1,0 +1,885 @@
+{"name": "Diborane", "flash_point": {"approx": false, "value": -90.0}, "flash_limits": "1-98%", "ignition_temp": {"approx": true, "value": 40.0}}
+{"name": "Pentaborane(9)", "flash_point": {"approx": false, "value": 30.0}, "flash_limits": "0.4-?", "ignition_temp": {"approx": false, "value": 35.0}}
+{"name": "Bromosilane", "flash_point": {"approx": true, "value": 0.0}, "flash_limits": null, "ignition_temp": {"approx": true, "value": 20.0}}
+{"name": "Tribromosilane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": true, "value": 20.0}}
+{"name": "Dichlorosilane", "flash_point": null, "flash_limits": "4.1-99%", "ignition_temp": {"approx": false, "value": 36.0}}
+{"name": "Trichlorosilane", "flash_point": {"approx": false, "value": -50.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 104.0}}
+{"name": "Germane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": true, "value": 20.0}}
+{"name": "Digermane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": true, "value": 50.0}}
+{"name": "Hydrogen", "flash_point": null, "flash_limits": "4-74%", "ignition_temp": null}
+{"name": "Hydrogen sulfide", "flash_point": null, "flash_limits": "4-44%", "ignition_temp": {"approx": false, "value": 260.0}}
+{"name": "Hydrogen disulfide", "flash_point": {"approx": true, "value": 22.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Hydrogen telluride", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 50.0}}
+{"name": "Ammonia", "flash_point": null, "flash_limits": "16-25%", "ignition_temp": null}
+{"name": "Phosphine", "flash_point": null, "flash_limits": "1.8-?", "ignition_temp": null}
+{"name": "Hydrazine", "flash_point": {"approx": false, "value": 38.0}, "flash_limits": "5-100%", "ignition_temp": null}
+{"name": "Diphosphine", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": true, "value": 20.0}}
+{"name": "Silane", "flash_point": {"approx": false, "value": -112.0}, "flash_limits": "1.4-?", "ignition_temp": {"approx": true, "value": 20.0}}
+{"name": "Disilane", "flash_point": {"approx": false, "value": -14.0}, "flash_limits": null, "ignition_temp": {"approx": true, "value": 20.0}}
+{"name": "Trisilane", "flash_point": {"approx": true, "value": 0.0}, "flash_limits": null, "ignition_temp": {"approx": true, "value": 20.0}}
+{"name": "Phosphorus (white) Comp", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 38.0}}
+{"name": "Hydrogen cyanide", "flash_point": {"approx": false, "value": -18.0}, "flash_limits": "6-40%", "ignition_temp": {"approx": false, "value": 538.0}}
+{"name": "Dichloromethane", "flash_point": null, "flash_limits": "13-23%", "ignition_temp": {"approx": false, "value": 556.0}}
+{"name": "Cyanamide", "flash_point": {"approx": false, "value": 141.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Formaldehyde", "flash_point": {"approx": false, "value": 85.0}, "flash_limits": "7.0-73%", "ignition_temp": {"approx": false, "value": 424.0}}
+{"name": "Paraformaldehyde", "flash_point": {"approx": false, "value": 70.0}, "flash_limits": "7.0-73%", "ignition_temp": {"approx": false, "value": 300.0}}
+{"name": "Formic acid", "flash_point": {"approx": false, "value": 50.0}, "flash_limits": "18-57%", "ignition_temp": {"approx": false, "value": 434.0}}
+{"name": "Bromomethane", "flash_point": null, "flash_limits": "10-16%", "ignition_temp": {"approx": false, "value": 537.0}}
+{"name": "Chloromethane", "flash_point": null, "flash_limits": "8.1-17.4%", "ignition_temp": null}
+{"name": "Methyltrichlorosilane", "flash_point": {"approx": false, "value": -9.0}, "flash_limits": "7.6->20%", "ignition_temp": {"approx": true, "value": 404.0}}
+{"name": "Formamide", "flash_point": {"approx": false, "value": 154.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Nitromethane", "flash_point": {"approx": false, "value": 35.0}, "flash_limits": "7.3-?", "ignition_temp": {"approx": false, "value": 418.0}}
+{"name": "Methane", "flash_point": null, "flash_limits": "5.0-15.0%", "ignition_temp": {"approx": false, "value": 537.0}}
+{"name": "Dichloromethylsilane", "flash_point": {"approx": false, "value": -9.0}, "flash_limits": "6.0-55%", "ignition_temp": {"approx": false, "value": 316.0}}
+{"name": "Methanol", "flash_point": {"approx": false, "value": 11.0}, "flash_limits": "6.0-36%", "ignition_temp": {"approx": false, "value": 464.0}}
+{"name": "Methanethiol", "flash_point": {"approx": false, "value": -18.0}, "flash_limits": "3.9-21.8%", "ignition_temp": null}
+{"name": "Methylamine", "flash_point": {"approx": false, "value": 0.0}, "flash_limits": "4.9-20.7%", "ignition_temp": {"approx": false, "value": 430.0}}
+{"name": "Methylhydrazine", "flash_point": {"approx": false, "value": -8.0}, "flash_limits": "2.5-92%", "ignition_temp": {"approx": false, "value": 194.0}}
+{"name": "Carbon monoxide", "flash_point": null, "flash_limits": "12.5-74%", "ignition_temp": {"approx": false, "value": 609.0}}
+{"name": "Carbon oxysulfide", "flash_point": null, "flash_limits": "12-29%", "ignition_temp": null}
+{"name": "Carbon disulfide", "flash_point": {"approx": false, "value": -30.0}, "flash_limits": "1.3-50.0%", "ignition_temp": {"approx": false, "value": 90.0}}
+{"name": "Chlorotrifluoroethylene", "flash_point": null, "flash_limits": "8.4-16.0%", "ignition_temp": null}
+{"name": "Tetrafluoroethylene", "flash_point": null, "flash_limits": "10.0-50.0%", "ignition_temp": {"approx": false, "value": 200.0}}
+{"name": "Trichloroethylene", "flash_point": null, "flash_limits": "8-10.5%", "ignition_temp": {"approx": false, "value": 420.0}}
+{"name": "Dichloroacetyl chloride", "flash_point": {"approx": false, "value": 66.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Acetylene", "flash_point": null, "flash_limits": "2.5-100%", "ignition_temp": {"approx": false, "value": 305.0}}
+{"name": "1,1-Dichloroethylene", "flash_point": {"approx": false, "value": -28.0}, "flash_limits": "6.5-15.5%", "ignition_temp": {"approx": false, "value": 570.0}}
+{"name": "cis-1,2-Dichloroethylene", "flash_point": {"approx": false, "value": 6.0}, "flash_limits": "3-15%", "ignition_temp": {"approx": false, "value": 460.0}}
+{"name": "trans-1,2-Dichloroethylene", "flash_point": {"approx": false, "value": 2.0}, "flash_limits": "6-13%", "ignition_temp": {"approx": false, "value": 460.0}}
+{"name": "1,1-Difluoroethylene", "flash_point": null, "flash_limits": "5.5-21.3%", "ignition_temp": null}
+{"name": "Bromoethylene", "flash_point": null, "flash_limits": "9-15%", "ignition_temp": {"approx": false, "value": 530.0}}
+{"name": "Chloroethylene", "flash_point": {"approx": false, "value": -78.0}, "flash_limits": "3.6-33.0%", "ignition_temp": {"approx": false, "value": 472.0}}
+{"name": "1-Chloro-1,1-difluoroethane", "flash_point": null, "flash_limits": "6-18%", "ignition_temp": {"approx": false, "value": 632.0}}
+{"name": "Acetyl chloride", "flash_point": {"approx": false, "value": 4.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 390.0}}
+{"name": "1,1-Dichloro-1-nitroethane", "flash_point": {"approx": false, "value": 76.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,1,1-Trichloroethane", "flash_point": null, "flash_limits": "8-10.5%", "ignition_temp": {"approx": false, "value": 500.0}}
+{"name": "1,1,2-Trichloroethane", "flash_point": {"approx": false, "value": 32.0}, "flash_limits": "6-28%", "ignition_temp": {"approx": false, "value": 460.0}}
+{"name": "Trichlorovinylsilane", "flash_point": {"approx": false, "value": 21.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Fluoroethylene", "flash_point": null, "flash_limits": "2.6-21.7%", "ignition_temp": null}
+{"name": "Acetonitrile", "flash_point": {"approx": false, "value": 6.0}, "flash_limits": "3.0-16.0%", "ignition_temp": {"approx": false, "value": 524.0}}
+{"name": "Methyl isocyanate", "flash_point": {"approx": false, "value": -7.0}, "flash_limits": "5.3-26%", "ignition_temp": {"approx": false, "value": 534.0}}
+{"name": "Ethylene", "flash_point": null, "flash_limits": "2.7-36%", "ignition_temp": {"approx": false, "value": 450.0}}
+{"name": "1-Chloro-1-nitroethane", "flash_point": {"approx": false, "value": 56.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,1-Dichloroethane", "flash_point": {"approx": false, "value": -17.0}, "flash_limits": "5.4-11.4%", "ignition_temp": {"approx": false, "value": 458.0}}
+{"name": "1,2-Dichloroethane", "flash_point": {"approx": false, "value": 13.0}, "flash_limits": "6.2-16%", "ignition_temp": {"approx": false, "value": 413.0}}
+{"name": "Acetaldehyde", "flash_point": {"approx": false, "value": -39.0}, "flash_limits": "4.0-60%", "ignition_temp": {"approx": false, "value": 175.0}}
+{"name": "Ethylene oxide", "flash_point": {"approx": false, "value": -20.0}, "flash_limits": "3.0-100%", "ignition_temp": {"approx": false, "value": 429.0}}
+{"name": "Acetic acid", "flash_point": {"approx": false, "value": 39.0}, "flash_limits": "4.0-19.9%", "ignition_temp": {"approx": false, "value": 463.0}}
+{"name": "Methyl formate", "flash_point": {"approx": false, "value": -19.0}, "flash_limits": "4.5-23%", "ignition_temp": {"approx": false, "value": 449.0}}
+{"name": "Ethaneperoxoic acid", "flash_point": {"approx": false, "value": 41.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Bromoethane", "flash_point": null, "flash_limits": "6.8-8.0%", "ignition_temp": {"approx": false, "value": 511.0}}
+{"name": "Chloroethane", "flash_point": {"approx": false, "value": -50.0}, "flash_limits": "3.8-15.4%", "ignition_temp": {"approx": false, "value": 519.0}}
+{"name": "Ethylene chlorohydrin", "flash_point": {"approx": false, "value": 60.0}, "flash_limits": "4.9-15.9%", "ignition_temp": {"approx": false, "value": 425.0}}
+{"name": "Trichloroethylsilane", "flash_point": {"approx": false, "value": 22.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethyleneimine", "flash_point": {"approx": false, "value": -11.0}, "flash_limits": "3.3-54.8%", "ignition_temp": {"approx": false, "value": 320.0}}
+{"name": "Nitroethane", "flash_point": {"approx": false, "value": 28.0}, "flash_limits": "3.4-17%", "ignition_temp": {"approx": false, "value": 414.0}}
+{"name": "Ethyl nitrite", "flash_point": {"approx": false, "value": -35.0}, "flash_limits": "4.0-50%", "ignition_temp": {"approx": false, "value": 90.0}}
+{"name": "Ethyl nitrate", "flash_point": {"approx": false, "value": 10.0}, "flash_limits": "4-?", "ignition_temp": null}
+{"name": "Ethane", "flash_point": null, "flash_limits": "3.0-12.5%", "ignition_temp": {"approx": false, "value": 472.0}}
+{"name": "Dichlorodimethylsilane", "flash_point": {"approx": true, "value": 21.0}, "flash_limits": "3.4-9.5%", "ignition_temp": null}
+{"name": "Ethanol", "flash_point": {"approx": false, "value": 13.0}, "flash_limits": "3.3-19%", "ignition_temp": {"approx": false, "value": 363.0}}
+{"name": "Dimethyl ether", "flash_point": {"approx": false, "value": -41.0}, "flash_limits": "3.4-27.0%", "ignition_temp": {"approx": false, "value": 350.0}}
+{"name": "2-Mercaptoethanol", "flash_point": {"approx": false, "value": 74.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dimethyl sulfoxide", "flash_point": {"approx": false, "value": 95.0}, "flash_limits": "2.6-42%", "ignition_temp": {"approx": false, "value": 215.0}}
+{"name": "Ethylene glycol", "flash_point": {"approx": false, "value": 111.0}, "flash_limits": "3.2-22%", "ignition_temp": {"approx": false, "value": 398.0}}
+{"name": "Dimethyl sulfate", "flash_point": {"approx": false, "value": 83.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 188.0}}
+{"name": "Ethanethiol", "flash_point": {"approx": false, "value": -17.0}, "flash_limits": "2.8-18.0%", "ignition_temp": {"approx": false, "value": 300.0}}
+{"name": "Dimethyl sulfide", "flash_point": {"approx": false, "value": -37.0}, "flash_limits": "2.2-19.7%", "ignition_temp": {"approx": false, "value": 206.0}}
+{"name": "Dimethyl disulfide", "flash_point": {"approx": false, "value": 24.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethylamine", "flash_point": {"approx": false, "value": -16.0}, "flash_limits": "3.5-14%", "ignition_temp": {"approx": false, "value": 385.0}}
+{"name": "Dimethylamine", "flash_point": {"approx": false, "value": 20.0}, "flash_limits": "2.8-14.4%", "ignition_temp": {"approx": false, "value": 400.0}}
+{"name": "Ethanolamine", "flash_point": {"approx": false, "value": 86.0}, "flash_limits": "3.0-23.5%", "ignition_temp": {"approx": false, "value": 410.0}}
+{"name": "1,2-Ethanediamine", "flash_point": {"approx": false, "value": 40.0}, "flash_limits": "2.5-12.0%", "ignition_temp": {"approx": false, "value": 385.0}}
+{"name": "1,1-Dimethylhydrazine", "flash_point": {"approx": false, "value": -15.0}, "flash_limits": "2-95%", "ignition_temp": {"approx": false, "value": 249.0}}
+{"name": "Cyanogen", "flash_point": null, "flash_limits": "6.6-32%", "ignition_temp": null}
+{"name": "3-Bromo-1-propyne", "flash_point": {"approx": false, "value": 10.0}, "flash_limits": "3.0-?", "ignition_temp": {"approx": false, "value": 324.0}}
+{"name": "2-Propenenitrile", "flash_point": {"approx": false, "value": 0.0}, "flash_limits": "3.0-17.0%", "ignition_temp": {"approx": false, "value": 481.0}}
+{"name": "Propyne", "flash_point": null, "flash_limits": "2.1-12.5%", "ignition_temp": null}
+{"name": "3-Chloropropanenitrile", "flash_point": {"approx": false, "value": 76.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2,3-Dichloropropene", "flash_point": {"approx": false, "value": 15.0}, "flash_limits": "2.6-7.8%", "ignition_temp": null}
+{"name": "Propargyl alcohol", "flash_point": {"approx": false, "value": 36.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Acrolein", "flash_point": {"approx": false, "value": -26.0}, "flash_limits": "2.8-31%", "ignition_temp": {"approx": false, "value": 220.0}}
+{"name": "Propenoic acid", "flash_point": {"approx": false, "value": 50.0}, "flash_limits": "2.4-8.0%", "ignition_temp": {"approx": false, "value": 438.0}}
+{"name": "2-Oxetanone", "flash_point": {"approx": false, "value": 74.0}, "flash_limits": "2.9-?", "ignition_temp": null}
+{"name": "Ethylene carbonate", "flash_point": {"approx": false, "value": 143.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "3-Bromopropene", "flash_point": {"approx": false, "value": -1.0}, "flash_limits": "4.4-7.3%", "ignition_temp": {"approx": false, "value": 295.0}}
+{"name": "2-Chloropropene", "flash_point": {"approx": false, "value": -37.0}, "flash_limits": "4.5-16%", "ignition_temp": null}
+{"name": "3-Chloropropene", "flash_point": {"approx": false, "value": -32.0}, "flash_limits": "2.9-11.1%", "ignition_temp": {"approx": false, "value": 485.0}}
+{"name": "Epichlorohydrin", "flash_point": {"approx": false, "value": 31.0}, "flash_limits": "3.8-21.0%", "ignition_temp": {"approx": false, "value": 411.0}}
+{"name": "Propanoyl chloride", "flash_point": {"approx": false, "value": 12.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Chloropropanoic acid", "flash_point": {"approx": false, "value": 107.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 500.0}}
+{"name": "Ethyl chloroformate", "flash_point": {"approx": false, "value": 16.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 500.0}}
+{"name": "Methyl chloroacetate", "flash_point": {"approx": false, "value": 57.0}, "flash_limits": "7.5-18.5%", "ignition_temp": null}
+{"name": "1,1-Dichloro-1-nitropropane", "flash_point": {"approx": false, "value": 66.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,2,3-Trichloropropane", "flash_point": {"approx": false, "value": 71.0}, "flash_limits": "3.2-12.6%", "ignition_temp": null}
+{"name": "Trichloro-2-propenylsilane", "flash_point": {"approx": false, "value": 35.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Propanenitrile", "flash_point": {"approx": false, "value": 2.0}, "flash_limits": "3.1-14%", "ignition_temp": {"approx": false, "value": 512.0}}
+{"name": "3-Hydroxypropanenitrile", "flash_point": {"approx": false, "value": 129.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Trinitroglycerol", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 270.0}}
+{"name": "Propene", "flash_point": null, "flash_limits": "2.0-11.1%", "ignition_temp": {"approx": false, "value": 455.0}}
+{"name": "Cyclopropane", "flash_point": null, "flash_limits": "2.4-10.4%", "ignition_temp": {"approx": false, "value": 498.0}}
+{"name": "1-Chloro-1-nitropropane", "flash_point": {"approx": false, "value": 62.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Chloro-2-nitropropane", "flash_point": {"approx": false, "value": 57.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,2-Dichloropropane", "flash_point": {"approx": false, "value": 21.0}, "flash_limits": "3.4-14.5%", "ignition_temp": {"approx": false, "value": 557.0}}
+{"name": "1,3-Dichloro-2-propanol", "flash_point": {"approx": false, "value": 74.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dimethylcyanamide", "flash_point": {"approx": false, "value": 71.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Allyl alcohol", "flash_point": {"approx": false, "value": 21.0}, "flash_limits": "2.5-18.0%", "ignition_temp": {"approx": false, "value": 378.0}}
+{"name": "Methyl vinyl ether", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 287.0}}
+{"name": "Propanal", "flash_point": {"approx": false, "value": -30.0}, "flash_limits": "2.6-17%", "ignition_temp": {"approx": false, "value": 207.0}}
+{"name": "Acetone", "flash_point": {"approx": false, "value": -20.0}, "flash_limits": "2.5-12.8%", "ignition_temp": {"approx": false, "value": 465.0}}
+{"name": "Methyloxirane", "flash_point": {"approx": false, "value": -37.0}, "flash_limits": "3.1-27.5%", "ignition_temp": {"approx": false, "value": 449.0}}
+{"name": "Propanoic acid", "flash_point": {"approx": false, "value": 52.0}, "flash_limits": "2.9-12.1%", "ignition_temp": {"approx": false, "value": 465.0}}
+{"name": "Ethyl formate", "flash_point": {"approx": false, "value": -20.0}, "flash_limits": "2.8-16.0%", "ignition_temp": {"approx": false, "value": 455.0}}
+{"name": "Methyl acetate", "flash_point": {"approx": false, "value": -10.0}, "flash_limits": "3.1-16%", "ignition_temp": {"approx": false, "value": 454.0}}
+{"name": "1,3-Dioxolane", "flash_point": {"approx": false, "value": 2.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dimethyl carbonate", "flash_point": {"approx": false, "value": 19.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,3,5-Trioxane", "flash_point": {"approx": false, "value": 45.0}, "flash_limits": "3.6-29%", "ignition_temp": {"approx": false, "value": 414.0}}
+{"name": "1-Bromopropane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 490.0}}
+{"name": "1-Chloropropane", "flash_point": {"approx": true, "value": -18.0}, "flash_limits": "2.6-11.1%", "ignition_temp": {"approx": false, "value": 520.0}}
+{"name": "2-Chloropropane", "flash_point": {"approx": false, "value": -32.0}, "flash_limits": "2.8-10.7%", "ignition_temp": {"approx": false, "value": 593.0}}
+{"name": "2-Chloro-1-propanol", "flash_point": {"approx": false, "value": 52.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Chloro-2-propanol", "flash_point": {"approx": false, "value": 52.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Trichloropropylsilane", "flash_point": {"approx": false, "value": 37.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Allylamine", "flash_point": {"approx": false, "value": -29.0}, "flash_limits": "2.2-22%", "ignition_temp": {"approx": false, "value": 374.0}}
+{"name": "N,N-Dimethylformamide", "flash_point": {"approx": false, "value": 58.0}, "flash_limits": "2.2-15.2%", "ignition_temp": {"approx": false, "value": 445.0}}
+{"name": "1-Nitropropane", "flash_point": {"approx": false, "value": 36.0}, "flash_limits": "2.2-?", "ignition_temp": {"approx": false, "value": 421.0}}
+{"name": "2-Nitropropane", "flash_point": {"approx": false, "value": 24.0}, "flash_limits": "2.6-11.0%", "ignition_temp": {"approx": false, "value": 428.0}}
+{"name": "Propyl nitrate", "flash_point": {"approx": false, "value": 20.0}, "flash_limits": "2-100%", "ignition_temp": {"approx": false, "value": 175.0}}
+{"name": "Propane", "flash_point": {"approx": false, "value": -104.0}, "flash_limits": "2.1-9.5%", "ignition_temp": {"approx": false, "value": 450.0}}
+{"name": "1-Propanol", "flash_point": {"approx": false, "value": 23.0}, "flash_limits": "2.2-13.7%", "ignition_temp": {"approx": false, "value": 412.0}}
+{"name": "2-Propanol", "flash_point": {"approx": false, "value": 12.0}, "flash_limits": "2.0-12.7%", "ignition_temp": {"approx": false, "value": 399.0}}
+{"name": "Ethyl methyl ether", "flash_point": {"approx": false, "value": -37.0}, "flash_limits": "2.0-10.1%", "ignition_temp": {"approx": false, "value": 190.0}}
+{"name": "1,2-Propylene glycol", "flash_point": {"approx": false, "value": 99.0}, "flash_limits": "2.6-12.5%", "ignition_temp": {"approx": false, "value": 371.0}}
+{"name": "1,3-Propylene glycol", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 400.0}}
+{"name": "Ethylene glycol monomethyl ether", "flash_point": {"approx": false, "value": 39.0}, "flash_limits": "1.8-14%", "ignition_temp": {"approx": false, "value": 285.0}}
+{"name": "Dimethoxymethane", "flash_point": {"approx": false, "value": -32.0}, "flash_limits": "2.2-13.8%", "ignition_temp": {"approx": false, "value": 237.0}}
+{"name": "Glycerol", "flash_point": {"approx": false, "value": 199.0}, "flash_limits": "3-19%", "ignition_temp": {"approx": false, "value": 370.0}}
+{"name": "Trimethyl borate", "flash_point": {"approx": false, "value": -8.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Trimethylchlorosilane", "flash_point": {"approx": false, "value": -28.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 395.0}}
+{"name": "Propylamine", "flash_point": {"approx": false, "value": -37.0}, "flash_limits": "2.0-10.4%", "ignition_temp": {"approx": false, "value": 318.0}}
+{"name": "Isopropylamine", "flash_point": {"approx": false, "value": -37.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 402.0}}
+{"name": "Trimethylamine", "flash_point": {"approx": false, "value": -5.0}, "flash_limits": "2.0-11.6%", "ignition_temp": {"approx": false, "value": 190.0}}
+{"name": "3-Amino-1-propanol", "flash_point": {"approx": false, "value": 80.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Amino-2-propanol", "flash_point": {"approx": false, "value": 77.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 374.0}}
+{"name": "N-Methyl-2-ethanolamine", "flash_point": {"approx": false, "value": 74.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Trimethyl phosphite", "flash_point": {"approx": false, "value": 54.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Trimethyl phosphate", "flash_point": {"approx": false, "value": 107.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,3-Propanediamine", "flash_point": {"approx": false, "value": 24.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Hexachloro-1,3-butadiene", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 610.0}}
+{"name": "Maleic anhydride", "flash_point": {"approx": false, "value": 102.0}, "flash_limits": "1.4-7.1%", "ignition_temp": {"approx": false, "value": 477.0}}
+{"name": "1-Buten-3-yne", "flash_point": null, "flash_limits": "21-100%", "ignition_temp": null}
+{"name": "Succinonitrile", "flash_point": {"approx": false, "value": 132.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Furan", "flash_point": {"approx": false, "value": -36.0}, "flash_limits": "2.3-14.3%", "ignition_temp": null}
+{"name": "Diketene", "flash_point": {"approx": false, "value": 34.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Thiophene", "flash_point": {"approx": false, "value": -1.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Chloro-1,3-butadiene", "flash_point": {"approx": false, "value": -20.0}, "flash_limits": "4.0-20.0%", "ignition_temp": null}
+{"name": "2-Butenenitrile", "flash_point": {"approx": false, "value": 16.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Methylacrylonitrile", "flash_point": {"approx": false, "value": 1.0}, "flash_limits": "2-6.8%", "ignition_temp": null}
+{"name": "Pyrrole", "flash_point": {"approx": false, "value": 39.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,3-Butadiene", "flash_point": null, "flash_limits": "2.0-12.0%", "ignition_temp": {"approx": false, "value": 420.0}}
+{"name": "2-Butyne", "flash_point": {"approx": false, "value": -31.0}, "flash_limits": "1.4-?", "ignition_temp": null}
+{"name": "Divinyl ether", "flash_point": {"approx": true, "value": -30.0}, "flash_limits": "1.7-27%", "ignition_temp": {"approx": false, "value": 360.0}}
+{"name": "Ethoxyacetylene", "flash_point": {"approx": true, "value": -7.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "trans-2-Butenal", "flash_point": {"approx": false, "value": 13.0}, "flash_limits": "2.1-15.5%", "ignition_temp": {"approx": false, "value": 232.0}}
+{"name": "3-Buten-2-one", "flash_point": {"approx": false, "value": -7.0}, "flash_limits": "2.1-15.6%", "ignition_temp": {"approx": false, "value": 491.0}}
+{"name": "Vinyloxirane", "flash_point": {"approx": true, "value": -50.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Methacrylic acid", "flash_point": {"approx": false, "value": 77.0}, "flash_limits": "1.6-8.8%", "ignition_temp": {"approx": false, "value": 68.0}}
+{"name": "Vinyl acetate", "flash_point": {"approx": false, "value": -8.0}, "flash_limits": "2.6-13.4%", "ignition_temp": {"approx": false, "value": 402.0}}
+{"name": "Methyl acrylate", "flash_point": {"approx": false, "value": -3.0}, "flash_limits": "2.8-25%", "ignition_temp": {"approx": false, "value": 468.0}}
+{"name": "2,3-Butanedione", "flash_point": {"approx": false, "value": 27.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "\u03b3-Butyrolactone", "flash_point": {"approx": false, "value": 98.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Acetic anhydride", "flash_point": {"approx": false, "value": 49.0}, "flash_limits": "2.7-10.3%", "ignition_temp": {"approx": false, "value": 316.0}}
+{"name": "Propylene carbonate", "flash_point": {"approx": false, "value": 135.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "L-Tartaric acid", "flash_point": {"approx": false, "value": 210.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 425.0}}
+{"name": "1-Bromo-2-butene", "flash_point": null, "flash_limits": "4.6-12.0%", "ignition_temp": null}
+{"name": "Ethyl bromoacetate", "flash_point": {"approx": false, "value": 48.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Chloro-1-butene", "flash_point": {"approx": false, "value": -19.0}, "flash_limits": "2.3-9.3%", "ignition_temp": null}
+{"name": "3-Chloro-2-methylpropene", "flash_point": {"approx": false, "value": -12.0}, "flash_limits": "3.2-8.1%", "ignition_temp": null}
+{"name": "2-Chloroethyl vinyl ether", "flash_point": {"approx": false, "value": 27.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethyl chloroacetate", "flash_point": {"approx": false, "value": 64.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Butanenitrile", "flash_point": {"approx": false, "value": 24.0}, "flash_limits": "1.6-?", "ignition_temp": {"approx": false, "value": 501.0}}
+{"name": "2-Methylpropanenitrile", "flash_point": {"approx": false, "value": 8.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 482.0}}
+{"name": "Acetone cyanohydrin", "flash_point": {"approx": false, "value": 74.0}, "flash_limits": "2.2-12.0%", "ignition_temp": {"approx": false, "value": 688.0}}
+{"name": "2-Pyrrolidone", "flash_point": {"approx": false, "value": 129.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Butene", "flash_point": null, "flash_limits": "1.6-10.0%", "ignition_temp": {"approx": false, "value": 385.0}}
+{"name": "cis-2-Butene", "flash_point": null, "flash_limits": "1.7-9.0%", "ignition_temp": {"approx": false, "value": 325.0}}
+{"name": "trans-2-Butene", "flash_point": null, "flash_limits": "1.8-9.7%", "ignition_temp": {"approx": false, "value": 324.0}}
+{"name": "Isobutene", "flash_point": null, "flash_limits": "1.8-9.6%", "ignition_temp": {"approx": false, "value": 465.0}}
+{"name": "Cyclobutane", "flash_point": {"approx": true, "value": 10.0}, "flash_limits": "1.8-?", "ignition_temp": null}
+{"name": "1,2-Dichlorobutane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 275.0}}
+{"name": "1,4-Dichlorobutane", "flash_point": {"approx": false, "value": 52.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Bis(2-chloroethyl) ether", "flash_point": {"approx": false, "value": 55.0}, "flash_limits": "2.7-?", "ignition_temp": {"approx": false, "value": 369.0}}
+{"name": "2-Buten-1-ol", "flash_point": {"approx": false, "value": 27.0}, "flash_limits": "4.2-35.3%", "ignition_temp": {"approx": false, "value": 349.0}}
+{"name": "2-Methyl-2-propenol", "flash_point": {"approx": false, "value": 33.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethyl vinyl ether", "flash_point": {"approx": true, "value": -46.0}, "flash_limits": "1.7-28%", "ignition_temp": {"approx": false, "value": 202.0}}
+{"name": "1,2-Epoxybutane", "flash_point": {"approx": false, "value": -22.0}, "flash_limits": "1.7-19%", "ignition_temp": {"approx": false, "value": 439.0}}
+{"name": "Butanal", "flash_point": {"approx": false, "value": -22.0}, "flash_limits": "1.9-12.5%", "ignition_temp": {"approx": false, "value": 218.0}}
+{"name": "Isobutanal", "flash_point": {"approx": false, "value": -18.0}, "flash_limits": "1.6-10.6%", "ignition_temp": {"approx": false, "value": 196.0}}
+{"name": "2-Butanone", "flash_point": {"approx": false, "value": -9.0}, "flash_limits": "1.4-11.4%", "ignition_temp": {"approx": false, "value": 404.0}}
+{"name": "Tetrahydrofuran", "flash_point": {"approx": false, "value": -14.0}, "flash_limits": "2-11.8%", "ignition_temp": {"approx": false, "value": 321.0}}
+{"name": "1,4-Oxathiane", "flash_point": {"approx": false, "value": 42.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Butanoic acid", "flash_point": {"approx": false, "value": 72.0}, "flash_limits": "2.0-10.0%", "ignition_temp": {"approx": false, "value": 443.0}}
+{"name": "2-Methylpropanoic acid", "flash_point": {"approx": false, "value": 56.0}, "flash_limits": "2.0-9.2%", "ignition_temp": {"approx": false, "value": 481.0}}
+{"name": "Propyl formate", "flash_point": {"approx": false, "value": -3.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 455.0}}
+{"name": "Isopropyl formate", "flash_point": {"approx": false, "value": -6.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 485.0}}
+{"name": "Ethyl acetate", "flash_point": {"approx": false, "value": -4.0}, "flash_limits": "2.0-11.5%", "ignition_temp": {"approx": false, "value": 426.0}}
+{"name": "Methyl propanoate", "flash_point": {"approx": false, "value": -2.0}, "flash_limits": "2.5-13%", "ignition_temp": {"approx": false, "value": 469.0}}
+{"name": "3-Hydroxybutanal", "flash_point": {"approx": false, "value": 66.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 250.0}}
+{"name": "1,4-Dioxane", "flash_point": {"approx": false, "value": 12.0}, "flash_limits": "2.0-22%", "ignition_temp": {"approx": false, "value": 180.0}}
+{"name": "Sulfolane", "flash_point": {"approx": false, "value": 177.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Methyl lactate", "flash_point": {"approx": false, "value": 49.0}, "flash_limits": "2.2-?", "ignition_temp": {"approx": false, "value": 385.0}}
+{"name": "Ethylene glycol monoacetate", "flash_point": {"approx": false, "value": 102.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Bromobutane", "flash_point": {"approx": false, "value": 18.0}, "flash_limits": "2.6-6.6%", "ignition_temp": {"approx": false, "value": 265.0}}
+{"name": "2-Bromobutane", "flash_point": {"approx": false, "value": 21.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Chlorobutane", "flash_point": {"approx": false, "value": -12.0}, "flash_limits": "1.9-10.1%", "ignition_temp": {"approx": false, "value": 240.0}}
+{"name": "2-Chlorobutane", "flash_point": {"approx": false, "value": -10.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Chloro-2-methylpropane", "flash_point": {"approx": false, "value": -6.0}, "flash_limits": "2.0-8.7%", "ignition_temp": null}
+{"name": "2-Chloro-2-methylpropane", "flash_point": {"approx": false, "value": 0.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Butyltrichlorosilane", "flash_point": {"approx": false, "value": 54.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Pyrrolidine", "flash_point": {"approx": false, "value": 3.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "N-Ethylacetamide", "flash_point": {"approx": false, "value": 110.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "N,N-Dimethylacetamide", "flash_point": {"approx": false, "value": 70.0}, "flash_limits": "1.8-11.5%", "ignition_temp": {"approx": false, "value": 490.0}}
+{"name": "Butanal oxime", "flash_point": {"approx": false, "value": 58.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Butanone oxime", "flash_point": {"approx": true, "value": 70.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Morpholine", "flash_point": {"approx": false, "value": 37.0}, "flash_limits": "1.4-11.2%", "ignition_temp": {"approx": false, "value": 290.0}}
+{"name": "N-Acetylethanolamine", "flash_point": {"approx": false, "value": 179.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 460.0}}
+{"name": "Butyl nitrate", "flash_point": {"approx": false, "value": 36.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Butane", "flash_point": {"approx": false, "value": -60.0}, "flash_limits": "1.9-8.5%", "ignition_temp": {"approx": false, "value": 287.0}}
+{"name": "Isobutane", "flash_point": {"approx": false, "value": -87.0}, "flash_limits": "1.8-8.4%", "ignition_temp": {"approx": false, "value": 460.0}}
+{"name": "Piperazine", "flash_point": {"approx": false, "value": 81.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Butanol", "flash_point": {"approx": false, "value": 37.0}, "flash_limits": "1.4-11.2%", "ignition_temp": {"approx": false, "value": 343.0}}
+{"name": "2-Butanol", "flash_point": {"approx": false, "value": 24.0}, "flash_limits": "1.7-9.8%", "ignition_temp": {"approx": false, "value": 405.0}}
+{"name": "2-Methyl-1-propanol", "flash_point": {"approx": false, "value": 28.0}, "flash_limits": "1.7-10.6%", "ignition_temp": {"approx": false, "value": 415.0}}
+{"name": "2-Methyl-2-propanol", "flash_point": {"approx": false, "value": 11.0}, "flash_limits": "2.4-8.0%", "ignition_temp": {"approx": false, "value": 478.0}}
+{"name": "Diethyl ether", "flash_point": {"approx": false, "value": -45.0}, "flash_limits": "1.9-36.0%", "ignition_temp": {"approx": false, "value": 180.0}}
+{"name": "Methyl propyl ether", "flash_point": {"approx": false, "value": -20.0}, "flash_limits": "2.0-14.8%", "ignition_temp": null}
+{"name": "1,2-Butanediol", "flash_point": {"approx": false, "value": 40.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,3-Butanediol", "flash_point": {"approx": false, "value": 121.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 395.0}}
+{"name": "1,4-Butanediol", "flash_point": {"approx": false, "value": 121.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2,3-Butanediol", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 402.0}}
+{"name": "Ethylene glycol monoethyl ether", "flash_point": {"approx": false, "value": 43.0}, "flash_limits": "3-18%", "ignition_temp": {"approx": false, "value": 235.0}}
+{"name": "Ethylene glycol dimethyl ether", "flash_point": {"approx": false, "value": -2.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 202.0}}
+{"name": "tert-Butyl hydroperoxide", "flash_point": {"approx": false, "value": 27.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "\u20322,2-Thiodiethanol", "flash_point": {"approx": false, "value": 160.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 298.0}}
+{"name": "Diethylene glycol", "flash_point": {"approx": false, "value": 124.0}, "flash_limits": "2-17%", "ignition_temp": {"approx": false, "value": 224.0}}
+{"name": "Diethyl sulfate", "flash_point": {"approx": false, "value": 104.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 436.0}}
+{"name": "1-Butanethiol", "flash_point": {"approx": false, "value": 2.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Butanethiol", "flash_point": {"approx": false, "value": -23.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Methyl-1-propanethiol", "flash_point": {"approx": false, "value": 2.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Methyl-2-propanethiol", "flash_point": {"approx": true, "value": -29.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Diethyl selenide", "flash_point": null, "flash_limits": "2.5-?", "ignition_temp": null}
+{"name": "Butylamine", "flash_point": {"approx": false, "value": -12.0}, "flash_limits": "1.7-9.8%", "ignition_temp": {"approx": false, "value": 312.0}}
+{"name": "sec-Butylamine", "flash_point": {"approx": false, "value": -9.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "tert-Butylamine", "flash_point": {"approx": false, "value": -9.0}, "flash_limits": "1.7-8.9%", "ignition_temp": {"approx": false, "value": 380.0}}
+{"name": "Isobutylamine", "flash_point": {"approx": false, "value": -9.0}, "flash_limits": "2-12%", "ignition_temp": {"approx": false, "value": 378.0}}
+{"name": "Diethylamine", "flash_point": {"approx": false, "value": -23.0}, "flash_limits": "1.8-10.1%", "ignition_temp": {"approx": false, "value": 312.0}}
+{"name": "2-Amino-1-butanol", "flash_point": {"approx": false, "value": 74.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Amino-2-methyl-1-propanol", "flash_point": {"approx": false, "value": 67.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Diethanolamine", "flash_point": {"approx": false, "value": 172.0}, "flash_limits": "2-13%", "ignition_temp": {"approx": false, "value": 662.0}}
+{"name": "Tetramethylstannane", "flash_point": {"approx": false, "value": -12.0}, "flash_limits": "1.9-?", "ignition_temp": null}
+{"name": "Diethylenetriamine", "flash_point": {"approx": false, "value": 98.0}, "flash_limits": "2-6.7%", "ignition_temp": {"approx": false, "value": 358.0}}
+{"name": "Furfural", "flash_point": {"approx": false, "value": 60.0}, "flash_limits": "2.1-19.3%", "ignition_temp": {"approx": false, "value": 316.0}}
+{"name": "Pyridine", "flash_point": {"approx": false, "value": 20.0}, "flash_limits": "1.8-12.4%", "ignition_temp": {"approx": false, "value": 482.0}}
+{"name": "2-Methyl-1-buten-3-yne", "flash_point": {"approx": true, "value": -7.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Methylpyrazine", "flash_point": {"approx": false, "value": 50.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "3-Methylfuran", "flash_point": {"approx": false, "value": -30.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Furfuryl alcohol", "flash_point": {"approx": false, "value": 75.0}, "flash_limits": "1.8-16.3%", "ignition_temp": {"approx": false, "value": 491.0}}
+{"name": "1-Methylpyrrole", "flash_point": {"approx": false, "value": 16.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Furanmethanamine", "flash_point": {"approx": false, "value": 37.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethyl cyanoacetate", "flash_point": {"approx": false, "value": 110.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Methyl-1,3-butadiene", "flash_point": {"approx": false, "value": -54.0}, "flash_limits": "1.5-8.9%", "ignition_temp": {"approx": false, "value": 395.0}}
+{"name": "1-Pentyne", "flash_point": {"approx": true, "value": -20.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Cyclopentene", "flash_point": {"approx": false, "value": -29.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 395.0}}
+{"name": "3-Methyl-3-buten-2-one", "flash_point": null, "flash_limits": "1.8-9.0%", "ignition_temp": null}
+{"name": "Cyclopentanone", "flash_point": {"approx": false, "value": 26.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "3,4-Dihydro-2H-pyran", "flash_point": {"approx": false, "value": -18.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Allyl acetate", "flash_point": {"approx": false, "value": 22.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 374.0}}
+{"name": "Isopropenyl acetate", "flash_point": {"approx": false, "value": 26.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 432.0}}
+{"name": "Vinyl propanoate", "flash_point": {"approx": false, "value": 1.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethyl acrylate", "flash_point": {"approx": false, "value": 10.0}, "flash_limits": "1.4-14%", "ignition_temp": {"approx": false, "value": 372.0}}
+{"name": "Methyl methacrylate", "flash_point": {"approx": false, "value": 10.0}, "flash_limits": "1.7-8.2%", "ignition_temp": null}
+{"name": "2,4-Pentanedione", "flash_point": {"approx": false, "value": 34.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 340.0}}
+{"name": "Methyl acetoacetate", "flash_point": {"approx": false, "value": 77.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 280.0}}
+{"name": "N-Methyl-2-pyrrolidone", "flash_point": {"approx": false, "value": 96.0}, "flash_limits": "1-10%", "ignition_temp": {"approx": false, "value": 346.0}}
+{"name": "1-Pentene", "flash_point": {"approx": false, "value": -18.0}, "flash_limits": "1.5-8.7%", "ignition_temp": {"approx": false, "value": 275.0}}
+{"name": "cis-2-Pentene", "flash_point": {"approx": true, "value": -20.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "trans-2-Pentene", "flash_point": {"approx": true, "value": -20.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Methyl-1-butene", "flash_point": {"approx": false, "value": -20.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "3-Methyl-1-butene", "flash_point": {"approx": false, "value": -7.0}, "flash_limits": "1.5-9.1%", "ignition_temp": {"approx": false, "value": 365.0}}
+{"name": "2-Methyl-2-butene", "flash_point": {"approx": false, "value": -20.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Cyclopentane", "flash_point": {"approx": false, "value": -25.0}, "flash_limits": "1.5-?", "ignition_temp": {"approx": false, "value": 361.0}}
+{"name": "1,5-Dichloropentane", "flash_point": {"approx": true, "value": 27.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "3-(Dimethylamino)propanenitrile", "flash_point": {"approx": false, "value": 65.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Cyclopentanol", "flash_point": {"approx": false, "value": 51.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Pentanal", "flash_point": {"approx": false, "value": 12.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 222.0}}
+{"name": "2-Pentanone", "flash_point": {"approx": false, "value": 7.0}, "flash_limits": "1.5-8.2%", "ignition_temp": {"approx": false, "value": 452.0}}
+{"name": "3-Pentanone", "flash_point": {"approx": false, "value": 13.0}, "flash_limits": "1.6-?", "ignition_temp": {"approx": false, "value": 450.0}}
+{"name": "Tetrahydropyran", "flash_point": {"approx": false, "value": -20.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Methyltetrahydrofuran", "flash_point": {"approx": false, "value": -11.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Pentanoic acid", "flash_point": {"approx": false, "value": 96.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 400.0}}
+{"name": "3-Methylbutanoic acid", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 416.0}}
+{"name": "Butyl formate", "flash_point": {"approx": false, "value": 18.0}, "flash_limits": "1.7-8.2%", "ignition_temp": {"approx": false, "value": 322.0}}
+{"name": "Isobutyl formate", "flash_point": {"approx": false, "value": 5.0}, "flash_limits": "2-9%", "ignition_temp": {"approx": false, "value": 320.0}}
+{"name": "Propyl acetate", "flash_point": {"approx": false, "value": 13.0}, "flash_limits": "1.7-8%", "ignition_temp": {"approx": false, "value": 450.0}}
+{"name": "Isopropyl acetate", "flash_point": {"approx": false, "value": 2.0}, "flash_limits": "1.8-8%", "ignition_temp": {"approx": false, "value": 460.0}}
+{"name": "Ethyl propanoate", "flash_point": {"approx": false, "value": 12.0}, "flash_limits": "1.9-11%", "ignition_temp": {"approx": false, "value": 440.0}}
+{"name": "Methyl butanoate", "flash_point": {"approx": false, "value": 14.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "3-Ethoxypropanal", "flash_point": {"approx": false, "value": 38.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Tetrahydrofurfuryl alcohol", "flash_point": {"approx": false, "value": 75.0}, "flash_limits": "1.5-9.7%", "ignition_temp": {"approx": false, "value": 282.0}}
+{"name": "Diethyl carbonate", "flash_point": {"approx": false, "value": 25.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethylene glycol monomethyl ether acetate", "flash_point": {"approx": false, "value": 49.0}, "flash_limits": "1.5-12.3%", "ignition_temp": {"approx": false, "value": 392.0}}
+{"name": "Ethyl lactate", "flash_point": {"approx": false, "value": 46.0}, "flash_limits": "1.5-?", "ignition_temp": {"approx": false, "value": 400.0}}
+{"name": "1-Bromopentane", "flash_point": {"approx": false, "value": 32.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Chloropentane", "flash_point": {"approx": false, "value": 13.0}, "flash_limits": "1.6-8.6%", "ignition_temp": {"approx": false, "value": 260.0}}
+{"name": "2-Chloro-2-methylbutane", "flash_point": null, "flash_limits": "1.5-7.4%", "ignition_temp": {"approx": false, "value": 345.0}}
+{"name": "1-Chloro-3-methylbutane", "flash_point": {"approx": true, "value": 21.0}, "flash_limits": "1.5-7.4%", "ignition_temp": null}
+{"name": "Trichloropentylsilane", "flash_point": {"approx": false, "value": 63.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Piperidine", "flash_point": {"approx": false, "value": 16.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "N-Methylpyrrolidine", "flash_point": {"approx": false, "value": -14.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "4-Methylmorpholine", "flash_point": {"approx": false, "value": 24.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Isopentyl nitrite", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 210.0}}
+{"name": "Pentane", "flash_point": {"approx": false, "value": -40.0}, "flash_limits": "1.4-8.0%", "ignition_temp": {"approx": false, "value": 260.0}}
+{"name": "Isopentane", "flash_point": {"approx": false, "value": -51.0}, "flash_limits": "1.4-7.6%", "ignition_temp": {"approx": false, "value": 420.0}}
+{"name": "Neopentane", "flash_point": {"approx": false, "value": -65.0}, "flash_limits": "1.4-7.5%", "ignition_temp": {"approx": false, "value": 450.0}}
+{"name": "1-Methylpiperazine", "flash_point": {"approx": false, "value": 42.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Tetramethylurea", "flash_point": {"approx": false, "value": 77.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Pentanol", "flash_point": {"approx": false, "value": 33.0}, "flash_limits": "1.2-10.0%", "ignition_temp": {"approx": false, "value": 300.0}}
+{"name": "2-Pentanol", "flash_point": {"approx": false, "value": 34.0}, "flash_limits": "1.2-9.0%", "ignition_temp": {"approx": false, "value": 343.0}}
+{"name": "3-Pentanol", "flash_point": {"approx": false, "value": 41.0}, "flash_limits": "1.2-9.0%", "ignition_temp": {"approx": false, "value": 435.0}}
+{"name": "2-Methyl-1-butanol", "flash_point": {"approx": false, "value": 50.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 385.0}}
+{"name": "3-Methyl-1-butanol", "flash_point": {"approx": false, "value": 43.0}, "flash_limits": "1.2-9.0%", "ignition_temp": {"approx": false, "value": 350.0}}
+{"name": "2-Methyl-2-butanol", "flash_point": {"approx": false, "value": 19.0}, "flash_limits": "1.2-9.0%", "ignition_temp": {"approx": false, "value": 437.0}}
+{"name": "3-Methyl-2-butanol", "flash_point": {"approx": false, "value": 38.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2,2-Dimethyl-1-propanol", "flash_point": {"approx": false, "value": 37.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethyl propyl ether", "flash_point": {"approx": true, "value": -20.0}, "flash_limits": "1.7-9.0%", "ignition_temp": null}
+{"name": "1,5-Pentanediol", "flash_point": {"approx": false, "value": 129.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 335.0}}
+{"name": "2-Isopropoxyethanol", "flash_point": {"approx": false, "value": 33.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2,2-Dimethyl-1,3-propanediol", "flash_point": {"approx": false, "value": 129.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 399.0}}
+{"name": "Diethylene glycol monomethyl ether", "flash_point": {"approx": false, "value": 96.0}, "flash_limits": "1.38-22.7%", "ignition_temp": {"approx": false, "value": 240.0}}
+{"name": "1-Pentanethiol", "flash_point": {"approx": false, "value": 18.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "3-Methyl-2-butanethiol", "flash_point": {"approx": false, "value": 3.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Pentylamine", "flash_point": {"approx": false, "value": -1.0}, "flash_limits": "2.2-22%", "ignition_temp": null}
+{"name": "Butylmethylamine", "flash_point": {"approx": false, "value": 13.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,2,4,5-Tetrachlorobenzene", "flash_point": {"approx": false, "value": 155.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Chloro-2,4-dinitrobenzene", "flash_point": {"approx": false, "value": 194.0}, "flash_limits": "2.0-22%", "ignition_temp": null}
+{"name": "1,2,4-Trichlorobenzene", "flash_point": {"approx": false, "value": 105.0}, "flash_limits": "2.5-6.6%", "ignition_temp": {"approx": false, "value": 571.0}}
+{"name": "1-Chloro-4-nitrobenzene", "flash_point": {"approx": false, "value": 127.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "o-Dichlorobenzene", "flash_point": {"approx": false, "value": 66.0}, "flash_limits": "2.2-9.2%", "ignition_temp": {"approx": false, "value": 648.0}}
+{"name": "m-Dichlorobenzene", "flash_point": {"approx": false, "value": 72.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "p-Dichlorobenzene", "flash_point": {"approx": false, "value": 66.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2,4-Dichlorophenol", "flash_point": {"approx": false, "value": 114.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Bromobenzene", "flash_point": {"approx": false, "value": 51.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 565.0}}
+{"name": "Chlorobenzene", "flash_point": {"approx": false, "value": 28.0}, "flash_limits": "1.3-9.6%", "ignition_temp": {"approx": false, "value": 593.0}}
+{"name": "o-Chlorophenol", "flash_point": {"approx": false, "value": 64.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "p-Chlorophenol", "flash_point": {"approx": false, "value": 121.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "3,4-Dichloroaniline", "flash_point": {"approx": false, "value": 166.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Trichlorophenylsilane", "flash_point": {"approx": false, "value": 91.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Fluorobenzene", "flash_point": {"approx": false, "value": -15.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Nitrobenzene", "flash_point": {"approx": false, "value": 88.0}, "flash_limits": "1.8-?", "ignition_temp": {"approx": false, "value": 482.0}}
+{"name": "2,4-Dinitroaniline", "flash_point": {"approx": false, "value": 224.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,5-Hexadien-3-yne", "flash_point": {"approx": true, "value": -20.0}, "flash_limits": "1.5-?", "ignition_temp": null}
+{"name": "Benzene", "flash_point": {"approx": false, "value": -11.0}, "flash_limits": "1.2-7.8%", "ignition_temp": {"approx": false, "value": 498.0}}
+{"name": "p-Nitroaniline", "flash_point": {"approx": false, "value": 199.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Phenol", "flash_point": {"approx": false, "value": 79.0}, "flash_limits": "1.8-8.6%", "ignition_temp": {"approx": false, "value": 715.0}}
+{"name": "1,2-Benzenediol", "flash_point": {"approx": false, "value": 127.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Resorcinol", "flash_point": {"approx": false, "value": 127.0}, "flash_limits": "1.4-?", "ignition_temp": {"approx": false, "value": 608.0}}
+{"name": "p-Hydroquinone", "flash_point": {"approx": false, "value": 165.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 516.0}}
+{"name": "Aniline", "flash_point": {"approx": false, "value": 70.0}, "flash_limits": "1.3-11%", "ignition_temp": {"approx": false, "value": 615.0}}
+{"name": "2-Methylpyridine", "flash_point": {"approx": false, "value": 39.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 538.0}}
+{"name": "4-Methylpyridine", "flash_point": {"approx": false, "value": 57.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Aniline, hydrochloride", "flash_point": {"approx": false, "value": 193.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Hexanedioyl dichloride", "flash_point": {"approx": false, "value": 72.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Adiponitrile", "flash_point": {"approx": false, "value": 93.0}, "flash_limits": "1.0-?", "ignition_temp": {"approx": false, "value": 550.0}}
+{"name": "o-Phenylenediamine", "flash_point": {"approx": false, "value": 156.0}, "flash_limits": "1.5-?", "ignition_temp": null}
+{"name": "Phenylhydrazine", "flash_point": {"approx": false, "value": 88.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2,5-Dimethylpyrazine", "flash_point": {"approx": false, "value": 64.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2,5-Dimethylfuran", "flash_point": {"approx": false, "value": 7.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dimethyl maleate", "flash_point": {"approx": false, "value": 113.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,4-Hexadiene", "flash_point": {"approx": false, "value": -21.0}, "flash_limits": "2.0-6.1%", "ignition_temp": null}
+{"name": "2-Methyl-1,3-pentadiene", "flash_point": {"approx": false, "value": -12.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "4-Methyl-1,3-pentadiene", "flash_point": {"approx": false, "value": -34.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Hexyne", "flash_point": {"approx": false, "value": -10.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Cyclohexene", "flash_point": {"approx": false, "value": -12.0}, "flash_limits": "1.2-?", "ignition_temp": {"approx": false, "value": 310.0}}
+{"name": "Diallyl ether", "flash_point": {"approx": false, "value": -7.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Cyclohexanone", "flash_point": {"approx": false, "value": 44.0}, "flash_limits": "1.1-9.4%", "ignition_temp": {"approx": false, "value": 420.0}}
+{"name": "Mesityl oxide", "flash_point": {"approx": false, "value": 31.0}, "flash_limits": "1.4-7.2%", "ignition_temp": {"approx": false, "value": 344.0}}
+{"name": "Vinyl butanoate", "flash_point": {"approx": false, "value": 20.0}, "flash_limits": "1.4-8.8%", "ignition_temp": null}
+{"name": "Ethyl 2-butenoate", "flash_point": {"approx": false, "value": 2.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethyl methacrylate", "flash_point": {"approx": false, "value": 20.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2,5-Hexanedione", "flash_point": {"approx": false, "value": 79.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 499.0}}
+{"name": "Ethyl acetoacetate", "flash_point": {"approx": false, "value": 57.0}, "flash_limits": "1.4-9.5%", "ignition_temp": {"approx": false, "value": 295.0}}
+{"name": "Propanoic anhydride", "flash_point": {"approx": false, "value": 63.0}, "flash_limits": "1.3-9.5%", "ignition_temp": {"approx": false, "value": 285.0}}
+{"name": "Adipic acid", "flash_point": {"approx": false, "value": 196.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 420.0}}
+{"name": "Diethyl oxalate", "flash_point": {"approx": false, "value": 76.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethylene glycol diacetate", "flash_point": {"approx": false, "value": 88.0}, "flash_limits": "1.6-8.4%", "ignition_temp": {"approx": false, "value": 482.0}}
+{"name": "Chlorocyclohexane", "flash_point": {"approx": false, "value": 32.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Caprolactam", "flash_point": {"approx": false, "value": 125.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Nitrocyclohexane", "flash_point": {"approx": false, "value": 88.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "4-Acetylmorpholine", "flash_point": {"approx": false, "value": 113.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Hexene", "flash_point": {"approx": false, "value": -26.0}, "flash_limits": "1.2-6.9%", "ignition_temp": {"approx": false, "value": 253.0}}
+{"name": "cis-2-Hexene", "flash_point": {"approx": false, "value": -21.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Methyl-1-pentene", "flash_point": {"approx": false, "value": -28.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 300.0}}
+{"name": "4-Methyl-1-pentene", "flash_point": {"approx": false, "value": -7.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 300.0}}
+{"name": "4-Methyl-cis-2-pentene", "flash_point": {"approx": false, "value": -32.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "4-Methyl-trans-2-pentene", "flash_point": {"approx": false, "value": -29.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Ethyl-1-butene", "flash_point": {"approx": true, "value": -20.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 315.0}}
+{"name": "2,3-Dimethyl-1-butene", "flash_point": {"approx": true, "value": -20.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 360.0}}
+{"name": "2,3-Dimethyl-2-butene", "flash_point": {"approx": true, "value": -20.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 401.0}}
+{"name": "Cyclohexane", "flash_point": {"approx": false, "value": -20.0}, "flash_limits": "1.3-8%", "ignition_temp": {"approx": false, "value": 245.0}}
+{"name": "Methylcyclopentane", "flash_point": {"approx": false, "value": -29.0}, "flash_limits": "1.0-8.35%", "ignition_temp": {"approx": false, "value": 258.0}}
+{"name": "Ethylcyclobutane", "flash_point": {"approx": false, "value": -15.0}, "flash_limits": "1.2-7.7%", "ignition_temp": {"approx": false, "value": 210.0}}
+{"name": "2-Methyl-2-pentene", "flash_point": {"approx": true, "value": -7.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,2-Bis(2-chloroethoxy)ethane", "flash_point": {"approx": false, "value": 121.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "cis-3-Hexen-1-ol", "flash_point": {"approx": false, "value": 54.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Butyl vinyl ether", "flash_point": {"approx": false, "value": -9.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 255.0}}
+{"name": "Isobutyl vinyl ether", "flash_point": {"approx": false, "value": -9.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Hexanal", "flash_point": {"approx": false, "value": 32.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Ethylbutanal", "flash_point": {"approx": false, "value": 21.0}, "flash_limits": "1.2-7.7%", "ignition_temp": null}
+{"name": "2-Methylpentanal", "flash_point": {"approx": false, "value": 17.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 199.0}}
+{"name": "2-Hexanone", "flash_point": {"approx": false, "value": 25.0}, "flash_limits": "1-8%", "ignition_temp": {"approx": false, "value": 423.0}}
+{"name": "3-Hexanone", "flash_point": {"approx": false, "value": 35.0}, "flash_limits": "1-8%", "ignition_temp": null}
+{"name": "4-Methyl-2-pentanone", "flash_point": {"approx": false, "value": 18.0}, "flash_limits": "1.2-8.0%", "ignition_temp": {"approx": false, "value": 448.0}}
+{"name": "Cyclohexanol", "flash_point": {"approx": false, "value": 68.0}, "flash_limits": "1-9%", "ignition_temp": {"approx": false, "value": 300.0}}
+{"name": "Hexanoic acid", "flash_point": {"approx": false, "value": 102.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 380.0}}
+{"name": "2-Methylpentanoic acid", "flash_point": {"approx": false, "value": 107.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 378.0}}
+{"name": "Diethylacetic acid", "flash_point": {"approx": false, "value": 99.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 400.0}}
+{"name": "Pentyl formate", "flash_point": {"approx": false, "value": 26.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Butyl acetate", "flash_point": {"approx": false, "value": 22.0}, "flash_limits": "1.7-7.6%", "ignition_temp": {"approx": false, "value": 425.0}}
+{"name": "sec-Butyl acetate", "flash_point": {"approx": false, "value": 31.0}, "flash_limits": "1.7-9.8%", "ignition_temp": null}
+{"name": "Isobutyl acetate", "flash_point": {"approx": false, "value": 18.0}, "flash_limits": "1.3-10.5%", "ignition_temp": {"approx": false, "value": 421.0}}
+{"name": "Propyl propanoate", "flash_point": {"approx": false, "value": 79.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethyl butanoate", "flash_point": {"approx": false, "value": 24.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 463.0}}
+{"name": "Ethyl 2-methylpropanoate", "flash_point": {"approx": false, "value": 13.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Diacetone alcohol", "flash_point": {"approx": false, "value": 58.0}, "flash_limits": "1.8-6.9%", "ignition_temp": {"approx": false, "value": 643.0}}
+{"name": "Ethylene glycol monoethyl ether acetate", "flash_point": {"approx": false, "value": 56.0}, "flash_limits": "2-8%", "ignition_temp": {"approx": false, "value": 379.0}}
+{"name": "Paraldehyde", "flash_point": {"approx": false, "value": 36.0}, "flash_limits": "1.3-?", "ignition_temp": {"approx": false, "value": 238.0}}
+{"name": "Cyclohexanethiol", "flash_point": {"approx": false, "value": 43.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Chlorohexane", "flash_point": {"approx": false, "value": 35.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Cyclohexylamine", "flash_point": {"approx": false, "value": 31.0}, "flash_limits": "1.9-9.4%", "ignition_temp": {"approx": false, "value": 293.0}}
+{"name": "N-Butylacetamide", "flash_point": {"approx": false, "value": 116.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2,6-Dimethylmorpholine", "flash_point": {"approx": false, "value": 44.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "N-Ethylmorpholine", "flash_point": {"approx": false, "value": 32.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "4-Morpholineethanol", "flash_point": {"approx": false, "value": 99.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Hexane", "flash_point": {"approx": false, "value": -22.0}, "flash_limits": "1.1-7.5%", "ignition_temp": {"approx": false, "value": 225.0}}
+{"name": "2-Methylpentane", "flash_point": {"approx": true, "value": -29.0}, "flash_limits": "1.0-7.0%", "ignition_temp": {"approx": false, "value": 264.0}}
+{"name": "3-Methylpentane", "flash_point": {"approx": false, "value": -7.0}, "flash_limits": "1.2-7.0%", "ignition_temp": {"approx": false, "value": 278.0}}
+{"name": "2,2-Dimethylbutane", "flash_point": {"approx": false, "value": -48.0}, "flash_limits": "1.2-7.0%", "ignition_temp": {"approx": false, "value": 405.0}}
+{"name": "2,3-Dimethylbutane", "flash_point": {"approx": false, "value": -29.0}, "flash_limits": "1.2-7.0%", "ignition_temp": {"approx": false, "value": 405.0}}
+{"name": "1-Piperazineethanol", "flash_point": {"approx": false, "value": 124.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Hexanol", "flash_point": {"approx": false, "value": 63.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Methyl-1-pentanol", "flash_point": {"approx": false, "value": 54.0}, "flash_limits": "1.1-9.65%", "ignition_temp": {"approx": false, "value": 310.0}}
+{"name": "4-Methyl-2-pentanol", "flash_point": {"approx": false, "value": 41.0}, "flash_limits": "1.0-5.5%", "ignition_temp": null}
+{"name": "2-Ethyl-1-butanol", "flash_point": {"approx": false, "value": 57.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dipropyl ether", "flash_point": {"approx": false, "value": 21.0}, "flash_limits": "1.3-7.0%", "ignition_temp": {"approx": false, "value": 188.0}}
+{"name": "Diisopropyl ether", "flash_point": {"approx": false, "value": -28.0}, "flash_limits": "1.4-7.9%", "ignition_temp": {"approx": false, "value": 443.0}}
+{"name": "Butyl ethyl ether", "flash_point": {"approx": false, "value": 4.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2,5-Hexanediol", "flash_point": {"approx": false, "value": 110.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Methyl-2,4-pentanediol", "flash_point": {"approx": false, "value": 102.0}, "flash_limits": "1-9%", "ignition_temp": {"approx": false, "value": 306.0}}
+{"name": "Ethylene glycol monobutyl ether", "flash_point": {"approx": false, "value": 69.0}, "flash_limits": "4-13%", "ignition_temp": {"approx": false, "value": 238.0}}
+{"name": "1,1-Diethoxyethane", "flash_point": {"approx": false, "value": -21.0}, "flash_limits": "1.6-10.4%", "ignition_temp": {"approx": false, "value": 230.0}}
+{"name": "Ethylene glycol diethyl ether", "flash_point": {"approx": false, "value": 27.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 205.0}}
+{"name": "1,2,6-Hexanetriol", "flash_point": {"approx": false, "value": 191.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Diethylene glycol monoethyl ether", "flash_point": {"approx": false, "value": 96.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Diethylene glycol dimethyl ether", "flash_point": {"approx": false, "value": 67.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Trimethylolpropane", "flash_point": {"approx": false, "value": 149.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Triethylene glycol", "flash_point": {"approx": false, "value": 177.0}, "flash_limits": "0.9-9.2%", "ignition_temp": {"approx": false, "value": 371.0}}
+{"name": "Hexylamine", "flash_point": {"approx": false, "value": 29.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Butylethylamine", "flash_point": {"approx": false, "value": 18.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dipropylamine", "flash_point": {"approx": false, "value": 17.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 299.0}}
+{"name": "Diisopropylamine", "flash_point": {"approx": false, "value": -1.0}, "flash_limits": "1.1-7.1%", "ignition_temp": {"approx": false, "value": 316.0}}
+{"name": "Triethylamine", "flash_point": {"approx": false, "value": -7.0}, "flash_limits": "1.2-8.0%", "ignition_temp": {"approx": false, "value": 249.0}}
+{"name": "Diisopropanolamine", "flash_point": {"approx": false, "value": 127.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 374.0}}
+{"name": "Triethanolamine", "flash_point": {"approx": false, "value": 179.0}, "flash_limits": "1-10%", "ignition_temp": null}
+{"name": "1-Piperazineethanamine", "flash_point": {"approx": false, "value": 93.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Triethyl phosphate", "flash_point": {"approx": false, "value": 115.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 454.0}}
+{"name": "N,N-Diethylethylenediamine", "flash_point": {"approx": false, "value": 46.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Chloro-4-nitro-2- (trifluoromethyl)benzene", "flash_point": {"approx": false, "value": 135.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Chloro-2-(trifluoromethyl)benzene", "flash_point": {"approx": false, "value": 59.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Nitro-3-(trifluoromethyl)benzene", "flash_point": {"approx": false, "value": 103.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Benzoyl chloride", "flash_point": {"approx": false, "value": 72.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "4-Chlorobenzaldehyde", "flash_point": {"approx": false, "value": 88.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "(Trichloromethyl)benzene", "flash_point": {"approx": false, "value": 127.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 211.0}}
+{"name": "(Trifluoromethyl)benzene", "flash_point": {"approx": false, "value": 12.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Methyl-2,4-dinitrobenzene", "flash_point": {"approx": false, "value": 207.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Benzaldehyde", "flash_point": {"approx": false, "value": 63.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 192.0}}
+{"name": "Benzoic acid", "flash_point": {"approx": false, "value": 121.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 570.0}}
+{"name": "Salicylaldehyde", "flash_point": {"approx": false, "value": 78.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Salicylic acid", "flash_point": {"approx": false, "value": 157.0}, "flash_limits": "1.1-?", "ignition_temp": {"approx": false, "value": 540.0}}
+{"name": "o-Bromotoluene", "flash_point": {"approx": false, "value": 79.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "p-Bromotoluene", "flash_point": {"approx": false, "value": 85.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "(Chloromethyl)benzene", "flash_point": {"approx": false, "value": 67.0}, "flash_limits": "1.1-?", "ignition_temp": {"approx": false, "value": 585.0}}
+{"name": "o-Nitrotoluene", "flash_point": {"approx": false, "value": 106.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "m-Nitrotoluene", "flash_point": {"approx": false, "value": 106.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "p-Nitrotoluene", "flash_point": {"approx": false, "value": 106.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Toluene", "flash_point": {"approx": false, "value": 4.0}, "flash_limits": "1.1-7.1%", "ignition_temp": {"approx": false, "value": 480.0}}
+{"name": "Bicyclo[2 .2 .1]hepta-2,5-diene", "flash_point": {"approx": false, "value": -21.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "o-Cresol", "flash_point": {"approx": false, "value": 81.0}, "flash_limits": "1.4-?", "ignition_temp": {"approx": false, "value": 599.0}}
+{"name": "m-Cresol", "flash_point": {"approx": false, "value": 86.0}, "flash_limits": "1.1-?", "ignition_temp": {"approx": false, "value": 558.0}}
+{"name": "p-Cresol", "flash_point": {"approx": false, "value": 86.0}, "flash_limits": "1.1-?", "ignition_temp": {"approx": false, "value": 558.0}}
+{"name": "Benzyl alcohol", "flash_point": {"approx": false, "value": 93.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 436.0}}
+{"name": "Anisole", "flash_point": {"approx": false, "value": 52.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 475.0}}
+{"name": "4-Methoxyphenol", "flash_point": {"approx": false, "value": 132.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 421.0}}
+{"name": "p-Toluenesulfonic acid", "flash_point": {"approx": false, "value": 184.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "o-Methylaniline", "flash_point": {"approx": false, "value": 85.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 482.0}}
+{"name": "p-Methylaniline", "flash_point": {"approx": false, "value": 87.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 482.0}}
+{"name": "o-Anisidine", "flash_point": {"approx": false, "value": 118.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "3-Cyclohexene-1-carboxaldehyde", "flash_point": {"approx": false, "value": 57.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "3,3-Diacetoxy-1-propene", "flash_point": {"approx": false, "value": 82.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "4-Methylcyclohexene", "flash_point": {"approx": false, "value": -1.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Butyl acrylate", "flash_point": {"approx": false, "value": 29.0}, "flash_limits": "1.7-9.9%", "ignition_temp": {"approx": false, "value": 292.0}}
+{"name": "Isobutyl acrylate", "flash_point": {"approx": false, "value": 30.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 427.0}}
+{"name": "Cyclohexyl formate", "flash_point": {"approx": false, "value": 51.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Diethyl malonate", "flash_point": {"approx": false, "value": 93.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Heptene", "flash_point": {"approx": false, "value": -1.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 260.0}}
+{"name": "trans-2-Heptene", "flash_point": {"approx": true, "value": 0.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Cycloheptane", "flash_point": {"approx": true, "value": 21.0}, "flash_limits": "1.1-6.7%", "ignition_temp": null}
+{"name": "Methylcyclohexane", "flash_point": {"approx": false, "value": -4.0}, "flash_limits": "1.2-6.7%", "ignition_temp": {"approx": false, "value": 250.0}}
+{"name": "Ethylcyclopentane", "flash_point": {"approx": true, "value": 21.0}, "flash_limits": "1.1-6.7%", "ignition_temp": {"approx": false, "value": 260.0}}
+{"name": "2-Heptanone", "flash_point": {"approx": false, "value": 39.0}, "flash_limits": "1.1-7.9%", "ignition_temp": {"approx": false, "value": 393.0}}
+{"name": "3-Heptanone", "flash_point": {"approx": false, "value": 46.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "4-Heptanone", "flash_point": {"approx": false, "value": 49.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "5-Methyl-2-hexanone", "flash_point": {"approx": false, "value": 36.0}, "flash_limits": "1.0-8.2%", "ignition_temp": {"approx": false, "value": 191.0}}
+{"name": "cis-2-Methylcyclohexanol", "flash_point": {"approx": false, "value": 65.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 296.0}}
+{"name": "trans-2-Methylcyclohexanol", "flash_point": {"approx": false, "value": 65.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 296.0}}
+{"name": "cis-3-Methylcyclohexanol", "flash_point": {"approx": false, "value": 70.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 295.0}}
+{"name": "trans-3-Methylcyclohexanol", "flash_point": {"approx": false, "value": 70.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 295.0}}
+{"name": "cis-4-Methylcyclohexanol", "flash_point": {"approx": false, "value": 70.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 295.0}}
+{"name": "trans-4-Methylcyclohexanol", "flash_point": {"approx": false, "value": 70.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 295.0}}
+{"name": "Pentyl acetate", "flash_point": {"approx": false, "value": 16.0}, "flash_limits": "1.1-7.5%", "ignition_temp": {"approx": false, "value": 360.0}}
+{"name": "Isopentyl acetate", "flash_point": {"approx": false, "value": 25.0}, "flash_limits": "1.0-7.5%", "ignition_temp": {"approx": false, "value": 360.0}}
+{"name": "sec-Pentyl acetate", "flash_point": {"approx": false, "value": 32.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Butyl propanoate", "flash_point": {"approx": false, "value": 32.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 426.0}}
+{"name": "Propyl butanoate", "flash_point": {"approx": false, "value": 37.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethyl N-butylcarbamate", "flash_point": {"approx": false, "value": 92.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Heptane", "flash_point": {"approx": false, "value": -4.0}, "flash_limits": "1.05-6.7%", "ignition_temp": {"approx": false, "value": 204.0}}
+{"name": "2-Methylhexane", "flash_point": {"approx": false, "value": -1.0}, "flash_limits": "1.0-6.0%", "ignition_temp": {"approx": false, "value": 280.0}}
+{"name": "3-Methylhexane", "flash_point": {"approx": false, "value": -4.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 280.0}}
+{"name": "2,3-Dimethylpentane", "flash_point": {"approx": false, "value": -56.0}, "flash_limits": "1.1-6.7%", "ignition_temp": {"approx": false, "value": 335.0}}
+{"name": "2,4-Dimethylpentane", "flash_point": {"approx": false, "value": -12.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2,2,3-Trimethylbutane", "flash_point": {"approx": true, "value": 0.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 412.0}}
+{"name": "4-Morpholinepropanamine", "flash_point": {"approx": false, "value": 104.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Heptanol", "flash_point": {"approx": false, "value": 71.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "3-Heptanol", "flash_point": {"approx": false, "value": 60.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2,4-Dimethyl-3-pentanol", "flash_point": {"approx": false, "value": 49.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2,3,3-Trimethyl-2-butanol", "flash_point": {"approx": true, "value": 0.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 375.0}}
+{"name": "Heptylamine", "flash_point": {"approx": false, "value": 54.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "N,N-Diethyl-1,3-propanediamine", "flash_point": {"approx": false, "value": 59.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Phthalic anhydride", "flash_point": {"approx": false, "value": 152.0}, "flash_limits": "1.7-10.5%", "ignition_temp": {"approx": false, "value": 570.0}}
+{"name": "Phthalic acid", "flash_point": {"approx": false, "value": 168.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Terephthalic acid", "flash_point": {"approx": false, "value": 260.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 496.0}}
+{"name": "\u03b1-Chloroacetophenone", "flash_point": {"approx": false, "value": 118.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Benzeneacetonitrile", "flash_point": {"approx": false, "value": 113.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Styrene", "flash_point": {"approx": false, "value": 31.0}, "flash_limits": "0.9-6.8%", "ignition_temp": {"approx": false, "value": 490.0}}
+{"name": "Phenyloxirane", "flash_point": {"approx": false, "value": 74.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 498.0}}
+{"name": "Benzeneacetaldehyde", "flash_point": {"approx": false, "value": 71.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Acetophenone", "flash_point": {"approx": false, "value": 77.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 570.0}}
+{"name": "Benzeneacetic acid", "flash_point": {"approx": true, "value": 100.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Phenyl acetate", "flash_point": {"approx": false, "value": 80.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Methyl benzoate", "flash_point": {"approx": false, "value": 83.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Methoxybenzaldehyde", "flash_point": {"approx": false, "value": 118.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Methyl salicylate", "flash_point": {"approx": false, "value": 96.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 454.0}}
+{"name": "1-Chloro-4-ethylbenzene", "flash_point": {"approx": false, "value": 64.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Acetanilide", "flash_point": {"approx": false, "value": 169.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 530.0}}
+{"name": "Methyl 2-aminobenzoate", "flash_point": {"approx": true, "value": 100.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethylbenzene", "flash_point": {"approx": false, "value": 21.0}, "flash_limits": "0.8-6.7%", "ignition_temp": {"approx": false, "value": 432.0}}
+{"name": "o-Xylene", "flash_point": {"approx": false, "value": 32.0}, "flash_limits": "0.9-6.7%", "ignition_temp": {"approx": false, "value": 463.0}}
+{"name": "m-Xylene", "flash_point": {"approx": false, "value": 27.0}, "flash_limits": "1.1-7.0%", "ignition_temp": {"approx": false, "value": 527.0}}
+{"name": "p-Xylene", "flash_point": {"approx": false, "value": 27.0}, "flash_limits": "1.1-7.0%", "ignition_temp": {"approx": false, "value": 528.0}}
+{"name": "p-Ethylphenol", "flash_point": {"approx": false, "value": 104.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Benzeneethanol", "flash_point": {"approx": false, "value": 96.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "\u03b1-Methylbenzyl alcohol", "flash_point": {"approx": false, "value": 93.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Phenetole", "flash_point": {"approx": false, "value": 63.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Benzyl methyl ether", "flash_point": {"approx": false, "value": 135.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "4-Methylanisole", "flash_point": {"approx": false, "value": 60.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Phenoxyethanol", "flash_point": {"approx": false, "value": 121.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "N-Ethylaniline", "flash_point": {"approx": false, "value": 85.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "N,N-Dimethylaniline", "flash_point": {"approx": false, "value": 63.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 371.0}}
+{"name": "2,3-Xylidine", "flash_point": {"approx": false, "value": 97.0}, "flash_limits": "1.0-?", "ignition_temp": null}
+{"name": "2,6-Xylidine", "flash_point": {"approx": false, "value": 96.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "\u03b1-Methylbenzylamine", "flash_point": {"approx": false, "value": 79.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "5-Ethyl-2-picoline", "flash_point": {"approx": false, "value": 68.0}, "flash_limits": "1.1-6.6%", "ignition_temp": null}
+{"name": "N-Phenylethanolamine", "flash_point": {"approx": false, "value": 152.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "o-Phenetidine", "flash_point": {"approx": false, "value": 115.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "p-Phenetidine", "flash_point": {"approx": false, "value": 116.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,5-Cyclooctadiene", "flash_point": {"approx": false, "value": 35.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "4-Vinylcyclohexene", "flash_point": {"approx": false, "value": 16.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 269.0}}
+{"name": "Diethyl maleate", "flash_point": {"approx": false, "value": 121.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 350.0}}
+{"name": "Diethyl fumarate", "flash_point": {"approx": false, "value": 104.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Cyclohexyl acetate", "flash_point": {"approx": false, "value": 58.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 335.0}}
+{"name": "Butyl methacrylate", "flash_point": {"approx": false, "value": 52.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Butanoic anhydride", "flash_point": {"approx": false, "value": 54.0}, "flash_limits": "0.9-5.8%", "ignition_temp": {"approx": false, "value": 279.0}}
+{"name": "2-Methylpropanoic anhydride", "flash_point": {"approx": false, "value": 59.0}, "flash_limits": "1.0-6.2%", "ignition_temp": {"approx": false, "value": 329.0}}
+{"name": "Butyl acetoacetate", "flash_point": {"approx": false, "value": 85.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethyl succinate", "flash_point": {"approx": false, "value": 90.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Diethylene glycol diacetate", "flash_point": {"approx": false, "value": 135.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Diethyl tartrate", "flash_point": {"approx": false, "value": 93.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Octanoyl chloride", "flash_point": {"approx": false, "value": 82.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Octene", "flash_point": {"approx": false, "value": 21.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 230.0}}
+{"name": "2,4,4-Trimethyl-1-pentene", "flash_point": {"approx": false, "value": -5.0}, "flash_limits": "0.8-4.8%", "ignition_temp": {"approx": false, "value": 391.0}}
+{"name": "2,4,4-Trimethyl-2-pentene", "flash_point": {"approx": false, "value": 2.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 305.0}}
+{"name": "Ethylcyclohexane", "flash_point": {"approx": false, "value": 35.0}, "flash_limits": "0.9-6.6%", "ignition_temp": {"approx": false, "value": 238.0}}
+{"name": "cis-1,2-Dimethylcyclohexane", "flash_point": {"approx": false, "value": 16.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 304.0}}
+{"name": "trans-1,2-Dimethylcyclohexane", "flash_point": {"approx": false, "value": 11.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 304.0}}
+{"name": "cis-1,4-Dimethylcyclohexane", "flash_point": {"approx": false, "value": 16.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Propylcyclopentane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 269.0}}
+{"name": "Octanal", "flash_point": {"approx": false, "value": 52.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Ethylhexanal", "flash_point": {"approx": false, "value": 44.0}, "flash_limits": "0.85-7.2%", "ignition_temp": {"approx": false, "value": 190.0}}
+{"name": "2-Octanone", "flash_point": {"approx": false, "value": 52.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Hexyl acetate", "flash_point": {"approx": false, "value": 45.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "sec-Hexyl acetate", "flash_point": {"approx": false, "value": 45.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Ethylbutyl acetate", "flash_point": {"approx": false, "value": 54.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Pentyl propanoate", "flash_point": {"approx": false, "value": 41.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 378.0}}
+{"name": "Butyl butanoate", "flash_point": {"approx": false, "value": 53.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Isobutyl butanoate", "flash_point": {"approx": false, "value": 50.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Isobutyl isobutanoate", "flash_point": {"approx": false, "value": 38.0}, "flash_limits": "0.96-7.59%", "ignition_temp": {"approx": false, "value": 432.0}}
+{"name": "Ethyl hexanoate", "flash_point": {"approx": false, "value": 49.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,4-Cyclohexanedimethanol", "flash_point": {"approx": false, "value": 167.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 316.0}}
+{"name": "Pentyl lactate", "flash_point": {"approx": false, "value": 79.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Diethylene glycol monoethyl ether acetate", "flash_point": {"approx": false, "value": 110.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 425.0}}
+{"name": "1-Chlorooctane", "flash_point": {"approx": false, "value": 70.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "3-(Chloromethyl)heptane", "flash_point": {"approx": false, "value": 60.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Octane", "flash_point": {"approx": false, "value": 13.0}, "flash_limits": "1.0-6.5%", "ignition_temp": {"approx": false, "value": 206.0}}
+{"name": "2,3-Dimethylhexane", "flash_point": {"approx": false, "value": 7.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 438.0}}
+{"name": "2,4-Dimethylhexane", "flash_point": {"approx": false, "value": 10.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "3-Ethyl-2-methylpentane", "flash_point": {"approx": true, "value": 21.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 460.0}}
+{"name": "2,2,3-Trimethylpentane", "flash_point": {"approx": true, "value": 21.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 346.0}}
+{"name": "2,2,4-Trimethylpentane", "flash_point": {"approx": false, "value": -12.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 418.0}}
+{"name": "2,3,3-Trimethylpentane", "flash_point": {"approx": true, "value": 21.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 425.0}}
+{"name": "1-Octanol", "flash_point": {"approx": false, "value": 81.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Octanol", "flash_point": {"approx": false, "value": 88.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Ethyl-1-hexanol", "flash_point": {"approx": false, "value": 73.0}, "flash_limits": "0.88-9.7%", "ignition_temp": {"approx": false, "value": 231.0}}
+{"name": "Dibutyl ether", "flash_point": {"approx": false, "value": 25.0}, "flash_limits": "1.5-7.6%", "ignition_temp": {"approx": false, "value": 194.0}}
+{"name": "2-Ethyl-1,3-hexanediol", "flash_point": {"approx": false, "value": 127.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 360.0}}
+{"name": "2,2,4-Trimethyl-1,3-pentanediol", "flash_point": {"approx": false, "value": 113.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 346.0}}
+{"name": "Di-tert-butyl peroxide", "flash_point": {"approx": false, "value": 18.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Diethylene glycol diethyl ether", "flash_point": {"approx": false, "value": 82.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2,5,8,11-Tetraoxadodecane", "flash_point": {"approx": false, "value": 111.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Tetraethylene glycol", "flash_point": {"approx": false, "value": 182.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Octanethiol", "flash_point": {"approx": false, "value": 69.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dibutyl sulfide", "flash_point": {"approx": false, "value": 76.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Octylamine", "flash_point": {"approx": false, "value": 60.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dibutylamine", "flash_point": {"approx": false, "value": 47.0}, "flash_limits": "1.1-6%", "ignition_temp": null}
+{"name": "Diisobutylamine", "flash_point": {"approx": false, "value": 29.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Ethylhexylamine", "flash_point": {"approx": false, "value": 60.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethyl silicate", "flash_point": {"approx": false, "value": 52.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Tetraethylenepentamine", "flash_point": {"approx": false, "value": 163.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 321.0}}
+{"name": "Toluene-2,4-diisocyanate", "flash_point": {"approx": false, "value": 127.0}, "flash_limits": "0.9-9.5%", "ignition_temp": null}
+{"name": "Quinoline", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 480.0}}
+{"name": "o-Methylstyrene", "flash_point": {"approx": false, "value": 53.0}, "flash_limits": "0.8-11.0%", "ignition_temp": {"approx": false, "value": 538.0}}
+{"name": "m-Methylstyrene", "flash_point": {"approx": false, "value": 53.0}, "flash_limits": "0.8-11.0%", "ignition_temp": {"approx": false, "value": 538.0}}
+{"name": "p-Methylstyrene", "flash_point": {"approx": false, "value": 53.0}, "flash_limits": "0.8-11.0%", "ignition_temp": {"approx": false, "value": 538.0}}
+{"name": "Isopropenylbenzene", "flash_point": {"approx": false, "value": 54.0}, "flash_limits": "1.9-6.1%", "ignition_temp": {"approx": false, "value": 574.0}}
+{"name": "1-Phenyl-1-propanone", "flash_point": {"approx": false, "value": 99.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "4-Methylacetophenone", "flash_point": {"approx": false, "value": 96.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethyl benzoate", "flash_point": {"approx": false, "value": 88.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 490.0}}
+{"name": "Benzyl acetate", "flash_point": {"approx": false, "value": 90.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 460.0}}
+{"name": "Methyl 2-phenylacetate", "flash_point": {"approx": false, "value": 91.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "4-Methylacetanilide", "flash_point": {"approx": false, "value": 168.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Propylbenzene", "flash_point": {"approx": false, "value": 30.0}, "flash_limits": "0.8-6.0%", "ignition_temp": {"approx": false, "value": 450.0}}
+{"name": "Isopropylbenzene", "flash_point": {"approx": false, "value": 36.0}, "flash_limits": "0.9-6.5%", "ignition_temp": {"approx": false, "value": 424.0}}
+{"name": "o-Ethyltoluene", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 440.0}}
+{"name": "m-Ethyltoluene", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 480.0}}
+{"name": "p-Ethyltoluene", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 475.0}}
+{"name": "1,2,3-Trimethylbenzene", "flash_point": {"approx": false, "value": 44.0}, "flash_limits": "0.8-6.6%", "ignition_temp": {"approx": false, "value": 470.0}}
+{"name": "1,2,4-Trimethylbenzene", "flash_point": {"approx": false, "value": 44.0}, "flash_limits": "0.9-6.4%", "ignition_temp": {"approx": false, "value": 500.0}}
+{"name": "1,3,5-Trimethylbenzene", "flash_point": {"approx": false, "value": 50.0}, "flash_limits": "1-5%", "ignition_temp": {"approx": false, "value": 559.0}}
+{"name": "\u03b1\u2212Ethylbenzyl alcohol", "flash_point": {"approx": false, "value": 100.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethylene glycol monobenzyl ether", "flash_point": {"approx": false, "value": 129.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 352.0}}
+{"name": "Ethyl p-toluenesulfonate", "flash_point": {"approx": false, "value": 158.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Amphetamine", "flash_point": {"approx": true, "value": 100.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Phorone", "flash_point": {"approx": false, "value": 85.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Isophorone", "flash_point": {"approx": false, "value": 84.0}, "flash_limits": "0.8-3.8%", "ignition_temp": {"approx": false, "value": 460.0}}
+{"name": "Triacetin", "flash_point": {"approx": false, "value": 138.0}, "flash_limits": "1.0-?", "ignition_temp": {"approx": false, "value": 433.0}}
+{"name": "Octahydroindene", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 296.0}}
+{"name": "Allyl hexanoate", "flash_point": {"approx": false, "value": 66.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Nonene", "flash_point": {"approx": false, "value": 26.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Propylcyclohexane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 248.0}}
+{"name": "Isopropylcyclohexane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 283.0}}
+{"name": "Butylcyclopentane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 250.0}}
+{"name": "2-Nonanone", "flash_point": {"approx": false, "value": 60.0}, "flash_limits": "0.9-5.9%", "ignition_temp": {"approx": false, "value": 360.0}}
+{"name": "Diisobutyl ketone", "flash_point": {"approx": false, "value": 49.0}, "flash_limits": "0.8-7.1%", "ignition_temp": {"approx": false, "value": 396.0}}
+{"name": "Pentyl butanoate", "flash_point": {"approx": false, "value": 57.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Isopentyl butanoate", "flash_point": {"approx": false, "value": 59.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Butyl 3-methylbutanoate", "flash_point": {"approx": false, "value": 53.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Nonane", "flash_point": {"approx": false, "value": 31.0}, "flash_limits": "0.8-2.9%", "ignition_temp": {"approx": false, "value": 205.0}}
+{"name": "3-Ethyl-4-methylhexane", "flash_point": {"approx": false, "value": 24.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "4-Ethyl-2-methylhexane", "flash_point": {"approx": true, "value": 21.0}, "flash_limits": "0.7-?", "ignition_temp": {"approx": false, "value": 280.0}}
+{"name": "2,2,5-Trimethylhexane", "flash_point": {"approx": false, "value": 13.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "3,3-Diethylpentane", "flash_point": null, "flash_limits": "0.7-5.7%", "ignition_temp": {"approx": false, "value": 290.0}}
+{"name": "3-Ethyl-2,4-dimethylpentane", "flash_point": {"approx": false, "value": 390.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2,2,3,3-Tetramethylpentane", "flash_point": {"approx": true, "value": 21.0}, "flash_limits": "0.8-4.9%", "ignition_temp": {"approx": false, "value": 430.0}}
+{"name": "2,2,3,4-Tetramethylpentane", "flash_point": {"approx": true, "value": 21.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Triisopropyl borate", "flash_point": {"approx": false, "value": 28.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Tripropylamine", "flash_point": {"approx": false, "value": 41.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Triisopropanolamine", "flash_point": {"approx": false, "value": 160.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 320.0}}
+{"name": "1-Chloronaphthalene", "flash_point": {"approx": false, "value": 121.0}, "flash_limits": null, "ignition_temp": {"approx": true, "value": 558.0}}
+{"name": "Naphthalene", "flash_point": {"approx": false, "value": 79.0}, "flash_limits": "0.9-5.9%", "ignition_temp": {"approx": false, "value": 526.0}}
+{"name": "2-Naphthol", "flash_point": {"approx": false, "value": 153.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Naphthalenamine", "flash_point": {"approx": false, "value": 157.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Safrole", "flash_point": {"approx": false, "value": 100.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dimethyl phthalate", "flash_point": {"approx": false, "value": 146.0}, "flash_limits": "0.9-?", "ignition_temp": {"approx": false, "value": 490.0}}
+{"name": "Dimethyl isophthalate", "flash_point": {"approx": false, "value": 138.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dimethyl terephthalate", "flash_point": {"approx": false, "value": 153.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 518.0}}
+{"name": "Acetoacetanilide", "flash_point": {"approx": false, "value": 185.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,2,3,4-Tetrahydronaphthalene", "flash_point": {"approx": false, "value": 71.0}, "flash_limits": "0.8-5.0%", "ignition_temp": {"approx": false, "value": 385.0}}
+{"name": "Isopropyl benzoate", "flash_point": {"approx": false, "value": 99.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethyl phenylacetate", "flash_point": {"approx": false, "value": 99.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Butylbenzene", "flash_point": {"approx": false, "value": 71.0}, "flash_limits": "0.8-5.8%", "ignition_temp": {"approx": false, "value": 410.0}}
+{"name": "sec-Butylbenzene", "flash_point": {"approx": false, "value": 52.0}, "flash_limits": "0.8-6.9%", "ignition_temp": {"approx": false, "value": 418.0}}
+{"name": "tert-Butylbenzene", "flash_point": {"approx": false, "value": 60.0}, "flash_limits": "0.7-5.7%", "ignition_temp": {"approx": false, "value": 450.0}}
+{"name": "Isobutylbenzene", "flash_point": {"approx": false, "value": 55.0}, "flash_limits": "0.8-6.0%", "ignition_temp": {"approx": false, "value": 427.0}}
+{"name": "p-Cymene", "flash_point": {"approx": false, "value": 47.0}, "flash_limits": "0.7-5.6%", "ignition_temp": {"approx": false, "value": 436.0}}
+{"name": "1,2,3,4-Tetramethylbenzene", "flash_point": {"approx": false, "value": 74.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 427.0}}
+{"name": "1,2,3,5-Tetramethylbenzene", "flash_point": {"approx": false, "value": 71.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 427.0}}
+{"name": "1,2,4,5-Tetramethylbenzene", "flash_point": {"approx": false, "value": 54.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "o-Diethylbenzene", "flash_point": {"approx": false, "value": 57.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 395.0}}
+{"name": "m-Diethylbenzene", "flash_point": {"approx": false, "value": 56.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 450.0}}
+{"name": "p-Diethylbenzene", "flash_point": {"approx": false, "value": 55.0}, "flash_limits": "0.7-6.0%", "ignition_temp": {"approx": false, "value": 430.0}}
+{"name": "Butyl phenyl ether", "flash_point": {"approx": false, "value": 82.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "4-tert-Butyl-1,2-benzenediol", "flash_point": {"approx": false, "value": 130.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "N-Butylaniline", "flash_point": {"approx": false, "value": 107.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "N,N-Diethylaniline", "flash_point": {"approx": false, "value": 85.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 630.0}}
+{"name": "N-Phenyl-N,N-diethanolamine", "flash_point": {"approx": false, "value": 196.0}, "flash_limits": "0.7-?", "ignition_temp": {"approx": false, "value": 387.0}}
+{"name": "Dipentene", "flash_point": {"approx": false, "value": 45.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 237.0}}
+{"name": "d-Limonene", "flash_point": {"approx": false, "value": 45.0}, "flash_limits": "0.7-6.1%", "ignition_temp": {"approx": false, "value": 237.0}}
+{"name": "\u03b1-Pinene", "flash_point": {"approx": false, "value": 33.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 255.0}}
+{"name": "\u03b2-Pinene", "flash_point": {"approx": false, "value": 38.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 275.0}}
+{"name": "\u03b2-Phellandrene", "flash_point": {"approx": false, "value": 49.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Camphor", "flash_point": {"approx": false, "value": 66.0}, "flash_limits": "0.6-3.5%", "ignition_temp": {"approx": false, "value": 466.0}}
+{"name": "trans-Decahydronaphthalene", "flash_point": {"approx": false, "value": 54.0}, "flash_limits": "0.7-5.4%", "ignition_temp": {"approx": false, "value": 255.0}}
+{"name": "Borneol", "flash_point": {"approx": false, "value": 66.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Linalol", "flash_point": {"approx": false, "value": 71.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "\u03b1-Terpineol", "flash_point": {"approx": false, "value": 90.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Cineole", "flash_point": {"approx": false, "value": 48.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "trans-Geraniol", "flash_point": {"approx": true, "value": 100.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dibutyl oxalate", "flash_point": {"approx": false, "value": 104.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "N-tert-Butylaminoethyl methacrylate", "flash_point": {"approx": false, "value": 96.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Decene", "flash_point": {"approx": true, "value": 55.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 235.0}}
+{"name": "Butylcyclohexane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 246.0}}
+{"name": "Isobutylcyclohexane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 274.0}}
+{"name": "tert-Butylcyclohexane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 342.0}}
+{"name": "Citronellol", "flash_point": {"approx": false, "value": 96.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Ethylhexyl acetate", "flash_point": {"approx": false, "value": 71.0}, "flash_limits": "0.76-8.14%", "ignition_temp": {"approx": false, "value": 268.0}}
+{"name": "Ethyl octanoate", "flash_point": {"approx": false, "value": 79.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "N-Butylcyclohexanamine", "flash_point": {"approx": false, "value": 93.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Decane", "flash_point": {"approx": false, "value": 51.0}, "flash_limits": "0.8-5.4%", "ignition_temp": {"approx": false, "value": 210.0}}
+{"name": "2-Methylnonane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 210.0}}
+{"name": "3-Ethyloctane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 230.0}}
+{"name": "4-Ethyloctane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 229.0}}
+{"name": "1-Decanol", "flash_point": {"approx": false, "value": 82.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 288.0}}
+{"name": "Dipentyl ether", "flash_point": {"approx": false, "value": 57.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 170.0}}
+{"name": "Ethylene glycol dibutyl ether", "flash_point": {"approx": false, "value": 85.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Tetraethylene glycol dimethyl ether", "flash_point": {"approx": false, "value": 141.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dipentyl sulfide", "flash_point": {"approx": false, "value": 85.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Decylamine", "flash_point": {"approx": false, "value": 99.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dipentylamine", "flash_point": {"approx": false, "value": 51.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Methylnaphthalene", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 529.0}}
+{"name": "Ethyl benzoylacetate", "flash_point": {"approx": false, "value": 141.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Butyl benzoate", "flash_point": {"approx": false, "value": 107.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "p-tert-Butyltoluene", "flash_point": {"approx": false, "value": 68.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Pentylbenzene", "flash_point": {"approx": false, "value": 66.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,3-Diethyl-5-methylbenzene", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 455.0}}
+{"name": "Pentamethylbenzene", "flash_point": {"approx": false, "value": 93.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 427.0}}
+{"name": "4-tert-Butyl-2-methylphenol", "flash_point": {"approx": false, "value": 118.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "p-tert-Pentylaniline", "flash_point": {"approx": false, "value": 102.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Ethylhexyl acrylate", "flash_point": {"approx": false, "value": 82.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 252.0}}
+{"name": "Pentylcyclohexane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 239.0}}
+{"name": "2-Undecanone", "flash_point": {"approx": false, "value": 89.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Nonyl acetate", "flash_point": {"approx": false, "value": 68.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Undecane", "flash_point": {"approx": false, "value": 69.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Methyldecane", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 225.0}}
+{"name": "2-Undecanol", "flash_point": {"approx": false, "value": 113.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "4-Bromo-1,1'-biphenyl", "flash_point": {"approx": false, "value": 144.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Biphenyl", "flash_point": {"approx": false, "value": 113.0}, "flash_limits": "0.6-5.8%", "ignition_temp": {"approx": false, "value": 540.0}}
+{"name": "Dichlorodiphenylsilane", "flash_point": {"approx": false, "value": 142.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "o-Phenylphenol", "flash_point": {"approx": false, "value": 124.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 530.0}}
+{"name": "Diphenyl ether", "flash_point": {"approx": false, "value": 112.0}, "flash_limits": "0.8-1.5%", "ignition_temp": {"approx": false, "value": 618.0}}
+{"name": "2-Aminobiphenyl", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 450.0}}
+{"name": "Diphenylamine", "flash_point": {"approx": false, "value": 153.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 634.0}}
+{"name": "1-Ethylnaphthalene", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 480.0}}
+{"name": "Diethyl phthalate", "flash_point": {"approx": false, "value": 161.0}, "flash_limits": "0.7-?", "ignition_temp": {"approx": false, "value": 457.0}}
+{"name": "Diethyl terephthalate", "flash_point": {"approx": false, "value": 117.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Cyclohexylbenzene", "flash_point": {"approx": false, "value": 99.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Pentyl salicylate", "flash_point": {"approx": false, "value": 132.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "N-Butyl-N-phenylacetamide", "flash_point": {"approx": false, "value": 141.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,5,9-Cyclododecatriene", "flash_point": {"approx": false, "value": 71.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dibutyl maleate", "flash_point": {"approx": false, "value": 141.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dimethyl sebacate", "flash_point": {"approx": false, "value": 145.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dibutyl tartrate", "flash_point": {"approx": false, "value": 91.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 284.0}}
+{"name": "Dicyclohexylamine", "flash_point": {"approx": true, "value": 99.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Dodecene", "flash_point": {"approx": false, "value": 79.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Ethyl decanoate", "flash_point": {"approx": true, "value": 100.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Bromododecane", "flash_point": {"approx": false, "value": 144.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dodecane", "flash_point": {"approx": false, "value": 74.0}, "flash_limits": "0.6-?", "ignition_temp": {"approx": false, "value": 203.0}}
+{"name": "1-Dodecanol", "flash_point": {"approx": false, "value": 127.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 275.0}}
+{"name": "2-Butyl-1-octanol", "flash_point": {"approx": false, "value": 110.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Diethylene glycol dibutyl ether", "flash_point": {"approx": false, "value": 118.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 310.0}}
+{"name": "1-Dodecanethiol", "flash_point": {"approx": false, "value": 128.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Tributyl borate", "flash_point": {"approx": false, "value": 93.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Tributylamine", "flash_point": {"approx": false, "value": 63.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Tributyl phosphate", "flash_point": {"approx": false, "value": 146.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Methylbiphenyl", "flash_point": {"approx": false, "value": 137.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 502.0}}
+{"name": "Diphenylmethane", "flash_point": {"approx": false, "value": 130.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 485.0}}
+{"name": "\u2032p,p-Diaminodiphenylmethane", "flash_point": {"approx": false, "value": 220.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Tridecene", "flash_point": {"approx": false, "value": 79.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Tridecanone", "flash_point": {"approx": false, "value": 107.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Tridecane", "flash_point": {"approx": false, "value": 79.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Tridecanol", "flash_point": {"approx": false, "value": 121.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "9,10-Anthracenedione", "flash_point": {"approx": false, "value": 185.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Anthracene", "flash_point": {"approx": false, "value": 121.0}, "flash_limits": "0.6-?", "ignition_temp": {"approx": false, "value": 540.0}}
+{"name": "Phenanthrene", "flash_point": {"approx": false, "value": 171.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Benzyl benzoate", "flash_point": {"approx": false, "value": 148.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 480.0}}
+{"name": "Benzyl salicylate", "flash_point": {"approx": true, "value": 100.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,1-Diphenylethane", "flash_point": {"approx": true, "value": 100.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 440.0}}
+{"name": "Dibenzyl ether", "flash_point": {"approx": false, "value": 135.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Butylnaphthalene", "flash_point": {"approx": false, "value": 360.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "o-Dianisidine", "flash_point": {"approx": false, "value": 206.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "N,N-Dibutylaniline", "flash_point": {"approx": false, "value": 110.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Tetradecene", "flash_point": {"approx": false, "value": 110.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 235.0}}
+{"name": "Tetradecane", "flash_point": {"approx": false, "value": 112.0}, "flash_limits": "0.5-?", "ignition_temp": {"approx": false, "value": 200.0}}
+{"name": "1-Tetradecanol", "flash_point": {"approx": false, "value": 141.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Pentylnaphthalene", "flash_point": {"approx": false, "value": 124.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Nonylbenzene", "flash_point": {"approx": false, "value": 99.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2,6-Di-tert-butyl-4-methylphenol", "flash_point": {"approx": false, "value": 127.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Tributyrin", "flash_point": {"approx": false, "value": 180.0}, "flash_limits": "0.5-?", "ignition_temp": {"approx": false, "value": 407.0}}
+{"name": "Tripentylamine", "flash_point": {"approx": false, "value": 102.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1,3-Diphenyl-2-buten-1-one", "flash_point": {"approx": false, "value": 177.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Butyl-1,1'-biphenyl", "flash_point": {"approx": true, "value": 100.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 430.0}}
+{"name": "Dibutyl phthalate", "flash_point": {"approx": false, "value": 157.0}, "flash_limits": "0.5-?", "ignition_temp": {"approx": false, "value": 402.0}}
+{"name": "Decylbenzene", "flash_point": {"approx": false, "value": 107.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Hexadecane", "flash_point": {"approx": false, "value": 136.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 202.0}}
+{"name": "Dioctyl ether", "flash_point": {"approx": true, "value": 100.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 205.0}}
+{"name": "Bis(2-ethylhexyl)amine", "flash_point": {"approx": false, "value": 132.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "\u2032N,N-Diethylcarbanilide", "flash_point": {"approx": false, "value": 150.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Heptadecanone", "flash_point": {"approx": false, "value": 120.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Heptadecanol", "flash_point": {"approx": false, "value": 154.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "o-Terphenyl", "flash_point": {"approx": false, "value": 163.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "m-Terphenyl", "flash_point": {"approx": false, "value": 191.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Triphenyl phosphite", "flash_point": {"approx": false, "value": 218.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Triphenyl phosphate", "flash_point": {"approx": false, "value": 220.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Triphenylphosphine", "flash_point": {"approx": false, "value": 180.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Dodecylbenzene", "flash_point": {"approx": false, "value": 140.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Butyl citrate", "flash_point": {"approx": false, "value": 157.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 368.0}}
+{"name": "Oleic acid", "flash_point": {"approx": false, "value": 189.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 363.0}}
+{"name": "Dibutyl sebacate", "flash_point": {"approx": false, "value": 178.0}, "flash_limits": "0.4-?", "ignition_temp": {"approx": false, "value": 365.0}}
+{"name": "Stearic acid", "flash_point": {"approx": false, "value": 196.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 395.0}}
+{"name": "Trichlorooctadecylsilane", "flash_point": {"approx": false, "value": 89.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Octadecane", "flash_point": {"approx": true, "value": 100.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 227.0}}
+{"name": "1-Octadecanol", "flash_point": null, "flash_limits": null, "ignition_temp": {"approx": false, "value": 450.0}}
+{"name": "Triphenylmethane", "flash_point": {"approx": true, "value": 100.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "2-Nonadecanone", "flash_point": {"approx": false, "value": 124.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Methyl stearate", "flash_point": {"approx": false, "value": 153.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Nonadecane", "flash_point": {"approx": true, "value": 100.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 230.0}}
+{"name": "Diphenyl phthalate", "flash_point": {"approx": false, "value": 224.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "1-Decylnaphthalene", "flash_point": {"approx": false, "value": 177.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Eicosane", "flash_point": {"approx": true, "value": 100.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 232.0}}
+{"name": "Tri-o-cresyl phosphate", "flash_point": {"approx": false, "value": 225.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 385.0}}
+{"name": "4-Octylphenyl salicylate", "flash_point": {"approx": false, "value": 216.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 416.0}}
+{"name": "Methyl abietate", "flash_point": {"approx": false, "value": 180.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Butyl oleate", "flash_point": {"approx": false, "value": 180.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Bis(2-ethylhexyl) adipate", "flash_point": {"approx": false, "value": 206.0}, "flash_limits": "0.4-?", "ignition_temp": {"approx": false, "value": 377.0}}
+{"name": "Butyl stearate", "flash_point": {"approx": false, "value": 160.0}, "flash_limits": null, "ignition_temp": {"approx": false, "value": 355.0}}
+{"name": "Pentyl stearate", "flash_point": {"approx": false, "value": 185.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Tetraphenylstannane", "flash_point": {"approx": false, "value": 232.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Bis(2-ethylhexyl) phthalate", "flash_point": {"approx": false, "value": 218.0}, "flash_limits": null, "ignition_temp": null}
+{"name": "Bis(2-ethylhexyl) azelate", "flash_point": {"approx": false, "value": 227.0}, "flash_limits": "0.3-?", "ignition_temp": {"approx": false, "value": 374.0}}

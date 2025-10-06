@@ -1,0 +1,119 @@
+Ac|acetyl
+Ac2O|acetic anhydride
+AcOEt|ethyl acetate
+ac|acid
+ace|acetone
+al|alcohol
+alk|alkali
+amor|amorphous
+anh|anhydrous
+aq|aqueous
+bipym|bipyramidal
+bl|blue
+blk|black
+bp|boiling point
+br|brown
+bt|bright
+Bu|butyl
+BuOH|1-butanol
+bz|benzene
+chl|chloroform
+col|colorless
+con|concentrated
+conc|concentrated
+cry|crystals
+ctc|carbon tetrachloride
+cy|cyclohexane
+cyhex|cyclohexane
+dec|decomposes
+den|density
+dil|dilute
+diox|dioxane
+dk|dark
+DMF|dimethylformamide
+DMSO|dimethyl sulfoxide
+efflor|efflorescent
+Et|ethyl
+EtOH|ethanol
+eth|diethyl ether
+exp|explodes
+fl|flakes
+flr|fluorescent
+fum|fuming
+gl|glacial
+gr|gray
+gran|granular
+grn|green
+hex|hexagonal
+HOAc|acetic acid
+HO|water
+hp|heptane
+hx|hexane
+hyd|hydrate
+hyg|hygroscopic
+i|insoluble
+i-|iso-
+iso|isooctane
+lf|leaves
+lig|ligroin
+liq|liquid
+lo|long
+mcl|monoclinic
+Me|methyl
+MeCN|acetonitrile
+MeOH|methanol
+misc|miscible
+msc|miscible
+mp|melting point
+n|refractive index
+nd|needles
+oct|octahedral
+oran|orange
+orth|orthorhombic
+os|organic solvents
+pa|pale
+peth|petroleum ether
+Ph|phenyl
+PhCl|chlorobenzene
+PhNH2|aniline
+PhNO2|nitrobenzene
+pl|plates
+pow|powder
+Pr|propyl
+PrOH|1-propanol
+pr|prisms
+purp|purple
+py|pyridine
+pym|pyramidal
+reac|reacts
+rhom|rhombic
+s|soluble
+sat|saturated
+sc|scales
+sl|slightly soluble
+soln|solution
+sp|sublimation point
+stab|stable
+sub|sublimes
+sulf|sulfuric acid
+syr|syrup
+tab|tablets
+tcl|triclinic
+tetr|tetragonal
+tfa|trifluoroacetic acid
+thf|tetrahydrofuran
+THF|tetrahydrofuran
+tol|toluene
+tp|triple point
+trg|trigonal
+unstab|unstable
+vap|vapor
+viol|violet
+visc|viscous
+vol|volatile
+vs|very soluble
+w|water
+wh|white
+xyl|xylene
+ye|yellow
+HO|water
