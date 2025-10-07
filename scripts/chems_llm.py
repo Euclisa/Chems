@@ -15,6 +15,8 @@ from psycopg2.extras import execute_values
 import base64
 import random
 from time import sleep
+import periodictable
+import requests
 
 # Disable all RDKit warnings and info messages
 RDLogger.DisableLog('rdApp.*')
@@ -669,8 +671,15 @@ class ChemsLLM:
     
 
     def __get_reaction_as_str(self, reaction):
-        reagents_str = ' + '.join([x['original_name'] for x in reaction['reagents']])
-        products_str = ' + '.join([x['original_name'] for x in reaction['products']])
+        def format_components(components):
+            parts = []
+            for c in components:
+                coeff = f"{c['coeff']} " if c.get('coeff') is not None else ""
+                parts.append(f"{coeff}{c['original_name']}")
+            return " + ".join(parts)
+
+        reagents_str = format_components(reaction['reagents'])
+        products_str = format_components(reaction['products'])
 
         return f"{reagents_str} -> {products_str}"
 
@@ -2117,6 +2126,79 @@ class ChemsLLM:
         print(f"Removed {len(react_i_to_remove)} reactions; modified {len(modified_react_i)}")
     
 
+    def fetch_elements(self, out_fn):
+        cid_to_chem_map = self.__get_cid_chem_map()
+        with open(out_fn, 'w') as f:
+            base_url = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/{}/cids/TXT"
+            for i, el in enumerate(periodictable.elements):
+                if i >= 118:
+                    break
+                name = el.name
+                response = requests.get(base_url.format(name))
+                if response.status_code != 200:
+                    print(f"Failed to obtain cid for '{name}'")
+                    continue
+                cid = int(response.text.strip())
+                if cid not in cid_to_chem_map:
+                    print(f"'{name}' not in chems file. Skipping...")
+                    continue
+
+                chem = cid_to_chem_map[cid]
+                mol = Chem.MolFromInchi(chem['inchi'])
+                mol = Chem.AddHs(mol)
+                if not mol:
+                    print(f"Failed to build mol object for '{name}'")
+                    continue
+                atom_count = mol.GetNumAtoms()
+
+                entry = {'cid': cid, 'name': name, 'symbol': el.symbol, 'atom_count': atom_count}
+                f.write(json.dumps(entry) + '\n')
+                f.flush()
+
+                print(f"Fetched '{name}' ({cid}), atom count: {atom_count}")
+    
+
+
+    def compute_reactions_enthalpies(self, out_fn):
+        reactions = self.__load_jsonl(self.reactions_parsed_balanced_fn)
+        thermo = self.__load_jsonl('data/thermo/chems_thermo_xtb.jsonl')
+        cid_to_thermo = {th['cid']: th for th in thermo}
+
+        KCAL_PER_HARTREE = 627.5094740631
+
+        with open(out_fn, 'w') as f:
+            for react in reactions:
+                if not react['balanced']:
+                    continue
+
+                react_str = self.__get_reaction_as_str(react)
+                fail = False
+
+                H_r = 0
+                for r in react['reagents']:
+                    cid = r['cid']
+                    if cid not in cid_to_thermo or cid_to_thermo[cid]['Ht_Eh'] is None:
+                        fail = True
+                        break
+                    H_r += r['coeff'] * cid_to_thermo[r['cid']]['Ht_Eh']
+                
+                H_p = 0
+                for p in react['products']:
+                    cid = p['cid']
+                    if cid not in cid_to_thermo or cid_to_thermo[cid]['Ht_Eh'] is None:
+                        fail = True
+                        break
+                    H_p += p['coeff'] * cid_to_thermo[p['cid']]['Ht_Eh']
+                
+                if fail:
+                    continue
+                
+                dH = (H_p - H_r) * KCAL_PER_HARTREE
+
+                f.write(json.dumps({'rid': react['rid'], 'dH': dH}) + '\n')
+
+    
+
     def __load_jsonl(self, filename):
         with open(filename) as f:
             return [json.loads(x) for x in f.read().strip().split('\n')]
@@ -2373,10 +2455,10 @@ if __name__ == "__main__":
     #chemsllm.map_ord_reactions_chems_to_cids('cleaned_ord.jsonl')
     #chemsllm.fetch_unmapped_smiles_from_pubchem()
     #chemsllm.fetch_chems_cids_from_pubchem('cids.txt')
-    chemsllm.merge_parsed_reactions_files("data/reactions_parsed/merged_reactions_parsed.jsonl", "data/reactions_parsed/reactions_parsed_ord.jsonl", "data/reactions_parsed/reactions_parsed.jsonl")
-    chemsllm.balance_parsed_reactions("data/reactions_parsed/merged_reactions_parsed.jsonl")
-    chemsllm.generate_edges()
-    chemsllm.populate_db()
+    #chemsllm.merge_parsed_reactions_files("data/reactions_parsed/merged_reactions_parsed.jsonl", "data/reactions_parsed/reactions_parsed_ord.jsonl", "data/reactions_parsed/reactions_parsed.jsonl")
+    #chemsllm.balance_parsed_reactions("data/reactions_parsed/merged_reactions_parsed.jsonl")
+    #chemsllm.generate_edges()
+    #chemsllm.populate_db()
     #chemsllm.deduplicate_chems_rebind_reactions()
     #chemsllm.fix_details()
     #chemsllm.fix_reactions()
@@ -2393,6 +2475,8 @@ if __name__ == "__main__":
     #chemsllm.extract_radicals_list('data/misc/radicals.jsonl')
     #chemsllm.clean_ord_reactions_from_radicals()
     #chemsllm.filter_ord_reactions()
+    #chemsllm.fetch_elements('data/chems/elements.jsonl')
+    chemsllm.compute_reactions_enthalpies('reaction_enthalpies.jsonl')
 
     
 

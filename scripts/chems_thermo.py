@@ -11,8 +11,11 @@ import random
 from time import sleep
 import numpy as np
 from copy import deepcopy
+import periodictable
 
 RDLogger.DisableLog('rdApp.*')
+
+KCAL_PER_HARTREE = 627.5094740631
 
 
 def get_structures(input_sdf, out_fn):
@@ -289,7 +292,8 @@ def __run_xtb_single(conformers_xyz, max_conformers=5, xtb_cmd='xtb', method='gf
     
     Ht, Gt = __compute_boltzmann_average(results)
     
-    return len(results), Ht, Gt
+    #return len(results), Ht, Gt
+    return 1, results[0]['Ht'], results[0]['Gt']
 
 
 def run_xtb(conformers_dir, output_file, order_file=None, xtb_cmd='xtb'):
@@ -307,7 +311,7 @@ def run_xtb(conformers_dir, output_file, order_file=None, xtb_cmd='xtb'):
         with open(order_file) as f:
             order = [f"{x}.json" for x in json.loads(f.read())]
 
-    max_conformers = 10
+    max_conformers = 1
 
     with open(output_file, 'a') as f_out:
         filenames = os.listdir(conformers_dir)
@@ -361,10 +365,85 @@ def clear_null_enthalpy_entries(filename):
                 f.write(json.dumps(entry) + '\n')
 
 
+def compute_formation_values(xtb_thermo_fn, out_fn):
+    with open('data/chems/chems.jsonl') as f:
+        chems = [json.loads(x) for x in f.read().strip().split('\n')]
+    
+    with open('data/chems/elements.jsonl') as f:
+        elements = [json.loads(x) for x in f.read().strip().split('\n')]
+
+    with open(xtb_thermo_fn) as f:
+        xtb_thermo_entries = [json.loads(x) for x in f.read().strip().split('\n')]
+    
+    symb_to_el = {el['symbol']: el for el in elements}
+    cid_to_chem = {chem['cid']: chem for chem in chems}
+    cid_to_thermo = {th['cid']: th for th in xtb_thermo_entries}
+    
+    with open(out_fn, 'w') as f_out:
+        for entry in xtb_thermo_entries:
+            if entry['Ht_Eh'] is None:
+                continue
+
+            cid = entry['cid']
+            chem = cid_to_chem[cid]
+            name = chem['cmpdname']
+            mol = Chem.MolFromInchi(chem['inchi'])
+            mol = Chem.AddHs(mol)
+            if not mol:
+                print(f"Failed to obtain mol object for '{name}' ({cid})")
+                continue
+            
+            atom_counts = {}
+            for atom in mol.GetAtoms():
+                symbol = atom.GetSymbol()
+                atom_counts[symbol] = atom_counts.get(symbol, 0) + 1
+            
+            dHf = Ht = entry['Ht_Eh'] * KCAL_PER_HARTREE
+            dGf = Gt = entry['Gt_Eh'] * KCAL_PER_HARTREE
+            for symbol, count in atom_counts.items():
+                el_entry = symb_to_el[symbol]
+                el_cid = el_entry['cid']
+                el_atom_count = el_entry['atom_count']
+                el_thermo = cid_to_thermo.get(el_cid, {'Ht_Eh': None})
+
+                if el_thermo['Ht_Eh'] is None:
+                    break
+                
+                el_ht = el_thermo['Ht_Eh'] * KCAL_PER_HARTREE / el_atom_count
+                el_gt = el_thermo['Gt_Eh'] * KCAL_PER_HARTREE / el_atom_count
+                
+                dHf -= count * el_ht
+                dGf -= count * el_gt
+
+            else:      
+                out_entry = {'cid': cid, 'Ht': Ht, 'Gt': Gt, 'dHf': dHf, 'dGf': dGf, 'T': 298.15}
+                f_out.write(json.dumps(out_entry) + '\n')
+
+
+def print_thermo(thermo_fn, n=100):
+    with open(thermo_fn) as f:
+        thermo = [json.loads(x) for x in f.read().strip().split('\n')]
+
+    with open('data/chems/chems.jsonl') as f:
+        chems = [json.loads(x) for x in f.read().strip().split('\n')]
+    
+    cid_to_chem = {chem['cid']: chem for chem in chems}
+    
+    for entry in thermo[:n]:
+        name = cid_to_chem[entry['cid']]['cmpdname']
+        dHf = entry['dHf']
+        dGf = entry['dGf']
+        print(f"{name}: dHf={dHf}; dGf={dGf}")
+        
+
+
+
 
 #get_structures('3d.sdf', '3d_structures.jsonl')
 #convert_to_xyz_rdkit('3d_structures.jsonl', 'conformers/')
 #generate_missing_structures('conformers', 'data/chems/chems.jsonl', crest_cmd='/home/me/Downloads/crest/crest')
-run_xtb('conformers/', 'data/thermo/chems_thermo_xtb.jsonl', order_file='data/misc/complexity_sorted_cids.json', xtb_cmd='/home/me/Downloads/xtb-dist/bin/xtb')
+run_xtb('conformers/', 'data/thermo/chems_thermo_xtb_test.jsonl', order_file='data/misc/commonness_sorted_cids.json', xtb_cmd='/home/me/Downloads/xtb-dist/bin/xtb')
 #delete_cids()
 #clear_null_enthalpy_entries('chems_thermo_xtb.jsonl')
+#compute_formation_values('data/thermo/chems_thermo_xtb.jsonl', 'data/thermo/chems_thermo.jsonl')
+#print_thermo('data/thermo/chems_thermo.jsonl', n=1000)
