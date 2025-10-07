@@ -68,7 +68,6 @@ class ChemsLLM:
         self.unmapped_smiles_fn = os.path.join(self.data_dir, 'unmapped_smiles.txt')
         self.unmapped_smiles_blacklisted_fn = os.path.join(self.data_dir, 'unmapped_smiles_blacklisted.txt')
         self.reactions_parsed_ord_fn = os.path.join(self.data_dir, 'reactions_parsed', 'reactions_parsed_ord.jsonl')
-        self.reactions_parsed_details_ord_fn = os.path.join(self.data_dir, 'reactions_details', 'reactions_parsed_details_ord.jsonl')
         self.reactions_details_fn = os.path.join(self.data_dir, 'reactions_details', 'reactions_details.jsonl')
         self.chems_descriptions_fn = os.path.join(self.data_dir, 'chems', 'chems_descriptions.jsonl')
         self.reactions_descriptions_fn = os.path.join(self.data_dir, 'reactions_details', 'reactions_descriptions.jsonl')
@@ -1150,6 +1149,10 @@ class ChemsLLM:
         processed_reactions = []
         balanced_cnt = 0
         for react in reactions:
+            check_rid = self.__get_reaction_hash(react)
+            if react['rid'] != check_rid:
+                raise Exception(f"Bad RID for reaction '{react['rid']}'")
+
             reagents = [cid_to_mf[x['cid']] for x in react['reagents']]
             products = [cid_to_mf[x['cid']] for x in react['products']]
     
@@ -2025,22 +2028,22 @@ class ChemsLLM:
     
 
     def filter_ord_reactions(self):
-        with open(self.reactions_parsed_balanced_fn) as f:
+        with open(self.reactions_parsed_ord_fn) as f:
             reactions = [json.loads(x) for x in f.read().strip().split('\n')]
 
         with open(self.reactions_details_fn) as f:
             details = [json.loads(x) for x in f.read().strip().split('\n')]
         
-        rids_to_filter = set(map(lambda x: x['rid'], filter(lambda x: not x['description'] and x['source'] == 'ord', details)))
+        rids_to_keep = set(map(lambda x: x['rid'], filter(lambda x: x['description'] and len(x['description']) > 80 and x['source'] == 'ord', details)))
 
         with open(self.reactions_details_fn, 'w') as f:
             for entry in details:
-                if entry['rid'] not in rids_to_filter:
+                if entry['source'] != 'ord' or entry['rid'] in rids_to_keep:
                     f.write(json.dumps(entry) + '\n')
         
-        with open(self.reactions_parsed_balanced_fn, 'w') as f:
+        with open(self.reactions_parsed_ord_fn, 'w') as f:
             for entry in reactions:
-                if entry['rid'] not in rids_to_filter:
+                if entry['source'] != 'ord' or entry['rid'] in rids_to_keep:
                     f.write(json.dumps(entry) + '\n')
     
 
@@ -2382,7 +2385,6 @@ if __name__ == "__main__":
     #chemsllm.get_chems_descriptions(max_workers=20)
     #chemsllm.get_reactions_descriptions(max_workers=20)
     #chemsllm.validate_raw_reactions(raw_reactions_fn="data/wiki_products_raw_reactions.jsonl", max_workers=20)
-    #chemsllm.merge_parsed_reactions_files("reactions_descriptions.jsonl", "data/reactions_parsed_details_ord.jsonl", "reactions_descriptions.jsonl")
     #chemsllm.clean_data_populate_tables(rehash_required=True)
     #chemsllm.extract_chems_cas_numbers()
     #chemsllm.get_background_substances(20)
@@ -2390,6 +2392,7 @@ if __name__ == "__main__":
     #chemsllm.filter_ord_reactions()
     #chemsllm.extract_radicals_list('data/misc/radicals.jsonl')
     #chemsllm.clean_ord_reactions_from_radicals()
+    #chemsllm.filter_ord_reactions()
 
     
 
