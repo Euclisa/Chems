@@ -80,8 +80,13 @@ CREATE TABLE compound_hazard_pictograms (
 
 
 CREATE TABLE compound_descriptions (
-    cid INTEGER NOT NULL REFERENCES compounds(cid),
+    cid INTEGER PRIMARY KEY REFERENCES compounds(cid),
     description TEXT NOT NULL
+);
+
+
+CREATE TABLE background_compounds (
+    cid INTEGER PRIMARY KEY REFERENCES compounds(cid)
 );
 
 

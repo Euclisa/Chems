@@ -47,7 +47,7 @@ class OrdParse:
             f.write(json.dumps(rxn_json, indent=2))
     
 
-    def extract_all_simple(self, out_fn):
+    def extract_all_simple(self, out_fn, complexity_thr=600):
         cts = []
         reactions_written = 0
         overall = 0
@@ -121,9 +121,9 @@ class OrdParse:
                             if bad:
                                 continue
                             
-                            max_ct = max(complexities)
+                            max_compl = max(complexities)
                             overall += 1
-                            if max_ct < 500:
+                            if max_compl < complexity_thr:
                                 with open(out_fn, 'a') as f:
                                     f.write(json.dumps(reaction_json) + '\n')
                                 reactions_written += 1
@@ -135,6 +135,9 @@ class OrdParse:
     
 
     def split_ord_file(self, ord_file, out_dir, prefix="ord", lines_per_file=20000):
+        if not os.path.exists(out_dir):
+            os.mkdir(out_dir)
+
         with open(ord_file) as f_in:
             i = 1
             while True:
@@ -249,21 +252,20 @@ class OrdParse:
                                     else:
                                         negative.append(chem)
                                 
-                                if negative or positive:
-                                    if len(negative) == 1 and len(positive) == 1:
-                                        smiles = f"{positive[0]['smiles']}.{negative[0]['smiles']}"
-                                        mol = Chem.MolFromSmiles(smiles)
-                                        if not mol:
-                                            return None
-                                        if Chem.GetFormalCharge(mol) != 0:
-                                            return None
-                                        smiles = Chem.MolToSmiles(mol)
-                                        if smiles in fixes:
-                                            smiles = fixes[smiles]
-                                        
-                                        fixed_cnt += 1
-                                        chem = {'smiles': smiles}
-                                        fixed.append(chem)
+                                if len(negative) == 1 and len(positive) == 1:
+                                    smiles = f"{positive[0]['smiles']}.{negative[0]['smiles']}"
+                                    mol = Chem.MolFromSmiles(smiles)
+                                    if not mol:
+                                        return None
+                                    if Chem.GetFormalCharge(mol) != 0:
+                                        return None
+                                    smiles = Chem.MolToSmiles(mol)
+                                    if smiles in fixes:
+                                        smiles = fixes[smiles]
+                                    
+                                    fixed_cnt += 1
+                                    chem = {'smiles': smiles}
+                                    fixed.append(chem)
                                 
                                 return fixed
                             
@@ -324,7 +326,7 @@ class OrdParse:
 if __name__ == "__main__":
     ord = OrdParse("ord-data/data", "data/")
     #ord.extract_file("d6/ord_dataset-d6cdba90760a47779a36ece5962905eb.pb.gz", "out.json")
-    #ord.extract_all_simple("out1.jsonl")
+    #ord.extract_all_simple("out.jsonl")
     #ord.split_ord_file("out.jsonl", "ord/")
     #ord.sample_ord("ord/ord_0.jsonl", 5, "samples.json")
     ord.clean_ord_reactions('ord', 'cleaned_ord.jsonl')

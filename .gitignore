@@ -3,9 +3,10 @@
 pubchem.json
 cleaned_ord.jsonl
 ord/
-ord-data/
 cid_map.txt
 rid_map.txt
 conformers/
 *_tmp/
 merged_reactions_parsed.jsonl
+*.txt
+data/*.txt
