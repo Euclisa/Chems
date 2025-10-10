@@ -8,7 +8,7 @@ import pubchempy as pcp
 import shutil
 from chempy import balance_stoichiometry
 from rdkit import Chem, RDLogger
-from rdkit.Chem import Draw, AllChem, GraphDescriptors, rdMolDescriptors
+from rdkit.Chem import Draw, AllChem, GraphDescriptors, rdMolDescriptors, inchi
 import hashlib
 import psycopg2
 from psycopg2.extras import execute_values
@@ -95,6 +95,9 @@ class ChemsLLM:
         self.__cid_mf_map = None
 
         self.unmapped_names_delimiter = "||"
+
+        self.complexity_thr = 550
+        self.max_synonyms_thr = 100
         
         self.sources_priority = {
             "ord": 10,
@@ -828,6 +831,7 @@ class ChemsLLM:
         chem_name = self.__clean_chem_name(chem_name_raw, is_clean=is_clean)
         chem_name = chem_name.lower()
         chem_name = chem_name.strip()
+        chem_name = chem_name.replace("aluminum", "aluminium")
         
         if not is_clean:
             chem_name = re.sub(r' \([^\d]+\)$', '', chem_name)
@@ -971,7 +975,7 @@ class ChemsLLM:
         self.log(f"Successfully parsed {len(parsed)} reactions; unmapped names size: {len(unmapped_names)}")
 
             
-    def fetch_unmapped_names_from_pubchem(self, names_fn):
+    def fetch_names_from_pubchem(self, names_fn):
         with open(names_fn) as f:
             names_list = f.read().strip().split('\n')
         
@@ -1090,16 +1094,13 @@ class ChemsLLM:
                 products = products.strip().split('+')
     
 
-    def organize_chems_file(self):
+    def organize_chems_file(self, force=False):
         shutil.copy(self.chems_fn, f"{self.chems_fn}.backup")
         
-        unique_chems = []
-        unique_cids = set()
-        unique_inchikeys = set()
+        unique_inchikeys_chems = dict()
         for chem in self.chems:
             cid = chem['cid']
-            inchikey = chem['inchikey']
-            if cid in unique_cids or chem['charge'] != 0 or cid in self.cids_blacklist or inchikey in unique_inchikeys:
+            if chem['charge'] != 0 or cid in self.cids_blacklist or chem['complexity'] > self.complexity_thr:
                 continue
             
             try:
@@ -1107,21 +1108,45 @@ class ChemsLLM:
                 chem['smiles'] = Chem.MolToSmiles(mol, canonical=True)
             except:
                 continue
-
-            if chem['cmpdname'] is None:
-                if chem['cmpdsynonym']:
-                    synonyms = list(filter(lambda x: not re.search(r'\d{3,}', x), chem['cmpdsynonym']))
-                    if not synonyms:
-                        continue
-                    chem['cmpdname'] = synonyms[0].lower()
-                else:
+            
+            if chem['cmpdsynonym']:
+                synonyms = list(filter(lambda x: not re.search(r'\d{3,}', x), chem['cmpdsynonym']))
+                if not synonyms:
                     continue
+                if chem['cmpdname'] is None:
+                    chem['cmpdname'] = synonyms[0].lower()
+                chem['cmpdsynonym'] = synonyms[:self.max_synonyms_thr]
+            else:
+                continue
 
-            unique_cids.add(cid)
-            unique_inchikeys.add(inchikey)
-            unique_chems.append(chem)
+            if 'ECFP4_fp' not in chem or force:
+                chem['ECFP4_fp'] = self.__get_mol_fingerprint(mol)
+            
+            if 'bertz_complexity' not in chem or force:
+                chem['bertz_complexity'] = self.__get_mol_bertz_complexity(mol)
+            
+            if 'organic' not in chem or force:
+                chem['organic'] = self.__get_mol_organic_mark(mol)
+
+
+            if 'inchi_snone' not in chem or force:
+                chem['inchi_snone'] = inchi.MolToInchi(mol, options="/SNon")
+            
+            if 'inchikey_snone' not in chem or force:
+                chem['inchikey_snone'] = inchi.MolToInchiKey(mol, options="/SNon")
+
+            inchikey = chem['inchikey_snone']
+            if inchikey in unique_inchikeys_chems:
+                old_chem = unique_inchikeys_chems[inchikey]
+                old_inchi = old_chem['inchi']
+                curr_inchi = chem['inchi']
+                if len(curr_inchi) < len(old_inchi):
+                    unique_inchikeys_chems[inchikey] = chem
+            else:
+                unique_inchikeys_chems[inchikey] = chem
+            
         
-        unique_chems.sort(key=lambda x: x['complexity'])
+        unique_chems = sorted(list(unique_inchikeys_chems.values()), key=lambda x: x['complexity'])
 
         self.__update_chems(unique_chems)
 
@@ -1244,44 +1269,44 @@ class ChemsLLM:
                 f.write(svg)
     
 
-    def generate_organic_marks_for_chems(self):
-        def is_organic(chem):
-            try:
-                smiles = chem['smiles']
-                mol = Chem.MolFromSmiles(smiles)
-                mol = Chem.AddHs(mol)
-                
-                if mol is None:
-                    raise ValueError("Неверный формат SMILES")
+    def __get_mol_organic_mark(self, mol):
+        try:
+            mol = Chem.AddHs(mol)
 
-                atoms = mol.GetAtoms()
-                bonds = mol.GetBonds()
-                
-                has_carbon = any(atom.GetAtomicNum() == 6 for atom in atoms)
-                
-                if not has_carbon:
-                    return False
-                
-                for bond in bonds:
-                    atom1 = bond.GetBeginAtom()
-                    atom2 = bond.GetEndAtom()
-                    
-                    if (atom1.GetAtomicNum() == 6 and atom2.GetAtomicNum() == 6):
-                        return True
-                    
-                    if (atom1.GetAtomicNum() == 6 and atom2.GetAtomicNum() == 1) or \
-                    (atom1.GetAtomicNum() == 1 and atom2.GetAtomicNum() == 6):
-                        return True
-                
+            atoms = mol.GetAtoms()
+            bonds = mol.GetBonds()
+            
+            has_carbon = any(atom.GetAtomicNum() == 6 for atom in atoms)
+            
+            if not has_carbon:
                 return False
+            
+            for bond in bonds:
+                atom1 = bond.GetBeginAtom()
+                atom2 = bond.GetEndAtom()
                 
-            except Exception as e:
-                print(f"Error processing smiles SMILES: {e}")
-                # If complex smiles then likely organic
-                return True
+                if (atom1.GetAtomicNum() == 6 and atom2.GetAtomicNum() == 6):
+                    return True
+                
+                if (atom1.GetAtomicNum() == 6 and atom2.GetAtomicNum() == 1) or \
+                (atom1.GetAtomicNum() == 1 and atom2.GetAtomicNum() == 6):
+                    return True
+            
+            return False
         
+        except Exception as e:
+            self.log("Error generating organic mark. Assuming True")
+            # If complex smiles then likely organic
+            return True
+    
+
+    def generate_organic_marks_for_chems(self):
         for chem in self.chems:
-            chem['organic'] = is_organic(chem)
+            smiles = chem['smiles']
+            mol = Chem.MolFromSmiles(smiles)
+            if not mol:
+                raise Exception(f"Invalid smiles for {chem['cmpdname']}")
+            chem['organic'] = self.__get_mol_organic_mark(mol)
 
         self.__update_chems(self.chems)
 
@@ -1309,20 +1334,25 @@ class ChemsLLM:
         self.log(f"Generated {len(edge_reaction_id_map)} edges")
     
 
+
+    def __get_mol_fingerprint(self, mol):
+        fp = AllChem.GetMorganFingerprintAsBitVect(mol, radius=2, nBits=1024)
+        bitstring = fp.ToBitString()
+        popcount = sum([int(x) for x in bitstring])
+
+        chunks = [bitstring[i:i+32] for i in range(0, 1024, 32)]
+        ints32 = [int(c, 2) - 2**32 if int(c, 2) >= 2**31 else int(c, 2) for c in chunks]
+
+        return {'bits': ints32, 'popcount': popcount}
+
+
     def compute_chems_fingerprints(self):
         for chem in self.chems:
             mol = Chem.MolFromSmiles(chem['smiles'])
             if mol is None:
                 raise Exception(f"Invalid smiles for {chem['cmpdname']}")
 
-            fp = AllChem.GetMorganFingerprintAsBitVect(mol, radius=2, nBits=1024)
-            bitstring = fp.ToBitString()
-            popcount = sum([int(x) for x in bitstring])
-
-            chunks = [bitstring[i:i+32] for i in range(0, 1024, 32)]
-            ints32 = [int(c, 2) - 2**32 if int(c, 2) >= 2**31 else int(c, 2) for c in chunks]
-
-            chem['ECFP4_fp'] = {'bits': ints32, 'popcount': popcount}
+            chem['ECFP4_fp'] = self.__get_mol_fingerprint(mol)
         
         self.__update_chems(self.chems)
     
@@ -1345,17 +1375,19 @@ class ChemsLLM:
                     if 'wiki' in chem:
                         chem.pop('wiki')
                 f.write(json.dumps(chem) + '\n')
-        
+    
+
+    def __get_mol_bertz_complexity(self, mol):
+        return GraphDescriptors.BertzCT(mol)
 
     
 
-    def compute_chems_bertz_complexity(self):
-        with open(self.chems_fn) as f:
-            chems = [json.loads(x) for x in f.read().strip().split('\n')]
-        
+    def compute_chems_bertz_complexity(self):        
         for chem in self.chems:
             mol = Chem.MolFromSmiles(chem['smiles'])
-            chem['bertz_complexity'] =  GraphDescriptors.BertzCT(mol)
+            if mol is None:
+                raise Exception(f"Invalid smiles for {chem['cmpdname']}")
+            chem['bertz_complexity'] =  self.__get_mol_bertz_complexity(mol)
         
         self.__update_chems(self.chems)
     
@@ -1582,32 +1614,27 @@ class ChemsLLM:
         return True
 
     def merge_parsed_files(self, out_fn, *parsed_reactions_files):
-        processed_rids = set()
-        rid_to_index_map = dict()
-        reactions_res = []
+        rid_reaction = dict()
         total_reactions = 0
         for fn in parsed_reactions_files:
-            with open(fn) as f:
-                reactions = [json.loads(x) for x in f.read().strip().split('\n')]
+            reactions = self.__load_jsonl(fn)
             
             total_reactions += len(reactions)
             
             for react in reactions:
                 rid = react['rid']
-                if rid not in processed_rids:
-                    rid_to_index_map[rid] = len(reactions_res)
-                    reactions_res.append(react)
-                    processed_rids.add(rid)
+                if rid not in rid_reaction:
+                    rid_reaction[rid] = react
                 else:
-                    index = rid_to_index_map[rid]
-                    old_react = reactions_res[index]
+                    old_react = rid_reaction[rid]
                     old_source = old_react.get('source')
                     new_source = react.get('source')
                     new_source_priority = self.sources_priority.get(new_source, -1)
                     old_source_priority = self.sources_priority.get(old_source, -1)
                     if new_source_priority > old_source_priority:
-                        reactions_res[index] = react
+                        rid_reaction[rid] = react
 
+        reactions_res = list(rid_reaction.values())
         self.__write_jsonl(reactions_res, out_fn, backup=False)
         
         print(f"Total reactions number: {total_reactions}; unique reactions written: {len(reactions_res)}")
@@ -1666,10 +1693,8 @@ class ChemsLLM:
         with open(self.reactions_parsed_balanced_fn) as f:
             reactions = [json.loads(x) for x in f.read().strip().split('\n')]
         
-        cid_chem_map = self.__get_cid_chem_map()
-        
         reagents_cids_count = dict()
-        for cid in cid_chem_map:
+        for cid in self.cid_chem_map:
             reagents_cids_count[cid] = 0
         
         for react in reactions:
@@ -1786,11 +1811,25 @@ class ChemsLLM:
                         old_name = old_chem['cmpdname']
                         old_inchi = old_chem['inchi']
                         old_cas = old_chem['cas']
+                        old_syn_num = len(old_chem['cmpdsynonym'])
                         curr_name = chem['cmpdname']
                         curr_inchi = chem['inchi']
                         curr_cas = chem['cas']
-                        f.write(f"'{curr_name}' ({cid}) - '{old_name}' ({old_cid}): conflict at '{name}' (normalized: '{norm_name}') (syn. index: {i} - {old_cid_i})\n")
-                        f.write(f"(inchi: '{curr_inchi}' - {old_inchi}) (cas: {curr_cas} - {old_cas})\n\n")
+                        curr_syn_num = len(chem['cmpdsynonym'])
+                        inchi_overlap = 'yes' if old_inchi in curr_inchi or curr_inchi in old_inchi else 'no'
+                        f.write(f"'{curr_name}' ({cid}) - '{old_name}' ({old_cid}): conflict at '{name}' (normalized: '{norm_name}') (syn. index: {i}/{curr_syn_num} - {old_cid_i}/{old_syn_num})\n")
+                        f.write(f"(inchi: '{curr_inchi}' - {old_inchi}(overlap: {inchi_overlap})) (cas: {curr_cas} - {old_cas})\n\n")
+
+
+    def map_crc_chems_to_cids(self):
+        names = [x['name'] for x in self.__load_jsonl('data/crc_handbook/inorganic_constants.jsonl')]
+        names += [x['name'] for x in self.__load_jsonl('data/crc_handbook/organic_constants.jsonl')]
+
+        with open('data/crc_unmapped_names.txt', 'w') as f:
+            for name in names:
+                norm_name = self.__normalize_chem_name(name, is_clean=True)
+                if norm_name not in self.name_cid_map:
+                    f.write(f"{norm_name}||{name}||0" + '\n')
 
 
     
@@ -1982,7 +2021,7 @@ if __name__ == "__main__":
     #chemsllm.fix_broken_raw_reactions(max_workers=1)
     #print(chemsllm.find_all_unicode_chars_in_raw_reactions())
     #chemsllm.map_raw_reactions_chems_to_cids()
-    #chemsllm.fetch_unmapped_names_from_pubchem()
+    #chemsllm.fetch_names_from_pubchem()
     #chemsllm.organize_chems_file()
     #chemsllm.balance_parsed_reactions()
     #chemsllm.find_unbalancing_chems()
@@ -2004,7 +2043,7 @@ if __name__ == "__main__":
     #chemsllm.merge_parsed_files("data/reactions_parsed/merged_reactions_parsed.jsonl", "data/reactions_parsed/reactions_parsed_ord.jsonl", "data/reactions_parsed/reactions_parsed.jsonl")
     #chemsllm.balance_parsed_reactions()
     #chemsllm.generate_edges()
-    chemsllm.populate_db()
+    #chemsllm.populate_db()
     #chemsllm.deduplicate_chems_rebind_reactions()
     #chemsllm.fix_details()
     #chemsllm.fix_reactions()
@@ -2027,6 +2066,9 @@ if __name__ == "__main__":
     #chemsllm.merge_details()
     #chemsllm.merge_reactions()
     #chemsllm.get_conflicting_synonyms('conflict.txt')
+    #chemsllm.map_crc_chems_to_cids()
+    #chemsllm.fetch_names_from_pubchem('data/crc_unmapped_names.txt')
+    chemsllm.get_commonnes_chems_sorting()
 
     
 
