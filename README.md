@@ -57,15 +57,3 @@ python -m http.server 8000
 * Click **edges** (reactions) → linked reactions info.
 * Adjust **N** (max path length) and **k** (number of paths) for different routes.
 
----
-
-### Support the Project
-
-If you find this project useful and would like to support its development, you can send a small contribution to help us maintain and improve it.
-
-**Crypto wallets:**
-
-* **BTC:** `bc1q27hevh5ygm85rupfxn54dlndg5v3s8jqr8l20l`
-* **ETH:** `0x98977B1AD4Ac62E529De5Bc0B87f105882C7F58a`
-
-Thank you!
